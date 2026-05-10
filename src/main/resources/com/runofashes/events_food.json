@@ -91,8 +91,9 @@
     "label": "Przeszukaj porzucony wóz przy drodze",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "hunger": 50, "morale": 15 },
-    "successMessage": "Wór mąki i słoik miodu. Właściciel nie wróci po to. Ty potrzebujesz bardziej.",
+    "effects": { "hunger": 20, "morale": 15 },
+    "itemEffects": { "DRIED_MEAT": 1, "WINE": 1 },
+    "successMessage": "Znalazłeś suszone mięso i butelkę wina. Właściciel nie wróci po to. Ty potrzebujesz bardziej.",
     "failEffects": { "health": -15, "morale": -25 },
     "failMessage": "Wóz nie był tak pusty jak wyglądał. Ktoś w nim leżał. Cofnąłeś się szybko."
   },

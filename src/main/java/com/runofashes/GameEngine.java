@@ -30,6 +30,8 @@ public class GameEngine {
 
     private static final Random RNG = new Random();
 
+    private Inventory inventory = new Inventory();
+    private StatusManager statusManager = new StatusManager();
     // ── Init ─────────────────────────────────────────────────────────────────
 
     public void load() throws Exception {
@@ -41,6 +43,7 @@ public class GameEngine {
         questEvents      = EventLoader.loadEvents("events_quests.json");
         rareEvents       = EventLoader.loadEvents("events_rare.json");
         endings          = EventLoader.loadEndings();
+        addStarterItems();
 
         questEventMap = new HashMap<>();
         for (GameEvent e : questEvents) {
@@ -58,6 +61,11 @@ public class GameEngine {
         completedQuests.clear();
         lastMessage = "";
         lastResult = EventResult.SUCCESS;
+
+        inventory = new Inventory();
+        statusManager = new StatusManager();
+        addStarterItems();
+
         drawCards();
     }
 
@@ -70,6 +78,19 @@ public class GameEngine {
         switch (result) {
             case SUCCESS -> {
                 applyEffects(event.getEffects());
+
+                // NOWE: Dodawanie przedmiotów z eventu
+                if (event.getItemEffects() != null) {
+                    event.getItemEffects().forEach((itemName, amount) -> {
+                        try {
+                            ItemType type = ItemType.valueOf(itemName);
+                            inventory.add(type, amount);
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
+                        }
+                    });
+                }
+
                 lastMessage = event.getSuccessMessage() != null ? event.getSuccessMessage() : "";
                 handleQuestProgress(event);
             }
@@ -92,6 +113,18 @@ public class GameEngine {
         if (event.getDistanceCost() > 0) {
             player.addDistance(event.getDistanceCost());
             cancelActiveQuests();
+        }
+
+        statusManager.tick(player, turnCount);
+        statusManager.rollTriggers(player);
+
+        Map<String, Integer> currentEffects = event.getEffects();
+        if (statusManager.hasHallucinations() && currentEffects != null) {
+            Map<String, Integer> hallucinatedEffects = new HashMap<>(currentEffects);
+            hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : -Math.abs(v) / 2);
+            applyEffects(hallucinatedEffects);
+        } else {
+            applyEffects(currentEffects);
         }
 
         player.addTime(event.getTimeCost());
@@ -272,6 +305,15 @@ public class GameEngine {
         return visible;
     }
 
+    private void addStarterItems() {
+        inventory.add(ItemType.WATER,      2);
+        inventory.add(ItemType.DRIED_MEAT, 1);
+        inventory.add(ItemType.BANDAGE,    1);
+    }
+
+    public void useItem(ItemType type) {
+        inventory.useItem(type, player, statusManager, turnCount);
+    }
     // ── Gettery ───────────────────────────────────────────────────────────────
 
     public Player       getPlayer()         { return player; }
@@ -309,4 +351,7 @@ public class GameEngine {
     public List<GameEvent> getMoraleEvents()     { return moraleEvents; }
     public List<GameEvent> getMoveEvents()       { return moveEvents; }
     public List<GameEvent> getRareEvents()       { return rareEvents; }
+
+    public Inventory     getInventory()     { return inventory; }
+    public StatusManager getStatusManager() { return statusManager; }
 }

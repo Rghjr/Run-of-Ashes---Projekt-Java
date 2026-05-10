@@ -44,8 +44,9 @@
     "label": "??? Wejdź do chaty starej kobiety przy lesie",
     "timeCost": 2,
     "hiddenEffects": true,
-    "revealMessage": "Znała zioła których nazw nie znałeś. Naparzyła coś gorzkiego i kazała pić. Rano byłeś innym człowiekiem.",
+    "revealMessage": "Znała zioła, których nazw nie znałeś. Naparzyła coś gorzkiego i dała ci zapasy na drogę. Rano byłeś innym człowiekiem.",
     "effects": { "health": 45, "energy": 40, "morale": 30, "hydration": 20 },
+    "itemEffects": { "HERBS": 2, "BANDAGE": 1 },
     "failEffects": { "health": -35, "morale": -25, "energy": -20 },
     "failMessage": "Cokolwiek dała ci do picia — nie było to lekarstwo. Albo nie dla ciebie."
   }

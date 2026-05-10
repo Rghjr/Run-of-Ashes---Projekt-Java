@@ -32,8 +32,9 @@
     "id": "boil_water",
     "label": "Zagotuj wodę nad ogniskiem",
     "timeCost": 2,
-    "effects": { "hydration": 65, "morale": 8 },
-    "successMessage": "Ciepła i bezpieczna. Przy ogniu siedziałeś chwilę dłużej niż potrzeba.",
+    "effects": { "hydration": 40, "morale": 8 },
+    "itemEffects": { "WATER": 2 },
+    "successMessage": "Ciepła i bezpieczna. Napiłeś się, a resztę przelałeś do manierek na zapas.",
     "failEffects": { "energy": -10, "morale": -5 },
     "failMessage": "Mokre drewno. Dym zamiast ognia. Woda zimna."
   },
