@@ -1,0 +1,119 @@
+[
+  {
+    "id": "eat_berries",
+    "label": "Szukaj jagód w krzakach",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "hunger": 22 },
+    "successMessage": "Garść jagód. Słodkie, choć niezbyt sycące.",
+    "failEffects": { "hunger": -5 },
+    "failMessage": "Krzaki były puste albo owoce zgniłe."
+  },
+  {
+    "id": "eat_mushrooms",
+    "label": "Zbierz grzyby z powalonego pnia",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "effects": { "hunger": 40, "morale": 5 },
+    "successMessage": "Jadalne. Usmażone na kamieniu smakowały lepiej niż się spodziewałeś.",
+    "failEffects": { "health": -40, "hunger": -20, "morale": -15 },
+    "failMessage": "Grzyby okazały się trujące. Żołądek skręca się z bólu."
+  },
+  {
+    "id": "catch_fish",
+    "label": "Łów ryby przy strumieniu",
+    "timeCost": 3,
+    "distanceCost": 2,
+    "effects": { "hunger": 55 },
+    "successMessage": "Dwie ryby. Surowe, ale ciało przyjęło je z wdzięcznością.",
+    "failEffects": { "energy": -15, "morale": -10 },
+    "failMessage": "Ryby były sprytniejsze. Trzy godziny w zimnej wodzie, nic."
+  },
+  {
+    "id": "hunt_small",
+    "label": "Poluj na małą zwierzynę",
+    "timeCost": 4,
+    "distanceCost": 3,
+    "effects": { "hunger": 65, "morale": 10 },
+    "successMessage": "Królik. Niezbyt duży, ale wystarczy na dziś.",
+    "failEffects": { "energy": -25, "hunger": -10, "morale": -20 },
+    "failMessage": "Zwierzę uciekło. Wróciłeś z niczym, bardziej głodny niż wcześniej."
+  },
+  {
+    "id": "dig_roots",
+    "label": "Wykop korzenie przy rzece",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "effects": { "hunger": 22, "hydration": 8 },
+    "successMessage": "Korzenie były soczyste. Nie smakowały niczym — ale trzymały przy życiu.",
+    "failEffects": { "energy": -10 },
+    "failMessage": "Ziemia zbyt twarda. Kilka zadrapań i nic więcej."
+  },
+  {
+    "id": "eat_nuts",
+    "label": "Zbierz orzechy i żołędzie z lasu",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "effects": { "hunger": 28 },
+    "successMessage": "Cierpkie, twarde — ale sycące. Kieszenie pełne po godzinie.",
+    "failEffects": { "hunger": 5, "energy": -8 },
+    "failMessage": "Drzewa były ogołocone. Kilka suchych żołędzi, nic więcej."
+  },
+  {
+    "id": "eat_eggs",
+    "label": "Szukaj ptasich gniazd z jajami",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "hunger": 32, "morale": 5 },
+    "successMessage": "Trzy jajka. Surowe, ciepłe, doskonałe.",
+    "failEffects": { "energy": -8, "morale": -10 },
+    "failMessage": "Gniazda były puste albo bronione przez agresywnego ptaka."
+  },
+  {
+    "id": "cook_soup",
+    "label": "Ugotuj zupę z tego co zebrałeś",
+    "timeCost": 2,
+    "effects": { "hunger": 45, "morale": 15, "hydration": 10 },
+    "successMessage": "Ciepłe jedzenie po raz pierwszy od długiego czasu. Łzy same napłynęły.",
+    "failEffects": { "energy": -10, "hunger": 5 },
+    "failMessage": "Ogień zgasł zanim zdążyłeś ugotować. Zimny bulion to nie zupa."
+  },
+  {
+    "id": "scavenge_house",
+    "label": "Przeszukaj opuszczony dom",
+    "timeCost": 2,
+    "distanceCost": 2,
+    "effects": { "hunger": 50, "morale": 20 },
+    "successMessage": "Puszki, sucharki, coś w słoiku bez etykietki. Nie pytasz — jesz.",
+    "failEffects": { "health": -15, "morale": -20 },
+    "failMessage": "Dom był już splądrowany. Albo ktoś wciąż tam był."
+  },
+  {
+    "id": "eat_plants",
+    "label": "Jedz dzikie rośliny i trawę",
+    "timeCost": 1,
+    "effects": { "hunger": 12, "health": 5 },
+    "successMessage": "Gorzkie, twarde — ale zielone. Ciało wiedziało co z tym zrobić.",
+    "failEffects": { "health": -20, "hunger": -10 },
+    "failMessage": "Nie wszystkie dzikie rośliny są jadalne. Teraz już to wiesz."
+  },
+  {
+    "id": "set_trap",
+    "label": "Przygotuj pułapkę z gałęzi i sznurka",
+    "timeCost": 2,
+    "effects": { "hunger": 40, "morale": 20 },
+    "successMessage": "Coś złapałeś przez noc. Małe, ale twoje. Natura dała ci szansę.",
+    "failEffects": { "energy": -10, "morale": -10 },
+    "failMessage": "Pułapka stała się schronieniem dla wiatru. Nic nie wpadło."
+  },
+  {
+    "id": "forage_meadow",
+    "label": "Zbieraj jadalne rośliny z łąki",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "effects": { "hunger": 20, "morale": 8 },
+    "successMessage": "Szczaw, pokrzywa, mniszek — wszystko do garnka. Skromne, ale własne.",
+    "failEffects": { "energy": -8 },
+    "failMessage": "Łąka była wypalona albo zbyt sucha. Prawie nic jadalne."
+  }
+]

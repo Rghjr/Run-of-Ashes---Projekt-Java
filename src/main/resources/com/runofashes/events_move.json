@@ -1,0 +1,144 @@
+[
+  {
+    "id": "move_path",
+    "label": "Idź utartą leśną ścieżką",
+    "timeCost": 2,
+    "distanceCost": 8,
+    "effects": { "energy": -12, "hunger": -8, "hydration": -5 },
+    "successMessage": "Ścieżka była wąska, ale prowadziła naprzód. Nogi pamiętają rytm.",
+    "failEffects": { "energy": -15, "hunger": -10, "morale": -12 },
+    "failMessage": "Ścieżka urwała się w ciemności lasu. Straciłeś godzinę wracając."
+  },
+  {
+    "id": "move_forest",
+    "label": "Przedzieraj się przez gęsty las",
+    "timeCost": 3,
+    "distanceCost": 7,
+    "effects": { "energy": -25, "hunger": -15, "hydration": -10, "morale": 8 },
+    "successMessage": "Gęstwina ustąpiła. Po drugiej stronie było trochę jaśniej.",
+    "failEffects": { "energy": -30, "health": -10, "morale": -20 },
+    "failMessage": "Zagubiłeś się. Kolce, błoto, ciemność. Wyszedłeś tam gdzie wszedłeś."
+  },
+  {
+    "id": "move_high_ground",
+    "label": "Wspinaj się na wzgórze żeby rozejrzeć się",
+    "timeCost": 2,
+    "distanceCost": 4,
+    "effects": { "energy": -22, "morale": 25, "hydration": -8 },
+    "successMessage": "Z góry widać było dalej. Wybrałeś kierunek. To dało nadzieję.",
+    "failEffects": { "energy": -22, "health": -15, "morale": -10 },
+    "failMessage": "Mgła zasłoniła wszystko. Schodziłeś ostrożnie, przewróciłeś się raz."
+  },
+  {
+    "id": "move_river",
+    "label": "Idź wzdłuż rzeki",
+    "timeCost": 3,
+    "distanceCost": 12,
+    "effects": { "energy": -18, "hydration": 15, "hunger": -10 },
+    "successMessage": "Rzeka prowadziła pewnie. Piłeś w biegu. Brzeg był miękki pod nogami.",
+    "failEffects": { "energy": -25, "health": -20 },
+    "failMessage": "Poślizgnąłeś się na mokrych kamieniach. Upadek kosztował więcej niż marsz."
+  },
+  {
+    "id": "move_run",
+    "label": "Biegnij ile sił w nogach",
+    "timeCost": 1,
+    "distanceCost": 9,
+    "effects": { "energy": -35, "hunger": -18, "hydration": -15, "morale": 15 },
+    "successMessage": "Przez chwilę byłeś zwierzęciem. Szybkim, żywym, wolnym.",
+    "failEffects": { "energy": -35, "health": -20, "hunger": -20 },
+    "failMessage": "Noga ustąpiła na nierównym terenie. Ból ostry, krótki — i długi potem."
+  },
+  {
+    "id": "move_shelter",
+    "label": "Szukaj schronienia na noc",
+    "timeCost": 2,
+    "distanceCost": 0,
+    "effects": { "morale": 20, "energy": 10 },
+    "successMessage": "Jaskinia, ruina, sterta liści — cokolwiek to było, było twoje na tę noc.",
+    "failEffects": { "morale": -20, "energy": -10, "hydration": -8 },
+    "failMessage": "Nie znalazłeś nic. Spałeś pod gołym niebem, mokry i odsłonięty."
+  },
+  {
+    "id": "move_road",
+    "label": "Idź asfaltową szosą",
+    "timeCost": 3,
+    "distanceCost": 17,
+    "effects": { "energy": -15, "hunger": -12, "hydration": -8, "morale": 10 },
+    "successMessage": "Asfalt pod butami. Prosto, daleko. Przez chwilę świat wyglądał normalnie.",
+    "failEffects": { "energy": -18, "hunger": -12, "health": -10 },
+    "failMessage": "Na drodze ktoś czekał. Ledwo uciekłeś. Stracony czas i krew."
+  },
+  {
+    "id": "move_field",
+    "label": "Skróć przez otwarte pole",
+    "timeCost": 1,
+    "distanceCost": 5,
+    "effects": { "energy": -10, "hunger": -6, "hydration": -4 },
+    "successMessage": "Pole było puste. Przeszedłeś szybko, korzystając z otwartej przestrzeni.",
+    "failEffects": { "energy": -12, "morale": -15 },
+    "failMessage": "Ziemia była rozmiękła po deszczu. Każdy krok kosztował dwa razy tyle."
+  },
+  {
+    "id": "move_tracks",
+    "label": "Idź wzdłuż torów kolejowych",
+    "timeCost": 4,
+    "distanceCost": 22,
+    "effects": { "energy": -20, "hunger": -18, "hydration": -12 },
+    "successMessage": "Tory prowadziły prosto jak strzała. Żaden las ani wzgórze nie zatrzymają szyn.",
+    "failEffects": { "energy": -22, "health": -15, "morale": -15 },
+    "failMessage": "Most kolejowy był nie do przejścia. Straciłeś wiele czasu szukając obejścia."
+  },
+  {
+    "id": "move_village",
+    "label": "Przejdź przez opuszczoną wieś",
+    "timeCost": 2,
+    "distanceCost": 5,
+    "effects": { "hunger": 15, "morale": 10, "energy": -10 },
+    "successMessage": "Domy stały puste. Ale w jednej piwnicy były puszki. I spokój, przez chwilę.",
+    "failEffects": { "health": -20, "morale": -25, "energy": -15 },
+    "failMessage": "Wioska nie była opuszczona. Wycofałeś się. Coś — albo ktoś — szło za tobą."
+  },
+  {
+    "id": "move_night_march",
+    "label": "Maszeruj w nocy pod gwiazdami",
+    "timeCost": 3,
+    "distanceCost": 10,
+    "minHour": 20,
+    "maxHour": 4,
+    "effects": { "energy": -25, "hydration": -10, "morale": 20 },
+    "successMessage": "Gwiazdy prowadziły. Ciemność kryła niebezpieczeństwa — ale i ciebie.",
+    "failEffects": { "energy": -30, "health": -15, "morale": -20 },
+    "failMessage": "Poślizgnąłeś się w ciemności. Bez widoczności, bez orientacji — straciłeś drogę."
+  },
+  {
+    "id": "move_map_study",
+    "label": "Studiuj mapę i planuj dalszą trasę",
+    "timeCost": 1,
+    "distanceCost": 0,
+    "effects": { "morale": 20, "energy": -5 },
+    "successMessage": "Linie na papierze zmieniły się w plan. Wiesz już którędy. To daje siłę.",
+    "failEffects": { "morale": -10, "energy": -5 },
+    "failMessage": "Mapa była nieaktualna. Bardziej zdezorientowany niż przed."
+  },
+  {
+    "id": "move_detour",
+    "label": "Obejdź szerokim łukiem niebezpieczny teren",
+    "timeCost": 3,
+    "distanceCost": 6,
+    "effects": { "energy": -20, "hunger": -10, "morale": 12 },
+    "successMessage": "Dłużej, ale bezpieczniej. To mądrzejsze niż odważniejsze.",
+    "failEffects": { "energy": -25, "morale": -15, "hunger": -10 },
+    "failMessage": "Obejście było dwa razy dłuższe niż myślałeś. Nogi protestują."
+  },
+  {
+    "id": "move_sprint_gap",
+    "label": "Przebiegaj otwartą przestrzeń w sprincie",
+    "timeCost": 1,
+    "distanceCost": 3,
+    "effects": { "energy": -25, "morale": 10, "hydration": -8 },
+    "successMessage": "Przez kilkanaście sekund byłeś niewidzialny. Zdążyłeś.",
+    "failEffects": { "energy": -28, "health": -15 },
+    "failMessage": "Potknąłeś się w połowie. Dotarłeś — ale coś zostało na ziemi."
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "quest_cave_1",
+    "label": "Wejdź do jaskini (początek - ciąg dalszy za 3 tury)",
+    "effects": { "energy": -15, "morale": 10 },
+    "questId": "cave",
+    "questStage": 1,
+    "turnsUntilNext": 3
+  },
+  {
+    "id": "quest_cave_2",
+    "label": "Eksploruj głębiej (część 2/3)",
+    "effects": { "energy": -25, "health": -10 },
+    "questId": "cave",
+    "questStage": 2,
+    "turnsUntilNext": 3
+  },
+  {
+    "id": "quest_cave_3",
+    "label": "Znajdź skarbiec na dnie jaskini (finał)",
+    "effects": { "morale": 50, "health": 30, "energy": -20 },
+    "questId": "cave",
+    "questStage": 3,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_tower_1",
+    "label": "Idź w kierunku wieży (początek - ciąg dalszy za 4 tury)",
+    "effects": { "energy": -10, "hunger": -10 },
+    "questId": "tower",
+    "questStage": 1,
+    "turnsUntilNext": 4
+  },
+  {
+    "id": "quest_tower_2",
+    "label": "Wspinaj się na wieżę (finał)",
+    "effects": { "health": -20, "morale": 60, "energy": -30 },
+    "questId": "tower",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  }
+]

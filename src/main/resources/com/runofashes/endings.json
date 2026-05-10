@@ -1,0 +1,27 @@
+{
+  "health": [
+    "Rany okazały się zbyt głębokie. Osunąłeś się na ziemię, patrząc w szare niebo po raz ostatni.",
+    "Ciało odmówiło posłuszeństwa. Popioły wchłonęły cię w milczeniu.",
+    "Krew i pył — oto czym się stałeś."
+  ],
+  "hunger": [
+    "Głód wygrał. Żołądek zamilkł na zawsze, a nogi przestały słuchać.",
+    "Patrzyłeś na ostatnie jagody zbyt długo. Już nie zdążyłeś.",
+    "Ciało pożerało samo siebie, aż nie zostało nic."
+  ],
+  "hydration": [
+    "Usta spękały jak ziemia w upale. Woda była wszędzie, tylko nie tam gdzie trzeba.",
+    "Pragnienie zabiło cię wolniej niż myślałeś — ale równie pewnie.",
+    "Ostatnią rzeczą jaką pamiętasz był dźwięk odległego strumienia."
+  ],
+  "energy": [
+    "Usiadłeś na chwilę. Chwila trwała wiecznie.",
+    "Nogi odmawiały. Potem ręce. Na końcu — oddech.",
+    "Wyczerpanie nie pyta o pozwolenie. Po prostu bierze."
+  ],
+  "morale": [
+    "Nie ciało, lecz duch złamał się pierwszy. Bez woli — reszta była tylko formalnością.",
+    "Zostawiłeś siebie gdzieś po drodze i nie wróciłeś po odbiór.",
+    "Mrok w środku okazał się gęstszy niż ten na zewnątrz."
+  ]
+}

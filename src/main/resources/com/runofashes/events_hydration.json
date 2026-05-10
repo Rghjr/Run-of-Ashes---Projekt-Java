@@ -1,0 +1,38 @@
+[
+  {
+    "id": "drink_stream",
+    "label": "Pij ze strumienia",
+    "timeCost": 1,
+    "effects": { "hydration": 40 },
+    "successMessage": "Woda była zimna i czysta. Pierwszy raz od długiego czasu poczułeś coś dobrego.",
+    "failEffects": {},
+    "failMessage": ""
+  },
+  {
+    "id": "drink_rain",
+    "label": "Zbierz wodę deszczową liśćmi",
+    "timeCost": 2,
+    "effects": { "hydration": 30 },
+    "successMessage": "Powoli, kroplami — zebrałeś tyle ile starczyło na chwilę.",
+    "failEffects": { "hydration": 5 },
+    "failMessage": "Deszcz się skończył zanim zebrałeś cokolwiek sensownego."
+  },
+  {
+    "id": "drink_puddle",
+    "label": "Pij z kałuży przy drodze",
+    "timeCost": 1,
+    "effects": { "hydration": 20 },
+    "successMessage": "Brudna, ale nawadniała. Ciało nie protestowało, tym razem.",
+    "failEffects": { "health": -25, "hydration": 10 },
+    "failMessage": "Woda była skażona. Niemal natychmiast poczułeś skurcze."
+  },
+  {
+    "id": "boil_water",
+    "label": "Zagotuj wodę na ogniu",
+    "timeCost": 3,
+    "effects": { "hydration": 60, "morale": 5 },
+    "successMessage": "Ciepła, bezpieczna woda. Przez chwilę siedziałeś przy ogniu jak człowiek.",
+    "failEffects": { "energy": -10, "morale": -5 },
+    "failMessage": "Drewno mokre, ogień zgasł za wcześnie."
+  }
+]

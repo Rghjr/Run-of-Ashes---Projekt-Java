@@ -1,0 +1,38 @@
+[
+  {
+    "id": "rest",
+    "label": "Odpocznij przy drzewie",
+    "timeCost": 2,
+    "effects": { "energy": 35, "hunger": -10, "hydration": -5 },
+    "successMessage": "Oparłeś się o korę i zamknąłeś oczy. Ciało wróciło do siebie.",
+    "failEffects": { "energy": 10, "morale": -10 },
+    "failMessage": "Nie mogłeś zasnąć. Myśli nie dawały spokoju."
+  },
+  {
+    "id": "sleep",
+    "label": "Śpij do świtu",
+    "timeCost": 8,
+    "effects": { "energy": 80, "hunger": -30, "hydration": -20, "morale": 15 },
+    "successMessage": "Spałeś twardo. Rano czułeś się jak nowy.",
+    "failEffects": { "energy": 30, "morale": -20 },
+    "failMessage": "Koszmary nie dały odpocząć. Wstałeś gorszy niż się kładłeś."
+  },
+  {
+    "id": "meditate",
+    "label": "Medytuj w ciszy",
+    "timeCost": 1,
+    "effects": { "energy": 20, "morale": 15 },
+    "successMessage": "Umysł się wyciszył. Przez chwilę świat nie był taki zły.",
+    "failEffects": { "morale": -5 },
+    "failMessage": "Nie potrafiłeś się skupić. Cisza tylko uwydatniła myśli których nie chciałeś."
+  },
+  {
+    "id": "nap",
+    "label": "Zdrzemnij się na godzinę",
+    "timeCost": 1,
+    "effects": { "energy": 25, "hunger": -5 },
+    "successMessage": "Krótki sen, ale skuteczny.",
+    "failEffects": { "energy": 5, "morale": -8 },
+    "failMessage": "Obudziłeś się bardziej zmęczony. Zbyt krótko, zbyt płytko."
+  }
+]

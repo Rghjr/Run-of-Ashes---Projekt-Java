@@ -1,0 +1,52 @@
+[
+  {
+    "id": "rare_strange_fruit",
+    "label": "??? Zjedz nieznany owoc",
+    "timeCost": 1,
+    "hiddenEffects": true,
+    "revealMessage": "Owoc smakował jak miedź i sen. Coś w tobie drgnęło.",
+    "effects": { "health": 50, "morale": 40, "hunger": 30 },
+    "failEffects": { "health": -50, "morale": -30 },
+    "failMessage": "Coś poszło nie tak. Bardzo nie tak."
+  },
+  {
+    "id": "rare_dark_water",
+    "label": "??? Wypij czarną wodę z bagiennego źródła",
+    "timeCost": 1,
+    "hiddenEffects": true,
+    "revealMessage": "Smak był słodki. Zbyt słodki. Żołądek skręcił się z bólu.",
+    "effects": { "health": -60, "hydration": 50, "morale": -30 },
+    "failEffects": { "health": -80, "hydration": 20, "morale": -50 },
+    "failMessage": "Gorzej niż mogłeś się spodziewać."
+  },
+  {
+    "id": "rare_wanderer",
+    "label": "??? Zaufaj tajemniczemu wędrowcowi",
+    "timeCost": 1,
+    "hiddenEffects": true,
+    "revealMessage": "Dał ci chleb, ogień i imię. Potem zniknął jak dym.",
+    "effects": { "hunger": 60, "energy": 40, "morale": 50 },
+    "failEffects": { "hunger": -20, "morale": -40, "health": -20 },
+    "failMessage": "Wędrowiec zabrał więcej niż dał."
+  },
+  {
+    "id": "rare_ritual",
+    "label": "??? Odpraw rytuał przy kamieniu",
+    "timeCost": 2,
+    "hiddenEffects": true,
+    "revealMessage": "Kamień zadrżał. Krew na dłoniach wyschła w sekundę.",
+    "effects": { "health": -30, "morale": 70, "energy": 30 },
+    "failEffects": { "health": -50, "morale": -40 },
+    "failMessage": "Rytuał obrócił się przeciwko tobie."
+  },
+  {
+    "id": "rare_collapse",
+    "label": "??? Wejdź w tunel pod korzeniami",
+    "timeCost": 2,
+    "hiddenEffects": true,
+    "revealMessage": "Tunel zawalił się za tobą. Nie ma odwrotu. Ale jest wyjście.",
+    "effects": { "health": -20, "morale": 40, "energy": 20 },
+    "failEffects": { "health": -60, "energy": -40, "morale": -40 },
+    "failMessage": "Tunel zawalił się. Przed tobą i za tobą."
+  }
+]
