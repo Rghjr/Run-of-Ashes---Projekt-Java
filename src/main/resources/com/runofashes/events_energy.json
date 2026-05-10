@@ -1,38 +1,92 @@
 [
   {
-    "id": "rest",
-    "label": "Odpocznij przy drzewie",
+    "id": "rest_roadside",
+    "label": "Odpocznij przy przydrożnym kamieniu",
     "timeCost": 2,
     "effects": { "energy": 35, "hunger": -10, "hydration": -5 },
-    "successMessage": "Oparłeś się o korę i zamknąłeś oczy. Ciało wróciło do siebie.",
-    "failEffects": { "energy": 10, "morale": -10 },
-    "failMessage": "Nie mogłeś zasnąć. Myśli nie dawały spokoju."
+    "successMessage": "Zdjąłeś buty. Stopy podziękowały. Po godzinie byłeś gotowy znów.",
+    "failEffects": { "energy": 10, "morale": -12 },
+    "failMessage": "Nie mogłeś przestać myśleć. Odpoczynek ciała, nie ducha."
   },
   {
-    "id": "sleep",
-    "label": "Śpij do świtu",
+    "id": "sleep_inn",
+    "label": "Śpij w karczmie na słomie",
+    "timeCost": 6,
+    "minHour": 19,
+    "maxHour": 4,
+    "effects": { "energy": 70, "hunger": -20, "hydration": -12, "morale": 18 },
+    "successMessage": "Słoma była twarda i cuchnęła psem. Spałeś jak nieboszczyk — i obudziłeś się żywy.",
+    "failEffects": { "energy": 25, "morale": -20, "health": -10 },
+    "failMessage": "Karczma pełna kaszlu i gorączki. Uciekłeś przed świtem. Boże daj żebyś nic nie wziął ze sobą."
+  },
+  {
+    "id": "sleep_monastery",
+    "label": "Proś o nocleg w klasztorze",
     "timeCost": 8,
-    "effects": { "energy": 80, "hunger": -30, "hydration": -20, "morale": 15 },
-    "successMessage": "Spałeś twardo. Rano czułeś się jak nowy.",
-    "failEffects": { "energy": 30, "morale": -20 },
-    "failMessage": "Koszmary nie dały odpocząć. Wstałeś gorszy niż się kładłeś."
+    "minHour": 17,
+    "maxHour": 4,
+    "effects": { "energy": 85, "hunger": -15, "hydration": -10, "morale": 30, "health": 10 },
+    "successMessage": "Mnisi dali ci celę i świecę. Spałeś przy dźwięku jutrzni. Rano czułeś się prawie ludzki.",
+    "failEffects": { "energy": 30, "morale": -15 },
+    "failMessage": "Klasztor nie przyjmował wędrowców. Zaraza zamknęła wiele bram."
   },
   {
-    "id": "meditate",
-    "label": "Medytuj w ciszy",
+    "id": "nap_tree",
+    "label": "Zdrzemnij się pod drzewem",
     "timeCost": 1,
-    "effects": { "energy": 20, "morale": 15 },
-    "successMessage": "Umysł się wyciszył. Przez chwilę świat nie był taki zły.",
-    "failEffects": { "morale": -5 },
-    "failMessage": "Nie potrafiłeś się skupić. Cisza tylko uwydatniła myśli których nie chciałeś."
-  },
-  {
-    "id": "nap",
-    "label": "Zdrzemnij się na godzinę",
-    "timeCost": 1,
-    "effects": { "energy": 25, "hunger": -5 },
-    "successMessage": "Krótki sen, ale skuteczny.",
+    "effects": { "energy": 22, "hunger": -5 },
+    "successMessage": "Krótko, ale głęboko. Obudziłeś się gdy słońce się przesunęło.",
     "failEffects": { "energy": 5, "morale": -8 },
-    "failMessage": "Obudziłeś się bardziej zmęczony. Zbyt krótko, zbyt płytko."
+    "failMessage": "Sny nie dały spokoju. Twarze tych których zostawiłeś za sobą."
+  },
+  {
+    "id": "campfire_rest",
+    "label": "Roznieć ognisko i odpoczywaj przy nim",
+    "timeCost": 3,
+    "effects": { "energy": 50, "morale": 28, "hunger": -18, "hydration": -10 },
+    "successMessage": "Ogień trzaskał i dawał ciepło. W jego świetle droga wyglądała mniej długo.",
+    "failEffects": { "energy": 12, "morale": -15 },
+    "failMessage": "Drewno mokre od deszczu. Dym zamiast płomienia. Zimno zostało."
+  },
+  {
+    "id": "prayer_strength",
+    "label": "Módl się o siłę do dalszej drogi",
+    "timeCost": 1,
+    "effects": { "energy": 20, "morale": 25 },
+    "successMessage": "Słowa modlitwy znałeś na pamięć. Tym razem poczułeś że ktoś słucha.",
+    "failEffects": { "morale": -15 },
+    "failMessage": "Cisza odpowiedziała ciszą. Idziesz sam — zawsze będziesz szedł sam."
+  },
+  {
+    "id": "cold_stream",
+    "label": "Zanurz się w zimnym strumieniu",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "energy": 30, "hydration": 22, "morale": 10 },
+    "successMessage": "Zimna woda wybudziła każdą kość. Boleśnie żywy — ale żywy.",
+    "failEffects": { "health": -20, "energy": -8 },
+    "failMessage": "Prąd pochwycił cię za nogi. Wyszedłeś niżej niż wszedłeś."
+  },
+  {
+    "id": "deep_sleep_field",
+    "label": "Śpij do świtu pod gołym niebem",
+    "timeCost": 9,
+    "minHour": 20,
+    "maxHour": 4,
+    "effects": { "energy": 75, "hunger": -30, "hydration": -20, "morale": 15 },
+    "successMessage": "Gwiazdy kręciły się powoli nad tobą. Obudziłeś się gdy zrobiło się szaro.",
+    "failEffects": { "energy": 30, "morale": -22, "health": -12 },
+    "failMessage": "Deszcz i zimno nie dały spać. Wstałeś gorszy niż się kładłeś."
+  },
+  {
+    "id": "stretch_morning",
+    "label": "Rozciągaj mięśnie o świcie",
+    "timeCost": 1,
+    "minHour": 4,
+    "maxHour": 9,
+    "effects": { "energy": 18, "morale": 10, "hunger": -5 },
+    "successMessage": "Nogi poskarżyły się przez chwilę. Potem podziękowały.",
+    "failEffects": { "health": -8, "energy": -5 },
+    "failMessage": "Coś strzyknęło w kolanie. Dziś będziesz szedł wolniej."
   }
 ]

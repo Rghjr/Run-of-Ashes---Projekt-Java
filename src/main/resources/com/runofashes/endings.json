@@ -1,27 +1,27 @@
 {
   "health": [
-    "Rany okazały się zbyt głębokie. Osunąłeś się na ziemię, patrząc w szare niebo po raz ostatni.",
-    "Ciało odmówiło posłuszeństwa. Popioły wchłonęły cię w milczeniu.",
-    "Krew i pył — oto czym się stałeś."
+    "Rany nie zagoiły się w porę. Usiadłeś przy drodze i nie wstałeś. Wieść o zarazie dotarła do Krakowa zbyt późno — lub nie dotarła wcale.",
+    "Ciało odmówiło posłuszeństwa kilka dni marszu za wcześnie. Popioły wchłonęły cię w milczeniu stepu.",
+    "Krew i kurz — oto czym się stałeś. Gdzieś w połowie drogi między Azją a Polską."
   ],
   "hunger": [
-    "Głód wygrał. Żołądek zamilkł na zawsze, a nogi przestały słuchać.",
-    "Patrzyłeś na ostatnie jagody zbyt długo. Już nie zdążyłeś.",
-    "Ciało pożerało samo siebie, aż nie zostało nic."
+    "Głód wygrał. Ostatnie kroki były już tylko nawykiem, nie wolą. Wieść umarła razem z tobą.",
+    "Patrzyłeś na wioskę w oddali za długo. Zanim dotarłeś, było za późno — na ciebie i może na nich.",
+    "Ciało pożerało samo siebie przez tydzień. Na końcu zostało tylko to co chciałeś powiedzieć — nikomu."
   ],
   "hydration": [
-    "Usta spękały jak ziemia w upale. Woda była wszędzie, tylko nie tam gdzie trzeba.",
-    "Pragnienie zabiło cię wolniej niż myślałeś — ale równie pewnie.",
-    "Ostatnią rzeczą jaką pamiętasz był dźwięk odległego strumienia."
+    "Step wziął od ciebie wszystko — włącznie z wodą. Usta popękały. Słońce nie miało litości dla posłańca.",
+    "Pragnienie zabiło cię wolniej niż myślałeś — ale pewniej niż miecz. Kraków nie dowiedział się niczego.",
+    "Ostatnią rzeczą jaką pamiętasz był dźwięk odległego strumienia. I myśl że trochę za późno to usłyszałeś."
   ],
   "energy": [
-    "Usiadłeś na chwilę. Chwila trwała wiecznie.",
-    "Nogi odmawiały. Potem ręce. Na końcu — oddech.",
-    "Wyczerpanie nie pyta o pozwolenie. Po prostu bierze."
+    "Usiadłeś na chwilę przy przydrożnym krzyżu. Chwila trwała wiecznie. Wiadomość czekała na kogoś innego.",
+    "Nogi odmawiały. Potem ręce. Na końcu oddech. Step jest pełen takich mogił bez imion.",
+    "Wyczerpanie nie pyta o pozwolenie i nie interesuje się misją. Po prostu bierze."
   ],
   "morale": [
-    "Nie ciało, lecz duch złamał się pierwszy. Bez woli — reszta była tylko formalnością.",
-    "Zostawiłeś siebie gdzieś po drodze i nie wróciłeś po odbiór.",
-    "Mrok w środku okazał się gęstszy niż ten na zewnątrz."
+    "Nie ciało — duch złamał się pierwszy. Gdzieś między jedną spaloną wsią a drugą przestałeś wierzyć że to ma sens.",
+    "Zostawiłeś siebie gdzieś na szlaku i nie wróciłeś po odbiór. Kraków poczeka na kogoś z silniejszą wiarą.",
+    "Ciemność w środku okazała się gęstsza niż ta na zewnątrz. Zaraza poczeka — ona nigdzie się nie spieszy."
   ]
 }

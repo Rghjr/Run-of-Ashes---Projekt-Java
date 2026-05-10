@@ -102,19 +102,24 @@ public class GameEngine {
 
     /**
      * Trzy wyniki: SUCCESS / PARTIAL / FAIL.
-     * Progi bazowe: sukces ≥ 0.65, partial ≥ 0.30, fail < 0.30.
-     * Kary za niskie statystyki obniżają oba progi.
+     *
+     * Normalne statystyki (>30):  ~75% sukces, ~20% partial,  ~5% fail
+     * Niska energia (≈0):         ~60% sukces, ~30% partial, ~10% fail
+     * Wszystko na dnie:           ~45% sukces, ~35% partial, ~20% fail
      */
     private EventResult resolveResult(GameEvent event) {
-        double penalty = statPenalty(player.getEnergy())
-                + statPenalty(player.getHunger())
-                + statPenalty(player.getHydration())
-                + statPenalty(player.getHealth())  * 0.5
-                + statPenalty(player.getMorale())  * 0.5;
-        penalty = Math.min(penalty, 0.55);
+        // Energia i podstawowe przeżycie to główne czynniki
+        double penalty = statPenalty(player.getEnergy())    * 0.50
+                + statPenalty(player.getHunger())    * 0.25
+                + statPenalty(player.getHydration()) * 0.25
+                + statPenalty(player.getHealth())    * 0.15
+                + statPenalty(player.getMorale())    * 0.10;
+        penalty = Math.min(1.0, penalty);
 
-        double successThreshold = Math.max(0.15, 0.65 - penalty);
-        double partialThreshold = Math.max(0.05, 0.30 - penalty * 0.5);
+        // successThreshold: 0.25 → 0.55 (im wyższy próg, tym mniej sukcesów)
+        // partialThreshold: 0.05 → 0.20
+        double successThreshold = 0.25 + penalty * 0.30;
+        double partialThreshold = 0.05 + penalty * 0.15;
 
         double roll = RNG.nextDouble();
         if (roll >= successThreshold) return EventResult.SUCCESS;
@@ -122,9 +127,10 @@ public class GameEngine {
         return EventResult.FAIL;
     }
 
+    /** Kara rośnie gdy stat < 30: 0.0 przy stat=30, 1.0 przy stat=0. */
     private double statPenalty(int statValue) {
         if (statValue >= 30) return 0.0;
-        return 0.20 * (1.0 - statValue / 30.0);
+        return 1.0 - statValue / 30.0;
     }
 
     private void applyEffects(Map<String, Integer> fx) {

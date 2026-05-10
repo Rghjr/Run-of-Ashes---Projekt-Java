@@ -1,38 +1,89 @@
 [
   {
+    "id": "drink_well",
+    "label": "Napij się ze studni we wsi",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "hydration": 60, "morale": 8 },
+    "successMessage": "Zimna i głęboka. Piłeś tak długo, że boli brzuch. Nie obchodzi cię to.",
+    "failEffects": { "health": -20, "hydration": 10 },
+    "failMessage": "Przy studni leżał martwy pies. Wypiłeś za mało żeby nie odwodnić, za dużo żeby być mądrym."
+  },
+  {
     "id": "drink_stream",
-    "label": "Pij ze strumienia",
+    "label": "Pij z górskiego strumienia",
     "timeCost": 1,
-    "effects": { "hydration": 40 },
-    "successMessage": "Woda była zimna i czysta. Pierwszy raz od długiego czasu poczułeś coś dobrego.",
-    "failEffects": {},
-    "failMessage": ""
+    "effects": { "hydration": 45 },
+    "successMessage": "Woda była tak zimna że bolały zęby. Czysta jak wszystko co z gór.",
+    "failEffects": { "hydration": 12 },
+    "failMessage": "Strumień był zbyt mętny od błota. Kilka łyków i tyle."
   },
   {
-    "id": "drink_rain",
-    "label": "Zbierz wodę deszczową liśćmi",
-    "timeCost": 2,
-    "effects": { "hydration": 30 },
-    "successMessage": "Powoli, kroplami — zebrałeś tyle ile starczyło na chwilę.",
-    "failEffects": { "hydration": 5 },
-    "failMessage": "Deszcz się skończył zanim zebrałeś cokolwiek sensownego."
-  },
-  {
-    "id": "drink_puddle",
-    "label": "Pij z kałuży przy drodze",
+    "id": "buy_inn",
+    "label": "Kup piwo lub wino w karczmie",
     "timeCost": 1,
-    "effects": { "hydration": 20 },
-    "successMessage": "Brudna, ale nawadniała. Ciało nie protestowało, tym razem.",
-    "failEffects": { "health": -25, "hydration": 10 },
-    "failMessage": "Woda była skażona. Niemal natychmiast poczułeś skurcze."
+    "distanceCost": 1,
+    "effects": { "hydration": 35, "morale": 20, "energy": 8 },
+    "successMessage": "Piwo było mdłe i ciepłe. Karczma pełna pogłosek o zarazie. Słuchałeś uważnie.",
+    "failEffects": { "morale": -25, "hydration": 5 },
+    "failMessage": "Karczma zamknięta. Na drzwiach kreda namalowane krzyże — znak zarazy w środku."
   },
   {
     "id": "boil_water",
-    "label": "Zagotuj wodę na ogniu",
-    "timeCost": 3,
-    "effects": { "hydration": 60, "morale": 5 },
-    "successMessage": "Ciepła, bezpieczna woda. Przez chwilę siedziałeś przy ogniu jak człowiek.",
+    "label": "Zagotuj wodę nad ogniskiem",
+    "timeCost": 2,
+    "effects": { "hydration": 65, "morale": 8 },
+    "successMessage": "Ciepła i bezpieczna. Przy ogniu siedziałeś chwilę dłużej niż potrzeba.",
     "failEffects": { "energy": -10, "morale": -5 },
-    "failMessage": "Drewno mokre, ogień zgasł za wcześnie."
+    "failMessage": "Mokre drewno. Dym zamiast ognia. Woda zimna."
+  },
+  {
+    "id": "drink_rain",
+    "label": "Zbieraj deszczówkę w hełm lub miskę",
+    "timeCost": 2,
+    "effects": { "hydration": 30 },
+    "successMessage": "Deszcz był ciągły i pewny. Zebrałeś dość na wieczór.",
+    "failEffects": { "hydration": 5 },
+    "failMessage": "Deszcz skończył się za szybko. Kilka łyków. Nie wystarczy."
+  },
+  {
+    "id": "monastery_well",
+    "label": "Proś o wodę przy klasztornej studni",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "hydration": 70, "morale": 15 },
+    "successMessage": "Mnich nabrał pełne wiadro bez słowa. Klasztorna woda zawsze była lepsza niż wszystko inne.",
+    "failEffects": { "energy": -10, "morale": -12 },
+    "failMessage": "Klasztor zamknięty na głucho. Brat furtan patrzył przez judasz i milczał."
+  },
+  {
+    "id": "drink_dew",
+    "label": "Zbieraj rosę z traw o świcie",
+    "timeCost": 1,
+    "minHour": 4,
+    "maxHour": 8,
+    "effects": { "hydration": 15, "morale": 10 },
+    "successMessage": "Cierpliwe i powolne — ale woda jest wodą. Czysta jak przed stworzeniem.",
+    "failEffects": { "hydration": 3 },
+    "failMessage": "Sucha noc. Trawy suche jak twoje myśli."
+  },
+  {
+    "id": "drink_spring",
+    "label": "Znajdź źródło bijące ze skały",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "effects": { "hydration": 60, "health": 8, "morale": 12 },
+    "successMessage": "Woda prosto ze skały, zimna i czysta. Bóg jeszcze tu coś zostawił.",
+    "failEffects": { "energy": -12, "morale": -8 },
+    "failMessage": "Źródło wyschnięte. Wilgotny mech — i nic poza tym."
+  },
+  {
+    "id": "drink_river_risky",
+    "label": "Pij z rzeki przepływającej przez wieś",
+    "timeCost": 1,
+    "effects": { "hydration": 20 },
+    "successMessage": "Brudna, ale nawadniała. Może Bóg cię oszczędził tym razem.",
+    "failEffects": { "health": -30, "hydration": 12 },
+    "failMessage": "Woda z wioski powyżej. Zorientowałeś się za późno. Żołądek wiedział."
   }
 ]

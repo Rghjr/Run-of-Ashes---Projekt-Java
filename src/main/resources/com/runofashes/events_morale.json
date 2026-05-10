@@ -1,56 +1,119 @@
 [
   {
-    "id": "read_book",
-    "label": "Czytaj znalezioną książkę",
-    "timeCost": 2,
-    "effects": { "morale": 35, "energy": -5 },
-    "successMessage": "Nie pamiętasz już fabuły, ale słowa trzymały cię przy zdrowych zmysłach przez chwilę.",
-    "failEffects": { "morale": 10 },
-    "failMessage": "Zbyt ciemno żeby czytać, zbyt zmęczone oczy. Ale sam widok książki coś znaczył."
+    "id": "pray_cross",
+    "label": "Módl się przy przydrożnym krzyżu",
+    "timeCost": 1,
+    "effects": { "morale": 32, "energy": 5 },
+    "successMessage": "Drewniany krzyż stał sam na rozstaju. Uklęknąłeś. Przez chwilę nie byłeś sam.",
+    "failEffects": { "morale": -18 },
+    "failMessage": "Krzyż był obalony. Ktoś go przewrócił — albo wichura. W tym świecie jedno i drugie możliwe."
   },
   {
-    "id": "recall_memory",
-    "label": "Przypomnij sobie kogoś bliskiego",
+    "id": "meet_pilgrim",
+    "label": "Rozmawiaj z napotkanym pielgrzymem",
     "timeCost": 1,
-    "effects": { "morale": 30 },
-    "successMessage": "Twarz, głos, zapach. Przez chwilę tamten świat był prawdziwszy niż ten tutaj.",
-    "failEffects": { "morale": -20 },
-    "failMessage": "Wspomnienie przyszło, ale razem z nim — wszystko co straciłeś. Gorzej niż przed."
-  },
-  {
-    "id": "write_journal",
-    "label": "Zapisz coś na skrawku papieru",
-    "timeCost": 1,
-    "effects": { "morale": 25, "energy": -5 },
-    "successMessage": "Słowa na papierze sprawiły że czułeś się mniej niewidzialny.",
-    "failEffects": { "morale": -10 },
-    "failMessage": "Nie wiedziałeś co napisać. Papier zostaje pusty. To jest gorsze."
-  },
-  {
-    "id": "pray",
-    "label": "Módl się albo mów do siebie",
-    "timeCost": 1,
-    "effects": { "morale": 20 },
-    "successMessage": "Nie wiesz czy ktoś słuchał. Ale mówienie na głos pomogło.",
-    "failEffects": { "morale": -15 },
-    "failMessage": "Cisza odpowiedziała ciszą. Tym razem to nie wystarczyło."
-  },
-  {
-    "id": "make_goal",
-    "label": "Wyznacz sobie cel na jutro",
-    "timeCost": 1,
-    "effects": { "morale": 40, "energy": 10 },
-    "successMessage": "Małe cele trzymają przy życiu bardziej niż wielkie marzenia. Idziesz dalej.",
+    "distanceCost": 1,
+    "effects": { "morale": 30, "hunger": 10 },
+    "successMessage": "Szedł z Konstantynopola. Widział to co ty. Podzielił się chlebem i słowem. Wystarczy.",
     "failEffects": { "morale": -25 },
-    "failMessage": "Cel wydał się pusty zanim zdążyłeś go dokończyć. Po co w ogóle."
+    "failMessage": "Pielgrzym milczał. W jego oczach był taki strach, że swój wydał ci się małostką."
+  },
+  {
+    "id": "recall_krakow",
+    "label": "Przypomnij sobie ulice Krakowa",
+    "timeCost": 1,
+    "effects": { "morale": 35, "energy": 8 },
+    "successMessage": "Rynek, Wawel, zapach piekarni na Grodzkiej. Żyją — jeśli zdążysz.",
+    "failEffects": { "morale": -22 },
+    "failMessage": "Twarze bliskich zacierały się. Pamiętałeś domy, ale nie ich w domach. To gorsze."
+  },
+  {
+    "id": "write_warning",
+    "label": "Napisz ostrzeżenie na ścianie kościoła",
+    "timeCost": 1,
+    "effects": { "morale": 28 },
+    "successMessage": "'Zaraza idzie ze wschodu. Uciekajcie lub módlcie się.' Ktoś to przeczyta. Może przeżyje.",
+    "failEffects": { "morale": -12 },
+    "failMessage": "Ściana była już pełna napisów. Innych ostrzeżeń, innych rozpaczliwych słów. Już za późno na słowa."
   },
   {
     "id": "watch_sunrise",
     "label": "Patrz na wschód słońca",
     "timeCost": 1,
+    "minHour": 4,
+    "maxHour": 8,
+    "effects": { "morale": 35, "energy": 10 },
+    "successMessage": "Świt nad stepem. Złoto i czerwień. Bóg jeszcze nie porzucił tego świata.",
+    "failEffects": { "morale": 6 },
+    "failMessage": "Chmury zasłoniły wszystko. Ale wstałeś — i to jest coś."
+  },
+  {
+    "id": "watch_sunset",
+    "label": "Patrz na zachód słońca",
+    "timeCost": 1,
+    "minHour": 17,
+    "maxHour": 21,
     "effects": { "morale": 30, "energy": 5 },
-    "successMessage": "Przez kilka minut świat był po prostu piękny. To wystarczyło.",
-    "failEffects": { "morale": 5 },
-    "failMessage": "Chmury zasłoniły wszystko. Ale wstałeś — to coś."
+    "successMessage": "Purpura za lasem. Tam za horyzontem jest Kraków. Jeszcze jeden dzień bliżej.",
+    "failEffects": { "morale": 8 },
+    "failMessage": "Chmury i dym. Gdzieś pali się wioska. Idziesz dalej."
+  },
+  {
+    "id": "count_stars",
+    "label": "Licz gwiazdy nad głową",
+    "timeCost": 1,
+    "minHour": 20,
+    "maxHour": 4,
+    "effects": { "morale": 22, "energy": 12 },
+    "successMessage": "Droga Mleczna wskazywała kierunek lepiej niż każda mapa. Byłeś mały — ale szedłeś.",
+    "failEffects": { "morale": -10 },
+    "failMessage": "Niebo zachmurzone. Ciemność bez gwiazd to tylko ciemność."
+  },
+  {
+    "id": "help_sick",
+    "label": "Pomóż choremu przy drodze",
+    "timeCost": 2,
+    "effects": { "morale": 40 },
+    "successMessage": "Nie wiedziałeś co robić. Dałeś wodę i słowo. Może to wystarczyło — dla ciebie na pewno.",
+    "failEffects": { "health": -25, "morale": -15 },
+    "failMessage": "Dotknąłeś go zanim zobaczyłeś plamy. Módl się żebyś nie wziął ze sobą nic więcej niż wspomnienie."
+  },
+  {
+    "id": "find_compatriot",
+    "label": "Znajdź rodaka na szlaku",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "morale": 45, "energy": 10 },
+    "successMessage": "Mówił po polsku. Krzyczałeś ze zdumienia. On też. Szliście razem przez godzinę — to wystarczyło.",
+    "failEffects": { "morale": -20 },
+    "failMessage": "Myślałeś że go rozpoznajesz. Obcy. Bardzo obcy — i przestraszony tobą."
+  },
+  {
+    "id": "read_breviary",
+    "label": "Czytaj brewiarza lub modlitewnik",
+    "timeCost": 2,
+    "effects": { "morale": 30, "energy": -5 },
+    "successMessage": "Słowa psalmu znałeś na pamięć. Tym razem brzmiały inaczej. Lepiej.",
+    "failEffects": { "morale": -10 },
+    "failMessage": "Litery zlewały się. Zbyt zmęczone oczy albo zbyt wiele widziały."
+  },
+  {
+    "id": "build_altar",
+    "label": "Zbuduj mały ołtarzyk z kamieni",
+    "timeCost": 1,
+    "effects": { "morale": 18 },
+    "successMessage": "Trzy kamienie ułożone w krzyż. Mały znak że tu byłeś i wciąż wierzysz.",
+    "failEffects": { "morale": -5 },
+    "failMessage": "Kamienie rozpadały się. Nawet kamienie nie chcą tu stać."
+  },
+  {
+    "id": "survivor_village",
+    "label": "Obserwuj z daleka żywą wioskę",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "morale": 38 },
+    "successMessage": "Dym z kominów. Psy szczekały. Dzieci krzyczały. Życie — prawdziwe i niezarażone.",
+    "failEffects": { "morale": -30 },
+    "failMessage": "Wioska żyła. Ty przeszedłeś obok bo bałeś się przynieść im śmierć. Może mądrze. Może nie."
   }
 ]
