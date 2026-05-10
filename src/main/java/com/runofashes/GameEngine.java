@@ -121,8 +121,9 @@ public class GameEngine {
         double successThreshold = 0.25 + penalty * 0.30;
         double partialThreshold = 0.05 + penalty * 0.15;
 
+        // OBECNY — BŁĘDNY:
         double roll = RNG.nextDouble();
-        if (roll >= successThreshold) return EventResult.SUCCESS;
+        if (roll >= successThreshold) return EventResult.SUCCESS;  // 75% szans
         if (roll >= partialThreshold) return EventResult.PARTIAL;
         return EventResult.FAIL;
     }

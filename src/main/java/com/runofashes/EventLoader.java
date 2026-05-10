@@ -17,17 +17,19 @@ public class EventLoader {
     private static final Random RNG = new Random();
 
     public static List<GameEvent> loadEvents(String filename) throws Exception {
-        InputStream is = EventLoader.class
-                .getResourceAsStream("/com/runofashes/" + filename);
-        if (is == null) throw new IllegalArgumentException("Nie znaleziono: " + filename);
-        return MAPPER.readValue(is, new TypeReference<List<GameEvent>>() {});
+        try (InputStream is = EventLoader.class
+                .getResourceAsStream("/com/runofashes/" + filename)) {
+            if (is == null) throw new IllegalArgumentException("Nie znaleziono: " + filename);
+            return MAPPER.readValue(is, new TypeReference<List<GameEvent>>() {});
+        }
     }
 
     public static Map<String, List<String>> loadEndings() throws Exception {
-        InputStream is = EventLoader.class
-                .getResourceAsStream("/com/runofashes/endings.json");
-        if (is == null) throw new IllegalArgumentException("Nie znaleziono: endings.json");
-        return MAPPER.readValue(is, new TypeReference<Map<String, List<String>>>() {});
+        try (InputStream is = EventLoader.class
+                .getResourceAsStream("/com/runofashes/endings.json")) {
+            if (is == null) throw new IllegalArgumentException("Nie znaleziono: endings.json");
+            return MAPPER.readValue(is, new TypeReference<Map<String, List<String>>>() {});
+        }
     }
 
     public static String pickEnding(Map<String, List<String>> endings, String stat) {
