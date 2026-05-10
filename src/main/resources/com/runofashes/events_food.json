@@ -1,0 +1,118 @@
+[
+  {
+    "id": "hunt_bow",
+    "label": "Zapoluj z łukiem na zwierzynę",
+    "timeCost": 3,
+    "distanceCost": 2,
+    "effects": { "hunger": 60, "morale": 12 },
+    "successMessage": "Zając. Niezbyt duży — ale twój. Upiekłeś go na ogniu i nie zostawiłeś ani kości.",
+    "failEffects": { "energy": -20, "hunger": -8, "morale": -15 },
+    "failMessage": "Zwierzę uciekło. Trzy godziny za niczym. Wróciłeś głodniejszy niż wyszedłeś."
+  },
+  {
+    "id": "beg_monastery",
+    "label": "Żebrz o chleb przy bramie klasztoru",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "hunger": 35, "morale": 20 },
+    "successMessage": "Mnich dał ci bochenek i wodę święconą. Nie pytał o imię. Boże mu zapłać.",
+    "failEffects": { "morale": -20, "hunger": -5 },
+    "failMessage": "Brama była zamknięta. Na desce napis: 'Zaraza. Nie wchodzić.' Rozumiesz."
+  },
+  {
+    "id": "buy_village",
+    "label": "Kup jedzenie w wiosce za grosz",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "hunger": 45, "morale": 10 },
+    "successMessage": "Chleb, kawałek sera, może cebula. Wystarczy na dwa dni. Prosto i dobre.",
+    "failEffects": { "morale": -25, "hunger": -5 },
+    "failMessage": "Wioska była pusta. Domy stały z otwartymi drzwiami. Nie wszedłeś do żadnego."
+  },
+  {
+    "id": "catch_fish",
+    "label": "Łów ryby przy rzece",
+    "timeCost": 3,
+    "distanceCost": 1,
+    "effects": { "hunger": 50, "hydration": 10 },
+    "successMessage": "Dwie ryby na zaimprowizowanym haczyku. Surowe, ale ciało przyjęło je z wdzięcznością.",
+    "failEffects": { "energy": -15, "morale": -10 },
+    "failMessage": "Rzeka była za głęboka, prąd za silny. Trzy godziny zimna i nic."
+  },
+  {
+    "id": "eat_berries",
+    "label": "Szukaj jagód i dzikich owoców",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "hunger": 22 },
+    "successMessage": "Garść tarniny i kilka dzikich śliwek. Cierpkie — ale żołądek się uspokoił.",
+    "failEffects": { "hunger": -5 },
+    "failMessage": "Krzaki ogołocone. Ktoś był tu przed tobą."
+  },
+  {
+    "id": "eat_mushrooms",
+    "label": "Zbierz grzyby z powalonego dębu",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "effects": { "hunger": 40, "morale": 5 },
+    "successMessage": "Jadalne. Upieczone na kamieniu smakowały jak nic innego na tej drodze.",
+    "failEffects": { "health": -40, "hunger": -15, "morale": -20 },
+    "failMessage": "Pomyliłeś gatunki. Przez noc płaciłeś za ten błąd."
+  },
+  {
+    "id": "trade_food",
+    "label": "Wymień coś za jedzenie z podróżnym",
+    "timeCost": 1,
+    "effects": { "hunger": 38, "morale": 15 },
+    "successMessage": "Pasek skórzany za suszone mięso i sucharki. Dobry interes. Pożegnaliście się bez słowa.",
+    "failEffects": { "morale": -20, "hunger": -5 },
+    "failMessage": "Podróżny miał w oczach coś złego. Odszedłeś zanim doszło do targowania."
+  },
+  {
+    "id": "set_trap",
+    "label": "Postaw sidła i wróć po godzinie",
+    "timeCost": 2,
+    "effects": { "hunger": 38, "morale": 15 },
+    "successMessage": "Kuropatwa. Mała, ale całkowicie twoja. Pióra zostawiłeś wiatrowi.",
+    "failEffects": { "energy": -8, "morale": -10 },
+    "failMessage": "Sidła puste. Coś je wywróciło — może lis, może inne sidła."
+  },
+  {
+    "id": "dig_roots",
+    "label": "Wykopuj korzenie przy rzece",
+    "timeCost": 2,
+    "effects": { "hunger": 22, "hydration": 8 },
+    "successMessage": "Korzenie chrzanu i jakiś bulwiasty korzeń. Nie smakowały niczym — ale trzymały przy życiu.",
+    "failEffects": { "energy": -10 },
+    "failMessage": "Ziemia zamarznięta. Kilka zadrapań i nic."
+  },
+  {
+    "id": "scavenge_cart",
+    "label": "Przeszukaj porzucony wóz przy drodze",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "hunger": 50, "morale": 15 },
+    "successMessage": "Wór mąki i słoik miodu. Właściciel nie wróci po to. Ty potrzebujesz bardziej.",
+    "failEffects": { "health": -15, "morale": -25 },
+    "failMessage": "Wóz nie był tak pusty jak wyglądał. Ktoś w nim leżał. Cofnąłeś się szybko."
+  },
+  {
+    "id": "monastery_soup",
+    "label": "Wejdź do klasztoru po wieczorną zupę",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "effects": { "hunger": 45, "hydration": 20, "morale": 25 },
+    "successMessage": "Mnisi nie pytali o wiele. Zupa była ciepła i gęsta. Przez chwilę byłeś człowiekiem.",
+    "failEffects": { "morale": -20 },
+    "failMessage": "Klasztor stał opuszczony. Na ścianach krzyże narysowane wapnem. Zły znak."
+  },
+  {
+    "id": "forage_herbs",
+    "label": "Zbieraj jadalne zioła i trawę",
+    "timeCost": 1,
+    "effects": { "hunger": 12, "health": 8 },
+    "successMessage": "Szczaw, pokrzywa, dziki czosnek — wszystko do ust. Gorzkie, ale zielone.",
+    "failEffects": { "health": -15, "hunger": -8 },
+    "failMessage": "Nie wszystkie zioła są jadalne. Ta lekcja kosztuje."
+  }
+]

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "quest_village_warn_1",
+    "label": "Ostrzeż wioskę przed nadchodzącą zarazą",
+    "timeCost": 2,
+    "distanceCost": 2,
+    "effects": { "energy": -15, "morale": 20 },
+    "successMessage": "Słuchali. Część płakała. Część nie wierzyła. Powiedziałeś co wiedziałeś. Za 3 tury wróć sprawdzić.",
+    "failEffects": { "morale": -20, "energy": -15 },
+    "failMessage": "Przepędzili cię kamieniami. Zwiastun złej wieści to wróg — tak myśleli.",
+    "questId": "village_warn",
+    "questStage": 1,
+    "turnsUntilNext": 3
+  },
+  {
+    "id": "quest_village_warn_2",
+    "label": "Wróć do ostrzeżonej wsi — co się stało? (FINAŁ)",
+    "timeCost": 2,
+    "distanceCost": 2,
+    "effects": { "morale": 70, "health": 15, "energy": -10 },
+    "successMessage": "Wioska żyła. Uciekli zanim zaraza dotarła. Jeden starzec zostawił ci prowiant i błogosławieństwo. Warto było.",
+    "failEffects": { "health": -15, "morale": -45 },
+    "failMessage": "Wioska milczała. Zbyt późno. Nie patrzyłeś długo — i tak to zapamiętasz.",
+    "questId": "village_warn",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_map_merchant_1",
+    "label": "Zaoferuj pomoc choremu kupcowi przy drodze",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "effects": { "energy": -15, "morale": 15 },
+    "successMessage": "Kupiec żył, ale był słaby. Obiecał ci mapę gdy wróci do siebie. Za 4 tury.",
+    "failEffects": { "health": -20, "morale": -10 },
+    "failMessage": "Kupiec gorączkował. Odsunąłeś się gdy zobaczyłeś zmiany na skórze.",
+    "questId": "map_merchant",
+    "questStage": 1,
+    "turnsUntilNext": 4
+  },
+  {
+    "id": "quest_map_merchant_2",
+    "label": "Wróć do kupca po mapę (FINAŁ)",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "effects": { "morale": 50, "energy": 20 },
+    "successMessage": "Kupiec wyzdrowił — albo nie miał zarazy, tylko febrę. Dał ci mapę Karpat ze skrótem. Dwa dni oszczędzone.",
+    "failEffects": { "morale": -35, "health": -10 },
+    "failMessage": "Kupiec nie żył. Mapa leżała obok — ale nie chciałeś jej dotknąć.",
+    "questId": "map_merchant",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_letter_bishop_1",
+    "label": "Przyjmij list od biskupa do przekazania w Polsce",
+    "timeCost": 2,
+    "effects": { "morale": 25, "energy": -10 },
+    "successMessage": "Biskup spojrzał na ciebie długo. 'Masz twarz człowieka który dotrze.' Wziąłeś list. Za 3 tury ruszasz dalej.",
+    "failEffects": { "morale": -10, "energy": -15 },
+    "failMessage": "Biskupstwo stało zamknięte. Na bramie pieczęć z krzyżem. Zaraza weszła tu wcześniej.",
+    "questId": "bishop_letter",
+    "questStage": 1,
+    "turnsUntilNext": 3
+  },
+  {
+    "id": "quest_letter_bishop_2",
+    "label": "Dostarcz list do pierwszego polskiego kościoła (FINAŁ)",
+    "timeCost": 2,
+    "distanceCost": 3,
+    "effects": { "morale": 65, "health": 20, "energy": -15 },
+    "successMessage": "Ksiądz wziął list drżącymi rękami. Przeczytał. Spojrzał na ciebie inaczej. 'Zostań. Zjedz.' Po raz pierwszy nie odmawiałeś.",
+    "failEffects": { "morale": -30, "health": -15 },
+    "failMessage": "Kościół opustoszały. List zostawiłeś na ołtarzu i poszedłeś. Może ktoś przeczyta.",
+    "questId": "bishop_letter",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_cave_1",
+    "label": "Zbadaj jaskinię przy szlaku — ktoś tam mieszkał",
+    "timeCost": 2,
+    "effects": { "energy": -15, "morale": 12 },
+    "successMessage": "Wnętrze ciepłe, ślady ogniska świeże. Ktoś tu był — może wróci za 3 tury.",
+    "failEffects": { "energy": -12, "morale": -8 },
+    "failMessage": "Jaskinia pusta i zimna. Dawno opuszczona.",
+    "questId": "cave",
+    "questStage": 1,
+    "turnsUntilNext": 3
+  },
+  {
+    "id": "quest_cave_2",
+    "label": "Wróć do jaskini — ktoś zostawił prowiant (FINAŁ)",
+    "timeCost": 1,
+    "effects": { "hunger": 50, "hydration": 30, "morale": 55, "energy": -10 },
+    "successMessage": "Pustelnik. Stary, milczący — ale żywy. Nakarmił cię i wskazał krótszą drogę przez góry.",
+    "failEffects": { "health": -20, "morale": -30 },
+    "failMessage": "W jaskini leżał człowiek z czarnymi plamami. Pobiegłeś bez odwracania się.",
+    "questId": "cave",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  }
+]

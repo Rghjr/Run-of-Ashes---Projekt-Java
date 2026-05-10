@@ -1,0 +1,52 @@
+[
+  {
+    "id": "rare_plague_doctor",
+    "label": "??? Spotkaj doktora dżumy na opustoszałej drodze",
+    "timeCost": 2,
+    "hiddenEffects": true,
+    "revealMessage": "Maska z ptasim dziobem. Oczy zimne i zmęczone. Obejrzał cię i milczał długo. 'Idź dalej' — powiedział w końcu. 'I nie dotykaj nikogo.'",
+    "effects": { "health": 30, "morale": 25, "energy": 15 },
+    "failEffects": { "health": -40, "morale": -35 },
+    "failMessage": "Doktor był chory. Sam zarażony. Uciekłeś — ale czy wystarczająco daleko?"
+  },
+  {
+    "id": "rare_dying_monk",
+    "label": "??? Zatrzymaj się przy umierającym mnichu",
+    "timeCost": 1,
+    "hiddenEffects": true,
+    "revealMessage": "Powiedział ci coś o skrócie przez Karpaty. Potem zamknął oczy. Zapamiętałeś każde słowo.",
+    "effects": { "morale": 30, "energy": 20 },
+    "failEffects": { "health": -35, "morale": -40 },
+    "failMessage": "Mnich nie mówił. Leżał w gorączce z czarnymi plamami. Wiedziałeś co to znaczy. Odszedłeś szybko."
+  },
+  {
+    "id": "rare_abandoned_cart",
+    "label": "??? Zbadaj porzucony wóz pośrodku drogi",
+    "timeCost": 1,
+    "hiddenEffects": true,
+    "revealMessage": "Koce, prowiant, skóra do pisania, nóż. Właściciel nie wróci. Ty wziąłeś wszystko czego potrzebowałeś.",
+    "effects": { "hunger": 55, "hydration": 30, "morale": 20, "energy": 15 },
+    "failEffects": { "health": -50, "morale": -35 },
+    "failMessage": "Wóz nie był pusty. Był zajęty przez kogoś umierającego. I przez to co go zabiło."
+  },
+  {
+    "id": "rare_mongol_rider",
+    "label": "??? Stój — jeździec na horyzoncie zmierza ku tobie",
+    "timeCost": 1,
+    "hiddenEffects": true,
+    "revealMessage": "Mongolski goniec. Spojrzał na ciebie bez wrogości. Rzucił ci worek z prowiantem i pojechał dalej. Może też uciekał.",
+    "effects": { "hunger": 60, "energy": 25, "morale": 35 },
+    "failEffects": { "health": -45, "hunger": -15, "morale": -40 },
+    "failMessage": "Nie był gońcem. Szabla była szybsza niż twoje nogi. Ledwo uciekłeś."
+  },
+  {
+    "id": "rare_wise_woman",
+    "label": "??? Wejdź do chaty starej kobiety przy lesie",
+    "timeCost": 2,
+    "hiddenEffects": true,
+    "revealMessage": "Znała zioła których nazw nie znałeś. Naparzyła coś gorzkiego i kazała pić. Rano byłeś innym człowiekiem.",
+    "effects": { "health": 45, "energy": 40, "morale": 30, "hydration": 20 },
+    "failEffects": { "health": -35, "morale": -25, "energy": -20 },
+    "failMessage": "Cokolwiek dała ci do picia — nie było to lekarstwo. Albo nie dla ciebie."
+  }
+]
