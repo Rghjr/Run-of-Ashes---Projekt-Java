@@ -45,6 +45,7 @@
     "timeCost": 1,
     "distanceCost": 1,
     "effects": { "hunger": 22 },
+    "itemEffects": { "GRAPES": 1},
     "successMessage": "Garść tarniny i kilka dzikich śliwek. Cierpkie — ale żołądek się uspokoił.",
     "failEffects": { "hunger": -5 },
     "failMessage": "Krzaki ogołocone. Ktoś był tu przed tobą."
@@ -112,6 +113,7 @@
     "label": "Zbieraj jadalne zioła i trawę",
     "timeCost": 1,
     "effects": { "hunger": 12, "health": 8 },
+    "itemEffects": { "OLIVES": 1},
     "successMessage": "Szczaw, pokrzywa, dziki czosnek — wszystko do ust. Gorzkie, ale zielone.",
     "failEffects": { "health": -15, "hunger": -8 },
     "failMessage": "Nie wszystkie zioła są jadalne. Ta lekcja kosztuje."

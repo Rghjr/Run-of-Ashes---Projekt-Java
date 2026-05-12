@@ -7,7 +7,7 @@ public enum ItemType {
     WATER(
             "Woda",
             "💧",
-            5,
+            1,
             Map.of("hydration", 40),
             null,
             0
@@ -15,23 +15,23 @@ public enum ItemType {
     WINE(
             "Wino",
             "🍷",
-            3,
+            1,
             Map.of("hydration", 20, "morale", 25),
-            Map.of("energy", -10),   // kac — następna akcja droższa
+            Map.of("energy", -10),
             1
     ),
     OLIVES(
             "Oliwki",
             "🫒",
-            4,
+            1,
             Map.of("hunger", 30),
-            Map.of("energy", -8),    // ciężkostrawne
+            Map.of("energy", -8),
             1
     ),
     GRAPES(
             "Winogrona",
             "🍇",
-            4,
+            1,
             Map.of("hunger", 20, "hydration", 10),
             null,
             0
@@ -39,15 +39,15 @@ public enum ItemType {
     HERBS(
             "Zioła",
             "🌿",
-            3,
+            1,
             Map.of("health", 5),
-            Map.of("health", 10),    // leczenie przez kilka tur (symulowane jako delayed)
+            Map.of("health", 10),
             2
     ),
     BANDAGE(
             "Bandaże",
             "🩹",
-            3,
+            1,
             Map.of("health", 30),
             null,
             0
@@ -55,7 +55,7 @@ public enum ItemType {
     DRIED_MEAT(
             "Suszone mięso",
             "🥩",
-            5,
+            1,
             Map.of("hunger", 45, "hydration", -10),
             null,
             0

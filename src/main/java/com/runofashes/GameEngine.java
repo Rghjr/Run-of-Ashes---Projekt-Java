@@ -77,14 +77,25 @@ public class GameEngine {
 
         switch (result) {
             case SUCCESS -> {
-                applyEffects(event.getEffects());
+                Map<String, Integer> fx = event.getEffects();
+                if (statusManager.hasHallucinations() && fx != null) {
+                    Map<String, Integer> hallucinatedEffects = new HashMap<>(fx);
+                    hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : -Math.abs(v) / 2);
+                    applyEffects(hallucinatedEffects);
+                } else {
+                    applyEffects(fx);
+                }
 
-                // NOWE: Dodawanie przedmiotów z eventu
                 if (event.getItemEffects() != null) {
                     event.getItemEffects().forEach((itemName, amount) -> {
                         try {
                             ItemType type = ItemType.valueOf(itemName);
-                            inventory.add(type, amount);
+                            int added = inventory.add(type, amount);
+                            if (added == 0) {
+                                // ekwipunek pełny — przelicz na stat bezpośrednio
+                                Map<String, Integer> overflow = type.getImmediateEffects();
+                                if (overflow != null) applyEffects(overflow);
+                            }
                         } catch (IllegalArgumentException e) {
                             System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
                         }
@@ -95,9 +106,30 @@ public class GameEngine {
                 handleQuestProgress(event);
             }
             case PARTIAL -> {
-                applyEffectsPartial(event.getEffects());
+                Map<String, Integer> fx = event.getEffects();
+                if (statusManager.hasHallucinations() && fx != null) {
+                    Map<String, Integer> hallucinatedEffects = new HashMap<>(fx);
+                    hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : -Math.abs(v) / 2);
+                    applyEffectsPartial(hallucinatedEffects);
+                } else {
+                    applyEffectsPartial(fx);
+                }
+
+                // Przy partial: item zdobyć można, ale z 50% szansą
+                if (event.getItemEffects() != null) {
+                    event.getItemEffects().forEach((itemName, amount) -> {
+                        if (RNG.nextBoolean()) {
+                            try {
+                                ItemType type = ItemType.valueOf(itemName);
+                                inventory.add(type, amount);
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
+                            }
+                        }
+                    });
+                }
+
                 lastMessage = "Nie poszło idealnie — efekt był słabszy niż oczekiwałeś.";
-                // Przy partial też liczymy postęp questa (uczciwie)
                 handleQuestProgress(event);
             }
             case FAIL -> {
@@ -116,16 +148,6 @@ public class GameEngine {
         }
 
         statusManager.tick(player, turnCount);
-        statusManager.rollTriggers(player);
-
-        Map<String, Integer> currentEffects = event.getEffects();
-        if (statusManager.hasHallucinations() && currentEffects != null) {
-            Map<String, Integer> hallucinatedEffects = new HashMap<>(currentEffects);
-            hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : -Math.abs(v) / 2);
-            applyEffects(hallucinatedEffects);
-        } else {
-            applyEffects(currentEffects);
-        }
 
         player.addTime(event.getTimeCost());
         turnCount++;
@@ -306,7 +328,7 @@ public class GameEngine {
     }
 
     private void addStarterItems() {
-        inventory.add(ItemType.WATER,      2);
+        inventory.add(ItemType.WATER,      1);
         inventory.add(ItemType.DRIED_MEAT, 1);
         inventory.add(ItemType.BANDAGE,    1);
     }
