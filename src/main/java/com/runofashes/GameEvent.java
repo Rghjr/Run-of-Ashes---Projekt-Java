@@ -11,6 +11,7 @@ public class GameEvent {
 
     private Map<String, Integer> effects;
     private String successMessage;
+    private Map<String, Integer> itemEffects;
 
     private double failChance = 0.0;
     private Map<String, Integer> failEffects;
@@ -38,6 +39,7 @@ public class GameEvent {
 
     public Map<String, Integer> getEffects()     { return effects; }
     public String getSuccessMessage()            { return successMessage; }
+    public Map<String, Integer> getItemEffects() { return itemEffects; }
 
     public double getFailChance()                { return failChance; }
     public Map<String, Integer> getFailEffects() { return failEffects; }

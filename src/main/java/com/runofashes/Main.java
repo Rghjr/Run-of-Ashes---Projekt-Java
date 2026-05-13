@@ -25,8 +25,11 @@ public class Main extends Application {
 
     private final List<VBox> cardSlots = new ArrayList<>();
 
-    private VBox gameRoot, endRoot, winRoot;
+    private Pane gameRoot;
+    private VBox endRoot, winRoot;
     private Label endTextLabel;
+
+    private InventoryPanel inventoryPanel;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -39,7 +42,7 @@ public class Main extends Application {
 
         refreshAll();
 
-        Scene scene = new Scene(gameRoot, 680, 860);
+        Scene scene = new Scene(gameRoot, 900, 860);
         stage.setTitle("Run of Ashes");
         stage.setScene(scene);
         stage.show();
@@ -47,8 +50,9 @@ public class Main extends Application {
 
     // ── Ekran gry ─────────────────────────────────────────────────────────────
 
-    private VBox buildGameScreen() {
+    private HBox buildGameScreen() {
         timeLabel     = styledLabel("Dzień 1,  00:00", "#aaa", 15);
+        inventoryPanel = new InventoryPanel(engine, this::refreshAll);
         distanceLabel = styledLabel("4000 km do Krakowa", "#e67e22", 15);
 
         HBox topRow = new HBox(24, timeLabel, distanceLabel);
@@ -101,10 +105,13 @@ public class Main extends Application {
             grid.getColumnConstraints().add(cc);
         }
 
-        VBox root = new VBox(16, hud, messageLabel, grid);
-        root.setPadding(new Insets(18));
-        root.setStyle("-fx-background-color: #0d0d1a;");
-        return root;
+
+        VBox gameContentVBox = new VBox(16, hud, messageLabel, grid);
+
+        HBox mainLayout = new HBox(12, gameContentVBox, inventoryPanel);
+        mainLayout.setPadding(new Insets(18));
+        mainLayout.setStyle("-fx-background-color: #0d0d1a;");
+        return mainLayout;
     }
 
     private void fillCard(VBox card, GameEvent event) {
@@ -246,6 +253,7 @@ public class Main extends Application {
 
     private void refreshAll() {
         Player p = engine.getPlayer();
+        inventoryPanel.refresh();
 
         setBar(healthBar,    healthVal,    p.getHealth());
         setBar(hungerBar,    hungerVal,    p.getHunger());
@@ -269,6 +277,13 @@ public class Main extends Application {
         for (int i = 0; i < 4; i++) {
             if (i < cards.size()) fillCard(cardSlots.get(i), cards.get(i));
             else                  fillCardEmpty(cardSlots.get(i));
+        }
+
+        StatusEffect triggered = engine.getStatusManager().getLastTriggered();
+        if (triggered != null) {
+            messageLabel.setText(messageLabel.getText()
+                    + "\n" + triggered.getEmoji() + " Nowy status: " + triggered.getLabel()
+                    + " — " + triggered.getDescription());
         }
     }
 

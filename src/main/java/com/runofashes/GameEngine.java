@@ -30,6 +30,8 @@ public class GameEngine {
 
     private static final Random RNG = new Random();
 
+    private Inventory inventory = new Inventory();
+    private StatusManager statusManager = new StatusManager();
     // ── Init ─────────────────────────────────────────────────────────────────
 
     public void load() throws Exception {
@@ -41,6 +43,7 @@ public class GameEngine {
         questEvents      = EventLoader.loadEvents("events_quests.json");
         rareEvents       = EventLoader.loadEvents("events_rare.json");
         endings          = EventLoader.loadEndings();
+        addStarterItems();
 
         questEventMap = new HashMap<>();
         for (GameEvent e : questEvents) {
@@ -58,6 +61,11 @@ public class GameEngine {
         completedQuests.clear();
         lastMessage = "";
         lastResult = EventResult.SUCCESS;
+
+        inventory = new Inventory();
+        statusManager = new StatusManager();
+        addStarterItems();
+
         drawCards();
     }
 
@@ -69,14 +77,59 @@ public class GameEngine {
 
         switch (result) {
             case SUCCESS -> {
-                applyEffects(event.getEffects());
+                Map<String, Integer> fx = event.getEffects();
+                if (statusManager.hasHallucinations() && fx != null) {
+                    Map<String, Integer> hallucinatedEffects = new HashMap<>(fx);
+                    hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : -Math.abs(v) / 2);
+                    applyEffects(hallucinatedEffects);
+                } else {
+                    applyEffects(fx);
+                }
+
+                if (event.getItemEffects() != null) {
+                    event.getItemEffects().forEach((itemName, amount) -> {
+                        try {
+                            ItemType type = ItemType.valueOf(itemName);
+                            int added = inventory.add(type, amount);
+                            if (added == 0) {
+                                // ekwipunek pełny — przelicz na stat bezpośrednio
+                                Map<String, Integer> overflow = type.getImmediateEffects();
+                                if (overflow != null) applyEffects(overflow);
+                            }
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
+                        }
+                    });
+                }
+
                 lastMessage = event.getSuccessMessage() != null ? event.getSuccessMessage() : "";
                 handleQuestProgress(event);
             }
             case PARTIAL -> {
-                applyEffectsPartial(event.getEffects());
+                Map<String, Integer> fx = event.getEffects();
+                if (statusManager.hasHallucinations() && fx != null) {
+                    Map<String, Integer> hallucinatedEffects = new HashMap<>(fx);
+                    hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : -Math.abs(v) / 2);
+                    applyEffectsPartial(hallucinatedEffects);
+                } else {
+                    applyEffectsPartial(fx);
+                }
+
+                // Przy partial: item zdobyć można, ale z 50% szansą
+                if (event.getItemEffects() != null) {
+                    event.getItemEffects().forEach((itemName, amount) -> {
+                        if (RNG.nextBoolean()) {
+                            try {
+                                ItemType type = ItemType.valueOf(itemName);
+                                inventory.add(type, amount);
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
+                            }
+                        }
+                    });
+                }
+
                 lastMessage = "Nie poszło idealnie — efekt był słabszy niż oczekiwałeś.";
-                // Przy partial też liczymy postęp questa (uczciwie)
                 handleQuestProgress(event);
             }
             case FAIL -> {
@@ -93,6 +146,8 @@ public class GameEngine {
             player.addDistance(event.getDistanceCost());
             cancelActiveQuests();
         }
+
+        statusManager.tick(player, turnCount);
 
         player.addTime(event.getTimeCost());
         turnCount++;
@@ -272,6 +327,15 @@ public class GameEngine {
         return visible;
     }
 
+    private void addStarterItems() {
+        inventory.add(ItemType.WATER,      1);
+        inventory.add(ItemType.DRIED_MEAT, 1);
+        inventory.add(ItemType.BANDAGE,    1);
+    }
+
+    public void useItem(ItemType type) {
+        inventory.useItem(type, player, statusManager, turnCount);
+    }
     // ── Gettery ───────────────────────────────────────────────────────────────
 
     public Player       getPlayer()         { return player; }
@@ -309,4 +373,7 @@ public class GameEngine {
     public List<GameEvent> getMoraleEvents()     { return moraleEvents; }
     public List<GameEvent> getMoveEvents()       { return moveEvents; }
     public List<GameEvent> getRareEvents()       { return rareEvents; }
+
+    public Inventory     getInventory()     { return inventory; }
+    public StatusManager getStatusManager() { return statusManager; }
 }
