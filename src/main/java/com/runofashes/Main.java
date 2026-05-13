@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Main extends Application {
 
@@ -30,6 +31,7 @@ public class Main extends Application {
     private Label endTextLabel;
 
     private InventoryPanel inventoryPanel;
+    private VBox questPanel;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -84,7 +86,8 @@ public class Main extends Application {
         messageLabel = new Label(" ");
         messageLabel.setWrapText(true);
         messageLabel.setMaxWidth(640);
-        messageLabel.setMinHeight(42);
+        messageLabel.setMinHeight(70);
+        messageLabel.setPrefHeight(70);
         messageLabel.setStyle("-fx-text-fill: #f0c040; -fx-font-style: italic; -fx-font-size: 15px;");
 
         GridPane grid = new GridPane();
@@ -107,8 +110,43 @@ public class Main extends Application {
 
 
         VBox gameContentVBox = new VBox(16, hud, messageLabel, grid);
+        HBox.setHgrow(gameContentVBox, Priority.ALWAYS);
 
-        HBox mainLayout = new HBox(12, gameContentVBox, inventoryPanel);
+        questPanel = new VBox(14);
+        questPanel.setStyle("-fx-background-color: #111122; -fx-background-radius: 8;");
+        questPanel.setPadding(new Insets(14));
+        questPanel.setMinWidth(260);
+        questPanel.setMaxWidth(260);
+
+        StackPane rightContent = new StackPane(questPanel, inventoryPanel);
+
+        Button btnInv = new Button("🎒 Ekwipunek");
+        Button btnQuest = new Button("📜 Questy");
+        btnInv.setPrefWidth(128);
+        btnQuest.setPrefWidth(128);
+
+        String btnActive = "-fx-background-color: #2a2a3a; -fx-text-fill: #f0c040; -fx-cursor: hand; -fx-font-size: 13px; -fx-background-radius: 6;";
+        String btnInactive = "-fx-background-color: #111122; -fx-text-fill: #888; -fx-cursor: hand; -fx-font-size: 13px; -fx-background-radius: 6;";
+
+        btnInv.setStyle(btnActive);
+        btnQuest.setStyle(btnInactive);
+
+        btnInv.setOnAction(e -> {
+            inventoryPanel.toFront();
+            btnInv.setStyle(btnActive);
+            btnQuest.setStyle(btnInactive);
+        });
+
+        btnQuest.setOnAction(e -> {
+            questPanel.toFront();
+            btnQuest.setStyle(btnActive);
+            btnInv.setStyle(btnInactive);
+        });
+
+        HBox tabButtons = new HBox(4, btnInv, btnQuest);
+        VBox rightSide = new VBox(8, tabButtons, rightContent);
+
+        HBox mainLayout = new HBox(12, gameContentVBox, rightSide);
         mainLayout.setPadding(new Insets(18));
         mainLayout.setStyle("-fx-background-color: #0d0d1a;");
         return mainLayout;
@@ -154,6 +192,13 @@ public class Main extends Application {
             card.getChildren().addAll(lbl, fxLabel, metaLbl, badge);
         } else {
             card.getChildren().addAll(lbl, fxLabel, metaLbl);
+        }
+
+        // ostrzeżenie o anulowaniu questów lokalnych
+        if (event.getDistanceCost() > 0 && engine.hasActiveLocalQuests(event.getQuestId())) {
+            Label warnLbl = new Label("Ruch anuluje lokalne zadania!");
+            warnLbl.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 11px;");
+            card.getChildren().add(warnLbl);
         }
 
         card.setOnMouseEntered(e -> card.setStyle(card.getStyle().replace(bg, bgHo)));
@@ -284,6 +329,52 @@ public class Main extends Application {
             messageLabel.setText(messageLabel.getText()
                     + "\n" + triggered.getEmoji() + " Nowy status: " + triggered.getLabel()
                     + " — " + triggered.getDescription());
+        }
+
+        refreshQuests();
+    }
+
+    private void refreshQuests() {
+        questPanel.getChildren().clear();
+
+        Label title = new Label("📜 Aktywne Zadania");
+        title.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 15px;");
+        title.setFont(Font.font("Georgia", 15));
+
+        Region sep = new Region();
+        sep.setStyle("-fx-background-color: #2a2a3a;");
+        sep.setPrefHeight(1);
+
+        questPanel.getChildren().addAll(title, sep);
+
+        Map<String, QuestState> active = engine.getActiveQuests();
+        if (active.isEmpty()) {
+            Label empty = new Label("Brak aktywnych zadań.");
+            empty.setStyle("-fx-text-fill: #555; -fx-font-style: italic; -fx-font-size: 13px;");
+            questPanel.getChildren().add(empty);
+            return;
+        }
+
+        for (QuestState qs : active.values()) {
+            // Pobieranie nazwy kolejnego etapu questa
+            GameEvent nextEvent = engine.getQuestEvent(qs.getQuestId(), qs.getNextStage());
+            String qName = nextEvent != null ? nextEvent.getLabel() : "Zadanie w toku...";
+
+            Label nameLbl = new Label(qName);
+            nameLbl.setStyle("-fx-text-fill: #ddd; -fx-font-size: 13px;");
+            nameLbl.setWrapText(true);
+
+            String status = qs.getTurnsLeft() > 0
+                    ? "⏳ Musisz przetrwać jeszcze " + qs.getTurnsLeft() + " tur(y)"
+                    : "✅ Kontynuacja dostępna w kartach!";
+
+            Label statLbl = new Label(status);
+            String color = qs.getTurnsLeft() > 0 ? "#888" : "#7ec8a0";
+            statLbl.setStyle(String.format("-fx-font-size: 12px; -fx-text-fill: %s;", color));
+
+            VBox box = new VBox(4, nameLbl, statLbl);
+            box.setStyle("-fx-background-color: #16213e; -fx-background-radius: 6; -fx-padding: 8;");
+            questPanel.getChildren().add(box);
         }
     }
 

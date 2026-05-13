@@ -10,7 +10,8 @@
     "failMessage": "Przepędzili cię kamieniami. Zwiastun złej wieści to wróg — tak myśleli.",
     "questId": "village_warn",
     "questStage": 1,
-    "turnsUntilNext": 3
+    "turnsUntilNext": 3,
+    "localQuest": true
   },
   {
     "id": "quest_village_warn_2",
@@ -36,7 +37,8 @@
     "failMessage": "Kupiec gorączkował. Odsunąłeś się gdy zobaczyłeś zmiany na skórze.",
     "questId": "map_merchant",
     "questStage": 1,
-    "turnsUntilNext": 4
+    "turnsUntilNext": 4,
+    "localQuest": true
   },
   {
     "id": "quest_map_merchant_2",
@@ -86,7 +88,8 @@
     "failMessage": "Jaskinia pusta i zimna. Dawno opuszczona.",
     "questId": "cave",
     "questStage": 1,
-    "turnsUntilNext": 3
+    "turnsUntilNext": 3,
+    "localQuest": true
   },
   {
     "id": "quest_cave_2",

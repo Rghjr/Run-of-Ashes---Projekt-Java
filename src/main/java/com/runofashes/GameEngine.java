@@ -80,7 +80,7 @@ public class GameEngine {
                 Map<String, Integer> fx = event.getEffects();
                 if (statusManager.hasHallucinations() && fx != null) {
                     Map<String, Integer> hallucinatedEffects = new HashMap<>(fx);
-                    hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : -Math.abs(v) / 2);
+                    hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : (v > 0 ? -v / 2 : v * 2));
                     applyEffects(hallucinatedEffects);
                 } else {
                     applyEffects(fx);
@@ -109,7 +109,7 @@ public class GameEngine {
                 Map<String, Integer> fx = event.getEffects();
                 if (statusManager.hasHallucinations() && fx != null) {
                     Map<String, Integer> hallucinatedEffects = new HashMap<>(fx);
-                    hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : -Math.abs(v) / 2);
+                    hallucinatedEffects.replaceAll((k, v) -> RNG.nextBoolean() ? v : (v > 0 ? -v / 2 : v * 2));
                     applyEffectsPartial(hallucinatedEffects);
                 } else {
                     applyEffectsPartial(fx);
@@ -139,15 +139,20 @@ public class GameEngine {
         }
 
         if (event.isHiddenEffects() && event.getRevealMessage() != null) {
-            lastMessage = event.getRevealMessage();
+            if (lastMessage.isEmpty()) {
+                lastMessage = event.getRevealMessage();
+            } else {
+                lastMessage += "\n\n" + event.getRevealMessage();
+            }
         }
 
         if (event.getDistanceCost() > 0) {
             player.addDistance(event.getDistanceCost());
-            cancelActiveQuests();
+            cancelLocalQuests(event.getQuestId());
         }
 
         statusManager.tick(player, turnCount);
+        statusManager.rollTriggers(player);
 
         player.addTime(event.getTimeCost());
         turnCount++;
@@ -176,7 +181,6 @@ public class GameEngine {
         double successThreshold = 0.25 + penalty * 0.30;
         double partialThreshold = 0.05 + penalty * 0.15;
 
-        // OBECNY — BŁĘDNY:
         double roll = RNG.nextDouble();
         if (roll >= successThreshold) return EventResult.SUCCESS;  // 75% szans
         if (roll >= partialThreshold) return EventResult.PARTIAL;
@@ -215,7 +219,8 @@ public class GameEngine {
             activeQuests.put(event.getQuestId(),
                     new QuestState(event.getQuestId(),
                             event.getQuestStage() + 1,
-                            event.getTurnsUntilNext()));
+                            event.getTurnsUntilNext(),
+                            event.isLocalQuest()));
         } else {
             // quest ukończony — zapamiętaj żeby się nie powtórzył
             activeQuests.remove(event.getQuestId());
@@ -223,10 +228,22 @@ public class GameEngine {
         }
     }
 
-    private void cancelActiveQuests() {
-        if (!activeQuests.isEmpty()) {
-            lastMessage = lastMessage + "\nOpuściłeś miejsce. Aktywne questy zostały utracone.";
-            activeQuests.clear();
+    private void cancelLocalQuests(String currentQuestId) {
+        boolean removedAny = false;
+        Iterator<Map.Entry<String, QuestState>> it = activeQuests.entrySet().iterator();
+        while (it.hasNext()) {
+            QuestState qs = it.next().getValue();
+            if (qs.isLocal() && !qs.getQuestId().equals(currentQuestId)) {
+                it.remove();
+                removedAny = true;
+            }
+        }
+        if (removedAny) {
+            if (lastMessage.isEmpty()) {
+                lastMessage = "Opuściłeś lokację. Inne lokalne zadania zostały anulowane.";
+            } else {
+                lastMessage += "\n\nOpuściłeś lokację. Inne lokalne zadania zostały anulowane.";
+            }
         }
     }
 
@@ -373,6 +390,15 @@ public class GameEngine {
     public List<GameEvent> getMoraleEvents()     { return moraleEvents; }
     public List<GameEvent> getMoveEvents()       { return moveEvents; }
     public List<GameEvent> getRareEvents()       { return rareEvents; }
+
+    public GameEvent getQuestEvent(String questId, int stage) {
+        return questEventMap.get(questId + "_" + stage);
+    }
+
+    public boolean hasActiveLocalQuests(String currentQuestId) {
+        return activeQuests.values().stream()
+                .anyMatch(qs -> qs.isLocal() && !qs.getQuestId().equals(currentQuestId));
+    }
 
     public Inventory     getInventory()     { return inventory; }
     public StatusManager getStatusManager() { return statusManager; }
