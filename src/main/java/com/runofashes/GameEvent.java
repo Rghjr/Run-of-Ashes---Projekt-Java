@@ -20,6 +20,7 @@ public class GameEvent {
     private String questId;
     private int questStage;
     private int turnsUntilNext;
+    private boolean localQuest;
 
     private boolean hiddenEffects;
     private String revealMessage;
@@ -28,8 +29,8 @@ public class GameEvent {
     private String category;  // food | hydration | energy | morale | move | quest | rare
 
     // ograniczenie pory dnia (0-23); domyślnie cały dzień
-    private int minHour = 0;
-    private int maxHour = 23;
+    private final int minHour = 0;
+    private final int maxHour = 23;
 
     public String getId()                        { return id; }
     public String getLabel()                     { return label; }
@@ -48,6 +49,7 @@ public class GameEvent {
     public String getQuestId()                   { return questId; }
     public int getQuestStage()                   { return questStage; }
     public int getTurnsUntilNext()               { return turnsUntilNext; }
+    public boolean isLocalQuest()                { return localQuest; }
 
     public boolean isHiddenEffects()             { return hiddenEffects; }
     public String getRevealMessage()             { return revealMessage; }
