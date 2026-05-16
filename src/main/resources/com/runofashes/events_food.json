@@ -4,9 +4,20 @@
     "label": "Zapoluj z łukiem na zwierzynę",
     "timeCost": 3,
     "distanceCost": 2,
-    "effects": { "hunger": 60, "morale": 12 },
-    "successMessage": "Zając. Niezbyt duży — ale twój. Upiekłeś go na ogniu i nie zostawiłeś ani kości.",
-    "failEffects": { "energy": -20, "hunger": -8, "morale": -15 },
+    "category": "food",
+    "effects": {
+      "hunger": 30,
+      "morale": 10
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1
+    },
+    "successMessage": "Zając. Niezbyt duży — ale twój. Mięso upieczone, resztę zawinąłeś na drogę.",
+    "failEffects": {
+      "energy": -20,
+      "hunger": -8,
+      "morale": -15
+    },
     "failMessage": "Zwierzę uciekło. Trzy godziny za niczym. Wróciłeś głodniejszy niż wyszedłeś."
   },
   {
@@ -14,9 +25,19 @@
     "label": "Żebrz o chleb przy bramie klasztoru",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "hunger": 35, "morale": 20 },
-    "successMessage": "Mnich dał ci bochenek i wodę święconą. Nie pytał o imię. Boże mu zapłać.",
-    "failEffects": { "morale": -20, "hunger": -5 },
+    "category": "food",
+    "effects": {
+      "hunger": 20,
+      "morale": 15
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Mnich dał ci bochenek i manierkę wody. Nie pytał o imię. Boże mu zapłać.",
+    "failEffects": {
+      "morale": -20,
+      "hunger": -5
+    },
     "failMessage": "Brama była zamknięta. Na desce napis: 'Zaraza. Nie wchodzić.' Rozumiesz."
   },
   {
@@ -24,9 +45,19 @@
     "label": "Kup jedzenie w wiosce za grosz",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "hunger": 45, "morale": 10 },
-    "successMessage": "Chleb, kawałek sera, może cebula. Wystarczy na dwa dni. Prosto i dobre.",
-    "failEffects": { "morale": -25, "hunger": -5 },
+    "category": "food",
+    "effects": {
+      "hunger": 25,
+      "morale": 8
+    },
+    "itemEffects": {
+      "GRAPES": 1
+    },
+    "successMessage": "Chleb, kawałek sera, garść winogron. Wystarczy na jutro.",
+    "failEffects": {
+      "morale": -25,
+      "hunger": -5
+    },
     "failMessage": "Wioska była pusta. Domy stały z otwartymi drzwiami. Nie wszedłeś do żadnego."
   },
   {
@@ -34,9 +65,16 @@
     "label": "Łów ryby przy rzece",
     "timeCost": 3,
     "distanceCost": 1,
-    "effects": { "hunger": 50, "hydration": 10 },
+    "category": "food",
+    "effects": {
+      "hunger": 28,
+      "hydration": 5
+    },
     "successMessage": "Dwie ryby na zaimprowizowanym haczyku. Surowe, ale ciało przyjęło je z wdzięcznością.",
-    "failEffects": { "energy": -15, "morale": -10 },
+    "failEffects": {
+      "energy": -15,
+      "morale": -10
+    },
     "failMessage": "Rzeka była za głęboka, prąd za silny. Trzy godziny zimna i nic."
   },
   {
@@ -44,10 +82,18 @@
     "label": "Szukaj jagód i dzikich owoców",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "hunger": 22 },
-    "itemEffects": { "GRAPES": 1},
+    "category": "food",
+    "effects": {
+      "hunger": 12
+    },
+    "itemEffects": {
+      "GRAPES": 1
+    },
     "successMessage": "Garść tarniny i kilka dzikich śliwek. Cierpkie — ale żołądek się uspokoił.",
-    "failEffects": { "hunger": -5 },
+    "failEffects": {
+      "hunger": -5,
+      "morale": -12
+    },
     "failMessage": "Krzaki ogołocone. Ktoś był tu przed tobą."
   },
   {
@@ -55,36 +101,71 @@
     "label": "Zbierz grzyby z powalonego dębu",
     "timeCost": 2,
     "distanceCost": 1,
-    "effects": { "hunger": 40, "morale": 5 },
+    "category": "food",
+    "effects": {
+      "hunger": 22,
+      "morale": 5
+    },
     "successMessage": "Jadalne. Upieczone na kamieniu smakowały jak nic innego na tej drodze.",
-    "failEffects": { "health": -40, "hunger": -15, "morale": -20 },
+    "failEffects": {
+      "health": -40,
+      "hunger": -15,
+      "morale": -20
+    },
     "failMessage": "Pomyliłeś gatunki. Przez noc płaciłeś za ten błąd."
   },
   {
     "id": "trade_food",
     "label": "Wymień coś za jedzenie z podróżnym",
     "timeCost": 1,
-    "effects": { "hunger": 38, "morale": 15 },
-    "successMessage": "Pasek skórzany za suszone mięso i sucharki. Dobry interes. Pożegnaliście się bez słowa.",
-    "failEffects": { "morale": -20, "hunger": -5 },
+    "category": "food",
+    "effects": {
+      "hunger": 20,
+      "morale": 12
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1
+    },
+    "successMessage": "Pasek skórzany za suszone mięso i sucharki. Dobry interes.",
+    "failEffects": {
+      "morale": -20,
+      "hunger": -5
+    },
     "failMessage": "Podróżny miał w oczach coś złego. Odszedłeś zanim doszło do targowania."
   },
   {
     "id": "set_trap",
     "label": "Postaw sidła i wróć po godzinie",
     "timeCost": 2,
-    "effects": { "hunger": 38, "morale": 15 },
+    "category": "food",
+    "effects": {
+      "hunger": 18,
+      "morale": 10
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1
+    },
     "successMessage": "Kuropatwa. Mała, ale całkowicie twoja. Pióra zostawiłeś wiatrowi.",
-    "failEffects": { "energy": -8, "morale": -10 },
+    "failEffects": {
+      "energy": -8,
+      "morale": -10
+    },
     "failMessage": "Sidła puste. Coś je wywróciło — może lis, może inne sidła."
   },
   {
     "id": "dig_roots",
     "label": "Wykopuj korzenie przy rzece",
     "timeCost": 2,
-    "effects": { "hunger": 22, "hydration": 8 },
+    "category": "food",
+    "effects": {
+      "hunger": 14,
+      "hydration": 5
+    },
     "successMessage": "Korzenie chrzanu i jakiś bulwiasty korzeń. Nie smakowały niczym — ale trzymały przy życiu.",
-    "failEffects": { "energy": -10 },
+    "failEffects": {
+      "energy": -10,
+      "morale": -12
+    },
     "failMessage": "Ziemia zamarznięta. Kilka zadrapań i nic."
   },
   {
@@ -92,10 +173,20 @@
     "label": "Przeszukaj porzucony wóz przy drodze",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "hunger": 20, "morale": 15 },
-    "itemEffects": { "DRIED_MEAT": 1, "WINE": 1 },
-    "successMessage": "Znalazłeś suszone mięso i butelkę wina. Właściciel nie wróci po to. Ty potrzebujesz bardziej.",
-    "failEffects": { "health": -15, "morale": -25 },
+    "category": "food",
+    "effects": {
+      "hunger": 10,
+      "morale": 10
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1,
+      "WINE": 1
+    },
+    "successMessage": "Znalazłeś suszone mięso i butelkę wina. Właściciel nie wróci po to.",
+    "failEffects": {
+      "health": -15,
+      "morale": -25
+    },
     "failMessage": "Wóz nie był tak pusty jak wyglądał. Ktoś w nim leżał. Cofnąłeś się szybko."
   },
   {
@@ -103,19 +194,319 @@
     "label": "Wejdź do klasztoru po wieczorną zupę",
     "timeCost": 2,
     "distanceCost": 1,
-    "effects": { "hunger": 45, "hydration": 20, "morale": 25 },
-    "successMessage": "Mnisi nie pytali o wiele. Zupa była ciepła i gęsta. Przez chwilę byłeś człowiekiem.",
-    "failEffects": { "morale": -20 },
+    "category": "food",
+    "effects": {
+      "hunger": 28,
+      "hydration": 12,
+      "morale": 20
+    },
+    "itemEffects": {
+      "HERBS": 1
+    },
+    "successMessage": "Mnisi podali zupę i ziółka na drogę. 'Niech Bóg strzeże' — powiedzieli.",
+    "failEffects": {
+      "morale": -20
+    },
     "failMessage": "Klasztor stał opuszczony. Na ścianach krzyże narysowane wapnem. Zły znak."
   },
   {
     "id": "forage_herbs",
     "label": "Zbieraj jadalne zioła i trawę",
     "timeCost": 1,
-    "effects": { "hunger": 12, "health": 8 },
-    "itemEffects": { "OLIVES": 1},
-    "successMessage": "Szczaw, pokrzywa, dziki czosnek — wszystko do ust. Gorzkie, ale zielone.",
-    "failEffects": { "health": -15, "hunger": -8 },
+    "category": "food",
+    "effects": {
+      "hunger": 8,
+      "health": 5
+    },
+    "itemEffects": {
+      "HERBS": 1
+    },
+    "successMessage": "Szczaw, pokrzywa, dziki czosnek. Garść ziół do kieszeni na potem.",
+    "failEffects": {
+      "health": -15,
+      "hunger": -8,
+      "morale": -12
+    },
     "failMessage": "Nie wszystkie zioła są jadalne. Ta lekcja kosztuje."
+  },
+  {
+    "id": "salt_trade",
+    "label": "Kup sól od miejscowego handlarza",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 5,
+      "morale": 8
+    },
+    "itemEffects": {
+      "SALT": 1,
+      "DRIED_MEAT": 1
+    },
+    "successMessage": "Sól i kawał mięsa. Kupiec powiedział że na zachodzie jest spokojniej. Oby.",
+    "failEffects": {
+      "morale": -12
+    },
+    "failMessage": "Handlarz uciekł na twój widok. Może słyszał o zarazie. Może o tobie."
+  },
+  {
+    "id": "fire_smoke_signal",
+    "label": "Zapal ogień i czekaj na odpowiedź wioski",
+    "timeCost": 3,
+    "category": "food",
+    "effects": {
+      "morale": 18,
+      "hunger": 15
+    },
+    "itemEffects": {
+      "WATER": 1,
+      "GRAPES": 1
+    },
+    "successMessage": "Przyszedł chłop z dzbankiem i owocami. Nie wchodził blisko — zostawił pod drzewem i odszedł.",
+    "failEffects": {
+      "energy": -12,
+      "morale": -15
+    },
+    "failMessage": "Nikt nie odpowiedział. Dym rozwiał się w niebo i tyle."
+  },
+  {
+    "id": "find_abandoned_cellar",
+    "label": "Znajdź piwnicę przy opuszczonym domu",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "category": "food",
+    "hiddenEffects": true,
+    "revealMessage": "Piwnica pełna — solone mięso, suszone owoce, beczka wody. Ktoś się tu szykował. Ale nie wrócił.",
+    "effects": {
+      "hunger": 35,
+      "hydration": 20,
+      "morale": 15
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1,
+      "GRAPES": 1,
+      "WATER": 1
+    },
+    "failEffects": {
+      "health": -20,
+      "morale": -25
+    },
+    "failMessage": "Piwnica nie była pusta. Powietrze było gęste od śmierci. Wybiegłeś."
+  },
+  {
+    "id": "barter_bread",
+    "label": "Wymień nóż za bochenek chleba",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 22,
+      "morale": 10
+    },
+    "successMessage": "Chleb był czerstwy i twardy. Łamałeś go zębami. Najlepszy posiłek od trzech dni.",
+    "failEffects": {
+      "morale": -18
+    },
+    "failMessage": "Chłop powiedział że nie ma co jeść sam. I miał w oczach coś co kazało mu wierzyć."
+  },
+  {
+    "id": "pick_wild_garlic",
+    "label": "Zbieraj dziki czosnek przy strumieniu",
+    "timeCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 10,
+      "health": 6
+    },
+    "itemEffects": {
+      "HERBS": 1
+    },
+    "successMessage": "Ostry i surowy — ale czosnek leczy. Resztę wysuszyłeś i schowałeś do kieszeni.",
+    "failEffects": {
+      "health": -10,
+      "morale": -12
+    },
+    "failMessage": "Pomyliłeś rośliny. Przez godzinę czułeś jak coś pali od środka."
+  },
+  {
+    "id": "raid_bird_nest",
+    "label": "Wybierz jaja z ptasiego gniazda",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 18,
+      "morale": 8
+    },
+    "successMessage": "Trzy jaja. Surowe, ale świeże. Zjadłeś je szybko zanim zdążyłeś o tym myśleć.",
+    "failEffects": {
+      "energy": -8,
+      "morale": -14
+    },
+    "failMessage": "Gniazdo puste. Albo ptak był szybszy, albo ktoś przed tobą."
+  },
+  {
+    "id": "monastery_bread_morning",
+    "label": "Czekaj przy bramie klasztoru na poranny chleb",
+    "timeCost": 2,
+    "minHour": 5,
+    "maxHour": 9,
+    "distanceCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 28,
+      "morale": 20
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Mnisi rozdawali chleb i wodę przy jutrzni. Nie pytali — po prostu dawali. To wystarczyło.",
+    "failEffects": {
+      "morale": -20
+    },
+    "failMessage": "Klasztor nie otworzył bramy o świcie. Zaraza zmieniła nawet rytm modlitwy."
+  },
+  {
+    "id": "eat_raw_fish",
+    "label": "Złap rybę gołymi rękami w płytkiej wodzie",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 20,
+      "hydration": 8
+    },
+    "successMessage": "Małe szczupaczki w mule. Surowe i zimne — ale białko to białko.",
+    "failEffects": {
+      "energy": -12,
+      "morale": -14
+    },
+    "failMessage": "Ryby były za szybkie albo za głęboko. Mokre nogi i pusty żołądek."
+  },
+  {
+    "id": "find_orchard",
+    "label": "Znajdź opuszczony sad przy dawnym folwarku",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "category": "food",
+    "hiddenEffects": false,
+    "effects": {
+      "hunger": 30,
+      "morale": 18
+    },
+    "itemEffects": {
+      "GRAPES": 1
+    },
+    "successMessage": "Jabłonie, śliwki, dzikie gruszki. Folwark opuszczony — drzewa nie. Jadłeś stojąc i zabrałeś tyle ile uniosłeś.",
+    "failEffects": {
+      "morale": -15
+    },
+    "failMessage": "Sad był, ale owoce zgniłe albo jeszcze twarde. Nie w tej porze roku."
+  },
+  {
+    "id": "buy_flatbread",
+    "label": "Kup podpłomyk od kobiety przy ognisku",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 18,
+      "morale": 12
+    },
+    "successMessage": "Gorący, prosty, dobry. Kobieta nie wzięła za dużo. Świat ma jeszcze dobre miejsca.",
+    "failEffects": {
+      "morale": -16
+    },
+    "failMessage": "Kobieta uciekła gdy zbliżyłeś się za blisko. Zaraza zrobiła z ciebie zagrożenie nawet dla nieznajomych."
+  },
+  {
+    "id": "eat_acorns",
+    "label": "Gotuj żołędzie nad małym ogniem",
+    "timeCost": 2,
+    "category": "food",
+    "effects": {
+      "hunger": 15,
+      "energy": -5
+    },
+    "successMessage": "Gorzkie i twarde — ale gotowane dawały jakiś pożytek. Nie po raz pierwszy ludzkie ciało jadło to co jadły świnie.",
+    "failEffects": {
+      "health": -8,
+      "morale": -14
+    },
+    "failMessage": "Za krótko gotowane. Żołądek powiedział nie i miał rację."
+  },
+  {
+    "id": "smoke_meat_overnight",
+    "label": "Uwędź mięso na noc nad ogniem",
+    "timeCost": 6,
+    "minHour": 19,
+    "maxHour": 5,
+    "category": "food",
+    "effects": {
+      "hunger": 20,
+      "morale": 12
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1
+    },
+    "successMessage": "Wolne i cierpliwe. Mięso wyszło twarde jak podeszwa — i trwałe. Schowałeś je na gorsze dni.",
+    "failEffects": {
+      "energy": -10,
+      "morale": -14
+    },
+    "failMessage": "Ogień zgasł w nocy. Mięso niedowędzone — za ryzykowne żeby jeść. Wyrzuciłeś."
+  },
+  {
+    "id": "trade_salt_for_food",
+    "label": "Zamień sól za jedzenie u chłopa",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 25,
+      "morale": 10
+    },
+    "itemEffects": {
+      "GRAPES": 1
+    },
+    "successMessage": "Sól jest wszędzie ceniona. Chłop dał ci chleb, owoce i uśmiech. Rzadka kombinacja.",
+    "failEffects": {
+      "morale": -15
+    },
+    "failMessage": "Chłop miał za mało sam. Nie można brać od kogoś kto sam głoduje."
+  },
+  {
+    "id": "find_honey_tree",
+    "label": "Znajdź dzikie pszczoły i weź miód",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "category": "food",
+    "effects": {
+      "hunger": 25,
+      "health": 10,
+      "morale": 22
+    },
+    "successMessage": "Użądliło cię pięć razy. Miód był tego wart.",
+    "failEffects": {
+      "health": -15,
+      "morale": -16
+    },
+    "failMessage": "Rój okazał się większy niż wyglądał. Uciekałeś przez kwadrans."
+  },
+  {
+    "id": "strip_bark_birch",
+    "label": "Gotuj korę brzozową na głodowy wywar",
+    "timeCost": 2,
+    "category": "food",
+    "effects": {
+      "hunger": 8,
+      "health": 4
+    },
+    "successMessage": "Łykowaty i gorzki. Ciało wzięło co mogło. Na stepie jada się to czego step nie odmówi.",
+    "failEffects": {
+      "energy": -8,
+      "morale": -12
+    },
+    "failMessage": "Wywar nie nadawał się do picia. Wyplułeś po pierwszym łyku."
   }
 ]

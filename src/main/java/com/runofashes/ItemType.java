@@ -8,7 +8,7 @@ public enum ItemType {
             "Woda",
             "💧",
             1,
-            Map.of("hydration", 40),
+            Map.of("hydration", 22),
             null,
             0
     ),
@@ -16,23 +16,23 @@ public enum ItemType {
             "Wino",
             "🍷",
             1,
-            Map.of("hydration", 20, "morale", 25),
-            Map.of("energy", -10),
+            Map.of("hydration", 10, "morale", 12),
+            Map.of("energy", -8),
             1
     ),
     OLIVES(
             "Oliwki",
             "🫒",
             1,
-            Map.of("hunger", 30),
-            Map.of("energy", -8),
+            Map.of("hunger", 16),
+            Map.of("energy", -5),
             1
     ),
     GRAPES(
             "Winogrona",
             "🍇",
             1,
-            Map.of("hunger", 20, "hydration", 10),
+            Map.of("hunger", 10, "hydration", 5),
             null,
             0
     ),
@@ -40,15 +40,15 @@ public enum ItemType {
             "Zioła",
             "🌿",
             1,
-            Map.of("health", 5),
-            Map.of("health", 10),
+            Map.of("health", 4),
+            Map.of("health", 7),
             2
     ),
     BANDAGE(
             "Bandaże",
             "🩹",
             1,
-            Map.of("health", 30),
+            Map.of("health", 18),
             null,
             0
     ),
@@ -56,9 +56,25 @@ public enum ItemType {
             "Suszone mięso",
             "🥩",
             1,
-            Map.of("hunger", 45, "hydration", -10),
+            Map.of("hunger", 24, "hydration", -8),
             null,
             0
+    ),
+    TALLOW_CANDLE(
+            "Łojowa świeca",
+            "🕯",
+            1,
+            Map.of("morale", 8, "energy", 4),
+            null,
+            0
+    ),
+    SALT(
+            "Sól",
+            "🧂",
+            1,
+            Map.of("hunger", 6),
+            Map.of("health", 4),
+            1
     );
 
     // ── Pola ──────────────────────────────────────────────────────────────────

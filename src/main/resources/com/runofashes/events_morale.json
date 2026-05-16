@@ -3,9 +3,15 @@
     "id": "pray_cross",
     "label": "Módl się przy przydrożnym krzyżu",
     "timeCost": 1,
-    "effects": { "morale": 32, "energy": 5 },
+    "category": "morale",
+    "effects": {
+      "morale": 25,
+      "energy": 4
+    },
     "successMessage": "Drewniany krzyż stał sam na rozstaju. Uklęknąłeś. Przez chwilę nie byłeś sam.",
-    "failEffects": { "morale": -18 },
+    "failEffects": {
+      "morale": -18
+    },
     "failMessage": "Krzyż był obalony. Ktoś go przewrócił — albo wichura. W tym świecie jedno i drugie możliwe."
   },
   {
@@ -13,27 +19,47 @@
     "label": "Rozmawiaj z napotkanym pielgrzymem",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "morale": 30, "hunger": 10 },
-    "successMessage": "Szedł z Konstantynopola. Widział to co ty. Podzielił się chlebem i słowem. Wystarczy.",
-    "failEffects": { "morale": -25 },
+    "category": "morale",
+    "effects": {
+      "morale": 28,
+      "hunger": 8
+    },
+    "itemEffects": {
+      "TALLOW_CANDLE": 1
+    },
+    "successMessage": "Szedł z Konstantynopola. Podzielił się chlebem, świecą i słowem. Wystarczy.",
+    "failEffects": {
+      "morale": -25
+    },
     "failMessage": "Pielgrzym milczał. W jego oczach był taki strach, że swój wydał ci się małostką."
   },
   {
     "id": "recall_krakow",
     "label": "Przypomnij sobie ulice Krakowa",
     "timeCost": 1,
-    "effects": { "morale": 35, "energy": 8 },
+    "category": "morale",
+    "effects": {
+      "morale": 30,
+      "energy": 6
+    },
     "successMessage": "Rynek, Wawel, zapach piekarni na Grodzkiej. Żyją — jeśli zdążysz.",
-    "failEffects": { "morale": -22 },
+    "failEffects": {
+      "morale": -22
+    },
     "failMessage": "Twarze bliskich zacierały się. Pamiętałeś domy, ale nie ich w domach. To gorsze."
   },
   {
     "id": "write_warning",
     "label": "Napisz ostrzeżenie na ścianie kościoła",
     "timeCost": 1,
-    "effects": { "morale": 28 },
+    "category": "morale",
+    "effects": {
+      "morale": 22
+    },
     "successMessage": "'Zaraza idzie ze wschodu. Uciekajcie lub módlcie się.' Ktoś to przeczyta. Może przeżyje.",
-    "failEffects": { "morale": -12 },
+    "failEffects": {
+      "morale": -12
+    },
     "failMessage": "Ściana była już pełna napisów. Innych ostrzeżeń, innych rozpaczliwych słów. Już za późno na słowa."
   },
   {
@@ -42,9 +68,15 @@
     "timeCost": 1,
     "minHour": 4,
     "maxHour": 8,
-    "effects": { "morale": 35, "energy": 10 },
+    "category": "morale",
+    "effects": {
+      "morale": 30,
+      "energy": 8
+    },
     "successMessage": "Świt nad stepem. Złoto i czerwień. Bóg jeszcze nie porzucił tego świata.",
-    "failEffects": { "morale": 6 },
+    "failEffects": {
+      "morale": 5
+    },
     "failMessage": "Chmury zasłoniły wszystko. Ale wstałeś — i to jest coś."
   },
   {
@@ -53,9 +85,15 @@
     "timeCost": 1,
     "minHour": 17,
     "maxHour": 21,
-    "effects": { "morale": 30, "energy": 5 },
+    "category": "morale",
+    "effects": {
+      "morale": 25,
+      "energy": 4
+    },
     "successMessage": "Purpura za lasem. Tam za horyzontem jest Kraków. Jeszcze jeden dzień bliżej.",
-    "failEffects": { "morale": 8 },
+    "failEffects": {
+      "morale": 6
+    },
     "failMessage": "Chmury i dym. Gdzieś pali się wioska. Idziesz dalej."
   },
   {
@@ -64,18 +102,30 @@
     "timeCost": 1,
     "minHour": 20,
     "maxHour": 4,
-    "effects": { "morale": 22, "energy": 12 },
+    "category": "morale",
+    "effects": {
+      "morale": 18,
+      "energy": 10
+    },
     "successMessage": "Droga Mleczna wskazywała kierunek lepiej niż każda mapa. Byłeś mały — ale szedłeś.",
-    "failEffects": { "morale": -10 },
+    "failEffects": {
+      "morale": -10
+    },
     "failMessage": "Niebo zachmurzone. Ciemność bez gwiazd to tylko ciemność."
   },
   {
     "id": "help_sick",
     "label": "Pomóż choremu przy drodze",
     "timeCost": 2,
-    "effects": { "morale": 40 },
+    "category": "morale",
+    "effects": {
+      "morale": 35
+    },
     "successMessage": "Nie wiedziałeś co robić. Dałeś wodę i słowo. Może to wystarczyło — dla ciebie na pewno.",
-    "failEffects": { "health": -25, "morale": -15 },
+    "failEffects": {
+      "health": -25,
+      "morale": -15
+    },
     "failMessage": "Dotknąłeś go zanim zobaczyłeś plamy. Módl się żebyś nie wziął ze sobą nic więcej niż wspomnienie."
   },
   {
@@ -83,27 +133,44 @@
     "label": "Znajdź rodaka na szlaku",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "morale": 45, "energy": 10 },
+    "category": "morale",
+    "effects": {
+      "morale": 40,
+      "energy": 8
+    },
     "successMessage": "Mówił po polsku. Krzyczałeś ze zdumienia. On też. Szliście razem przez godzinę — to wystarczyło.",
-    "failEffects": { "morale": -20 },
+    "failEffects": {
+      "morale": -20
+    },
     "failMessage": "Myślałeś że go rozpoznajesz. Obcy. Bardzo obcy — i przestraszony tobą."
   },
   {
     "id": "read_breviary",
     "label": "Czytaj brewiarza lub modlitewnik",
     "timeCost": 2,
-    "effects": { "morale": 30, "energy": -5 },
+    "category": "morale",
+    "effects": {
+      "morale": 28,
+      "energy": -4
+    },
     "successMessage": "Słowa psalmu znałeś na pamięć. Tym razem brzmiały inaczej. Lepiej.",
-    "failEffects": { "morale": -10 },
+    "failEffects": {
+      "morale": -10
+    },
     "failMessage": "Litery zlewały się. Zbyt zmęczone oczy albo zbyt wiele widziały."
   },
   {
     "id": "build_altar",
     "label": "Zbuduj mały ołtarzyk z kamieni",
     "timeCost": 1,
-    "effects": { "morale": 18 },
+    "category": "morale",
+    "effects": {
+      "morale": 15
+    },
     "successMessage": "Trzy kamienie ułożone w krzyż. Mały znak że tu byłeś i wciąż wierzysz.",
-    "failEffects": { "morale": -5 },
+    "failEffects": {
+      "morale": -5
+    },
     "failMessage": "Kamienie rozpadały się. Nawet kamienie nie chcą tu stać."
   },
   {
@@ -111,9 +178,181 @@
     "label": "Obserwuj z daleka żywą wioskę",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "morale": 38 },
+    "category": "morale",
+    "effects": {
+      "morale": 32
+    },
     "successMessage": "Dym z kominów. Psy szczekały. Dzieci krzyczały. Życie — prawdziwe i niezarażone.",
-    "failEffects": { "morale": -30 },
+    "failEffects": {
+      "morale": -30
+    },
     "failMessage": "Wioska żyła. Ty przeszedłeś obok bo bałeś się przynieść im śmierć. Może mądrze. Może nie."
+  },
+  {
+    "id": "light_candle_grave",
+    "label": "Zapal świecę na przydrożnym grobie",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 20,
+      "health": 4
+    },
+    "successMessage": "Nie znałeś tego człowieka. Ale płomień był dla niego i dla ciebie. Przez chwilę obaj byliście mniej sami.",
+    "failEffects": {
+      "morale": -8
+    },
+    "failMessage": "Wiatr zgasił świecę zanim się zapaliła. Idziesz dalej."
+  },
+  {
+    "id": "carve_name_tree",
+    "label": "Wyrzyj swoje imię w korze drzewa",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 16
+    },
+    "successMessage": "Twoje imię zostanie tu długo po tobie. Coś małego — ale prawdziwego.",
+    "failEffects": {
+      "morale": -8
+    },
+    "failMessage": "Nóż ześlizgnął się. Imię wyszło krzywe i nieczytelne. Jak wszystko na tej drodze."
+  },
+  {
+    "id": "sing_old_song",
+    "label": "Nucj starą pieśń z dzieciństwa",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 24,
+      "energy": 6
+    },
+    "successMessage": "Słowa wracały same. Głos łamał się co kilka taktów — ale śpiewałeś. I to wystarczyło.",
+    "failEffects": {
+      "morale": -15
+    },
+    "failMessage": "Zapomniałeś słów. Melodia uciekła gdzieś za tygodnie marszu. Cisza była gorsza niż przed."
+  },
+  {
+    "id": "talk_to_horse",
+    "label": "Porozmawiaj z koniem przy drodze",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 18,
+      "energy": 5
+    },
+    "successMessage": "Koń słuchał cierpliwie. Nie oceniał. To rzadka cecha — nawet u ludzi.",
+    "failEffects": {
+      "morale": -10
+    },
+    "failMessage": "Koń odszedł zanim skończyłeś zdanie. Nawet zwierzęta mają swoje priorytety."
+  },
+  {
+    "id": "remember_family",
+    "label": "Myśl o rodzinie czekającej w Krakowie",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 32,
+      "energy": 8
+    },
+    "successMessage": "Twarze wróciły wyraźnie — po raz pierwszy od tygodnia. To wystarczy na kolejny dzień.",
+    "failEffects": {
+      "morale": -25
+    },
+    "failMessage": "Twarze były zamazane. Imiona przychodziły z opóźnieniem. Co za długo trwa nieobecność."
+  },
+  {
+    "id": "find_old_coin",
+    "label": "Znajdź starą monetę przy drodze",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 14
+    },
+    "successMessage": "Mała rzecz. Głupia, może. Ale znalazłeś ją — i to był twój moment szczęścia na dziś.",
+    "failEffects": {
+      "morale": -6
+    },
+    "failMessage": "Nic. Droga daje i droga bierze — dziś tylko brała."
+  },
+  {
+    "id": "draw_map_in_dirt",
+    "label": "Narysuj mapę drogi patykiem w ziemi",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 20,
+      "energy": 5
+    },
+    "successMessage": "Wizualizacja pomogła. Kraków nie był już abstrakcją — był punktem na twojej mapie.",
+    "failEffects": {
+      "morale": -12
+    },
+    "failMessage": "Mapa nie zgadzała się z rzeczywistością. Albo rzeczywistość z mapą. Jedno pewne: jesteś dalej niż myślałeś."
+  },
+  {
+    "id": "help_lost_traveler",
+    "label": "Pomóż zagubionemu podróżnemu znaleźć drogę",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 28,
+      "energy": 8
+    },
+    "itemEffects": {
+      "GRAPES": 1
+    },
+    "successMessage": "Wskazałeś kierunek. Uśmiechnął się i podzielił owocami. Drobne dobro — realne.",
+    "failEffects": {
+      "morale": -15
+    },
+    "failMessage": "Sam się zgubiłeś próbując mu pomóc. Dobra wola — złe efekty."
+  },
+  {
+    "id": "watch_birds_fly",
+    "label": "Patrz na klucz ptaków lecących na zachód",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 22,
+      "energy": 6
+    },
+    "successMessage": "Leciały w tym samym kierunku co ty. Też do domu, może. Albo po prostu dalej.",
+    "failEffects": {
+      "morale": -8
+    },
+    "failMessage": "Ptaki leciały na wschód. Jakby uciekały od tego co czeka na zachodzie."
+  },
+  {
+    "id": "promise_to_god",
+    "label": "Złóż ślubowanie Bogu jeśli dotrze",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 35,
+      "health": 5
+    },
+    "successMessage": "Słowa wyszły same. Nie wiesz czy ktoś słuchał — ale ty słyszałeś siebie. I to pomogło.",
+    "failEffects": {
+      "morale": -20
+    },
+    "failMessage": "Słowa ugrzęzły w gardle. Może zbyt wiele już obiecałeś — i nie dotrzymałeś."
+  },
+  {
+    "id": "count_steps_to_krakow",
+    "label": "Oblicz ile kroków jeszcze do Krakowa",
+    "timeCost": 1,
+    "category": "morale",
+    "effects": {
+      "morale": 18,
+      "energy": 10
+    },
+    "successMessage": "Liczby były przerażające. Ale konkretne. Wolisz wiedzieć niż nie wiedzieć.",
+    "failEffects": {
+      "morale": -18
+    },
+    "failMessage": "Liczby były zbyt przerażające. Przestałeś liczyć w połowie — i to była gorsza połowa."
   }
 ]

@@ -4,23 +4,43 @@
     "label": "Ostrzeż wioskę przed nadchodzącą zarazą",
     "timeCost": 2,
     "distanceCost": 2,
-    "effects": { "energy": -15, "morale": 20 },
+    "category": "quest",
+    "effects": {
+      "energy": -15,
+      "morale": 20
+    },
     "successMessage": "Słuchali. Część płakała. Część nie wierzyła. Powiedziałeś co wiedziałeś. Za 3 tury wróć sprawdzić.",
-    "failEffects": { "morale": -20, "energy": -15 },
+    "failEffects": {
+      "morale": -20,
+      "energy": -15
+    },
     "failMessage": "Przepędzili cię kamieniami. Zwiastun złej wieści to wróg — tak myśleli.",
     "questId": "village_warn",
     "questStage": 1,
     "turnsUntilNext": 3,
-    "localQuest": true
+    "localQuest": true,
+    "allowWait": true
   },
   {
     "id": "quest_village_warn_2",
     "label": "Wróć do ostrzeżonej wsi — co się stało? (FINAŁ)",
     "timeCost": 2,
     "distanceCost": 2,
-    "effects": { "morale": 70, "health": 15, "energy": -10 },
-    "successMessage": "Wioska żyła. Uciekli zanim zaraza dotarła. Jeden starzec zostawił ci prowiant i błogosławieństwo. Warto było.",
-    "failEffects": { "health": -15, "morale": -45 },
+    "category": "quest",
+    "effects": {
+      "morale": 55,
+      "health": 12,
+      "energy": -10
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1,
+      "WATER": 1
+    },
+    "successMessage": "Wioska żyła. Uciekli zanim zaraza dotarła. Starzec zostawił ci prowiant i błogosławieństwo.",
+    "failEffects": {
+      "health": -15,
+      "morale": -45
+    },
     "failMessage": "Wioska milczała. Zbyt późno. Nie patrzyłeś długo — i tak to zapamiętasz.",
     "questId": "village_warn",
     "questStage": 2,
@@ -31,23 +51,42 @@
     "label": "Zaoferuj pomoc choremu kupcowi przy drodze",
     "timeCost": 2,
     "distanceCost": 1,
-    "effects": { "energy": -15, "morale": 15 },
+    "category": "quest",
+    "effects": {
+      "energy": -15,
+      "morale": 15
+    },
     "successMessage": "Kupiec żył, ale był słaby. Obiecał ci mapę gdy wróci do siebie. Za 4 tury.",
-    "failEffects": { "health": -20, "morale": -10 },
+    "failEffects": {
+      "health": -20,
+      "morale": -10
+    },
     "failMessage": "Kupiec gorączkował. Odsunąłeś się gdy zobaczyłeś zmiany na skórze.",
     "questId": "map_merchant",
     "questStage": 1,
     "turnsUntilNext": 4,
-    "localQuest": true
+    "localQuest": true,
+    "allowWait": true
   },
   {
     "id": "quest_map_merchant_2",
     "label": "Wróć do kupca po mapę (FINAŁ)",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "morale": 50, "energy": 20 },
-    "successMessage": "Kupiec wyzdrowił — albo nie miał zarazy, tylko febrę. Dał ci mapę Karpat ze skrótem. Dwa dni oszczędzone.",
-    "failEffects": { "morale": -35, "health": -10 },
+    "category": "quest",
+    "effects": {
+      "morale": 40,
+      "energy": 15
+    },
+    "itemEffects": {
+      "WATER": 1,
+      "GRAPES": 1
+    },
+    "successMessage": "Kupiec wyzdrowił. Dał ci mapę Karpat ze skrótem i resztki prowiantu. Dwa dni oszczędzone.",
+    "failEffects": {
+      "morale": -35,
+      "health": -10
+    },
     "failMessage": "Kupiec nie żył. Mapa leżała obok — ale nie chciałeś jej dotknąć.",
     "questId": "map_merchant",
     "questStage": 2,
@@ -57,22 +96,44 @@
     "id": "quest_letter_bishop_1",
     "label": "Przyjmij list od biskupa do przekazania w Polsce",
     "timeCost": 2,
-    "effects": { "morale": 25, "energy": -10 },
+    "category": "quest",
+    "effects": {
+      "morale": 22,
+      "energy": -10
+    },
     "successMessage": "Biskup spojrzał na ciebie długo. 'Masz twarz człowieka który dotrze.' Wziąłeś list. Za 3 tury ruszasz dalej.",
-    "failEffects": { "morale": -10, "energy": -15 },
+    "failEffects": {
+      "morale": -10,
+      "energy": -15
+    },
     "failMessage": "Biskupstwo stało zamknięte. Na bramie pieczęć z krzyżem. Zaraza weszła tu wcześniej.",
     "questId": "bishop_letter",
     "questStage": 1,
-    "turnsUntilNext": 3
+    "turnsUntilNext": 3,
+    "localQuest": false,
+    "allowWait": false
   },
   {
     "id": "quest_letter_bishop_2",
     "label": "Dostarcz list do pierwszego polskiego kościoła (FINAŁ)",
     "timeCost": 2,
     "distanceCost": 3,
-    "effects": { "morale": 65, "health": 20, "energy": -15 },
-    "successMessage": "Ksiądz wziął list drżącymi rękami. Przeczytał. Spojrzał na ciebie inaczej. 'Zostań. Zjedz.' Po raz pierwszy nie odmawiałeś.",
-    "failEffects": { "morale": -30, "health": -15 },
+    "category": "quest",
+    "effects": {
+      "morale": 55,
+      "health": 15,
+      "energy": -12
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1,
+      "HERBS": 1,
+      "TALLOW_CANDLE": 1
+    },
+    "successMessage": "Ksiądz wziął list drżącymi rękami. Przeczytał. 'Zostań. Zjedz.' Po raz pierwszy nie odmawiałeś.",
+    "failEffects": {
+      "morale": -30,
+      "health": -15
+    },
     "failMessage": "Kościół opustoszały. List zostawiłeś na ołtarzu i poszedłeś. Może ktoś przeczyta.",
     "questId": "bishop_letter",
     "questStage": 2,
@@ -82,24 +143,327 @@
     "id": "quest_cave_1",
     "label": "Zbadaj jaskinię przy szlaku — ktoś tam mieszkał",
     "timeCost": 2,
-    "effects": { "energy": -15, "morale": 12 },
+    "category": "quest",
+    "effects": {
+      "energy": -15,
+      "morale": 12
+    },
     "successMessage": "Wnętrze ciepłe, ślady ogniska świeże. Ktoś tu był — może wróci za 3 tury.",
-    "failEffects": { "energy": -12, "morale": -8 },
+    "failEffects": {
+      "energy": -12,
+      "morale": -8
+    },
     "failMessage": "Jaskinia pusta i zimna. Dawno opuszczona.",
     "questId": "cave",
     "questStage": 1,
     "turnsUntilNext": 3,
-    "localQuest": true
+    "localQuest": true,
+    "allowWait": true
   },
   {
     "id": "quest_cave_2",
     "label": "Wróć do jaskini — ktoś zostawił prowiant (FINAŁ)",
     "timeCost": 1,
-    "effects": { "hunger": 50, "hydration": 30, "morale": 55, "energy": -10 },
+    "category": "quest",
+    "effects": {
+      "hunger": 28,
+      "hydration": 18,
+      "morale": 45,
+      "energy": -8
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1,
+      "HERBS": 2,
+      "WATER": 1
+    },
     "successMessage": "Pustelnik. Stary, milczący — ale żywy. Nakarmił cię i wskazał krótszą drogę przez góry.",
-    "failEffects": { "health": -20, "morale": -30 },
+    "failEffects": {
+      "health": -20,
+      "morale": -30
+    },
     "failMessage": "W jaskini leżał człowiek z czarnymi plamami. Pobiegłeś bez odwracania się.",
     "questId": "cave",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_wounded_soldier_1",
+    "label": "Pomóż rannemu żołnierzowi przy drodze",
+    "timeCost": 3,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "energy": -20,
+      "morale": 25
+    },
+    "itemEffects": {},
+    "successMessage": "Żołnierz żył — ledwo. Opatrzyłeś ranę czym miałeś. 'Wróć za 3 dni' — powiedział. 'Będę miał coś dla ciebie.'",
+    "failEffects": {
+      "health": -15,
+      "morale": -20
+    },
+    "failMessage": "Żołnierz był zbyt daleko. Strata czasu i sił.",
+    "questId": "wounded_soldier",
+    "questStage": 1,
+    "turnsUntilNext": 3,
+    "localQuest": true,
+    "allowWait": true
+  },
+  {
+    "id": "quest_wounded_soldier_2",
+    "label": "Wróć do rannego żołnierza (FINAŁ)",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "morale": 45,
+      "health": 10
+    },
+    "itemEffects": {
+      "BANDAGE": 2,
+      "SALT": 1,
+      "DRIED_MEAT": 1
+    },
+    "successMessage": "Żołnierz żył. Dał ci bandaże, sól i mięso z plecaka. 'Ty będziesz żył dłużej niż ja' — powiedział. Może miał rację.",
+    "failEffects": {
+      "morale": -40,
+      "health": -10
+    },
+    "failMessage": "Żołnierz nie żył. Przy nim leżały bandaże — już nie jego.",
+    "questId": "wounded_soldier",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_sick_child_1",
+    "label": "Kobieta przy drodze błaga o pomoc — jej dziecko gorączkuje",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "energy": -12,
+      "morale": 18
+    },
+    "successMessage": "Zostałeś przy dziecku godzinę. Gorączka nie spada — ale matka wiedziała że ktoś się zatrzymał. Wróć za 4 tury.",
+    "failEffects": {
+      "morale": -15,
+      "health": -10
+    },
+    "failMessage": "Dziecko miało plamy na szyi. Odskoczyłeś — i przez to nienawidzisz siebie trochę bardziej.",
+    "questId": "sick_child",
+    "questStage": 1,
+    "turnsUntilNext": 4,
+    "localQuest": true,
+    "allowWait": true
+  },
+  {
+    "id": "quest_sick_child_2",
+    "label": "Wróć do kobiety — sprawdź czy dziecko żyje (FINAŁ)",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "morale": 60,
+      "health": 10
+    },
+    "itemEffects": {
+      "HERBS": 2,
+      "WATER": 1
+    },
+    "successMessage": "Dziecko żyło. Gorączka minęła. Matka nie miała nic — dała ci ziółka i wodę ze studni. Niektóre rzeczy warte są postoju.",
+    "failEffects": {
+      "morale": -50,
+      "health": -15
+    },
+    "failMessage": "Chata stała cicha. Drzwi otwarte. Nie wszedłeś — i nie musisz wiedzieć dlaczego.",
+    "questId": "sick_child",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_burned_village_1",
+    "label": "W zgliszczach wioski słyszysz kogoś pod gruzem",
+    "timeCost": 3,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "energy": -20,
+      "morale": 15
+    },
+    "successMessage": "Wyciągnąłeś starą kobietę spod belki. Żyła. Powiedziała o piwnicy z zapasami — nietkniętej. Za 3 tury może do niej dotrzeć.",
+    "failEffects": {
+      "energy": -18,
+      "morale": -20,
+      "health": -10
+    },
+    "failMessage": "Głos ucichł zanim doszedłeś. Belki były zbyt ciężkie.",
+    "questId": "burned_village",
+    "questStage": 1,
+    "turnsUntilNext": 3,
+    "localQuest": true,
+    "allowWait": true
+  },
+  {
+    "id": "quest_burned_village_2",
+    "label": "Znajdź piwnicę w zgliszczach wioski (FINAŁ)",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "hunger": 25,
+      "hydration": 15,
+      "morale": 40
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1,
+      "WATER": 1,
+      "SALT": 1
+    },
+    "successMessage": "Piwnica była nienaruszona. Mięso, sól, woda. Stara kobieta wskazała ci drogę przez las — dwa dni krócej.",
+    "failEffects": {
+      "morale": -30,
+      "energy": -15
+    },
+    "failMessage": "Piwnica zawaliła się. Zgliszcza pochłonęły wszystko.",
+    "questId": "burned_village",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_runaway_monk_1",
+    "label": "Mnich w świeckich ubraniach prosi o eskortę do klasztoru",
+    "timeCost": 2,
+    "distanceCost": 2,
+    "category": "quest",
+    "effects": {
+      "energy": -15,
+      "morale": 20
+    },
+    "successMessage": "Szedłeś z nim przez godzinę. Bał się — ale szedł. Obiecał modlitwę i klucz do spiżarni. Za 3 tury klasztor w zasięgu.",
+    "failEffects": {
+      "morale": -12,
+      "energy": -15
+    },
+    "failMessage": "Mnich uciekł gdy zobaczył cienie na wzgórzu. Strachu nie da się przekonać argumentami.",
+    "questId": "runaway_monk",
+    "questStage": 1,
+    "turnsUntilNext": 3,
+    "localQuest": false,
+    "allowWait": false
+  },
+  {
+    "id": "quest_runaway_monk_2",
+    "label": "Dotrzymaj obietnicy — zaprowadź mnicha do klasztoru (FINAŁ)",
+    "timeCost": 2,
+    "distanceCost": 3,
+    "category": "quest",
+    "effects": {
+      "morale": 50,
+      "energy": 20,
+      "health": 12
+    },
+    "itemEffects": {
+      "HERBS": 1,
+      "TALLOW_CANDLE": 2,
+      "DRIED_MEAT": 1
+    },
+    "successMessage": "Klasztor przyjął mnicha. Przeor spojrzał na ciebie długo i dał ci spiżarnię na jedną noc. Spałeś przy świecach i jadłeś przy ciepłym ogniu.",
+    "failEffects": {
+      "morale": -25,
+      "energy": -12
+    },
+    "failMessage": "Klasztor był oblężony przez chorych. Nie weszliście. Mnich zawrócił. Ty poszedłeś dalej sam.",
+    "questId": "runaway_monk",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_lone_guard_1",
+    "label": "Strażnik pilnuje mostu sam — od tygodnia nikt go nie zmienił",
+    "timeCost": 1,
+    "distanceCost": 2,
+    "category": "quest",
+    "effects": {
+      "energy": -8,
+      "morale": 22
+    },
+    "successMessage": "Porozmawiałeś z nim. Trzymał się — ledwo. Obiecałeś wrócić z wieściami za 3 tury. On obiecał przepuścić cię bez pytań.",
+    "failEffects": {
+      "morale": -10
+    },
+    "failMessage": "Strażnik nie chciał rozmawiać. Przepuścił cię bez słowa — i bez obietnicy.",
+    "questId": "lone_guard",
+    "questStage": 1,
+    "turnsUntilNext": 3,
+    "localQuest": true,
+    "allowWait": true
+  },
+  {
+    "id": "quest_lone_guard_2",
+    "label": "Wróć do strażnika z mostu (FINAŁ)",
+    "timeCost": 1,
+    "distanceCost": 2,
+    "category": "quest",
+    "effects": {
+      "morale": 45,
+      "energy": 15
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 1,
+      "BANDAGE": 1
+    },
+    "successMessage": "Strażnik żył. Zmiennik w końcu przyszedł. Dał ci prowiant z wartowni i przepuścił przez most bez opłaty. Małe gesty — duże znaczenie.",
+    "failEffects": {
+      "morale": -35
+    },
+    "failMessage": "Most stał pusty. Strażnik odszedł — albo padł. Most był wolny, ale to nie cieszyło.",
+    "questId": "lone_guard",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_mystery_letter_1",
+    "label": "Znajdź list przy martwym posłańcu — adresat jest w następnej wsi",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "morale": 10,
+      "energy": -8
+    },
+    "successMessage": "Wziąłeś list. Pieczęć nienaruszona — nie wiesz co w środku. Adresat jest dwa dni marszu stąd. Za 4 tury.",
+    "failEffects": {
+      "morale": -8
+    },
+    "failMessage": "List był zniszczony — deszcz i błoto zrobiły swoje. Nie dało się odczytać adresata.",
+    "questId": "mystery_letter",
+    "questStage": 1,
+    "turnsUntilNext": 4,
+    "localQuest": false,
+    "allowWait": false
+  },
+  {
+    "id": "quest_mystery_letter_2",
+    "label": "Dostarcz tajemniczy list do adresata (FINAŁ)",
+    "timeCost": 2,
+    "distanceCost": 2,
+    "category": "quest",
+    "effects": {
+      "morale": 55,
+      "health": 8
+    },
+    "itemEffects": {
+      "WATER": 1,
+      "GRAPES": 1,
+      "TALLOW_CANDLE": 1
+    },
+    "successMessage": "Kupiec otworzył list i zbladł. Nie powiedział co w nim było. Zapłacił prowiantem i podziękował bez słów. Tajemnica pozostaje tajemnicą.",
+    "failEffects": {
+      "morale": -20,
+      "energy": -10
+    },
+    "failMessage": "Adresata nie było. Dom stał pusty. List zostawiłeś na progu — może ktoś wróci.",
+    "questId": "mystery_letter",
     "questStage": 2,
     "turnsUntilNext": 0
   }
