@@ -164,8 +164,7 @@ public class TraitSelectionScreen extends VBox {
             int posCount = countPositive() + (trait.isPositive() ? 1 : 0);
             int negCount = countNegative() + (trait.isPositive() ? 0 : 1);
 
-            if (!difficulty.isValidSelection(posCount, negCount)
-                    && !(posCount <= difficulty.getMaxPositive() && negCount <= difficulty.getMaxNegative())) {
+            if (!difficulty.isValidSelection(posCount, negCount)) {
                 flashError("Nie możesz wybrać tej cechy — narusza zasady poziomu trudności.");
                 return;
             }

@@ -459,7 +459,7 @@ public class Main extends Application {
     }
 
     private void setBar(ProgressBar bar, Label lbl, int value) {
-        bar.setProgress(value / 100.0);
+        bar.setProgress(Math.min(value, 100) / 100.0);
         lbl.setText(value + "/100");
     }
 

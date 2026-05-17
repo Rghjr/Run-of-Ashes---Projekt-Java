@@ -34,8 +34,8 @@ public class GameEvent {
 
     private String category;
 
-    private final int minHour = 0;
-    private final int maxHour = 23;
+    private int minHour = 0;
+    private int maxHour = 23;
 
     public String getId()                        { return id; }
     public String getLabel()                     { return label; }

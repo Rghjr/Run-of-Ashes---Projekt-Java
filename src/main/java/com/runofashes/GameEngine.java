@@ -61,10 +61,6 @@ public class GameEngine {
         drawCards();
     }
 
-    /**
-     * Pełny reset rozgrywki z zachowaniem wybranych cech i trudności.
-     * Wywoływać po ekranie wyboru trudności/cech przed nową grą.
-     */
     public void reset() {
         player        = new Player();
         turnCount     = 0;
@@ -81,7 +77,6 @@ public class GameEngine {
         drawCards();
     }
 
-    /** Ustawia trudność i cechy PRZED reset()/load(). */
     public void configure(Difficulty diff, Collection<Trait> traits) {
         this.difficulty = diff;
         this.traitManager.setTraits(traits);
@@ -92,11 +87,17 @@ public class GameEngine {
     // ══════════════════════════════════════════════════════════════════════════
 
     public void executeEvent(GameEvent event) {
-        // Specjalny event "przeczekaj turę" — nie robimy nic poza tickiem
+        // Specjalny event "przeczekaj turę"
         if ("WAIT_TURN".equals(event.getId())) {
             lastResult  = EventResult.SUCCESS;
-            lastMessage = "Czekasz. Czas płynie. Quest jest gotowy gdy wrócisz.";
+            lastMessage = event.getSuccessMessage() != null
+                    ? event.getSuccessMessage()
+                    : "Czekasz. Czas płynie. Quest jest gotowy gdy wrócisz.";
+            applyEffects(event.getEffects());
             statusManager.tick(player, turnCount);
+            // BUG FIX 3: rollTriggers musi działać też podczas oczekiwania —
+            // gracz siedzący w miejscu może dostać odwodnienie, gorączkę itp.
+            statusManager.rollTriggers(player);
             traitManager.tick(player);
             player.addTime(event.getTimeCost());
             turnCount++;
@@ -124,7 +125,6 @@ public class GameEngine {
                         try {
                             ItemType type  = ItemType.valueOf(itemName);
                             int      added = inventory.add(type, amount);
-                            // Każda sztuka powyżej maxStack jest od razu "wypijana/zjedzona"
                             int overflow = amount - added;
                             if (overflow > 0) {
                                 Map<String, Integer> itemFx = type.getImmediateEffects();
@@ -177,6 +177,10 @@ public class GameEngine {
             case FAIL -> {
                 applyEffects(event.getFailEffects());
                 lastMessage = event.getFailMessage() != null ? event.getFailMessage() : "";
+                if (event.getQuestId() != null && event.getTurnsUntilNext() == 0) {
+                    activeQuests.remove(event.getQuestId());
+                    completedQuests.add(event.getQuestId());
+                }
             }
         }
 
@@ -193,7 +197,7 @@ public class GameEngine {
 
         statusManager.tick(player, turnCount);
         statusManager.rollTriggers(player);
-        traitManager.tick(player);        // ← cechy per-tura
+        traitManager.tick(player);
 
         player.addTime(event.getTimeCost());
         turnCount++;
@@ -213,14 +217,20 @@ public class GameEngine {
                 + statPenalty(player.getMorale())    * 0.10;
         penalty = Math.min(1.0, penalty);
 
-        // Bazowy próg: 0.25 (dobra forma) → 0.55 (kiepska forma)
         double successThreshold = 0.25 + penalty * 0.30;
         double partialThreshold = 0.05 + penalty * 0.15;
 
-        // Modyfikatory z cech i trudności (obniżają progi → więcej sukcesów przy +, mniej przy -)
         double mod = traitManager.getSuccessMod() + difficulty.getSuccessBonus();
         successThreshold = Math.max(0.05, successThreshold - mod);
         partialThreshold = Math.max(0.01, partialThreshold - mod);
+
+        // BUG FIX 2: event.getFailChance() podwyższa próg PARTIAL/FAIL,
+        // zwiększając szansę na porażkę dla ryzykownych eventów.
+        // Clampujemy żeby próg PARTIAL nie przekroczył progu SUCCESS.
+        if (event.getFailChance() > 0) {
+            partialThreshold = Math.min(successThreshold - 0.01,
+                    partialThreshold + event.getFailChance());
+        }
 
         double roll = RNG.nextDouble();
         if (roll >= successThreshold) return EventResult.SUCCESS;
@@ -244,11 +254,10 @@ public class GameEngine {
 
     private void applyEffectsPartial(Map<String, Integer> fx) {
         if (fx == null) return;
-        fx.forEach((stat, delta) -> applySingle(stat, delta > 0 ? delta / 2 : delta));
+        fx.forEach((stat, delta) -> applySingle(stat, delta > 0 ? Math.max(1, delta / 2) : delta));
     }
 
     private void applySingle(String stat, int delta) {
-        // Trudność modyfikuje draining statów jedzenia/wody
         if (delta < 0 && (stat.equals("hunger") || stat.equals("hydration"))) {
             delta = (int) Math.round(delta * difficulty.getDrainMultiplier());
         }
@@ -274,7 +283,7 @@ public class GameEngine {
                             event.getQuestStage() + 1,
                             event.getTurnsUntilNext(),
                             event.isLocalQuest(),
-                            event.isAllowWait()   // ← propagacja flagi z JSON
+                            event.isAllowWait()
                     ));
         } else {
             activeQuests.remove(event.getQuestId());
@@ -321,15 +330,15 @@ public class GameEngine {
         currentCards = new ArrayList<>();
         Set<String> usedIds = new HashSet<>();
 
-        // Slot 1: kontynuacja questa jeśli gotowa
-        if (!readyContinuations.isEmpty()) {
-            GameEvent cont = readyContinuations.get(0);
+        // BUG FIX 5: dodajemy WSZYSTKIE gotowe kontynuacje questów (do limitu 4),
+        // nie tylko pierwszą — przy wielu równoczesnych questach gracz mógł utknąć.
+        for (GameEvent cont : readyContinuations) {
+            if (currentCards.size() >= 4) break;
             currentCards.add(cont);
             usedIds.add(cont.getId());
         }
 
-        // Slot 2 (opcjonalny): karta "Przeczekaj turę" jeśli jest aktywny quest
-        // lokalny z allowWait=true który jeszcze nie jest gotowy
+        // Karta "Przeczekaj turę" jeśli quest z allowWait jeszcze nie gotowy
         GameEvent waitCard = buildWaitCard();
         if (waitCard != null && currentCards.size() < 4) {
             currentCards.add(waitCard);
@@ -345,14 +354,9 @@ public class GameEngine {
         }
     }
 
-    /**
-     * Buduje syntetyczną kartę "Przeczekaj turę przy queście" jeśli istnieje
-     * aktywny quest z allowWait=true który jeszcze nie jest gotowy.
-     */
     private GameEvent buildWaitCard() {
         for (QuestState qs : activeQuests.values()) {
             if (!qs.isReady() && qs.isAllowWait()) {
-                // budujemy minimalny GameEvent z id WAIT_TURN
                 return WaitEventFactory.create(qs.getTurnsLeft());
             }
         }
@@ -361,17 +365,20 @@ public class GameEngine {
 
     private List<GameEvent> buildWeightedPool(int hour) {
         List<GameEvent> pool = new ArrayList<>();
-        addWeighted(pool, filterByTime(foodEvents,      hour), weight("food",       player.getHunger()));
-        addWeighted(pool, filterByTime(hydrationEvents, hour), weight("hydration",  player.getHydration()));
-        addWeighted(pool, filterByTime(energyEvents,    hour), weight("energy",     player.getEnergy()));
-        addWeighted(pool, filterByTime(moraleEvents,    hour), weight("morale",     player.getMorale()));
-        addWeighted(pool, filterByTime(moveEvents,      hour), baseWeight("move",   40));
-        addWeighted(pool, rareEvents,                          baseWeight("rare",   5));
+        // BUG FIX 4: używamy rzeczywistego max gracza per stat zamiast hardcodowanego 100.
+        // Bez tego gracz z maxHunger=80 (HARD+GLUTTON) przy pełnym głodzie (80/80)
+        // dostawał wagę 10+(100-80)=30 → masę kart jedzenia mimo że jest najedzony.
+        addWeighted(pool, filterByTime(foodEvents,      hour), weight("food",      player.getHunger(),    player.getMaxHunger()));
+        addWeighted(pool, filterByTime(hydrationEvents, hour), weight("hydration", player.getHydration(), player.getMaxHydration()));
+        addWeighted(pool, filterByTime(energyEvents,    hour), weight("energy",    player.getEnergy(),    player.getMaxEnergy()));
+        addWeighted(pool, filterByTime(moraleEvents,    hour), weight("morale",    player.getMorale(),    player.getMaxMorale()));
+        addWeighted(pool, filterByTime(moveEvents,      hour), baseWeight("move",  40));
+        addWeighted(pool, rareEvents,                          baseWeight("rare",  5));
         return pool;
     }
 
-    private int weight(String category, int statValue) {
-        int base = 10 + (100 - statValue);
+    private int weight(String category, int statValue, int maxStat) {
+        int base = 10 + (maxStat - statValue);
         return Math.max(5, base + traitManager.getWeightMod(category));
     }
 
@@ -424,7 +431,11 @@ public class GameEngine {
     // ══════════════════════════════════════════════════════════════════════════
 
     private void applyDifficultyAndTraits() {
-        // Bonus startowy od trudności
+        // BUG FIX 1: inicjalizacja per-stat maksimów MUSI być pierwsza.
+        // Bez tego wszystkie settery w tej metodzie clampują do domyślnego 100
+        // zamiast do wartości wynikającej z trudności i cech.
+        player.initMaxStats(difficulty, traitManager.getActiveTraits());
+
         int bonus = difficulty.getStartStatBonus();
         if (bonus != 0) {
             player.setHealth(player.getHealth()       + bonus);
@@ -433,7 +444,6 @@ public class GameEngine {
             player.setEnergy(player.getEnergy()       + bonus);
             player.setMorale(player.getMorale()       + bonus);
         }
-        // Bonusy startowe od cech
         traitManager.applyStartBonuses(player);
     }
 
