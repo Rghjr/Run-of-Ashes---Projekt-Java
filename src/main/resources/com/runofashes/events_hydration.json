@@ -4,47 +4,96 @@
     "label": "Napij się ze studni we wsi",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "hydration": 60, "morale": 8 },
-    "successMessage": "Zimna i głęboka. Piłeś tak długo, że boli brzuch. Nie obchodzi cię to.",
-    "failEffects": { "health": -20, "hydration": 10 },
+    "category": "hydration",
+    "effects": {
+      "hydration": 30,
+      "morale": 5
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Zimna i głęboka. Napiłeś się i napełniłeś manierkę.",
+    "failEffects": {
+      "health": -20,
+      "hydration": 8,
+      "morale": -12
+    },
     "failMessage": "Przy studni leżał martwy pies. Wypiłeś za mało żeby nie odwodnić, za dużo żeby być mądrym."
   },
   {
     "id": "drink_stream",
     "label": "Pij z górskiego strumienia",
     "timeCost": 1,
-    "effects": { "hydration": 45 },
-    "successMessage": "Woda była tak zimna że bolały zęby. Czysta jak wszystko co z gór.",
-    "failEffects": { "hydration": 12 },
-    "failMessage": "Strumień był zbyt mętny od błota. Kilka łyków i tyle."
+    "category": "hydration",
+    "effects": {
+      "hydration": 25
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Woda tak zimna że bolały zęby. Napełniłeś manierkę.",
+    "failEffects": {
+      "hydration": 8,
+      "morale": -12
+    },
+    "failMessage": "Strumień zbyt mętny od błota. Kilka łyków i tyle."
   },
   {
     "id": "buy_inn",
     "label": "Kup piwo lub wino w karczmie",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "hydration": 35, "morale": 20, "energy": 8 },
-    "successMessage": "Piwo było mdłe i ciepłe. Karczma pełna pogłosek o zarazie. Słuchałeś uważnie.",
-    "failEffects": { "morale": -25, "hydration": 5 },
+    "category": "hydration",
+    "effects": {
+      "hydration": 18,
+      "morale": 18,
+      "energy": 6
+    },
+    "itemEffects": {
+      "WINE": 1
+    },
+    "successMessage": "Piwo mdłe i ciepłe. Karczma pełna pogłosek. Słuchałeś uważnie i wzięłeś butelkę na drogę.",
+    "failEffects": {
+      "morale": -25,
+      "hydration": 5
+    },
     "failMessage": "Karczma zamknięta. Na drzwiach kreda namalowane krzyże — znak zarazy w środku."
   },
   {
     "id": "boil_water",
     "label": "Zagotuj wodę nad ogniskiem",
     "timeCost": 2,
-    "effects": { "hydration": 40, "morale": 8 },
-    "itemEffects": { "WATER": 2 },
+    "category": "hydration",
+    "effects": {
+      "hydration": 22,
+      "morale": 5
+    },
+    "itemEffects": {
+      "WATER": 2
+    },
     "successMessage": "Ciepła i bezpieczna. Napiłeś się, a resztę przelałeś do manierek na zapas.",
-    "failEffects": { "energy": -10, "morale": -5 },
+    "failEffects": {
+      "energy": -10,
+      "morale": -5
+    },
     "failMessage": "Mokre drewno. Dym zamiast ognia. Woda zimna."
   },
   {
     "id": "drink_rain",
     "label": "Zbieraj deszczówkę w hełm lub miskę",
     "timeCost": 2,
-    "effects": { "hydration": 30 },
-    "successMessage": "Deszcz był ciągły i pewny. Zebrałeś dość na wieczór.",
-    "failEffects": { "hydration": 5 },
+    "category": "hydration",
+    "effects": {
+      "hydration": 18
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Deszcz był ciągły i pewny. Zebrałeś dość na manierkę i wieczór.",
+    "failEffects": {
+      "hydration": 4,
+      "morale": -12
+    },
     "failMessage": "Deszcz skończył się za szybko. Kilka łyków. Nie wystarczy."
   },
   {
@@ -52,9 +101,19 @@
     "label": "Proś o wodę przy klasztornej studni",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "hydration": 70, "morale": 15 },
-    "successMessage": "Mnich nabrał pełne wiadro bez słowa. Klasztorna woda zawsze była lepsza niż wszystko inne.",
-    "failEffects": { "energy": -10, "morale": -12 },
+    "category": "hydration",
+    "effects": {
+      "hydration": 35,
+      "morale": 12
+    },
+    "itemEffects": {
+      "WATER": 2
+    },
+    "successMessage": "Mnich nabrał pełne wiadro i napełnił dwie manierki bez słowa.",
+    "failEffects": {
+      "energy": -10,
+      "morale": -12
+    },
     "failMessage": "Klasztor zamknięty na głucho. Brat furtan patrzył przez judasz i milczał."
   },
   {
@@ -63,9 +122,16 @@
     "timeCost": 1,
     "minHour": 4,
     "maxHour": 8,
-    "effects": { "hydration": 15, "morale": 10 },
-    "successMessage": "Cierpliwe i powolne — ale woda jest wodą. Czysta jak przed stworzeniem.",
-    "failEffects": { "hydration": 3 },
+    "category": "hydration",
+    "effects": {
+      "hydration": 10,
+      "morale": 8
+    },
+    "successMessage": "Cierpliwe i powolne — ale woda jest wodą.",
+    "failEffects": {
+      "hydration": 2,
+      "morale": -12
+    },
     "failMessage": "Sucha noc. Trawy suche jak twoje myśli."
   },
   {
@@ -73,18 +139,274 @@
     "label": "Znajdź źródło bijące ze skały",
     "timeCost": 2,
     "distanceCost": 1,
-    "effects": { "hydration": 60, "health": 8, "morale": 12 },
-    "successMessage": "Woda prosto ze skały, zimna i czysta. Bóg jeszcze tu coś zostawił.",
-    "failEffects": { "energy": -12, "morale": -8 },
+    "category": "hydration",
+    "effects": {
+      "hydration": 30,
+      "health": 6,
+      "morale": 10
+    },
+    "itemEffects": {
+      "WATER": 2
+    },
+    "successMessage": "Woda prosto ze skały, zimna i czysta. Napełniłeś wszystkie manierki.",
+    "failEffects": {
+      "energy": -12,
+      "morale": -8
+    },
     "failMessage": "Źródło wyschnięte. Wilgotny mech — i nic poza tym."
   },
   {
     "id": "drink_river_risky",
     "label": "Pij z rzeki przepływającej przez wieś",
     "timeCost": 1,
-    "effects": { "hydration": 20 },
+    "category": "hydration",
+    "effects": {
+      "hydration": 15
+    },
     "successMessage": "Brudna, ale nawadniała. Może Bóg cię oszczędził tym razem.",
-    "failEffects": { "health": -30, "hydration": 12 },
+    "failEffects": {
+      "health": -30,
+      "hydration": 8,
+      "morale": -12
+    },
     "failMessage": "Woda z wioski powyżej. Zorientowałeś się za późno. Żołądek wiedział."
+  },
+  {
+    "id": "trade_wine",
+    "label": "Wymień prowiant na wino u chłopa",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 10,
+      "morale": 15
+    },
+    "itemEffects": {
+      "WINE": 2
+    },
+    "successMessage": "Chłop miał dwa dzbany. Nie pytał co masz, pytał ile masz. Wyszedłeś z winem.",
+    "failEffects": {
+      "morale": -12,
+      "hunger": -5
+    },
+    "failMessage": "Chłop chciał za dużo. Odszedłeś z niczym i bez humoru."
+  },
+  {
+    "id": "herb_tea",
+    "label": "Zagotuj napar z zebranych ziół",
+    "timeCost": 2,
+    "category": "hydration",
+    "effects": {
+      "hydration": 20,
+      "health": 8,
+      "morale": 10
+    },
+    "itemEffects": {
+      "HERBS": 1
+    },
+    "successMessage": "Gorzki napar ziołowy. Ciepły i pożywny. Do kieszeni schowałeś resztę suszonych ziół.",
+    "failEffects": {
+      "health": -10,
+      "hydration": 5,
+      "morale": -12
+    },
+    "failMessage": "Złe zioła albo za długo gotowane. Żołądek skręcił się ostrzegawczo."
+  },
+  {
+    "id": "frozen_stream",
+    "label": "Roztop śnieg lub lód przy ognisku",
+    "timeCost": 2,
+    "category": "hydration",
+    "effects": {
+      "hydration": 20,
+      "energy": -5
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Śnieg topił się powoli. Zebrałeś manierkę czystej wody. Kosztowało dużo drewna.",
+    "failEffects": {
+      "energy": -15,
+      "morale": -8
+    },
+    "failMessage": "Ogień zgasł za szybko. Śnieg zamienił się w brudną wodę i rozczarowanie."
+  },
+  {
+    "id": "drink_from_barrel",
+    "label": "Znajdź beczkę deszczówki przy opuszczonym domu",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 28
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Beczka pełna po ostatnim deszczu. Napiłeś się i napełniłeś manierkę.",
+    "failEffects": {
+      "health": -12,
+      "morale": -15
+    },
+    "failMessage": "Beczka była stara i zardzewiała. Woda miała zapach śmierci. Wypiłeś za mało — i za dużo jednocześnie."
+  },
+  {
+    "id": "squeeze_moss",
+    "label": "Wyciskaj wodę z mchu i trawy",
+    "timeCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 12
+    },
+    "successMessage": "Powolne i upokarzające — ale woda jest wodą. Kilkanaście łyków wystarczy na teraz.",
+    "failEffects": {
+      "energy": -6,
+      "morale": -10
+    },
+    "failMessage": "Mech suchy. Słońce wypiło wszystko przed tobą."
+  },
+  {
+    "id": "ask_traveler_water",
+    "label": "Poproś napotkanych wędrowców o wodę",
+    "timeCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 20,
+      "morale": 12
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Podróżni podzielili się bez słowa. W drodze na wschód — pewnie wiedzą jak ważna jest woda.",
+    "failEffects": {
+      "morale": -18
+    },
+    "failMessage": "Wędrowcy mieli za mało sami. Patrzyli przepraszająco. Tego nie da się wziąć za złe."
+  },
+  {
+    "id": "night_condensation",
+    "label": "Zbieraj skropliny z kamieni nocą",
+    "timeCost": 2,
+    "minHour": 21,
+    "maxHour": 5,
+    "category": "hydration",
+    "effects": {
+      "hydration": 14
+    },
+    "successMessage": "Cierpliwa noc. Kamienie oddały tyle ile miały. Nie dużo — ale nie zero.",
+    "failEffects": {
+      "energy": -8,
+      "morale": -12
+    },
+    "failMessage": "Sucha noc, ciepłe kamienie. Nic."
+  },
+  {
+    "id": "find_melon_field",
+    "label": "Natknij się na pole dzikiej dyni lub melona",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 30,
+      "hunger": 12,
+      "morale": 10
+    },
+    "itemEffects": {
+      "GRAPES": 1
+    },
+    "successMessage": "Pole wyglądało na porzucone — ale plony zostały. Zjadłeś ile dałeś radę i wziąłeś trochę dalej.",
+    "failEffects": {
+      "energy": -10,
+      "morale": -14
+    },
+    "failMessage": "Pole było, ale wszystko zgniłe albo niezdatne. Muchy i zapach pleśni."
+  },
+  {
+    "id": "trade_item_water",
+    "label": "Wymień coś z ekwipunku na wodę u chłopa",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 24
+    },
+    "itemEffects": {
+      "WATER": 2
+    },
+    "successMessage": "Chłop wziął co miałeś i dał dwie pełne manierki. Dobry kurs.",
+    "failEffects": {
+      "morale": -15
+    },
+    "failMessage": "Chłop nie chciał handlować z obcym. Strach przed zarazą zamknął mu usta i drzwi."
+  },
+  {
+    "id": "waterfall_edge",
+    "label": "Zejdź do wodospadu przy klifie",
+    "timeCost": 2,
+    "distanceCost": 2,
+    "category": "hydration",
+    "effects": {
+      "hydration": 45,
+      "energy": -15,
+      "morale": 20
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Zejście było trudne. Woda czysta jak łzy. Warto było.",
+    "failEffects": {
+      "health": -20,
+      "energy": -15,
+      "morale": -18
+    },
+    "failMessage": "Skała mokra i śliska. Schodziłeś ostrożnie — i tak się poślizgnąłeś."
+  },
+  {
+    "id": "church_holy_water",
+    "label": "Nabierz wody święconej z kościelnej kropielnicy",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 16,
+      "morale": 18
+    },
+    "successMessage": "Może to grzech. Może nie. Bóg widzi że nie ma innej wody w pobliżu.",
+    "failEffects": {
+      "morale": -20
+    },
+    "failMessage": "Kościół zamknięty. Na drzwiach kartka z napisem: 'Zaraza. Módlcie się w domach.'"
+  },
+  {
+    "id": "suck_fruit",
+    "label": "Ssij dzikie owoce dla nawodnienia",
+    "timeCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 10,
+      "hunger": 6
+    },
+    "successMessage": "Cierpkie i małe — ale wilgotne. Zbierałeś je w marszu żeby nie tracić czasu.",
+    "failEffects": {
+      "health": -8,
+      "morale": -12
+    },
+    "failMessage": "Nie te owoce. Język i gardło zapiekły od razu."
+  },
+  {
+    "id": "beg_water_inn",
+    "label": "Proś karczmarza o odrobinę wody za darmo",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "hydration",
+    "effects": {
+      "hydration": 18,
+      "morale": 10
+    },
+    "successMessage": "Karczmarz mruknął coś pod nosem i wlał kubek. Ludzkie odruchy jeszcze nie wymarły.",
+    "failEffects": {
+      "morale": -22
+    },
+    "failMessage": "Karczmarz wskazał na tablicę cenową. Bez grosza — bez wody. Proste zasady."
   }
 ]

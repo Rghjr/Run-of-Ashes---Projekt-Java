@@ -4,9 +4,18 @@
     "label": "Idź kupiecką drogą przez step",
     "timeCost": 2,
     "distanceCost": 9,
-    "effects": { "energy": -12, "hunger": -8, "hydration": -6 },
+    "category": "move",
+    "effects": {
+      "energy": -12,
+      "hunger": -8,
+      "hydration": -6
+    },
     "successMessage": "Kurz i kamień pod nogami. Droga prowadziła prosto na zachód. Ty szłeś za nią.",
-    "failEffects": { "energy": -15, "hunger": -10, "morale": -15 },
+    "failEffects": {
+      "energy": -15,
+      "hunger": -10,
+      "morale": -15
+    },
     "failMessage": "Droga skończyła się przy spalonym moście. Straciłeś godziny szukając przeprawy."
   },
   {
@@ -14,9 +23,19 @@
     "label": "Przepraw się przez górską przełęcz",
     "timeCost": 4,
     "distanceCost": 7,
-    "effects": { "energy": -30, "hunger": -18, "hydration": -10, "morale": 15 },
+    "category": "move",
+    "effects": {
+      "energy": -30,
+      "hunger": -18,
+      "hydration": -10,
+      "morale": 15
+    },
     "successMessage": "Wiatr siekł twarz jak nóż. Po drugiej stronie widziałeś dolinę — i dalszą drogę.",
-    "failEffects": { "energy": -35, "health": -20, "morale": -15 },
+    "failEffects": {
+      "energy": -35,
+      "health": -20,
+      "morale": -15
+    },
     "failMessage": "Burza śnieżna zaskoczyła cię na grani. Zawróciłeś. Czas i siły stracone."
   },
   {
@@ -24,9 +43,18 @@
     "label": "Idź wzdłuż rzeki ku zachodowi",
     "timeCost": 3,
     "distanceCost": 13,
-    "effects": { "energy": -18, "hydration": 15, "hunger": -10 },
+    "category": "move",
+    "effects": {
+      "energy": -18,
+      "hydration": 12,
+      "hunger": -10
+    },
     "successMessage": "Rzeka prowadziła pewniej niż mapa. Piłeś w marszu. Woda była zimna i czysta.",
-    "failEffects": { "energy": -25, "health": -20 },
+    "failEffects": {
+      "energy": -25,
+      "health": -20,
+      "morale": -12
+    },
     "failMessage": "Brzeg okazał się bagnisty. Mokre buty, skręcona kostka. Postęp żaden."
   },
   {
@@ -34,9 +62,19 @@
     "label": "Dołącz do karawany kupców",
     "timeCost": 4,
     "distanceCost": 16,
-    "effects": { "energy": -10, "hunger": 10, "morale": 20, "hydration": 5 },
+    "category": "move",
+    "effects": {
+      "energy": -10,
+      "hunger": 8,
+      "morale": 20,
+      "hydration": 5
+    },
     "successMessage": "Kupcy zabrali cię ze sobą. Nakarmili. Pytali skąd przychodzisz. Nie powiedziałeś wszystkiego.",
-    "failEffects": { "energy": -15, "morale": -25, "hunger": -10 },
+    "failEffects": {
+      "energy": -15,
+      "morale": -25,
+      "hunger": -10
+    },
     "failMessage": "Kupcy przepędzili cię gdy zobaczyli plamy na twoich rękach. Nie twoja wina — ale ich strach."
   },
   {
@@ -44,9 +82,20 @@
     "label": "Przekrocz otwarty step szybkim marszem",
     "timeCost": 4,
     "distanceCost": 20,
-    "effects": { "energy": -22, "hunger": -20, "hydration": -18, "morale": 8 },
+    "category": "move",
+    "effects": {
+      "energy": -22,
+      "hunger": -20,
+      "hydration": -18,
+      "morale": 8
+    },
     "successMessage": "Step był bezlitosny i piękny. Żadnych drzew, żadnych zasadzek. Tylko ty i horyzont.",
-    "failEffects": { "energy": -28, "hydration": -25, "health": -15 },
+    "failEffects": {
+      "energy": -28,
+      "hydration": -25,
+      "health": -15,
+      "morale": -12
+    },
     "failMessage": "Słońce wypiło z ciebie wszystko. Skończyłeś dzień bliżej śmierci niż Krakowa."
   },
   {
@@ -54,9 +103,18 @@
     "label": "Przekrocz rzekę w bród",
     "timeCost": 1,
     "distanceCost": 4,
-    "effects": { "hydration": 15, "energy": -12, "morale": 8 },
+    "category": "move",
+    "effects": {
+      "hydration": 12,
+      "energy": -12,
+      "morale": 8
+    },
     "successMessage": "Woda sięgała do pasa, prąd szarpał. Dotarłeś. Mokry, ale po właściwej stronie.",
-    "failEffects": { "health": -25, "energy": -20, "morale": -15 },
+    "failEffects": {
+      "health": -25,
+      "energy": -20,
+      "morale": -15
+    },
     "failMessage": "Nurt powalił cię z nóg. Straciłeś bagaż. Wyszedłeś dalej niż planowałeś."
   },
   {
@@ -64,9 +122,17 @@
     "label": "Idź szlakiem pielgrzymim",
     "timeCost": 2,
     "distanceCost": 9,
-    "effects": { "energy": -12, "morale": 18, "hunger": -8 },
-    "successMessage": "Kamienne krzyże przy drodze prowadziły zachód. Pielgrzymi patrzyli na ciebie ze zrozumieniem — też uciekają.",
-    "failEffects": { "energy": -15, "morale": -20 },
+    "category": "move",
+    "effects": {
+      "energy": -12,
+      "morale": 16,
+      "hunger": -8
+    },
+    "successMessage": "Kamienne krzyże przy drodze prowadziły na zachód. Pielgrzymi patrzyli ze zrozumieniem — też uciekają.",
+    "failEffects": {
+      "energy": -15,
+      "morale": -20
+    },
     "failMessage": "Szlak był pełen chorych. Omijałeś ich z daleka, tracąc czas i kierunek."
   },
   {
@@ -74,9 +140,18 @@
     "label": "Przedzieraj się przez gęsty las",
     "timeCost": 3,
     "distanceCost": 7,
-    "effects": { "energy": -25, "hunger": -12, "morale": 10 },
+    "category": "move",
+    "effects": {
+      "energy": -25,
+      "hunger": -12,
+      "morale": 10
+    },
     "successMessage": "Las chronił przed wzrokiem rozbójników. Po drugiej stronie czułeś się bezpieczniej.",
-    "failEffects": { "energy": -28, "health": -12, "morale": -18 },
+    "failEffects": {
+      "energy": -28,
+      "health": -12,
+      "morale": -18
+    },
     "failMessage": "Zgubiłeś się w gęstwinie. Wyszedłeś tam gdzie wszedłeś."
   },
   {
@@ -86,9 +161,18 @@
     "distanceCost": 10,
     "minHour": 20,
     "maxHour": 4,
-    "effects": { "energy": -25, "hydration": -8, "morale": 18 },
+    "category": "move",
+    "effects": {
+      "energy": -25,
+      "hydration": -8,
+      "morale": 18
+    },
     "successMessage": "Gwiazdy prowadziły ku zachodowi. Ciemność kryła cię lepiej niż zbroja.",
-    "failEffects": { "energy": -30, "health": -15, "morale": -20 },
+    "failEffects": {
+      "energy": -30,
+      "health": -15,
+      "morale": -20
+    },
     "failMessage": "Poślizgnąłeś się na mokrym kamieniu. W ciemności nie wiedziałeś nawet w którą stronę padłeś."
   },
   {
@@ -96,9 +180,17 @@
     "label": "Szukaj noclegu na noc",
     "timeCost": 2,
     "distanceCost": 0,
-    "effects": { "morale": 20, "energy": 12 },
+    "category": "move",
+    "effects": {
+      "morale": 18,
+      "energy": 10
+    },
     "successMessage": "Stodoła, jaskinia, ruina kościoła — cokolwiek to było, nie padało w środku.",
-    "failEffects": { "morale": -20, "energy": -12, "hydration": -8 },
+    "failEffects": {
+      "morale": -20,
+      "energy": -12,
+      "hydration": -8
+    },
     "failMessage": "Nie znalazłeś nic. Spałeś na ziemi, mokry i odsłonięty na wiatr ze wschodu."
   },
   {
@@ -106,9 +198,17 @@
     "label": "Wspinaj się na wzgórze by rozejrzeć się",
     "timeCost": 2,
     "distanceCost": 4,
-    "effects": { "energy": -20, "morale": 25 },
+    "category": "move",
+    "effects": {
+      "energy": -20,
+      "morale": 22
+    },
     "successMessage": "Z wzniesienia widziałeś dymy wiosek, drogi, rzekę. Wybrałeś kierunek pewniej.",
-    "failEffects": { "energy": -22, "health": -12, "morale": -10 },
+    "failEffects": {
+      "energy": -22,
+      "health": -12,
+      "morale": -10
+    },
     "failMessage": "Mgła zasłoniła wszystko. Schodziłeś ostrożnie, przewróciłeś się raz."
   },
   {
@@ -116,9 +216,18 @@
     "label": "Omiń zarażoną wioskę szerokim łukiem",
     "timeCost": 2,
     "distanceCost": 3,
-    "effects": { "health": 10, "morale": 10, "energy": -15 },
+    "category": "move",
+    "effects": {
+      "health": 10,
+      "morale": 10,
+      "energy": -15
+    },
     "successMessage": "Czułeś swąd z wiatrem. Obchodziłeś z daleka. Mądrzej niż odważniej.",
-    "failEffects": { "energy": -18, "morale": -15, "health": -10 },
+    "failEffects": {
+      "energy": -18,
+      "morale": -15,
+      "health": -10
+    },
     "failMessage": "Obejście przez bagno zajęło dwa razy tyle. Nogi przemoczone do kolan."
   },
   {
@@ -126,9 +235,20 @@
     "label": "Biegnij przez otwarte pole",
     "timeCost": 1,
     "distanceCost": 6,
-    "effects": { "energy": -32, "hunger": -15, "hydration": -12, "morale": 12 },
+    "category": "move",
+    "effects": {
+      "energy": -32,
+      "hunger": -15,
+      "hydration": -12,
+      "morale": 12
+    },
     "successMessage": "Przez chwilę byłeś tylko biegiem. Szybkim, żywym, wolnym.",
-    "failEffects": { "energy": -35, "health": -20, "hunger": -15 },
+    "failEffects": {
+      "energy": -35,
+      "health": -20,
+      "hunger": -15,
+      "morale": -12
+    },
     "failMessage": "Noga ustąpiła na nierównej ziemi. Ból ostry i długi potem."
   },
   {
@@ -136,9 +256,170 @@
     "label": "Jedź z wozem chłopa przez kilka wsi",
     "timeCost": 3,
     "distanceCost": 14,
-    "effects": { "energy": -8, "hunger": 8, "morale": 15 },
+    "category": "move",
+    "effects": {
+      "energy": -8,
+      "hunger": 8,
+      "morale": 15
+    },
     "successMessage": "Chłop nic nie mówił. Ty też nic. Ale wóz toczył się ku zachodowi.",
-    "failEffects": { "morale": -20, "energy": -10 },
+    "failEffects": {
+      "morale": -20,
+      "energy": -10
+    },
     "failMessage": "Chłop zawrócił gdy zobaczył dym nad następną wsią. Pożegnanie w połowie drogi."
+  },
+  {
+    "id": "move_horse_borrow",
+    "label": "Pożycz konia od chłopa na kilka godzin",
+    "timeCost": 2,
+    "distanceCost": 18,
+    "category": "move",
+    "effects": {
+      "energy": -5,
+      "morale": 22
+    },
+    "successMessage": "Koń wiedział co robi. Ty tylko trzymałeś się grzbietu. Kilometrów ubyło szybciej niż się spodziewałeś.",
+    "failEffects": {
+      "health": -15,
+      "energy": -12,
+      "morale": -20
+    },
+    "failMessage": "Koń spłoszył się przy drodze. Wyrzucił cię i uciekł. Długo szukałeś kierunku."
+  },
+  {
+    "id": "move_shortcut_field",
+    "label": "Idź na skróty przez pola zamiast drogą",
+    "timeCost": 2,
+    "distanceCost": 11,
+    "category": "move",
+    "effects": {
+      "energy": -14,
+      "hunger": -8,
+      "morale": 10
+    },
+    "successMessage": "Skrót się opłacił. Ziemia twarda, widoczność dobra. Droga zaoszczędzona.",
+    "failEffects": {
+      "energy": -20,
+      "health": -10,
+      "morale": -18
+    },
+    "failMessage": "Pole okazało się bagnem po ostatnich deszczach. Wyszedłeś mokry i godzinę później niż planowałeś."
+  },
+  {
+    "id": "move_raft_river",
+    "label": "Zbuduj tratwę i płyń rzeką",
+    "timeCost": 4,
+    "distanceCost": 22,
+    "category": "move",
+    "effects": {
+      "energy": -10,
+      "hydration": 10,
+      "morale": 25
+    },
+    "successMessage": "Prąd niósł za darmo. Siedziałeś i patrzyłeś jak brzeg ucieka. Rzadka chwila spokoju.",
+    "failEffects": {
+      "health": -25,
+      "energy": -20,
+      "morale": -22
+    },
+    "failMessage": "Tratwa rozpadła się na środku rzeki. Płynąłeś sam — i ledwo dotarłeś do brzegu."
+  },
+  {
+    "id": "move_follow_merchant",
+    "label": "Idź w ślad za kupcem przez nieznany teren",
+    "timeCost": 3,
+    "distanceCost": 12,
+    "category": "move",
+    "effects": {
+      "energy": -12,
+      "morale": 15,
+      "hunger": 8
+    },
+    "successMessage": "Kupiec znał skróty. Szedłeś cicho za nim — on nie pytał, ty nie mówiłeś. Idealna umowa.",
+    "failEffects": {
+      "energy": -18,
+      "morale": -20
+    },
+    "failMessage": "Kupiec skręcił na południe. Zbyt późno to zauważyłeś — straciłeś godziny i kierunek."
+  },
+  {
+    "id": "move_monastery_road",
+    "label": "Idź drogą między klasztorami",
+    "timeCost": 3,
+    "distanceCost": 10,
+    "category": "move",
+    "effects": {
+      "energy": -10,
+      "morale": 20,
+      "health": 5
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Droga między klasztorami była strzeżona i bezpieczna. Przy jednej furcie mnich dał ci wodę bez pytania.",
+    "failEffects": {
+      "energy": -15,
+      "morale": -18
+    },
+    "failMessage": "Droga klasztorna zamknięta — zaraza dotarła i tu. Objazd przez las zabrał dwie godziny."
+  },
+  {
+    "id": "move_pre_dawn",
+    "label": "Ruszaj przed świtem gdy drogi są puste",
+    "timeCost": 2,
+    "distanceCost": 10,
+    "minHour": 3,
+    "maxHour": 7,
+    "category": "move",
+    "effects": {
+      "energy": -16,
+      "morale": 12
+    },
+    "successMessage": "Drogi puste, powietrze chłodne. Nikt nie pytał skąd idziesz. Najlepszy czas na marsz.",
+    "failEffects": {
+      "energy": -20,
+      "health": -10,
+      "morale": -15
+    },
+    "failMessage": "Ciemność ukrywa nie tylko ciebie. Potknąłeś się o kamień którego nie widziałeś."
+  },
+  {
+    "id": "move_ridgeline",
+    "label": "Idź grzbietem wzgórz omijając doliny",
+    "timeCost": 3,
+    "distanceCost": 8,
+    "category": "move",
+    "effects": {
+      "energy": -22,
+      "morale": 28,
+      "health": 5
+    },
+    "successMessage": "Widok z góry rekompensował trud wejścia. Widziałeś dolinę, drogę, i dalej — mniej wyraźne ale tam — zachód.",
+    "failEffects": {
+      "energy": -28,
+      "health": -15,
+      "morale": -18
+    },
+    "failMessage": "Grzbiet był ostrzejszy niż wyglądał z dołu. Schodziłeś ostrożniej niż wchodziłeś — i o dwie godziny dłużej."
+  },
+  {
+    "id": "move_trade_route_south",
+    "label": "Podążaj południowym szlakiem handlowym",
+    "timeCost": 4,
+    "distanceCost": 17,
+    "category": "move",
+    "effects": {
+      "energy": -15,
+      "hunger": 10,
+      "morale": 12
+    },
+    "successMessage": "Szlak handlowy — zadbany, oznaczony, pełen śladów kół. Szedłeś szybko i pewnie.",
+    "failEffects": {
+      "energy": -18,
+      "morale": -15,
+      "hunger": -10
+    },
+    "failMessage": "Szlak handlowy był zablokowany przez wojskowy oddział. Czekałeś godziny zanim przepuścili."
   }
 ]

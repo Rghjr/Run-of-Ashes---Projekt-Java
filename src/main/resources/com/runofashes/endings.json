@@ -2,26 +2,42 @@
   "health": [
     "Rany nie zagoiły się w porę. Usiadłeś przy drodze i nie wstałeś. Wieść o zarazie dotarła do Krakowa zbyt późno — lub nie dotarła wcale.",
     "Ciało odmówiło posłuszeństwa kilka dni marszu za wcześnie. Popioły wchłonęły cię w milczeniu stepu.",
-    "Krew i kurz — oto czym się stałeś. Gdzieś w połowie drogi między Azją a Polską."
+    "Krew i kurz — oto czym się stałeś. Gdzieś w połowie drogi między Azją a Polską.",
+    "Gorączka zabrała cię cicho, bez ostrzeżenia. Obudziłeś się po raz ostatni o świcie — i nie wstałeś już więcej.",
+    "Rana którą zlekceważyłeś trzy dni temu przypomniała o sobie. Zbyt późno żeby żałować, zbyt wcześnie żeby skończyć misję.",
+    "Ciało walczyło dłużej niż miało prawo. W końcu przegrało. Kraków nie dowie się czemu posłaniec nie dotarł."
   ],
   "hunger": [
     "Głód wygrał. Ostatnie kroki były już tylko nawykiem, nie wolą. Wieść umarła razem z tobą.",
     "Patrzyłeś na wioskę w oddali za długo. Zanim dotarłeś, było za późno — na ciebie i może na nich.",
-    "Ciało pożerało samo siebie przez tydzień. Na końcu zostało tylko to co chciałeś powiedzieć — nikomu."
+    "Ciało pożerało samo siebie przez tydzień. Na końcu zostało tylko to co chciałeś powiedzieć — nikomu.",
+    "Ostatni kawałek chleba zjadłeś dwa dni temu. Liczyłeś kroki żeby nie myśleć o jedzeniu. Na końcu przestałeś liczyć.",
+    "Wioska za wzgórzem miała jedzenie. Wiedziałeś o tym. Nogi nie doniosły cię tam już nigdy.",
+    "Żołądek przestał boleć trzeciego dnia — to nie był dobry znak. Kiedy ból ustępuje, jest już za późno."
   ],
   "hydration": [
     "Step wziął od ciebie wszystko — włącznie z wodą. Usta popękały. Słońce nie miało litości dla posłańca.",
     "Pragnienie zabiło cię wolniej niż myślałeś — ale pewniej niż miecz. Kraków nie dowiedział się niczego.",
-    "Ostatnią rzeczą jaką pamiętasz był dźwięk odległego strumienia. I myśl że trochę za późno to usłyszałeś."
+    "Ostatnią rzeczą jaką pamiętasz był dźwięk odległego strumienia. I myśl że trochę za późno to usłyszałeś.",
+    "Rzeka była na mapie. Mapy kłamią albo ty zbłądziłeś. Jedno i drugie kończyło się tak samo.",
+    "Trzy dni bez wody to granica dla każdego ciała. Twoje wytrwało cztery. Ale nie pięć.",
+    "Słońce wschodnie nie rozróżnia posłańców od zwykłych śmiertelników. Wypiło cię jak każdą inną kałużę na stepie."
   ],
   "energy": [
     "Usiadłeś na chwilę przy przydrożnym krzyżu. Chwila trwała wiecznie. Wiadomość czekała na kogoś innego.",
     "Nogi odmawiały. Potem ręce. Na końcu oddech. Step jest pełen takich mogił bez imion.",
-    "Wyczerpanie nie pyta o pozwolenie i nie interesuje się misją. Po prostu bierze."
+    "Wyczerpanie nie pyta o pozwolenie i nie interesuje się misją. Po prostu bierze.",
+    "Spałeś przez pół dnia przy drodze. Nikt cię nie obudził — bo nikt nie przechodził. Nie obudziłeś się sam.",
+    "Myślałeś że jeden dzień odpoczynku wystarczy. Ciało miało inne zdanie i nie negocjowało.",
+    "Ostatnie kilometry szedłeś na samej woli. Wola skończyła się kilka kroków przed następną wsią.",
+    "Nogi niosły cię jeszcze godzinę po tym jak przestałeś czuć. Potem i one odmówiły."
   ],
   "morale": [
     "Nie ciało — duch złamał się pierwszy. Gdzieś między jedną spaloną wsią a drugą przestałeś wierzyć że to ma sens.",
     "Zostawiłeś siebie gdzieś na szlaku i nie wróciłeś po odbiór. Kraków poczeka na kogoś z silniejszą wiarą.",
-    "Ciemność w środku okazała się gęstsza niż ta na zewnątrz. Zaraza poczeka — ona nigdzie się nie spieszy."
+    "Ciemność w środku okazała się gęstsza niż ta na zewnątrz. Zaraza poczeka — ona nigdzie się nie spieszy.",
+    "Zbyt wiele spalonych wiosek. Zbyt wiele twarzy przy drodze. W pewnym momencie przestałeś iść — i nawet nie wiesz kiedy.",
+    "Modlitwy przestały pomagać gdzieś w połowie stepu. Bez wiary nogi szły jeszcze przez dzień. Potem i one przestały.",
+    "Misja miała sens w dniu wyjazdu. Trzy tygodnie później sens gdzieś umknął. Ty zostałeś."
   ]
 }

@@ -7,7 +7,7 @@ public class GameEvent {
     private String id;
     private String label;
     private int timeCost     = 1;
-    private int distanceCost = 0;   // km odejmowane od dystansu (tylko eventy ruchu)
+    private int distanceCost = 0;
 
     private Map<String, Integer> effects;
     private String successMessage;
@@ -22,15 +22,20 @@ public class GameEvent {
     private int turnsUntilNext;
     private boolean localQuest;
 
+    /**
+     * Jeśli true, w trakcie oczekiwania na kolejny etap questa pojawia się
+     * karta "Przeczekaj turę" — gracz może stać w miejscu i nie straci questa.
+     * Ustaw w JSON jako "allowWait": true.
+     */
+    private boolean allowWait;
+
     private boolean hiddenEffects;
     private String revealMessage;
 
-    // kategoria do ważenia losowania
-    private String category;  // food | hydration | energy | morale | move | quest | rare
+    private String category;
 
-    // ograniczenie pory dnia (0-23); domyślnie cały dzień
-    private final int minHour = 0;
-    private final int maxHour = 23;
+    private int minHour = 0;
+    private int maxHour = 23;
 
     public String getId()                        { return id; }
     public String getLabel()                     { return label; }
@@ -50,19 +55,18 @@ public class GameEvent {
     public int getQuestStage()                   { return questStage; }
     public int getTurnsUntilNext()               { return turnsUntilNext; }
     public boolean isLocalQuest()                { return localQuest; }
+    public boolean isAllowWait()                 { return allowWait; }
 
     public boolean isHiddenEffects()             { return hiddenEffects; }
     public String getRevealMessage()             { return revealMessage; }
     public int getMinHour()                      { return minHour; }
     public int getMaxHour()                      { return maxHour; }
 
-    /** True jeśli event może się pojawić o danej godzinie (obsługuje przejście przez północ). */
     public boolean isAvailableAt(int hour) {
         if (minHour <= maxHour) return hour >= minHour && hour <= maxHour;
-        return hour >= minHour || hour <= maxHour; // np. 20–4 (nocne)
+        return hour >= minHour || hour <= maxHour;
     }
 
-    /** Buduje czytelny string efektów do wyświetlenia na kafelku, np. "+30 🍗  -10 ⚡" */
     public String buildEffectsString() {
         if (hiddenEffects || effects == null || effects.isEmpty()) return "";
         StringBuilder sb = new StringBuilder();

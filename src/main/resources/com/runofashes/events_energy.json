@@ -3,9 +3,17 @@
     "id": "rest_roadside",
     "label": "Odpocznij przy przydrożnym kamieniu",
     "timeCost": 2,
-    "effects": { "energy": 35, "hunger": -10, "hydration": -5 },
+    "category": "energy",
+    "effects": {
+      "energy": 22,
+      "hunger": -8,
+      "hydration": -4
+    },
     "successMessage": "Zdjąłeś buty. Stopy podziękowały. Po godzinie byłeś gotowy znów.",
-    "failEffects": { "energy": 10, "morale": -12 },
+    "failEffects": {
+      "energy": 8,
+      "morale": -12
+    },
     "failMessage": "Nie mogłeś przestać myśleć. Odpoczynek ciała, nie ducha."
   },
   {
@@ -14,10 +22,20 @@
     "timeCost": 6,
     "minHour": 19,
     "maxHour": 4,
-    "effects": { "energy": 70, "hunger": -20, "hydration": -12, "morale": 18 },
+    "category": "energy",
+    "effects": {
+      "energy": 50,
+      "hunger": -18,
+      "hydration": -10,
+      "morale": 15
+    },
     "successMessage": "Słoma była twarda i cuchnęła psem. Spałeś jak nieboszczyk — i obudziłeś się żywy.",
-    "failEffects": { "energy": 25, "morale": -20, "health": -10 },
-    "failMessage": "Karczma pełna kaszlu i gorączki. Uciekłeś przed świtem. Boże daj żebyś nic nie wziął ze sobą."
+    "failEffects": {
+      "energy": 18,
+      "morale": -20,
+      "health": -10
+    },
+    "failMessage": "Karczma pełna kaszlu i gorączki. Uciekłeś przed świtem."
   },
   {
     "id": "sleep_monastery",
@@ -25,36 +43,74 @@
     "timeCost": 8,
     "minHour": 17,
     "maxHour": 4,
-    "effects": { "energy": 85, "hunger": -15, "hydration": -10, "morale": 30, "health": 10 },
-    "successMessage": "Mnisi dali ci celę i świecę. Spałeś przy dźwięku jutrzni. Rano czułeś się prawie ludzki.",
-    "failEffects": { "energy": 30, "morale": -15 },
+    "category": "energy",
+    "effects": {
+      "energy": 60,
+      "hunger": -12,
+      "hydration": -8,
+      "morale": 22,
+      "health": 8
+    },
+    "itemEffects": {
+      "TALLOW_CANDLE": 1
+    },
+    "successMessage": "Mnisi dali ci celę, świecę i ciszę. Obudziłeś się o jutrzni — prawie człowiek.",
+    "failEffects": {
+      "energy": 20,
+      "morale": -15
+    },
     "failMessage": "Klasztor nie przyjmował wędrowców. Zaraza zamknęła wiele bram."
   },
   {
     "id": "nap_tree",
     "label": "Zdrzemnij się pod drzewem",
     "timeCost": 1,
-    "effects": { "energy": 22, "hunger": -5 },
+    "category": "energy",
+    "effects": {
+      "energy": 14,
+      "hunger": -4
+    },
     "successMessage": "Krótko, ale głęboko. Obudziłeś się gdy słońce się przesunęło.",
-    "failEffects": { "energy": 5, "morale": -8 },
+    "failEffects": {
+      "energy": 4,
+      "morale": -8
+    },
     "failMessage": "Sny nie dały spokoju. Twarze tych których zostawiłeś za sobą."
   },
   {
     "id": "campfire_rest",
     "label": "Roznieć ognisko i odpoczywaj przy nim",
     "timeCost": 3,
-    "effects": { "energy": 50, "morale": 28, "hunger": -18, "hydration": -10 },
-    "successMessage": "Ogień trzaskał i dawał ciepło. W jego świetle droga wyglądała mniej długo.",
-    "failEffects": { "energy": 12, "morale": -15 },
+    "category": "energy",
+    "effects": {
+      "energy": 32,
+      "morale": 22,
+      "hunger": -15,
+      "hydration": -8
+    },
+    "itemEffects": {
+      "TALLOW_CANDLE": 1
+    },
+    "successMessage": "Ogień trzaskał i dawał ciepło. Przy świetle znalazłeś starą świecę w torbie.",
+    "failEffects": {
+      "energy": 8,
+      "morale": -15
+    },
     "failMessage": "Drewno mokre od deszczu. Dym zamiast płomienia. Zimno zostało."
   },
   {
     "id": "prayer_strength",
     "label": "Módl się o siłę do dalszej drogi",
     "timeCost": 1,
-    "effects": { "energy": 20, "morale": 25 },
+    "category": "energy",
+    "effects": {
+      "energy": 12,
+      "morale": 22
+    },
     "successMessage": "Słowa modlitwy znałeś na pamięć. Tym razem poczułeś że ktoś słucha.",
-    "failEffects": { "morale": -15 },
+    "failEffects": {
+      "morale": -15
+    },
     "failMessage": "Cisza odpowiedziała ciszą. Idziesz sam — zawsze będziesz szedł sam."
   },
   {
@@ -62,9 +118,18 @@
     "label": "Zanurz się w zimnym strumieniu",
     "timeCost": 1,
     "distanceCost": 1,
-    "effects": { "energy": 30, "hydration": 22, "morale": 10 },
+    "category": "energy",
+    "effects": {
+      "energy": 20,
+      "hydration": 15,
+      "morale": 8
+    },
     "successMessage": "Zimna woda wybudziła każdą kość. Boleśnie żywy — ale żywy.",
-    "failEffects": { "health": -20, "energy": -8 },
+    "failEffects": {
+      "health": -20,
+      "energy": -8,
+      "morale": -12
+    },
     "failMessage": "Prąd pochwycił cię za nogi. Wyszedłeś niżej niż wszedłeś."
   },
   {
@@ -73,9 +138,19 @@
     "timeCost": 9,
     "minHour": 20,
     "maxHour": 4,
-    "effects": { "energy": 75, "hunger": -30, "hydration": -20, "morale": 15 },
+    "category": "energy",
+    "effects": {
+      "energy": 55,
+      "hunger": -25,
+      "hydration": -15,
+      "morale": 10
+    },
     "successMessage": "Gwiazdy kręciły się powoli nad tobą. Obudziłeś się gdy zrobiło się szaro.",
-    "failEffects": { "energy": 30, "morale": -22, "health": -12 },
+    "failEffects": {
+      "energy": 22,
+      "morale": -22,
+      "health": -12
+    },
     "failMessage": "Deszcz i zimno nie dały spać. Wstałeś gorszy niż się kładłeś."
   },
   {
@@ -84,9 +159,211 @@
     "timeCost": 1,
     "minHour": 4,
     "maxHour": 9,
-    "effects": { "energy": 18, "morale": 10, "hunger": -5 },
+    "category": "energy",
+    "effects": {
+      "energy": 12,
+      "morale": 8,
+      "hunger": -4
+    },
     "successMessage": "Nogi poskarżyły się przez chwilę. Potem podziękowały.",
-    "failEffects": { "health": -8, "energy": -5 },
+    "failEffects": {
+      "health": -8,
+      "energy": -5,
+      "morale": -12
+    },
     "failMessage": "Coś strzyknęło w kolanie. Dziś będziesz szedł wolniej."
+  },
+  {
+    "id": "sleep_ruins",
+    "label": "Śpij w ruinach kościoła",
+    "timeCost": 7,
+    "minHour": 18,
+    "maxHour": 5,
+    "category": "energy",
+    "effects": {
+      "energy": 45,
+      "morale": 18,
+      "hunger": -20,
+      "hydration": -12
+    },
+    "itemEffects": {
+      "TALLOW_CANDLE": 1
+    },
+    "successMessage": "Dach był połowiczny, ale wystarczał. Przy ołtarzu leżała łojowa świeca. Wziąłeś ją.",
+    "failEffects": {
+      "energy": 15,
+      "morale": -18,
+      "health": -8
+    },
+    "failMessage": "Ruiny nie stały całą noc. Gruz i wiatr. Obudziłeś się przed świtem z zimna."
+  },
+  {
+    "id": "candle_meditation",
+    "label": "Siedź przy świecy i zbieraj myśli",
+    "timeCost": 1,
+    "minHour": 19,
+    "maxHour": 6,
+    "category": "energy",
+    "effects": {
+      "energy": 15,
+      "morale": 25
+    },
+    "successMessage": "Płomień był mały. Wystarczał. Jutro będzie jak jutro — dziś przeżyłeś.",
+    "failEffects": {
+      "morale": -10
+    },
+    "failMessage": "Świeca zgasła za wcześnie. Ciemność znowu — jakby nic się nie zmieniło."
+  },
+  {
+    "id": "tend_blisters",
+    "label": "Opatrz pęcherze i odpoczni nogi",
+    "timeCost": 1,
+    "category": "energy",
+    "effects": {
+      "energy": 18,
+      "health": 6
+    },
+    "successMessage": "Nogi wyglądały okropnie. Teraz tylko źle. Wystarczy.",
+    "failEffects": {
+      "health": -10,
+      "energy": -5,
+      "morale": -12
+    },
+    "failMessage": "Rany zamiast się goić, otworzyły się szerzej. Jutro będzie gorzej."
+  },
+  {
+    "id": "warm_soup_inn",
+    "label": "Zjedz gorącą zupę w karczmie",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "energy",
+    "effects": {
+      "energy": 28,
+      "hunger": 20,
+      "morale": 12
+    },
+    "itemEffects": {
+      "WATER": 1
+    },
+    "successMessage": "Zupa była tłusta i gorąca. Wzięłeś też manierkę na drogę.",
+    "failEffects": {
+      "morale": -15,
+      "energy": 5
+    },
+    "failMessage": "Karczma pusta. Na stole stała zimna miska — ktoś wyszedł w pośpiechu."
+  },
+  {
+    "id": "massage_legs",
+    "label": "Rozmasuj zmęczone mięśnie przy ogniu",
+    "timeCost": 1,
+    "minHour": 18,
+    "maxHour": 6,
+    "category": "energy",
+    "effects": {
+      "energy": 20,
+      "health": 8,
+      "morale": 8
+    },
+    "successMessage": "Ból odpuścił po chwili. Ciepło ognia robiło swoje.",
+    "failEffects": {
+      "energy": -5,
+      "morale": -8
+    },
+    "failMessage": "Za zimno żeby się rozluźnić. Drewno mokre, ogień słaby."
+  },
+  {
+    "id": "shelter_barn",
+    "label": "Śpij w stodole u nieznajomego chłopa",
+    "timeCost": 5,
+    "minHour": 20,
+    "maxHour": 5,
+    "category": "energy",
+    "effects": {
+      "energy": 42,
+      "hunger": -15,
+      "hydration": -8,
+      "morale": 14
+    },
+    "itemEffects": {
+      "GRAPES": 1
+    },
+    "successMessage": "Chłop nie pytał skąd idziesz. Słoma ciepła, woły spokojne. Rano znalazłeś garść winogron przy drzwiach.",
+    "failEffects": {
+      "energy": 15,
+      "morale": -18,
+      "health": -8
+    },
+    "failMessage": "Psy szczekały całą noc. Nie spałeś. Chłop wyrzucił cię przed świtem."
+  },
+  {
+    "id": "cold_water_feet",
+    "label": "Mocz nogi w zimnym potoku",
+    "timeCost": 1,
+    "category": "energy",
+    "effects": {
+      "energy": 16,
+      "health": 5,
+      "hydration": 8
+    },
+    "successMessage": "Dziesięć minut zimnej wody i czułeś się jak nowy człowiek. Prawie.",
+    "failEffects": {
+      "health": -8,
+      "morale": -12
+    },
+    "failMessage": "Potok był zbyt zimny. Skurcz w łydce trzymał przez godzinę."
+  },
+  {
+    "id": "breathe_forest",
+    "label": "Zatrzymaj się i oddychaj w ciszy lasu",
+    "timeCost": 1,
+    "category": "energy",
+    "effects": {
+      "energy": 14,
+      "morale": 18
+    },
+    "successMessage": "Las był cichy. Przez chwilę zarazy nie było. Był tylko wiatr i drzewa.",
+    "failEffects": {
+      "morale": -10
+    },
+    "failMessage": "Cisza była zbyt głęboka. W takim lesie ginęli ludzie — i wiedziałeś o tym."
+  },
+  {
+    "id": "short_nap_noon",
+    "label": "Zdrzemnij się w południe w cieniu",
+    "timeCost": 2,
+    "minHour": 11,
+    "maxHour": 15,
+    "category": "energy",
+    "effects": {
+      "energy": 25,
+      "hunger": -6,
+      "hydration": -4
+    },
+    "successMessage": "Godzina snu w południe warta jest dwóch w nocy. Stare powiedzenie — i prawdziwe.",
+    "failEffects": {
+      "energy": 6,
+      "morale": -10
+    },
+    "failMessage": "Słońce biło prosto w twarz. Upał nie pozwolił zasnąć."
+  },
+  {
+    "id": "evening_wash",
+    "label": "Umyj się w rzece wieczorem",
+    "timeCost": 1,
+    "minHour": 17,
+    "maxHour": 22,
+    "category": "energy",
+    "effects": {
+      "energy": 15,
+      "morale": 20,
+      "health": 5
+    },
+    "successMessage": "Pierwsza kąpiel od tygodnia. Czułeś się jak człowiek, nie jak kurz.",
+    "failEffects": {
+      "health": -12,
+      "energy": -5,
+      "morale": -12
+    },
+    "failMessage": "Rzeka była brudna od wsi powyżej. Wyszedłeś brudniejszy niż wszedłeś."
   }
 ]
