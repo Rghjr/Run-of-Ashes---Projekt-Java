@@ -1,4 +1,4 @@
-package com.runofashes;
+package com.runofashes.model;
 
 /**
  * Poziomy trudności definiują ile i jakich cech może wybrać gracz.

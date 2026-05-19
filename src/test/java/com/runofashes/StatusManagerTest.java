@@ -1,5 +1,8 @@
 package com.runofashes;
 
+import com.runofashes.engine.StatusManager;
+import com.runofashes.model.Player;
+import com.runofashes.model.StatusEffect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Map;

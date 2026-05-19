@@ -1,16 +1,27 @@
-package com.runofashes;
+package com.runofashes.ui;
 
+import com.runofashes.engine.GameEngine;
+import com.runofashes.model.Difficulty;
+import com.runofashes.model.GameEvent;
+import com.runofashes.model.StatusEffect;
+import com.runofashes.model.Trait;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class Main extends Application {
 
@@ -28,17 +39,11 @@ public class Main extends Application {
     private Label endTextLabel;
 
     // HUD
-    private ProgressBar healthBar, hungerBar, hydrationBar, energyBar, moraleBar;
-    private Label healthVal, hungerVal, hydrationVal, energyVal, moraleVal;
-    private Label timeLabel, distanceLabel;
-    private Label messageLabel;
-    private Label difficultyLabel;
-    private Label traitsLabel;
-
-    private final List<VBox> cardSlots = new ArrayList<>();
-
+    private GameHUD hud;
+    private QuestPanel questPanel;
     private InventoryPanel inventoryPanel;
-    private VBox questPanel;
+    private Label messageLabel;
+    private final List<VBox> cardSlots = new ArrayList<>();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -72,7 +77,7 @@ public class Main extends Application {
         Difficulty diff = difficultyScreen.getSelected();
         if (diff == null) return;
 
-        traitScreen = new TraitSelectionScreen(diff, () -> onTraitsConfirmed(diff));
+        traitScreen = new TraitSelectionScreen(diff, () -> onTraitsConfirmed(diff), this::showDifficultyScreen);
         mainScene.setRoot(traitScreen);
         primaryStage.setWidth(980);
     }
@@ -91,42 +96,7 @@ public class Main extends Application {
     // ══════════════════════════════════════════════════════════════════════════
 
     private HBox buildGameScreen() {
-        timeLabel     = styledLabel("Dzień 1,  00:00", "#aaa", 15);
-        distanceLabel = styledLabel("4000 km do Krakowa", "#e67e22", 15);
-
-        // Etykieta trudności + cech w HUD
-        difficultyLabel = styledLabel("", "#888", 12);
-        traitsLabel     = styledLabel("", "#666", 12);
-
-        HBox topRow = new HBox(24, timeLabel, distanceLabel);
-        topRow.setAlignment(Pos.CENTER_LEFT);
-
-        HBox metaRow = new HBox(16, difficultyLabel, traitsLabel);
-        metaRow.setAlignment(Pos.CENTER_LEFT);
-
-        healthBar    = makeBar("#e74c3c");
-        hungerBar    = makeBar("#e67e22");
-        hydrationBar = makeBar("#3498db");
-        energyBar    = makeBar("#f1c40f");
-        moraleBar    = makeBar("#9b59b6");
-
-        healthVal    = valueLabel();
-        hungerVal    = valueLabel();
-        hydrationVal = valueLabel();
-        energyVal    = valueLabel();
-        moraleVal    = valueLabel();
-
-        VBox hud = new VBox(8,
-                topRow,
-                metaRow,
-                statRow("❤  Zdrowie",     healthBar,    healthVal),
-                statRow("🍗  Głód",        hungerBar,    hungerVal),
-                statRow("💧  Nawodnienie", hydrationBar, hydrationVal),
-                statRow("⚡  Energia",     energyBar,    energyVal),
-                statRow("😊  Nadzieja",    moraleBar,    moraleVal)
-        );
-        hud.setPadding(new Insets(16));
-        hud.setStyle("-fx-background-color: #1a1a2e; -fx-background-radius: 8;");
+        hud = new GameHUD(engine);
 
         messageLabel = new Label(" ");
         messageLabel.setWrapText(true);
@@ -146,22 +116,18 @@ public class Main extends Application {
             cardSlots.add(card);
             grid.add(card, i % 2, i / 2);
         }
+
         for (int i = 0; i < 2; i++) {
             ColumnConstraints cc = new ColumnConstraints();
             cc.setPercentWidth(50);
             grid.getColumnConstraints().add(cc);
         }
 
-        inventoryPanel = new InventoryPanel(engine, this::refreshAll);
-
         VBox gameContentVBox = new VBox(16, hud, messageLabel, grid);
         HBox.setHgrow(gameContentVBox, Priority.ALWAYS);
 
-        questPanel = new VBox(14);
-        questPanel.setStyle("-fx-background-color: #111122; -fx-background-radius: 8;");
-        questPanel.setPadding(new Insets(14));
-        questPanel.setMinWidth(260);
-        questPanel.setMaxWidth(260);
+        inventoryPanel = new InventoryPanel(engine, this::refreshAll);
+        questPanel = new QuestPanel(engine);
 
         StackPane rightContent = new StackPane(questPanel, inventoryPanel);
 
@@ -334,31 +300,9 @@ public class Main extends Application {
     // ══════════════════════════════════════════════════════════════════════════
 
     private void refreshAll() {
-        Player p = engine.getPlayer();
+        hud.refresh();
         inventoryPanel.refresh();
-
-        setBar(healthBar,    healthVal,    p.getHealth());
-        setBar(hungerBar,    hungerVal,    p.getHunger());
-        setBar(hydrationBar, hydrationVal, p.getHydration());
-        setBar(energyBar,    energyVal,    p.getEnergy());
-        setBar(moraleBar,    moraleVal,    p.getMorale());
-
-        timeLabel.setText(p.getTimeFormatted());
-        distanceLabel.setText(p.getDistance() + " km do Krakowa");
-
-        // Etykieta trudności
-        Difficulty diff = engine.getDifficulty();
-        difficultyLabel.setText(diff.getEmoji() + " " + diff.getLabel());
-
-        // Etykieta aktywnych cech
-        List<Trait> traits = engine.getTraitManager().getActiveTraits();
-        if (traits.isEmpty()) {
-            traitsLabel.setText("Brak cech");
-        } else {
-            StringBuilder sb = new StringBuilder();
-            traits.forEach(t -> sb.append(t.getEmoji()).append(" ").append(t.getLabel()).append("  "));
-            traitsLabel.setText(sb.toString().trim());
-        }
+        questPanel.refresh();
 
         String msgColor = switch (engine.getLastResult()) {
             case SUCCESS -> "#7ec8a0";
@@ -380,101 +324,11 @@ public class Main extends Application {
                     + "\n" + triggered.getEmoji() + " Nowy status: " + triggered.getLabel()
                     + " — " + triggered.getDescription());
         }
-
-        refreshQuests();
-    }
-
-    private void refreshQuests() {
-        questPanel.getChildren().clear();
-
-        Label title = new Label("📜 Aktywne Zadania");
-        title.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 15px;");
-        title.setFont(Font.font("Georgia", 15));
-
-        Region sep = new Region();
-        sep.setStyle("-fx-background-color: #2a2a3a;");
-        sep.setPrefHeight(1);
-
-        questPanel.getChildren().addAll(title, sep);
-
-        Map<String, QuestState> active = engine.getActiveQuests();
-        if (active.isEmpty()) {
-            Label empty = new Label("Brak aktywnych zadań.");
-            empty.setStyle("-fx-text-fill: #555; -fx-font-style: italic; -fx-font-size: 13px;");
-            questPanel.getChildren().add(empty);
-            return;
-        }
-
-        for (QuestState qs : active.values()) {
-            GameEvent nextEvent = engine.getQuestEvent(qs.getQuestId(), qs.getNextStage());
-            String qName = nextEvent != null ? nextEvent.getLabel() : "Zadanie w toku...";
-
-            Label nameLbl = new Label(qName);
-            nameLbl.setStyle("-fx-text-fill: #ddd; -fx-font-size: 13px;");
-            nameLbl.setWrapText(true);
-
-            String status;
-            String color;
-            if (qs.isReady()) {
-                status = "✅ Kontynuacja dostępna w kartach!";
-                color  = "#7ec8a0";
-            } else {
-                status = "⏳ " + qs.getTurnsLeft() + " tur(y) do następnego etapu";
-                color  = qs.isAllowWait() ? "#f0c040" : "#888";
-            }
-
-            Label statLbl = new Label(status);
-            statLbl.setStyle("-fx-font-size: 12px; -fx-text-fill: " + color + ";");
-
-            VBox box = new VBox(4, nameLbl, statLbl);
-            if (qs.isAllowWait() && !qs.isReady()) {
-                Label waitHint = new Label("💡 Możesz przeczekać turę bez straty questa");
-                waitHint.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 11px; -fx-font-style: italic;");
-                box.getChildren().add(waitHint);
-            }
-            box.setStyle("-fx-background-color: #16213e; -fx-background-radius: 6; -fx-padding: 8;");
-            questPanel.getChildren().add(box);
-        }
     }
 
     // ══════════════════════════════════════════════════════════════════════════
     //  UI helpers
     // ══════════════════════════════════════════════════════════════════════════
-
-    private HBox statRow(String name, ProgressBar bar, Label val) {
-        Label n = new Label(name);
-        n.setMinWidth(158);
-        n.setStyle("-fx-text-fill: #ccc; -fx-font-size: 15px;");
-        bar.setPrefWidth(240);
-        HBox row = new HBox(12, n, bar, val);
-        row.setAlignment(Pos.CENTER_LEFT);
-        return row;
-    }
-
-    private ProgressBar makeBar(String hex) {
-        ProgressBar bar = new ProgressBar(1.0);
-        bar.setPrefHeight(18);
-        bar.setStyle("-fx-accent: " + hex + ";");
-        return bar;
-    }
-
-    private void setBar(ProgressBar bar, Label lbl, int value) {
-        bar.setProgress(Math.min(value, 100) / 100.0);
-        lbl.setText(value + "/100");
-    }
-
-    private Label valueLabel() {
-        Label l = new Label();
-        l.setMinWidth(64);
-        l.setStyle("-fx-text-fill: #888; -fx-font-size: 14px;");
-        return l;
-    }
-
-    private Label styledLabel(String text, String color, int size) {
-        Label l = new Label(text);
-        l.setStyle("-fx-text-fill: " + color + "; -fx-font-size: " + size + "px;");
-        return l;
-    }
 
     private void styleEndBtn(Button btn, String color) {
         btn.setStyle("""

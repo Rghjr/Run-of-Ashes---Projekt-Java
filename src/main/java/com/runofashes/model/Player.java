@@ -1,4 +1,4 @@
-package com.runofashes;
+package com.runofashes.model;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -107,5 +107,26 @@ public class Player {
         if (energy    <= 0) return "energy";
         if (morale    <= 0) return "morale";
         return null;
+    }
+
+    public void modifyStat(String stat, int delta) {
+        switch (stat) {
+            case "health"    -> setHealth(getHealth() + delta);
+            case "hunger"    -> setHunger(getHunger() + delta);
+            case "hydration" -> setHydration(getHydration() + delta);
+            case "energy"    -> setEnergy(getEnergy() + delta);
+            case "morale"    -> setMorale(getMorale() + delta);
+        }
+    }
+
+    public int getStat(String stat) {
+        return switch (stat) {
+            case "health"    -> getHealth();
+            case "hunger"    -> getHunger();
+            case "hydration" -> getHydration();
+            case "energy"    -> getEnergy();
+            case "morale"    -> getMorale();
+            default          -> 100;
+        };
     }
 }

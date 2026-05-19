@@ -1,4 +1,4 @@
-package com.runofashes;
+package com.runofashes.model;
 
 import java.util.Map;
 
@@ -59,8 +59,6 @@ public class GameEvent {
 
     public boolean isHiddenEffects()             { return hiddenEffects; }
     public String getRevealMessage()             { return revealMessage; }
-    public int getMinHour()                      { return minHour; }
-    public int getMaxHour()                      { return maxHour; }
 
     public boolean isAvailableAt(int hour) {
         if (minHour <= maxHour) return hour >= minHour && hour <= maxHour;

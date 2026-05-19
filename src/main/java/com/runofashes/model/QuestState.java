@@ -1,4 +1,4 @@
-package com.runofashes;
+package com.runofashes.model;
 
 public class QuestState {
 

@@ -1,4 +1,6 @@
-package com.runofashes;
+package com.runofashes.utils;
+
+import com.runofashes.model.GameEvent;
 
 import java.util.Map;
 

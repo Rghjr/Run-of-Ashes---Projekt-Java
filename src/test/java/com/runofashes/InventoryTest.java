@@ -1,5 +1,9 @@
 package com.runofashes;
 
+import com.runofashes.engine.Inventory;
+import com.runofashes.engine.StatusManager;
+import com.runofashes.model.ItemType;
+import com.runofashes.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,13 +1,19 @@
-package com.runofashes;
+package com.runofashes.ui;
 
+import com.runofashes.engine.GameEngine;
+import com.runofashes.engine.Inventory;
+import com.runofashes.model.ItemType;
+import com.runofashes.model.StatusEffect;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 
 import java.util.Map;
 
@@ -71,11 +77,21 @@ public class InventoryPanel extends VBox {
     private HBox buildItemRow(ItemType type, int count) {
         Label name = new Label(type.getEmoji() + "  " + type.getLabel());
         name.setStyle("-fx-text-fill: #ddd; -fx-font-size: 13px;");
-        HBox.setHgrow(name, Priority.ALWAYS);
+        name.setWrapText(false);
+        name.setTextOverrun(OverrunStyle.ELLIPSIS);
+
+        Label effect = new Label(type.buildEffectDescription());
+        effect.setStyle("-fx-text-fill: #7ec8a0; -fx-font-size: 11px;");
+        effect.setWrapText(true);
+
+        VBox textBlock = new VBox(2, name, effect);
+        textBlock.setMaxWidth(120);
+        textBlock.setMinWidth(120);
 
         Label stack = new Label("×" + count + "/" + type.getMaxStack());
         stack.setStyle("-fx-text-fill: #666; -fx-font-size: 12px;");
-        stack.setMinWidth(40);
+        stack.setMinWidth(35);
+        stack.setAlignment(Pos.CENTER_RIGHT);
 
         Button use = new Button("Użyj");
         use.setStyle("""
@@ -90,12 +106,10 @@ public class InventoryPanel extends VBox {
             onUseCallback.run();
         });
 
-        Label effect = new Label(type.buildEffectDescription());
-        effect.setStyle("-fx-text-fill: #7ec8a0; -fx-font-size: 11px;");
-        effect.setWrapText(true);
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        VBox textBlock = new VBox(2, name, effect);
-        HBox row = new HBox(8, textBlock, stack, use);
+        HBox row = new HBox(6, textBlock, spacer, stack, use);
         row.setAlignment(Pos.CENTER_LEFT);
         row.setPadding(new Insets(8));
         row.setStyle("-fx-background-color: #16213e; -fx-background-radius: 6;");

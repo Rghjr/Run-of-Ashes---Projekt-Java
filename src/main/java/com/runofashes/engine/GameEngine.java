@@ -1,4 +1,8 @@
-package com.runofashes;
+package com.runofashes.engine;
+
+import com.runofashes.utils.EventLoader;
+import com.runofashes.utils.WaitEventFactory;
+import com.runofashes.model.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -32,8 +36,8 @@ public class GameEngine {
 
     private Inventory     inventory     = new Inventory();
     private StatusManager statusManager = new StatusManager();
-    private TraitManager  traitManager  = new TraitManager();
-    private Difficulty    difficulty    = Difficulty.NORMAL;
+    private final TraitManager  traitManager  = new TraitManager();
+    private Difficulty difficulty    = Difficulty.NORMAL;
 
     // ══════════════════════════════════════════════════════════════════════════
     //  Init
@@ -94,83 +98,22 @@ public class GameEngine {
                     ? event.getSuccessMessage()
                     : "Czekasz. Czas płynie. Quest jest gotowy gdy wrócisz.";
             applyEffects(event.getEffects());
-            statusManager.tick(player, turnCount);
-            // BUG FIX 3: rollTriggers musi działać też podczas oczekiwania —
-            // gracz siedzący w miejscu może dostać odwodnienie, gorączkę itp.
-            statusManager.rollTriggers(player);
-            traitManager.tick(player);
-            player.addTime(event.getTimeCost());
-            turnCount++;
-            tickQuests();
-            drawCards();
+            advanceTurn(event.getTimeCost());
             return;
         }
 
         EventResult result = resolveResult(event);
-        lastResult = result;
 
-        switch (result) {
+        switch (lastResult) {
             case SUCCESS -> {
-                Map<String, Integer> fx = event.getEffects();
-                if (statusManager.hasHallucinations() && fx != null) {
-                    Map<String, Integer> hallFx = new HashMap<>(fx);
-                    hallFx.replaceAll((k, v) -> RNG.nextBoolean() ? v : (v > 0 ? -v / 2 : v * 2));
-                    applyEffects(hallFx);
-                } else {
-                    applyEffects(fx);
-                }
-
-                if (event.getItemEffects() != null) {
-                    event.getItemEffects().forEach((itemName, amount) -> {
-                        try {
-                            ItemType type  = ItemType.valueOf(itemName);
-                            int      added = inventory.add(type, amount);
-                            int overflow = amount - added;
-                            if (overflow > 0) {
-                                Map<String, Integer> itemFx = type.getImmediateEffects();
-                                if (itemFx != null) {
-                                    for (int i = 0; i < overflow; i++) applyEffects(itemFx);
-                                }
-                            }
-                        } catch (IllegalArgumentException e) {
-                            System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
-                        }
-                    });
-                }
-
+                applyEffects(applyHallucinations(event.getEffects()));
+                processItemEffects(event.getItemEffects(), false);
                 lastMessage = event.getSuccessMessage() != null ? event.getSuccessMessage() : "";
                 handleQuestProgress(event);
             }
             case PARTIAL -> {
-                Map<String, Integer> fx = event.getEffects();
-                if (statusManager.hasHallucinations() && fx != null) {
-                    Map<String, Integer> hallFx = new HashMap<>(fx);
-                    hallFx.replaceAll((k, v) -> RNG.nextBoolean() ? v : (v > 0 ? -v / 2 : v * 2));
-                    applyEffectsPartial(hallFx);
-                } else {
-                    applyEffectsPartial(fx);
-                }
-
-                if (event.getItemEffects() != null) {
-                    event.getItemEffects().forEach((itemName, amount) -> {
-                        if (RNG.nextBoolean()) {
-                            try {
-                                ItemType type     = ItemType.valueOf(itemName);
-                                int      added    = inventory.add(type, amount);
-                                int      overflow = amount - added;
-                                if (overflow > 0) {
-                                    Map<String, Integer> itemFx = type.getImmediateEffects();
-                                    if (itemFx != null) {
-                                        for (int i = 0; i < overflow; i++) applyEffects(itemFx);
-                                    }
-                                }
-                            } catch (IllegalArgumentException e) {
-                                System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
-                            }
-                        }
-                    });
-                }
-
+                applyEffectsPartial(applyHallucinations(event.getEffects()));
+                processItemEffects(event.getItemEffects(), true);
                 lastMessage = "Nie poszło idealnie — efekt był słabszy niż oczekiwałeś.";
                 handleQuestProgress(event);
             }
@@ -195,14 +138,47 @@ public class GameEngine {
             cancelLocalQuests(event.getQuestId());
         }
 
+        advanceTurn(event.getTimeCost());
+    }
+
+    // Metoda do przesuwania tury
+    private void advanceTurn(int timeCost) {
         statusManager.tick(player, turnCount);
         statusManager.rollTriggers(player);
         traitManager.tick(player);
-
-        player.addTime(event.getTimeCost());
+        player.addTime(timeCost);
         turnCount++;
         tickQuests();
         drawCards();
+    }
+
+    // Metoda do obsługi halucynacji
+    private Map<String, Integer> applyHallucinations(Map<String, Integer> fx) {
+        if (fx == null || !statusManager.hasHallucinations()) return fx;
+        Map<String, Integer> hallFx = new HashMap<>(fx);
+        hallFx.replaceAll((k, v) -> RNG.nextBoolean() ? v : (v > 0 ? -v / 2 : v * 2));
+        return hallFx;
+    }
+
+    // Metoda ujednolicająca dodawanie itemów z kart
+    private void processItemEffects(Map<String, Integer> items, boolean isPartial) {
+        if (items == null) return;
+        items.forEach((itemName, amount) -> {
+            if (isPartial && !RNG.nextBoolean()) return; // 50% szans w przypadku PARTIAL
+            try {
+                ItemType type  = ItemType.valueOf(itemName);
+                int      added = inventory.add(type, amount);
+                int overflow = amount - added;
+                if (overflow > 0) {
+                    Map<String, Integer> itemFx = type.getImmediateEffects();
+                    if (itemFx != null) {
+                        for (int i = 0; i < overflow; i++) applyEffects(itemFx);
+                    }
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
+            }
+        });
     }
 
     // ══════════════════════════════════════════════════════════════════════════
@@ -224,8 +200,6 @@ public class GameEngine {
         successThreshold = Math.max(0.05, successThreshold - mod);
         partialThreshold = Math.max(0.01, partialThreshold - mod);
 
-        // BUG FIX 2: event.getFailChance() podwyższa próg PARTIAL/FAIL,
-        // zwiększając szansę na porażkę dla ryzykownych eventów.
         // Clampujemy żeby próg PARTIAL nie przekroczył progu SUCCESS.
         if (event.getFailChance() > 0) {
             partialThreshold = Math.min(successThreshold - 0.01,
@@ -261,13 +235,8 @@ public class GameEngine {
         if (delta < 0 && (stat.equals("hunger") || stat.equals("hydration"))) {
             delta = (int) Math.round(delta * difficulty.getDrainMultiplier());
         }
-        switch (stat) {
-            case "health"    -> player.setHealth(player.getHealth()       + delta);
-            case "hunger"    -> player.setHunger(player.getHunger()       + delta);
-            case "hydration" -> player.setHydration(player.getHydration() + delta);
-            case "energy"    -> player.setEnergy(player.getEnergy()       + delta);
-            case "morale"    -> player.setMorale(player.getMorale()       + delta);
-        }
+
+        player.modifyStat(stat, delta);
     }
 
     // ══════════════════════════════════════════════════════════════════════════
@@ -330,8 +299,7 @@ public class GameEngine {
         currentCards = new ArrayList<>();
         Set<String> usedIds = new HashSet<>();
 
-        // BUG FIX 5: dodajemy WSZYSTKIE gotowe kontynuacje questów (do limitu 4),
-        // nie tylko pierwszą — przy wielu równoczesnych questach gracz mógł utknąć.
+        // Dodajemy WSZYSTKIE gotowe kontynuacje questów (do limitu 4),
         for (GameEvent cont : readyContinuations) {
             if (currentCards.size() >= 4) break;
             currentCards.add(cont);
@@ -365,9 +333,6 @@ public class GameEngine {
 
     private List<GameEvent> buildWeightedPool(int hour) {
         List<GameEvent> pool = new ArrayList<>();
-        // BUG FIX 4: używamy rzeczywistego max gracza per stat zamiast hardcodowanego 100.
-        // Bez tego gracz z maxHunger=80 (HARD+GLUTTON) przy pełnym głodzie (80/80)
-        // dostawał wagę 10+(100-80)=30 → masę kart jedzenia mimo że jest najedzony.
         addWeighted(pool, filterByTime(foodEvents,      hour), weight("food",      player.getHunger(),    player.getMaxHunger()));
         addWeighted(pool, filterByTime(hydrationEvents, hour), weight("hydration", player.getHydration(), player.getMaxHydration()));
         addWeighted(pool, filterByTime(energyEvents,    hour), weight("energy",    player.getEnergy(),    player.getMaxEnergy()));
@@ -431,9 +396,6 @@ public class GameEngine {
     // ══════════════════════════════════════════════════════════════════════════
 
     private void applyDifficultyAndTraits() {
-        // BUG FIX 1: inicjalizacja per-stat maksimów MUSI być pierwsza.
-        // Bez tego wszystkie settery w tej metodzie clampują do domyślnego 100
-        // zamiast do wartości wynikającej z trudności i cech.
         player.initMaxStats(difficulty, traitManager.getActiveTraits());
 
         int bonus = difficulty.getStartStatBonus();
@@ -462,7 +424,6 @@ public class GameEngine {
     // ══════════════════════════════════════════════════════════════════════════
 
     public Player        getPlayer()         { return player; }
-    public int           getTurnCount()      { return turnCount; }
     public EventResult   getLastResult()     { return lastResult; }
     public String        getLastMessage()    { return lastMessage; }
     public boolean       isGameOver()        { return player.getDeadStat() != null; }
@@ -479,18 +440,8 @@ public class GameEngine {
         return stat == null ? "" : EventLoader.pickEnding(endings, stat);
     }
 
-    public List<GameEvent> getVisibleQuestEvents() {
-        List<GameEvent> all = new ArrayList<>(getReadyContinuations());
-        all.addAll(getAvailableNewQuests());
-        return all;
-    }
-
     public Map<String, QuestState> getActiveQuests() {
         return Collections.unmodifiableMap(activeQuests);
-    }
-
-    public Set<String> getCompletedQuests() {
-        return Collections.unmodifiableSet(completedQuests);
     }
 
     public GameEvent getQuestEvent(String questId, int stage) {
@@ -501,11 +452,4 @@ public class GameEngine {
         return activeQuests.values().stream()
                 .anyMatch(qs -> qs.isLocal() && !qs.getQuestId().equals(currentQuestId));
     }
-
-    public List<GameEvent> getFoodEvents()      { return foodEvents; }
-    public List<GameEvent> getHydrationEvents() { return hydrationEvents; }
-    public List<GameEvent> getEnergyEvents()    { return energyEvents; }
-    public List<GameEvent> getMoraleEvents()    { return moraleEvents; }
-    public List<GameEvent> getMoveEvents()      { return moveEvents; }
-    public List<GameEvent> getRareEvents()      { return rareEvents; }
 }

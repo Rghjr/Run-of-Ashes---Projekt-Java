@@ -1,5 +1,6 @@
-package com.runofashes;
+package com.runofashes.ui;
 
+import com.runofashes.model.Difficulty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;

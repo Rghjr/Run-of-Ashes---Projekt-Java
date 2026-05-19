@@ -1,5 +1,7 @@
-package com.runofashes;
+package com.runofashes.ui;
 
+import com.runofashes.model.Difficulty;
+import com.runofashes.model.Trait;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -17,6 +19,7 @@ public class TraitSelectionScreen extends VBox {
 
     private final Difficulty difficulty;
     private final Runnable   onConfirm;
+    private final Runnable   onBack;
 
     private final Set<Trait> selected = new LinkedHashSet<>();
     private final Map<Trait, VBox> cardMap = new EnumMap<>(Trait.class);
@@ -24,9 +27,10 @@ public class TraitSelectionScreen extends VBox {
     private Label   statusLabel;
     private Button  confirmBtn;
 
-    public TraitSelectionScreen(Difficulty difficulty, Runnable onConfirm) {
+    public TraitSelectionScreen(Difficulty difficulty, Runnable onConfirm, Runnable onBack) {
         this.difficulty = difficulty;
         this.onConfirm  = onConfirm;
+        this.onBack     = onBack;
 
         setStyle("-fx-background-color: #0d0d1a;");
         setAlignment(Pos.TOP_CENTER);
@@ -44,12 +48,23 @@ public class TraitSelectionScreen extends VBox {
         rulesLabel.setMaxWidth(680);
         rulesLabel.setTextAlignment(TextAlignment.CENTER);
 
-        // Dwa panele: pozytywne | negatywne
-        Label posHeader = sectionHeader("✦  Cechy pozytywne", "#7ec8a0");
-        Label negHeader = sectionHeader("✦  Cechy negatywne", "#e74c3c");
+        List<javafx.scene.Node> dynamicSections = new ArrayList<>();
 
-        TilePane posGrid = buildGrid(true);
-        TilePane negGrid = buildGrid(false);
+        // Na poziomie EASY i NORMAL pokazujemy pozytywne
+        if (difficulty == Difficulty.EASY || difficulty == Difficulty.NORMAL ||  difficulty == Difficulty.HARD) {
+            Label posHeader = sectionHeader("✦  Cechy pozytywne", "#7ec8a0");
+            TilePane posGrid = buildGrid(true);
+            dynamicSections.add(posHeader);
+            dynamicSections.add(posGrid);
+        }
+
+        // Na poziomie HARD i NORMAL pokazujemy negatywne
+        if (difficulty == Difficulty.HARD || difficulty == Difficulty.NORMAL) {
+            Label negHeader = sectionHeader("✦  Cechy negatywne", "#e74c3c");
+            TilePane negGrid = buildGrid(false);
+            dynamicSections.add(negHeader);
+            dynamicSections.add(negGrid);
+        }
 
         statusLabel = new Label("Wybierz cechy zgodnie z zasadami poziomu trudności.");
         statusLabel.setStyle("-fx-text-fill: #888; -fx-font-size: 13px;");
@@ -57,8 +72,20 @@ public class TraitSelectionScreen extends VBox {
         statusLabel.setMaxWidth(680);
         statusLabel.setTextAlignment(TextAlignment.CENTER);
 
+        Button backBtn = new Button("◀  Cofnij");
+        backBtn.setStyle("""
+            -fx-background-color: transparent; -fx-text-fill: #aaa;
+            -fx-font-size: 16px; -fx-padding: 12 32;
+            -fx-border-color: #444; -fx-border-radius: 6; -fx-cursor: hand;
+        """);
+        backBtn.setOnMouseEntered(e -> backBtn.setStyle(backBtn.getStyle()
+                .replace("#444", "#888").replace("#aaa", "#fff")));
+        backBtn.setOnMouseExited(e -> backBtn.setStyle(backBtn.getStyle()
+                .replace("#888", "#444").replace("#fff", "#aaa")));
+        backBtn.setOnAction(e -> onBack.run());
+
         confirmBtn = new Button("Rozpocznij grę ▶");
-        confirmBtn.setDisable(true);
+        confirmBtn.setDisable(!difficulty.isValidSelection(0, 0));
         confirmBtn.setStyle("""
             -fx-background-color: #2a3a1e; -fx-text-fill: #7ec8a0;
             -fx-font-size: 16px; -fx-padding: 12 40;
@@ -66,17 +93,12 @@ public class TraitSelectionScreen extends VBox {
         """);
         confirmBtn.setOnAction(e -> onConfirm.run());
 
-        // Umożliwia grę bez cech gdy NORMAL (0+0)
-        if (difficulty == Difficulty.NORMAL) {
-            confirmBtn.setDisable(false);
-        }
+        HBox buttonBox = new HBox(24, backBtn, confirmBtn);
+        buttonBox.setAlignment(Pos.CENTER);
 
-        getChildren().addAll(
-                title, rulesLabel,
-                posHeader, posGrid,
-                negHeader, negGrid,
-                statusLabel, confirmBtn
-        );
+        getChildren().addAll(title, rulesLabel);
+        getChildren().addAll(dynamicSections);
+        getChildren().addAll(statusLabel, buttonBox);
     }
 
     public Set<Trait> getSelected() { return Collections.unmodifiableSet(selected); }
@@ -160,14 +182,6 @@ public class TraitSelectionScreen extends VBox {
             selected.remove(trait);
             card.setStyle("-fx-background-color: " + normalBg + "; -fx-background-radius: 8; -fx-cursor: hand;");
         } else {
-            // Sprawdź czy dodanie jest legalne
-            int posCount = countPositive() + (trait.isPositive() ? 1 : 0);
-            int negCount = countNegative() + (trait.isPositive() ? 0 : 1);
-
-            if (!difficulty.isValidSelection(posCount, negCount)) {
-                flashError("Nie możesz wybrać tej cechy — narusza zasady poziomu trudności.");
-                return;
-            }
             // Sprawdź limity absolutne
             if (trait.isPositive() && countPositive() >= difficulty.getMaxPositive()) {
                 flashError("Osiągnięto limit cech pozytywnych dla tego poziomu.");

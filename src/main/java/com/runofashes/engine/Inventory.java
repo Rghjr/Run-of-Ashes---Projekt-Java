@@ -1,4 +1,7 @@
-package com.runofashes;
+package com.runofashes.engine;
+
+import com.runofashes.model.ItemType;
+import com.runofashes.model.Player;
 
 import java.util.*;
 
@@ -39,8 +42,6 @@ public class Inventory {
         return true;
     }
 
-    public void clear() { items.clear(); }
-
     // ── Odpytywanie stanu ─────────────────────────────────────────────────────
 
     public int getCount(ItemType type) {
@@ -66,15 +67,8 @@ public class Inventory {
     // ── Prywatne helpers ──────────────────────────────────────────────────────
 
     private void applyEffects(Player player, Map<String, Integer> effects) {
-        if (effects == null) return;
-        effects.forEach((stat, delta) -> {
-            switch (stat) {
-                case "health"    -> player.setHealth(player.getHealth()       + delta);
-                case "hunger"    -> player.setHunger(player.getHunger()       + delta);
-                case "hydration" -> player.setHydration(player.getHydration() + delta);
-                case "energy"    -> player.setEnergy(player.getEnergy()       + delta);
-                case "morale"    -> player.setMorale(player.getMorale()       + delta);
-            }
-        });
+        if (effects != null) {
+            effects.forEach(player::modifyStat);
+        }
     }
 }
