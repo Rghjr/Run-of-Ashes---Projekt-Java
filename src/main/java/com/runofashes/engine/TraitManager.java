@@ -1,4 +1,7 @@
-package com.runofashes;
+package com.runofashes.engine;
+
+import com.runofashes.model.Player;
+import com.runofashes.model.Trait;
 
 import java.util.*;
 
@@ -28,7 +31,7 @@ public class TraitManager {
     /** Aplikuje startowe bonusy na gracza. Wywołać raz po reset(). */
     public void applyStartBonuses(Player player) {
         for (Trait t : activeTraits) {
-            t.getStartBonus().forEach((stat, delta) -> applyStat(player, stat, delta));
+            t.getStartBonus().forEach(player::modifyStat);
         }
     }
 
@@ -38,7 +41,7 @@ public class TraitManager {
      */
     public void tick(Player player) {
         for (Trait t : activeTraits) {
-            t.getPerTurnMods().forEach((stat, delta) -> applyStat(player, stat, delta));
+            t.getPerTurnMods().forEach(player::modifyStat);
         }
     }
 
@@ -64,22 +67,5 @@ public class TraitManager {
             sum += t.getSuccessMod();
         }
         return Math.max(-0.25, Math.min(0.25, sum));
-    }
-
-    /** Czy gracz ma daną cechę (do specjalnych efektów w przyszłości). */
-    public boolean hasTrait(Trait trait) {
-        return activeTraits.contains(trait);
-    }
-
-    // ─── Prywatne ────────────────────────────────────────────────────────────
-
-    private void applyStat(Player player, String stat, int delta) {
-        switch (stat) {
-            case "health"    -> player.setHealth(player.getHealth()       + delta);
-            case "hunger"    -> player.setHunger(player.getHunger()       + delta);
-            case "hydration" -> player.setHydration(player.getHydration() + delta);
-            case "energy"    -> player.setEnergy(player.getEnergy()       + delta);
-            case "morale"    -> player.setMorale(player.getMorale()       + delta);
-        }
     }
 }

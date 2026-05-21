@@ -1,5 +1,8 @@
 package com.runofashes;
 
+import com.runofashes.model.Difficulty;
+import com.runofashes.model.Player;
+import com.runofashes.model.Trait;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;

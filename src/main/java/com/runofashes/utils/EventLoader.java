@@ -1,8 +1,9 @@
-package com.runofashes;
+package com.runofashes.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.runofashes.model.GameEvent;
 
 import java.io.InputStream;
 import java.util.List;
