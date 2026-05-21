@@ -1,10 +1,7 @@
 package com.runofashes.ui;
 
 import com.runofashes.engine.GameEngine;
-import com.runofashes.model.Difficulty;
-import com.runofashes.model.GameEvent;
-import com.runofashes.model.StatusEffect;
-import com.runofashes.model.Trait;
+import com.runofashes.model.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -42,6 +39,7 @@ public class Main extends Application {
     private GameHUD hud;
     private QuestPanel questPanel;
     private InventoryPanel inventoryPanel;
+    private Label biomeInfoPanel;
     private Label messageLabel;
     private final List<VBox> cardSlots = new ArrayList<>();
 
@@ -145,7 +143,13 @@ public class Main extends Application {
         btnQuest.setOnAction(e -> { questPanel.toFront(); btnQuest.setStyle(btnActive); btnInv.setStyle(btnInactive); });
 
         HBox tabButtons = new HBox(4, btnInv, btnQuest);
-        VBox rightSide  = new VBox(8, tabButtons, rightContent);
+
+        biomeInfoPanel = new Label();
+        biomeInfoPanel.setWrapText(true);
+        biomeInfoPanel.setPrefWidth(260); // Taka sama szerokość jak ekwipunek
+        biomeInfoPanel.setStyle("-fx-background-color: #111122; -fx-padding: 14; -fx-background-radius: 8; -fx-text-fill: #ccc; -fx-font-size: 12px;");
+
+        VBox rightSide  = new VBox(8, biomeInfoPanel, tabButtons, rightContent);
 
         HBox mainLayout = new HBox(12, gameContentVBox, rightSide);
         mainLayout.setPadding(new Insets(18));
@@ -323,6 +327,11 @@ public class Main extends Application {
                     + "\n" + triggered.getEmoji() + " Nowy status: " + triggered.getLabel()
                     + " — " + triggered.getDescription());
         }
+
+        Biome currentBiome = engine.getCurrentBiome();
+        biomeInfoPanel.setText(currentBiome.getEmoji() + " OBECNY TEREN: " + currentBiome.getLabel().toUpperCase() + "\n"
+                + currentBiome.getEntryMessage() + "\n\n"
+                + engine.buildBiomeInfo(currentBiome));
     }
 
     // ══════════════════════════════════════════════════════════════════════════

@@ -39,6 +39,16 @@ public class GameEngine {
     private final TraitManager  traitManager  = new TraitManager();
     private Difficulty difficulty    = Difficulty.NORMAL;
 
+    // ── Biom i pogoda ─────────────────────────────────────────────────────────
+    private Biome   currentBiome   = Biome.STEPPE;
+    private int     biomeStartDistance = 4000;
+    private Weather currentWeather = Weather.CLEAR;
+    /** Liczba tur zanim pogoda się zmieni. */
+    private int     weatherTurnsLeft = 5;
+    /** Wiadomość o zmianie biomu/pogody — pokazywana w tym samym polu co lastMessage. */
+    private String  biomeChangeMessage = "";
+    private String  weatherChangeMessage = "";
+
     // ══════════════════════════════════════════════════════════════════════════
     //  Init
     // ══════════════════════════════════════════════════════════════════════════
@@ -75,6 +85,13 @@ public class GameEngine {
         completedQuests.clear();
         lastMessage = "";
         lastResult  = EventResult.SUCCESS;
+
+        currentBiome = Biome.STEPPE;
+        biomeStartDistance = 4000;
+        currentWeather = Weather.CLEAR;
+        weatherTurnsLeft = 5;
+        biomeChangeMessage   = "";
+        weatherChangeMessage = "";
 
         applyDifficultyAndTraits();
         addStarterItems();
@@ -146,13 +163,118 @@ public class GameEngine {
 
     // Metoda do przesuwania tury
     private void advanceTurn(int timeCost) {
+        applyWeatherEffects();
         statusManager.tick(player, turnCount, difficulty);
         statusManager.rollTriggers(player);
         traitManager.tick(player, difficulty);
         player.addTime(timeCost);
         turnCount++;
         tickQuests();
+        tickWeather();
+        checkBiomeChange();
         drawCards();
+    }
+
+    // ── Biom i pogoda ─────────────────────────────────────────────────────────
+
+    /** Aplikuje per-turowe efekty aktualnej pogody, skalowane mnożnikiem biomu dla hunger/hydration. */
+    private void applyWeatherEffects() {
+        currentWeather.getPerTurnEffects().forEach((stat, delta) -> {
+            if (delta < 0 && (stat.equals("hunger") || stat.equals("hydration") || stat.equals("energy"))) {
+                double biomeMult = currentBiome.getDecayMultiplier(stat);
+                delta = (int) Math.round(delta * biomeMult);
+            }
+            player.modifyStat(stat, delta);
+        });
+    }
+
+    /** Tick pogody — zmniejsza licznik i ewentualnie losuje nową. */
+    private void tickWeather() {
+        weatherTurnsLeft--;
+        if (weatherTurnsLeft <= 0) {
+            Weather next = Weather.rollNext(currentWeather, RNG);
+            currentWeather   = next;
+            weatherTurnsLeft = RNG.nextInt(next.getMaxTurns() - next.getMinTurns() + 1) + next.getMinTurns();
+
+            weatherChangeMessage = next.getEmoji() + " Pogoda się zmieniła: " + next.getLabel()
+                    + (next.getPerTurnEffects().isEmpty() ? "" : " — " + buildEffectSummary(next.getPerTurnEffects()));
+
+            // Doklejamy do głównego ekranu
+            if (!lastMessage.isEmpty()) lastMessage += "\n\n";
+            lastMessage += weatherChangeMessage;
+
+        } else {
+            weatherChangeMessage = "";
+        }
+    }
+
+    /** Sprawdza czy gracz przeszedł 400 km w obecnym biomie. */
+    private void checkBiomeChange() {
+        int distanceTraveledInBiome = biomeStartDistance - player.getDistance();
+
+        if (distanceTraveledInBiome >= 20) {
+            Biome newBiome = Biome.rollNext(currentBiome, RNG); // Losujemy nowy!
+            currentBiome = newBiome;
+            biomeStartDistance = player.getDistance(); // Zapisujemy "checkpoint" dla nowego biomu
+
+            // Budujemy pełny komunikat dla gracza
+            biomeChangeMessage = newBiome.getEmoji() + " ZMIANA TERENU: " + newBiome.getLabel().toUpperCase() + "\n"
+                    + newBiome.getEntryMessage() + "\n\n"
+                    + buildBiomeInfo(newBiome);
+
+            // Doklejamy to do głównego ekranu (żeby gracz to na pewno zobaczył)
+            if (!lastMessage.isEmpty()) lastMessage += "\n\n";
+            lastMessage += biomeChangeMessage;
+
+        } else {
+            biomeChangeMessage = "";
+        }
+    }
+
+    /** Tworzy czytelny tekst wyjaśniający wpływ biomu na grę. */
+    public String buildBiomeInfo(Biome biome) {
+        StringBuilder sb = new StringBuilder("Wpływ środowiska:\n");
+
+        biome.getDecayMultipliers().forEach((stat, val) -> {
+            if (val != 1.0) {
+                String desc = val > 1.0 ? "szybszy spadek" : "wolniejszy spadek";
+                sb.append(" • ").append(statEmoji(stat)).append(" ").append(desc).append(" (x").append(val).append(")\n");
+            }
+        });
+
+        biome.getEventWeightMods().forEach((cat, val) -> {
+            String catName = switch (cat) {
+                case "food"      -> "🍗 jedzenia";
+                case "hydration" -> "💧 wody";
+                case "energy"    -> "⚡ odpoczynku";
+                case "morale"    -> "😊 morale";
+                case "move"      -> "👣 ruchu";
+                case "rare"      -> "✨ rzadkich spotkań";
+                default          -> cat;
+            };
+            String desc = val > 0 ? "Więcej kart" : "Mniej kart";
+            sb.append(" • 🃏 ").append(desc).append(" ").append(catName).append("\n");
+        });
+
+        return sb.toString().trim();
+    }
+
+    /** Buduje krótki string "+X stat -Y stat" z mapy efektów. */
+    private String buildEffectSummary(java.util.Map<String, Integer> effects) {
+        StringBuilder sb = new StringBuilder();
+        effects.forEach((stat, val) -> sb.append(val > 0 ? "+" : "").append(val).append(" ").append(statEmoji(stat)).append(" "));
+        return sb.toString().trim();
+    }
+
+    private static String statEmoji(String stat) {
+        return switch (stat) {
+            case "health"    -> "❤";
+            case "hunger"    -> "🍗";
+            case "hydration" -> "💧";
+            case "energy"    -> "⚡";
+            case "morale"    -> "😊";
+            default          -> stat;
+        };
     }
 
     // Metoda do obsługi halucynacji
@@ -234,10 +356,15 @@ public class GameEngine {
     }
 
     private void applySingle(String stat, int delta) {
-        if (delta < 0 && (stat.equals("hunger") || stat.equals("hydration"))) {
-            delta = (int) Math.round(delta * difficulty.getDrainMultiplier());
+        if (delta < 0 && (stat.equals("hunger") || stat.equals("hydration") || stat.equals("energy"))) {
+            double biomeMult = currentBiome.getDecayMultiplier(stat);
+            double diffMult  = difficulty.getDrainMultiplier();
+            if (stat.equals("energy")) {
+                delta = (int) Math.round(delta * biomeMult);
+            } else {
+                delta = (int) Math.round(delta * biomeMult * diffMult);
+            }
         }
-
         player.modifyStat(stat, delta);
     }
 
@@ -346,11 +473,17 @@ public class GameEngine {
 
     private int weight(String category, int statValue, int maxStat) {
         int base = 10 + (maxStat - statValue);
-        return Math.max(5, base + traitManager.getWeightMod(category));
+        int mod  = traitManager.getWeightMod(category)
+                + currentBiome.getEventWeightMods().getOrDefault(category, 0)
+                + currentWeather.getEventWeightMods().getOrDefault(category, 0);
+        return Math.max(5, base + mod);
     }
 
     private int baseWeight(String category, int base) {
-        return Math.max(5, base + traitManager.getWeightMod(category));
+        int mod = traitManager.getWeightMod(category)
+                + currentBiome.getEventWeightMods().getOrDefault(category, 0)
+                + currentWeather.getEventWeightMods().getOrDefault(category, 0);
+        return Math.max(5, base + mod);
     }
 
     private List<GameEvent> filterByTime(List<GameEvent> events, int hour) {
@@ -454,4 +587,7 @@ public class GameEngine {
         return activeQuests.values().stream()
                 .anyMatch(qs -> qs.isLocal() && !qs.getQuestId().equals(currentQuestId));
     }
+
+    public Biome   getCurrentBiome()   { return currentBiome; }
+    public Weather getCurrentWeather() { return currentWeather; }
 }

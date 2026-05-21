@@ -21,6 +21,7 @@ public class GameHUD extends VBox {
     private Label healthVal, hungerVal, hydrationVal, energyVal, moraleVal;
     private Label timeLabel, distanceLabel;
     private Label difficultyLabel, traitsLabel;
+    private Label biomeLabel, weatherLabel;
 
     public GameHUD(GameEngine engine) {
         this.engine = engine;
@@ -36,8 +37,14 @@ public class GameHUD extends VBox {
         difficultyLabel = styledLabel("", "#888", 12);
         traitsLabel     = styledLabel("", "#666", 12);
 
+        biomeLabel   = styledLabel("", "#2ecc71", 14);
+        weatherLabel = styledLabel("", "#3498db", 14);
+
         HBox topRow = new HBox(24, timeLabel, distanceLabel);
         topRow.setAlignment(Pos.CENTER_LEFT);
+
+        HBox envRow = new HBox(24, biomeLabel, weatherLabel);
+        envRow.setAlignment(Pos.CENTER_LEFT);
 
         HBox metaRow = new HBox(16, difficultyLabel, traitsLabel);
         metaRow.setAlignment(Pos.CENTER_LEFT);
@@ -55,7 +62,7 @@ public class GameHUD extends VBox {
         moraleVal    = valueLabel();
 
         getChildren().addAll(
-                topRow, metaRow,
+                topRow, envRow, metaRow,
                 statRow("❤  Zdrowie",     healthBar,    healthVal),
                 statRow("🍗  Głód",        hungerBar,    hungerVal),
                 statRow("💧  Nawodnienie", hydrationBar, hydrationVal),
@@ -75,6 +82,9 @@ public class GameHUD extends VBox {
 
         timeLabel.setText(p.getTimeFormatted());
         distanceLabel.setText(p.getDistance() + " km do Krakowa");
+
+        biomeLabel.setText(engine.getCurrentBiome().getEmoji() + " " + engine.getCurrentBiome().getLabel());
+        weatherLabel.setText(engine.getCurrentWeather().getEmoji() + " " + engine.getCurrentWeather().getLabel());
 
         Difficulty diff = engine.getDifficulty();
         difficultyLabel.setText(diff.getEmoji() + " " + diff.getLabel());
