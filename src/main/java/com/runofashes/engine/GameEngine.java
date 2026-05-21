@@ -104,6 +104,9 @@ public class GameEngine {
 
         EventResult result = resolveResult(event);
 
+        //bez tego switch(lastResult) zawsze używał wyniku z poprzedniej tury
+        lastResult = result;
+
         switch (lastResult) {
             case SUCCESS -> {
                 applyEffects(applyHallucinations(event.getEffects()));
@@ -143,9 +146,9 @@ public class GameEngine {
 
     // Metoda do przesuwania tury
     private void advanceTurn(int timeCost) {
-        statusManager.tick(player, turnCount);
+        statusManager.tick(player, turnCount, difficulty);
         statusManager.rollTriggers(player);
-        traitManager.tick(player);
+        traitManager.tick(player, difficulty);
         player.addTime(timeCost);
         turnCount++;
         tickQuests();
@@ -200,7 +203,6 @@ public class GameEngine {
         successThreshold = Math.max(0.05, successThreshold - mod);
         partialThreshold = Math.max(0.01, partialThreshold - mod);
 
-        // Clampujemy żeby próg PARTIAL nie przekroczył progu SUCCESS.
         if (event.getFailChance() > 0) {
             partialThreshold = Math.min(successThreshold - 0.01,
                     partialThreshold + event.getFailChance());

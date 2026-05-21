@@ -67,11 +67,11 @@ public class GameHUD extends VBox {
     public void refresh() {
         Player p = engine.getPlayer();
 
-        setBar(healthBar,    healthVal,    p.getHealth());
-        setBar(hungerBar,    hungerVal,    p.getHunger());
-        setBar(hydrationBar, hydrationVal, p.getHydration());
-        setBar(energyBar,    energyVal,    p.getEnergy());
-        setBar(moraleBar,    moraleVal,    p.getMorale());
+        setBar(healthBar,    healthVal,    p.getHealth(),    p.getMaxHealth());
+        setBar(hungerBar,    hungerVal,    p.getHunger(),    p.getMaxHunger());
+        setBar(hydrationBar, hydrationVal, p.getHydration(), p.getMaxHydration());
+        setBar(energyBar,    energyVal,    p.getEnergy(),    p.getMaxEnergy());
+        setBar(moraleBar,    moraleVal,    p.getMorale(),    p.getMaxMorale());
 
         timeLabel.setText(p.getTimeFormatted());
         distanceLabel.setText(p.getDistance() + " km do Krakowa");
@@ -107,9 +107,9 @@ public class GameHUD extends VBox {
         return bar;
     }
 
-    private void setBar(ProgressBar bar, Label lbl, int value) {
-        bar.setProgress(Math.min(value, 100) / 100.0);
-        lbl.setText(value + "/100");
+    private void setBar(ProgressBar bar, Label lbl, int value, int maxValue) {
+        bar.setProgress(Math.min(value, maxValue) / (double) maxValue);
+        lbl.setText(value + "/" + maxValue);
     }
 
     private Label valueLabel() {

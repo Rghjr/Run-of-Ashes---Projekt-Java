@@ -54,7 +54,6 @@ public class Main extends Application {
         endRoot  = buildEndScreen();
         winRoot  = buildWinScreen();
 
-        // mainScene musi istnieć PRZED showDifficultyScreen() — tworzymy Scene tu wprost
         difficultyScreen = new DifficultyScreen(this::onDifficultyConfirmed);
         mainScene = new Scene(difficultyScreen, 960, 860);
 
