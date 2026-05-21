@@ -212,22 +212,11 @@ public class GameEngine {
     private void checkBiomeChange() {
         int distanceTraveledInBiome = biomeStartDistance - player.getDistance();
 
-        if (distanceTraveledInBiome >= 20) {
-            Biome newBiome = Biome.rollNext(currentBiome, RNG); // Losujemy nowy!
+        if (distanceTraveledInBiome >= 400) {
+            Biome newBiome = Biome.rollNext(currentBiome, RNG);
             currentBiome = newBiome;
-            biomeStartDistance = player.getDistance(); // Zapisujemy "checkpoint" dla nowego biomu
+            biomeStartDistance = player.getDistance();
 
-            // Budujemy pełny komunikat dla gracza
-            biomeChangeMessage = newBiome.getEmoji() + " ZMIANA TERENU: " + newBiome.getLabel().toUpperCase() + "\n"
-                    + newBiome.getEntryMessage() + "\n\n"
-                    + buildBiomeInfo(newBiome);
-
-            // Doklejamy to do głównego ekranu (żeby gracz to na pewno zobaczył)
-            if (!lastMessage.isEmpty()) lastMessage += "\n\n";
-            lastMessage += biomeChangeMessage;
-
-        } else {
-            biomeChangeMessage = "";
         }
     }
 

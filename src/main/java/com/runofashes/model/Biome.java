@@ -89,7 +89,7 @@ public enum Biome {
         Biome next;
         do {
             next = allBiomes[rng.nextInt(allBiomes.length)];
-        } while (next == current); // Losuj tak długo, aż trafisz na inny
+        } while (next == current);
         return next;
     }
 }
