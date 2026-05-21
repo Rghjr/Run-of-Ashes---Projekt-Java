@@ -21,8 +21,6 @@ public class QuestPanel extends VBox {
         setStyle("-fx-background-color: #111122; -fx-background-radius: 8;");
         setPadding(new Insets(14));
         setSpacing(14);
-        setMinWidth(260);
-        setMaxWidth(260);
 
         refresh();
     }

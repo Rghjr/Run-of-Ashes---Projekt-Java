@@ -196,13 +196,6 @@ public class GameEngine {
             currentWeather   = next;
             weatherTurnsLeft = RNG.nextInt(next.getMaxTurns() - next.getMinTurns() + 1) + next.getMinTurns();
 
-            weatherChangeMessage = next.getEmoji() + " Pogoda się zmieniła: " + next.getLabel()
-                    + (next.getPerTurnEffects().isEmpty() ? "" : " — " + buildEffectSummary(next.getPerTurnEffects()));
-
-            // Doklejamy do głównego ekranu
-            if (!lastMessage.isEmpty()) lastMessage += "\n\n";
-            lastMessage += weatherChangeMessage;
-
         } else {
             weatherChangeMessage = "";
         }

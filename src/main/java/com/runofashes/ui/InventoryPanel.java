@@ -31,8 +31,6 @@ public class InventoryPanel extends VBox {
         setStyle("-fx-background-color: #111122; -fx-background-radius: 8;");
         setPadding(new Insets(14));
         setSpacing(14);
-        setMinWidth(260);
-        setMaxWidth(260);
 
         Label title = new Label("⚙  Ekwipunek");
         title.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 15px;");
