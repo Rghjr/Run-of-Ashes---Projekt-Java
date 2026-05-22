@@ -60,11 +60,11 @@ public class Main extends Application {
         winRoot  = buildWinScreen();
 
         difficultyScreen = new DifficultyScreen(this::onDifficultyConfirmed);
-        mainScene = new Scene(difficultyScreen, 960, 860);
+        mainScene = new Scene(difficultyScreen, 980, 860);
 
         stage.setTitle("Run of Ashes");
 
-        stage.setMinWidth(960);
+        stage.setMinWidth(980);
         stage.setMinHeight(750);
 
         stage.setScene(mainScene);
@@ -95,7 +95,6 @@ public class Main extends Application {
         engine.configure(diff, traits);
         engine.reset();
         refreshAll();
-        primaryStage.setWidth(920);
         mainScene.setRoot(gameRoot);
     }
 
@@ -151,11 +150,10 @@ public class Main extends Application {
 
         StackPane rightContent = new StackPane(questScroll, invScroll);
 
+        VBox.setVgrow(rightContent, Priority.ALWAYS);
+
         invScroll.setVisible(true);
         questScroll.setVisible(false);
-
-        rightContent.setPrefHeight(450);
-        rightContent.setMaxHeight(450);
 
         Button btnInv   = new Button("🎒 Ekwipunek");
         Button btnQuest = new Button("📜 Questy");
@@ -205,16 +203,20 @@ public class Main extends Application {
             -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 4);
         """);
 
-        VBox rightSide  = new VBox(8, biomeInfoPanel, tabButtons, rightContent);
+        VBox.setVgrow(rightContent, Priority.ALWAYS);
+
+        activeStatusesBox = new VBox(6);
+        activeStatusesBox.setPadding(new Insets(12, 0, 0, 0));
+        activeStatusesBox.setMinHeight(80);
+
+        VBox rightSide = new VBox(8, biomeInfoPanel, tabButtons, rightContent, activeStatusesBox);
+
         HBox mainLayout = new HBox(12, gameContentVBox, rightSide);
         mainLayout.setPadding(new Insets(18));
         mainLayout.setStyle("-fx-background-color: #0d0d1a;");
 
         gameContentVBox.prefWidthProperty().bind(mainLayout.widthProperty().multiply(0.7).subtract(24));
         rightSide.prefWidthProperty().bind(mainLayout.widthProperty().multiply(0.3).subtract(24));
-
-        activeStatusesBox = new VBox(6);
-        activeStatusesBox.setPadding(new Insets(12, 0, 0, 0));
 
         return mainLayout;
     }
@@ -409,9 +411,18 @@ public class Main extends Application {
             activeStatusesBox.getChildren().add(empty);
         } else {
             statuses.forEach((status, turns) -> {
-                Label lbl = new Label(status.getEmoji() + " " + status.getLabel() + " (" + turns + " tur)");
-                lbl.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 13px;");
-                activeStatusesBox.getChildren().add(lbl);
+                VBox statusBox = new VBox(2);
+
+                String t = turns == 1 ? "tura" : (turns < 5 ? "tury" : "tur");
+                Label nameLbl = new Label(status.getEmoji() + " " + status.getLabel() + " (" + turns + " " + t + ")");
+                nameLbl.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 13px;");
+
+                Label descLbl = new Label(status.getDescription());
+                descLbl.setStyle("-fx-text-fill: #aaa; -fx-font-size: 11px;");
+                descLbl.setWrapText(true);
+
+                statusBox.getChildren().addAll(nameLbl, descLbl);
+                activeStatusesBox.getChildren().add(statusBox);
             });
         }
     }

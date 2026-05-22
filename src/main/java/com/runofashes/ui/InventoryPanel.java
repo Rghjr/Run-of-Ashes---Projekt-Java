@@ -36,10 +36,7 @@ public class InventoryPanel extends VBox {
         title.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 15px;");
         title.setFont(Font.font("Georgia", 15));
 
-        Label statusTitle = new Label("✦  Aktywne statusy");
-        statusTitle.setStyle("-fx-text-fill: #aaa; -fx-font-size: 13px;");
-
-        getChildren().addAll(title, itemList, separator(), statusTitle, statusList);
+        getChildren().addAll(title, itemList);
         refresh();
     }
 
