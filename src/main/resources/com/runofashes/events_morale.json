@@ -2,6 +2,7 @@
   {
     "id": "pray_cross",
     "label": "Módl się przy przydrożnym krzyżu",
+    "lowMoraleLabel": "Błagaj pod pustym krzyżem o litość",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -9,14 +10,17 @@
       "energy": 4
     },
     "successMessage": "Drewniany krzyż stał sam na rozstaju. Uklęknąłeś. Przez chwilę nie byłeś sam.",
+    "lowMoraleSuccessMessage": "Rzucałeś słowa w pustkę, nie wierząc, że cokolwiek tam jest. Zostałeś ty, martwe drewno i rozpaczliwa potrzeba ulgi.",
     "failEffects": {
       "morale": -18
     },
-    "failMessage": "Krzyż był obalony. Ktoś go przewrócił — albo wichura. W tym świecie jedno i drugie możliwe."
+    "failMessage": "Krzyż był obalony. Ktoś go przewrócił — albo wichura. W tym świecie jedno i drugie możliwe.",
+    "lowMoraleFailMessage": "Krzyż leżał w pyle jak wszystko w tym świecie. Bóg upadł pierwszy, dlaczego ty miałbyś iść dalej?"
   },
   {
     "id": "meet_pilgrim",
     "label": "Rozmawiaj z napotkanym pielgrzymem",
+    "lowMoraleLabel": "Wymuś rozmowę na przerażonym pielgrzymie",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "morale",
@@ -28,14 +32,17 @@
       "TALLOW_CANDLE": 1
     },
     "successMessage": "Szedł z Konstantynopola. Podzielił się chlebem, świecą i słowem. Wystarczy.",
+    "lowMoraleSuccessMessage": "Wysłuchałeś jego bełkotu dla okruchów. Świeca oświetliła tylko mrok w twojej duszy.",
     "failEffects": {
       "morale": -25
     },
-    "failMessage": "Pielgrzym milczał. W jego oczach był taki strach, że swój wydał ci się małostką."
+    "failMessage": "Pielgrzym milczał. W jego oczach był taki strach, że swój wydał ci się małostką.",
+    "lowMoraleFailMessage": "Jego obłędne spojrzenie było lustrem twojego własnego koszmaru. Minęliście się, niosąc na barkach ciężar dwóch martwych światów."
   },
   {
     "id": "recall_krakow",
     "label": "Przypomnij sobie ulice Krakowa",
+    "lowMoraleLabel": "Chwytaj się złudzenia, że Kraków wciąż istnieje",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -43,28 +50,34 @@
       "energy": 6
     },
     "successMessage": "Rynek, Wawel, zapach piekarni na Grodzkiej. Żyją — jeśli zdążysz.",
+    "lowMoraleSuccessMessage": "Wizja miasta była blada, obca, niemal szydercza. Uczepiłeś się jej tylko dlatego, że nie miałeś już nic innego.",
     "failEffects": {
       "morale": -22
     },
-    "failMessage": "Twarze bliskich zacierały się. Pamiętałeś domy, ale nie ich w domach. To gorsze."
+    "failMessage": "Twarze bliskich zacierały się. Pamiętałeś domy, ale nie ich w domach. To gorsze.",
+    "lowMoraleFailMessage": "Pamięć zawiodła całkowicie. Zostały tylko dym, popiół i martwe oczy. Zrozumiałeś, że nie masz już do kogo wracać."
   },
   {
     "id": "write_warning",
     "label": "Napisz ostrzeżenie na ścianie kościoła",
+    "lowMoraleLabel": "Wypisz krwią obłąkańcze groźby na fasadzie",
     "timeCost": 1,
     "category": "morale",
     "effects": {
       "morale": 22
     },
     "successMessage": "'Zaraza idzie ze wschodu. Uciekajcie lub módlcie się.' Ktoś to przeczyta. Może przeżyje.",
+    "lowMoraleSuccessMessage": "Skrobałeś kamieniem po murze z brutalną zaciekłością. Wiedziałeś, że nikt tego nie przeczyta. Zrobiłeś to z czystej złośliwości.",
     "failEffects": {
       "morale": -12
     },
-    "failMessage": "Ściana była już pełna napisów. Innych ostrzeżeń, innych rozpaczliwych słów. Już za późno na słowa."
+    "failMessage": "Ściana była już pełna napisów. Innych ostrzeżeń, innych rozpaczliwych słów. Już za późno na słowa.",
+    "lowMoraleFailMessage": "Próba rylecowania litery obróciła się w żenujący, zwierzęcy bełkot wyryty na kamieniu. Ostateczny dowód na twój obłęd."
   },
   {
     "id": "watch_sunrise",
     "label": "Patrz na wschód słońca",
+    "lowMoraleLabel": "Mruż oczy na szydercze światło nowego dnia",
     "timeCost": 1,
     "minHour": 4,
     "maxHour": 8,
@@ -74,14 +87,17 @@
       "energy": 8
     },
     "successMessage": "Świt nad stepem. Złoto i czerwień. Bóg jeszcze nie porzucił tego świata.",
+    "lowMoraleSuccessMessage": "Słońce znów bezwstydnie zaświeciło nad trupami i zgliszczami. Promienie nie dały ciepła, jedynie wyostrzyły obraz tej ruiny.",
     "failEffects": {
       "morale": 5
     },
-    "failMessage": "Chmury zasłoniły wszystko. Ale wstałeś — i to jest coś."
+    "failMessage": "Chmury zasłoniły wszystko. Ale wstałeś — i to jest coś.",
+    "lowMoraleFailMessage": "Kolejny bezlitosny, szary ranek, w którym wolałbyś się w ogóle nie obudzić. Wymuszone zmartwychwstanie w piekle na jawie."
   },
   {
     "id": "watch_sunset",
     "label": "Patrz na zachód słońca",
+    "lowMoraleLabel": "Wypatruj ostatecznego zmroku w krwawej łunie",
     "timeCost": 1,
     "minHour": 17,
     "maxHour": 21,
@@ -91,14 +107,17 @@
       "energy": 4
     },
     "successMessage": "Purpura za lasem. Tam za horyzontem jest Kraków. Jeszcze jeden dzień bliżej.",
+    "lowMoraleSuccessMessage": "Zachód był krwisty jak rana otwartego świata. Czekasz na ostateczną ciemność, która pożre wszystko wokół ciebie.",
     "failEffects": {
       "morale": 6
     },
-    "failMessage": "Chmury i dym. Gdzieś pali się wioska. Idziesz dalej."
+    "failMessage": "Chmury i dym. Gdzieś pali się wioska. Idziesz dalej.",
+    "lowMoraleFailMessage": "Słońce zgasło w dymie, zanim dotknęło horyzontu. Tak jak zgaśnie każda wola walki, aż zostaniesz tu na zawsze."
   },
   {
     "id": "count_stars",
     "label": "Licz gwiazdy nad głową",
+    "lowMoraleLabel": "Wgapiaj się z otępieniem w przerażający bezmiar nieba",
     "timeCost": 1,
     "minHour": 20,
     "maxHour": 4,
@@ -108,29 +127,35 @@
       "energy": 10
     },
     "successMessage": "Droga Mleczna wskazywała kierunek lepiej niż każda mapa. Byłeś mały — ale szedłeś.",
+    "lowMoraleSuccessMessage": "Zrozumiałeś z miażdżącą jasnością, jak bardzo nic nie znaczysz. Twoja męka jest mniejsza niż ziarenko piasku.",
     "failEffects": {
       "morale": -10
     },
-    "failMessage": "Niebo zachmurzone. Ciemność bez gwiazd to tylko ciemność."
+    "failMessage": "Niebo zachmurzone. Ciemność bez gwiazd to tylko ciemność.",
+    "lowMoraleFailMessage": "Ciemność zacisnęła się wokół ciebie dusznie i bezdusznie. Czułeś fizyczny lęk przed brakiem choćby najmniejszego punktu odniesienia."
   },
   {
     "id": "help_sick",
     "label": "Pomóż choremu przy drodze",
+    "lowMoraleLabel": "Podejdź do rzężącego umierającego jak do lustra",
     "timeCost": 2,
     "category": "morale",
     "effects": {
       "morale": 35
     },
     "successMessage": "Nie wiedziałeś co robić. Dałeś wodę i słowo. Może to wystarczyło — dla ciebie na pewno.",
+    "lowMoraleSuccessMessage": "Siedziałeś przy nim, patrząc na jego agonię i odliczając czas do swojej. Pusty rytuał dwóch trupów.",
     "failEffects": {
       "health": -25,
       "morale": -15
     },
-    "failMessage": "Dotknąłeś go zanim zobaczyłeś plamy. Módl się żebyś nie wziął ze sobą nic więcej niż wspomnienie."
+    "failMessage": "Dotknąłeś go zanim zobaczyłeś plamy. Módl się żebyś nie wziął ze sobą nic więcej niż wspomnienie.",
+    "lowMoraleFailMessage": "Rzygnąłeś krwią pod wpływem jego widoku. Uciekłeś w panice, zostawiając go na pożarcie psom."
   },
   {
     "id": "find_compatriot",
     "label": "Znajdź rodaka na szlaku",
+    "lowMoraleLabel": "Porozum się z wynędzniałym szaleńcem z twoich stron",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "morale",
@@ -139,14 +164,17 @@
       "energy": 8
     },
     "successMessage": "Mówił po polsku. Krzyczałeś ze zdumienia. On też. Szliście razem przez godzinę — to wystarczyło.",
+    "lowMoraleSuccessMessage": "Rozmawialiście mechanicznymi, pustymi zdaniami, udając, że to spotkanie ma jakiekolwiek znaczenie w świetle końca świata.",
     "failEffects": {
       "morale": -20
     },
-    "failMessage": "Myślałeś że go rozpoznajesz. Obcy. Bardzo obcy — i przestraszony tobą."
+    "failMessage": "Myślałeś że go rozpoznajesz. Obcy. Bardzo obcy — i przestraszony tobą.",
+    "lowMoraleFailMessage": "Wrzeszczałeś po polsku do głuchego echa, odstraszając ocalałych. Twoja desperacja budzi już wyłącznie powszechny terror."
   },
   {
     "id": "read_breviary",
     "label": "Czytaj brewiarza lub modlitewnik",
+    "lowMoraleLabel": "Mrucz pod nosem puste zaklęcia z wytartej księgi",
     "timeCost": 2,
     "category": "morale",
     "effects": {
@@ -154,28 +182,34 @@
       "energy": -4
     },
     "successMessage": "Słowa psalmu znałeś na pamięć. Tym razem brzmiały inaczej. Lepiej.",
+    "lowMoraleSuccessMessage": "Litery to tylko atrament, księga to tylko zbutwiały papier. Szukałeś magii, znalazłeś chłodny absurd ludzkich rojeń.",
     "failEffects": {
       "morale": -10
     },
-    "failMessage": "Litery zlewały się. Zbyt zmęczone oczy albo zbyt wiele widziały."
+    "failMessage": "Litery zlewały się. Zbyt zmęczone oczy albo zbyt wiele widziały.",
+    "lowMoraleFailMessage": "Cisnąłeś książką w błoto w ataku wściekłej frustracji. Nikt z góry nie czytał jej razem z tobą."
   },
   {
     "id": "build_altar",
     "label": "Zbuduj mały ołtarzyk z kamieni",
+    "lowMoraleLabel": "Układaj kuriozalny stosik kamieni w przypływie szału",
     "timeCost": 1,
     "category": "morale",
     "effects": {
       "morale": 15
     },
     "successMessage": "Trzy kamienie ułożone w krzyż. Mały znak że tu byłeś i wciąż wierzysz.",
+    "lowMoraleSuccessMessage": "Patrzyłeś na swoją konstrukcję z obrzydzeniem. Żałosny, wulgarny fetysz człowieka przerażonego losem.",
     "failEffects": {
       "morale": -5
     },
-    "failMessage": "Kamienie rozpadały się. Nawet kamienie nie chcą tu stać."
+    "failMessage": "Kamienie rozpadały się. Nawet kamienie nie chcą tu stać.",
+    "lowMoraleFailMessage": "Kopałeś zbudowany ołtarzyk aż rozniosłeś go na proch, wyjąc ze złości na wszystko wokół ciebie."
   },
   {
     "id": "survivor_village",
     "label": "Obserwuj z daleka żywą wioskę",
+    "lowMoraleLabel": "Wpatruj się ze złośliwą zawiścią w tętniącą życiem wioskę",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "morale",
@@ -183,14 +217,17 @@
       "morale": 32
     },
     "successMessage": "Dym z kominów. Psy szczekały. Dzieci krzyczały. Życie — prawdziwe i niezarażone.",
+    "lowMoraleSuccessMessage": "Skręt kiszek z chorej zazdrości był silniejszy niż ulga. Zastanawiałeś się, po ilu dniach ich trupy zasłają te ścieżki.",
     "failEffects": {
       "morale": -30
     },
-    "failMessage": "Wioska żyła. Ty przeszedłeś obok bo bałeś się przynieść im śmierć. Może mądrze. Może nie."
+    "failMessage": "Wioska żyła. Ty przeszedłeś obok bo bałeś się przynieść im śmierć. Może mądrze. Może nie.",
+    "lowMoraleFailMessage": "Odszedłeś w cieniu. Ich śmiech brzmiał w uszach jak policzek za całe cierpienie, przez które musiałeś przejść."
   },
   {
     "id": "light_candle_grave",
     "label": "Zapal świecę na przydrożnym grobie",
+    "lowMoraleLabel": "Zapłon świecę jako rezygnację wobec nadchodzącej śmierci",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -198,28 +235,34 @@
       "health": 4
     },
     "successMessage": "Nie znałeś tego człowieka. Ale płomień był dla niego i dla ciebie. Przez chwilę obaj byliście mniej sami.",
+    "lowMoraleSuccessMessage": "Zazdrościłeś zmarłemu. Zazdrościłeś, że jego podróż już się skończyła. Płomień świecy to była czysta kapitulacja.",
     "failEffects": {
       "morale": -8
     },
-    "failMessage": "Wiatr zgasił świecę zanim się zapaliła. Idziesz dalej."
+    "failMessage": "Wiatr zgasił świecę zanim się zapaliła. Idziesz dalej.",
+    "lowMoraleFailMessage": "Ciemność była dla niego odpowiedniejsza. Tak jak wkrótce dla ciebie. Rzuciłeś niedopałek w ziemię."
   },
   {
     "id": "carve_name_tree",
     "label": "Wyrzyj swoje imię w korze drzewa",
+    "lowMoraleLabel": "Zdrapuj maniacko swoje imię w ociekającej żywicą korze",
     "timeCost": 1,
     "category": "morale",
     "effects": {
       "morale": 16
     },
     "successMessage": "Twoje imię zostanie tu długo po tobie. Coś małego — ale prawdziwego.",
+    "lowMoraleSuccessMessage": "Drapanie kory bolało palce, ale pozwalało poczuć gniewną chęć zaznaczenia swojej nędznej obecności.",
     "failEffects": {
       "morale": -8
     },
-    "failMessage": "Nóż ześlizgnął się. Imię wyszło krzywe i nieczytelne. Jak wszystko na tej drodze."
+    "failMessage": "Nóż ześlizgnął się. Imię wyszło krzywe i nieczytelne. Jak wszystko na tej drodze.",
+    "lowMoraleFailMessage": "Rozciąłeś dłoń aż do krwi w ataku frustracji. Krwawe smugi nie ułożyły się w żadne imię, tylko obraz twojej bezradności."
   },
   {
     "id": "sing_old_song",
     "label": "Nucj starą pieśń z dzieciństwa",
+    "lowMoraleLabel": "Wykrzykuj z rozpaczą urwane słowa zapomnianej piosenki",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -227,14 +270,17 @@
       "energy": 6
     },
     "successMessage": "Słowa wracały same. Głos łamał się co kilka taktów — ale śpiewałeś. I to wystarczyło.",
+    "lowMoraleSuccessMessage": "Zachrypnięty, fałszywy jęk w żaden sposób nie przypominał dzieciństwa. Był po prostu rzężeniem umierającego człowieka.",
     "failEffects": {
       "morale": -15
     },
-    "failMessage": "Zapomniałeś słów. Melodia uciekła gdzieś za tygodnie marszu. Cisza była gorsza niż przed."
+    "failMessage": "Zapomniałeś słów. Melodia uciekła gdzieś za tygodnie marszu. Cisza była gorsza niż przed.",
+    "lowMoraleFailMessage": "Przerwałeś, łapiąc z płaczem potworne powietrze do płuc. Cisza była twoim prawowitym towarzyszem, nie żadna pieśń."
   },
   {
     "id": "talk_to_horse",
     "label": "Porozmawiaj z koniem przy drodze",
+    "lowMoraleLabel": "Bełkocz z goryczą do wychudzonego bydlęcia",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -242,14 +288,17 @@
       "energy": 5
     },
     "successMessage": "Koń słuchał cierpliwie. Nie oceniał. To rzadka cecha — nawet u ludzi.",
+    "lowMoraleSuccessMessage": "Mówiłeś, bo milczenie stało się zbyt mroczne. Zwierzę patrzyło tępym wzrokiem na twoje majaki.",
     "failEffects": {
       "morale": -10
     },
-    "failMessage": "Koń odszedł zanim skończyłeś zdanie. Nawet zwierzęta mają swoje priorytety."
+    "failMessage": "Koń odszedł zanim skończyłeś zdanie. Nawet zwierzęta mają swoje priorytety.",
+    "lowMoraleFailMessage": "Bydlę uciekło z wybałuszonymi ślepiami. Zapach śmierci emanował od ciebie mocniej, niż zdawałeś sobie sprawę."
   },
   {
     "id": "remember_family",
     "label": "Myśl o rodzinie czekającej w Krakowie",
+    "lowMoraleLabel": "Rozdrapuj z masochistycznym obłędem wyobrażenia najbliższych",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -257,28 +306,34 @@
       "energy": 8
     },
     "successMessage": "Twarze wróciły wyraźnie — po raz pierwszy od tygodnia. To wystarczy na kolejny dzień.",
+    "lowMoraleSuccessMessage": "Pamięć o nich zadawała teraz tylko ból, przypominając okrutnie, jak bardzo cię od nich odcięto i czym się stałeś.",
     "failEffects": {
       "morale": -25
     },
-    "failMessage": "Twarze były zamazane. Imiona przychodziły z opóźnieniem. Co za długo trwa nieobecność."
+    "failMessage": "Twarze były zamazane. Imiona przychodziły z opóźnieniem. Co za długo trwa nieobecność.",
+    "lowMoraleFailMessage": "Ciemność w głowie wyparła ostatnie imiona. Zapomniałeś ich i znienawidziłeś siebie za to ze stokrotną siłą."
   },
   {
     "id": "find_old_coin",
     "label": "Znajdź starą monetę przy drodze",
+    "lowMoraleLabel": "Schyl się z obojętnością po bezwartościową miedź",
     "timeCost": 1,
     "category": "morale",
     "effects": {
       "morale": 14
     },
     "successMessage": "Mała rzecz. Głupia, może. Ale znalazłeś ją — i to był twój moment szczęścia na dziś.",
+    "lowMoraleSuccessMessage": "Włożyłeś ją do kieszeni dla czystego mechanicznego odruchu. Przecież za rogiem nie ma już dla ciebie żadnego handlu.",
     "failEffects": {
       "morale": -6
     },
-    "failMessage": "Nic. Droga daje i droga bierze — dziś tylko brała."
+    "failMessage": "Nic. Droga daje i droga bierze — dziś tylko brała.",
+    "lowMoraleFailMessage": "Pusta ziemia, jałowe kroki. Twój skarb okazał się zwykłym kamieniem polnym. Paranoja zatacza coraz szersze kręgi."
   },
   {
     "id": "draw_map_in_dirt",
     "label": "Narysuj mapę drogi patykiem w ziemi",
+    "lowMoraleLabel": "Ryć bez opamiętania plątaninę linii w brudnym mule",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -286,14 +341,17 @@
       "energy": 5
     },
     "successMessage": "Wizualizacja pomogła. Kraków nie był już abstrakcją — był punktem na twojej mapie.",
+    "lowMoraleSuccessMessage": "Ucieczka od potępionej, chaotycznej drogi w gmatwaninę twoich własnych kresek i kłamstw przyniosła ułudę sensu.",
     "failEffects": {
       "morale": -12
     },
-    "failMessage": "Mapa nie zgadzała się z rzeczywistością. Albo rzeczywistość z mapą. Jedno pewne: jesteś dalej niż myślałeś."
+    "failMessage": "Mapa nie zgadzała się z rzeczywistością. Albo rzeczywistość z mapą. Jedno pewne: jesteś dalej niż myślałeś.",
+    "lowMoraleFailMessage": "Zniszczyłeś patyk i rozmazałeś linie uderzeniami pięści. Obleśny rysunek tylko dowiódł twojego zagubienia."
   },
   {
     "id": "help_lost_traveler",
     "label": "Pomóż zagubionemu podróżnemu znaleźć drogę",
+    "lowMoraleLabel": "Bełkocz z irytacją do przerażonego intruza na szlaku",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "morale",
@@ -305,14 +363,17 @@
       "GRAPES": 1
     },
     "successMessage": "Wskazałeś kierunek. Uśmiechnął się i podzielił owocami. Drobne dobro — realne.",
+    "lowMoraleSuccessMessage": "Pozbyłeś się go jak najszybciej, wrzeszcząc błędne kierunki. Było ci obojętne, czy ucieknie by zginąć czy by przeżyć.",
     "failEffects": {
       "morale": -15
     },
-    "failMessage": "Sam się zgubiłeś próbując mu pomóc. Dobra wola — złe efekty."
+    "failMessage": "Sam się zgubiłeś próbując mu pomóc. Dobra wola — złe efekty.",
+    "lowMoraleFailMessage": "Wyżyłeś się na nim. Przeklinałeś go za naiwność, aż uciekł przerażony, utwierdzając cię w nienawiści."
   },
   {
     "id": "watch_birds_fly",
     "label": "Patrz na klucz ptaków lecących na zachód",
+    "lowMoraleLabel": "Obserwuj bezwiednie martwe obiekty przemierzające gnijące niebo",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -320,14 +381,17 @@
       "energy": 6
     },
     "successMessage": "Leciały w tym samym kierunku co ty. Też do domu, może. Albo po prostu dalej.",
+    "lowMoraleSuccessMessage": "Zazdrościłeś, że potrafią zostawić ten brud i zepsucie z tyłu. One odlecą, ty najprawdopodobniej doczekasz tu zimy pod ziemią.",
     "failEffects": {
       "morale": -8
     },
-    "failMessage": "Ptaki leciały na wschód. Jakby uciekały od tego co czeka na zachodzie."
+    "failMessage": "Ptaki leciały na wschód. Jakby uciekały od tego co czeka na zachodzie.",
+    "lowMoraleFailMessage": "One widziały to, co przed tobą. Wszelkie złudzenia posypały się jak zgasłe słońce, zostawiając cię pustym."
   },
   {
     "id": "promise_to_god",
     "label": "Złóż ślubowanie Bogu jeśli dotrze",
+    "lowMoraleLabel": "Prowokuj milczące, bezlitosne niebiosa w amoku",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -335,14 +399,17 @@
       "health": 5
     },
     "successMessage": "Słowa wyszły same. Nie wiesz czy ktoś słuchał — ale ty słyszałeś siebie. I to pomogło.",
+    "lowMoraleSuccessMessage": "Plułeś słowami pełnymi pogardy. Żądałeś umowy z uporem człowieka na szafocie, wiedząc, że umowa ta nigdy nie istniała.",
     "failEffects": {
       "morale": -20
     },
-    "failMessage": "Słowa ugrzęzły w gardle. Może zbyt wiele już obiecałeś — i nie dotrzymałeś."
+    "failMessage": "Słowa ugrzęzły w gardle. Może zbyt wiele już obiecałeś — i nie dotrzymałeś.",
+    "lowMoraleFailMessage": "Urwałeś, przeklinając bluźnierstwami pojęcie łaski, które cię opuściło."
   },
   {
     "id": "count_steps_to_krakow",
     "label": "Oblicz ile kroków jeszcze do Krakowa",
+    "lowMoraleLabel": "Męcz umysł nieludzkimi liczbami dla chwili bezsensownego torturowania się",
     "timeCost": 1,
     "category": "morale",
     "effects": {
@@ -350,9 +417,11 @@
       "energy": 10
     },
     "successMessage": "Liczby były przerażające. Ale konkretne. Wolisz wiedzieć niż nie wiedzieć.",
+    "lowMoraleSuccessMessage": "Liczby przytłaczały swym ciężarem. Były to cyfry więźnia kreślącego mury skazania, dające pusty dowód nieuniknionego zgonu.",
     "failEffects": {
       "morale": -18
     },
-    "failMessage": "Liczby były zbyt przerażające. Przestałeś liczyć w połowie — i to była gorsza połowa."
+    "failMessage": "Liczby były zbyt przerażające. Przestałeś liczyć w połowie — i to była gorsza połowa.",
+    "lowMoraleFailMessage": "Wrzask i chaos. Rozum odrzucił tę torturę, zmuszając cię do padnięcia w ziemię z paniki, nim policzysz jeszcze kilometr."
   }
 ]

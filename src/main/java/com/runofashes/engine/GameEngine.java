@@ -13,6 +13,7 @@ public class GameEngine {
 
     private Player player = new Player();
     private int turnCount = 0;
+    private double mainQuestWeight = 1; // Waga tylko dla questów fabularnych
 
     private final Map<String, QuestState> activeQuests    = new LinkedHashMap<>();
     private final Set<String>             completedQuests = new HashSet<>();
@@ -59,9 +60,12 @@ public class GameEngine {
         energyEvents    = EventLoader.loadEvents("events_energy.json");
         moraleEvents    = EventLoader.loadEvents("events_morale.json");
         moveEvents      = EventLoader.loadEvents("events_move.json");
-        questEvents     = EventLoader.loadEvents("events_quests.json");
         rareEvents      = EventLoader.loadEvents("events_rare.json");
         endings         = EventLoader.loadEndings();
+
+        questEvents = new ArrayList<>(EventLoader.loadEvents("events_quests.json"));
+        List<GameEvent> stageQuests = EventLoader.loadEvents("events_stages_quests.json");
+        questEvents.addAll(stageQuests);
 
         questEventMap = new HashMap<>();
         for (GameEvent e : questEvents) {
@@ -119,27 +123,40 @@ public class GameEngine {
             return;
         }
 
+        if (event.getQuestId() != null && event.getQuestStage() == 1 && event.getRequiredStage() != null) {
+            mainQuestWeight = 5;
+        }
+
         EventResult result = resolveResult(event);
 
-        //bez tego switch(lastResult) zawsze używał wyniku z poprzedniej tury
         lastResult = result;
+        boolean isDepressed = player.getMorale() < 30;
 
         switch (lastResult) {
             case SUCCESS -> {
                 applyEffects(applyHallucinations(event.getEffects()));
                 processItemEffects(event.getItemEffects(), false);
-                lastMessage = event.getSuccessMessage() != null ? event.getSuccessMessage() : "";
+                String msg = (isDepressed && event.getLowMoraleSuccessMessage() != null)
+                        ? event.getLowMoraleSuccessMessage()
+                        : event.getSuccessMessage();
+                lastMessage = msg != null ? msg : "";
+
                 handleQuestProgress(event);
             }
             case PARTIAL -> {
                 applyEffectsPartial(applyHallucinations(event.getEffects()));
                 processItemEffects(event.getItemEffects(), true);
-                lastMessage = "Nie poszło idealnie — efekt był słabszy niż oczekiwałeś.";
+                lastMessage = isDepressed
+                        ? "Nawet gdy coś się udaje, smakuje to jak porażka."
+                        : "Nie poszło idealnie — efekt był słabszy niż oczekiwałeś.";
                 handleQuestProgress(event);
             }
             case FAIL -> {
                 applyEffects(event.getFailEffects());
-                lastMessage = event.getFailMessage() != null ? event.getFailMessage() : "";
+                String msg = (isDepressed && event.getLowMoraleFailMessage() != null)
+                        ? event.getLowMoraleFailMessage()
+                        : event.getFailMessage();
+                lastMessage = msg != null ? msg : "";
                 if (event.getQuestId() != null && event.getTurnsUntilNext() == 0) {
                     activeQuests.remove(event.getQuestId());
                     completedQuests.add(event.getQuestId());
@@ -169,6 +186,7 @@ public class GameEngine {
         traitManager.tick(player, difficulty);
         player.addTime(timeCost);
         turnCount++;
+        mainQuestWeight += 0.5;
         tickQuests();
         tickWeather();
         checkBiomeChange();
@@ -257,6 +275,14 @@ public class GameEngine {
             case "morale"    -> "😊";
             default          -> stat;
         };
+    }
+
+    /** Zwraca nazwę głównego etapu podróży w zależności od przebytych kilometrów. */
+    public String getCurrentStageName() {
+        int d = player.getDistance();
+        if (d > 2600) return "Azja Mniejsza";
+        if (d > 1400) return "Góry";
+        return "Europa";
     }
 
     // Metoda do obsługi halucynacji
@@ -403,7 +429,23 @@ public class GameEngine {
         List<GameEvent> availableNewQuests = getAvailableNewQuests();
 
         List<GameEvent> pool = buildWeightedPool(currentHour);
-        addWeighted(pool, availableNewQuests, 6);
+
+        // --- Podział na questy główne i poboczne ---
+        List<GameEvent> mainQuests = new ArrayList<>();
+        List<GameEvent> sideQuests = new ArrayList<>();
+        String currentStage = getCurrentStageName();
+
+        for (GameEvent eq : availableNewQuests) {
+            if (eq.getRequiredStage() != null) {
+                if (eq.getRequiredStage().equals(currentStage)) {
+                    mainQuests.add(eq);
+                }
+            } else {
+                sideQuests.add(eq);
+            }
+        }
+        addWeighted(pool, sideQuests, 6);
+        addWeighted(pool, mainQuests, (int)mainQuestWeight);
 
         Collections.shuffle(pool, RNG);
 

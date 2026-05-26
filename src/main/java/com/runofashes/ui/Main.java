@@ -228,13 +228,43 @@ public class Main extends Application {
         boolean rare    = event.isHiddenEffects();
         boolean isQuest = event.getQuestId() != null;
 
-        String bg   = isWait ? "#1a1a0e" : rare ? "#2c1a0e" : isQuest ? "#1a2e1a" : "#16213e";
-        String bgHo = isWait ? "#2a2a18" : rare ? "#4a2a10" : isQuest ? "#1f3d1f" : "#1a2a50";
-        String fg   = isWait ? "#f0c040" : rare ? "#ffaa44" : "#eee";
+        boolean isMainQuest = isQuest && (event.getRequiredStage() != null ||
+                event.getQuestId().startsWith("am_") ||
+                event.getQuestId().startsWith("gory_") ||
+                event.getQuestId().startsWith("eu_"));
+
+        String bg, bgHo, badgeText, badgeColor;
+
+        // --- Kolory tła i etykiet ---
+        if (isWait) {
+            bg = "#1a1a0e"; bgHo = "#2a2a18";
+            badgeText = "⏳ przeczekanie"; badgeColor = "#f0c040";
+        } else if (isMainQuest) {
+            bg = "#2a1515"; bgHo = "#3d1e1e";
+            badgeText = event.getQuestStage() > 1 ? "🚩 kontynuacja wątku" : "🚩 główny wątek";
+            badgeColor = "#e74c3c";
+        } else if (isQuest) {
+            bg = "#1a2e1a"; bgHo = "#1f3d1f";
+            badgeText = event.getQuestStage() > 1 ? "📜 kontynuacja poboczna" : "📜 zadanie poboczne";
+            badgeColor = "#8bc48b";
+        } else if (rare) {
+            bg = "#2c1a0e"; bgHo = "#4a2a10";
+            badgeText = "✨ niezwykłe spotkanie"; badgeColor = "#ffaa44";
+        } else {
+            bg = "#16213e"; bgHo = "#1a2a50";
+            badgeText = ""; badgeColor = "";
+        }
+
+        String fg = isWait ? "#f0c040" : rare ? "#ffaa44" : "#eee";
+
+        boolean isDepressed = engine.getPlayer().getMorale() < 30;
+        String displayedLabel = (isDepressed && event.getLowMoraleLabel() != null)
+                ? event.getLowMoraleLabel()
+                : event.getLabel();
 
         card.setStyle("-fx-background-color: " + bg + "; -fx-background-radius: 8; -fx-cursor: hand;");
 
-        Label lbl = new Label(event.getLabel());
+        Label lbl = new Label(displayedLabel);
         lbl.setWrapText(true);
         lbl.setStyle("-fx-text-fill: " + fg + "; -fx-font-size: 14px;");
         lbl.setMaxWidth(Double.MAX_VALUE);
@@ -249,20 +279,13 @@ public class Main extends Application {
         Label metaLbl = new Label("⏱ " + event.getTimeCost() + "h" + distText);
         metaLbl.setStyle("-fx-text-fill: #666; -fx-font-size: 12px;");
 
-        if (isWait) {
-            Label badge = new Label("⏳ przeczekanie");
-            badge.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 12px;");
-            card.getChildren().addAll(lbl, fxLabel, metaLbl, badge);
-        } else if (isQuest && event.getQuestStage() > 1) {
-            Label badge = new Label("📜 kontynuacja questa");
-            badge.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 12px;");
-            card.getChildren().addAll(lbl, fxLabel, metaLbl, badge);
-        } else if (isQuest) {
-            Label badge = new Label("📜 quest");
-            badge.setStyle("-fx-text-fill: #8bc48b; -fx-font-size: 12px;");
-            card.getChildren().addAll(lbl, fxLabel, metaLbl, badge);
-        } else {
-            card.getChildren().addAll(lbl, fxLabel, metaLbl);
+        // Dodawanie podstawowych elementów
+        card.getChildren().addAll(lbl, fxLabel, metaLbl);
+
+        if (!badgeText.isEmpty()) {
+            Label badge = new Label(badgeText);
+            badge.setStyle("-fx-text-fill: " + badgeColor + "; -fx-font-size: 12px;");
+            card.getChildren().add(badge);
         }
 
         if (event.getDistanceCost() > 0 && engine.hasActiveLocalQuests(event.getQuestId())) {
@@ -271,6 +294,7 @@ public class Main extends Application {
             card.getChildren().add(warnLbl);
         }
 
+        // Efekty najechania myszką
         card.setOnMouseEntered(e -> card.setStyle(card.getStyle().replace(bg, bgHo)));
         card.setOnMouseExited(e  -> card.setStyle(card.getStyle().replace(bgHo, bg)));
         card.setOnMouseClicked(e -> onCardClicked(event));
@@ -392,8 +416,13 @@ public class Main extends Application {
                     + " — " + triggered.getDescription());
         }
 
+        // AKTUALIZACJA PANELU ŚRODOWISKA
         Biome currentBiome = engine.getCurrentBiome();
         Weather currentWeather = engine.getCurrentWeather();
+        String currentStage = engine.getCurrentStageName();
+
+        biomeTitleLabel.setText("🚩 " + currentStage.toUpperCase()
+                + "   |   " + currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase()  + "   |   " + currentWeather.getEmoji() + " " + currentWeather.getLabel().toUpperCase());
 
         biomeTitleLabel.setText(currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase());
         biomeDescLabel.setText(currentBiome.getEntryMessage());

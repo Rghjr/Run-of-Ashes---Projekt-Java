@@ -8,19 +8,25 @@ public class GameEvent {
     private String label;
     private int timeCost     = 1;
     private int distanceCost = 0;
+    private String requiredStage;
 
     private Map<String, Integer> effects;
-    private String successMessage;
     private Map<String, Integer> itemEffects;
 
     private double failChance = 0.0;
     private Map<String, Integer> failEffects;
-    private String failMessage;
 
     private String questId;
     private int questStage;
     private int turnsUntilNext;
     private boolean localQuest;
+
+    private String successMessage;
+    private String failMessage;
+
+    private String lowMoraleLabel;
+    private String lowMoraleSuccessMessage;
+    private String lowMoraleFailMessage;
 
     /**
      * Jeśli true, w trakcie oczekiwania na kolejny etap questa pojawia się
@@ -42,6 +48,7 @@ public class GameEvent {
     public int getTimeCost()                     { return timeCost; }
     public int getDistanceCost()                 { return distanceCost; }
     public String getCategory()                  { return category; }
+    public String getRequiredStage()             { return requiredStage; }
 
     public Map<String, Integer> getEffects()     { return effects; }
     public String getSuccessMessage()            { return successMessage; }
@@ -59,6 +66,10 @@ public class GameEvent {
 
     public boolean isHiddenEffects()             { return hiddenEffects; }
     public String getRevealMessage()             { return revealMessage; }
+
+    public String getLowMoraleLabel()           { return lowMoraleLabel; }
+    public String getLowMoraleSuccessMessage()  { return lowMoraleSuccessMessage; }
+    public String getLowMoraleFailMessage()     { return lowMoraleFailMessage; }
 
     public boolean isAvailableAt(int hour) {
         if (minHour <= maxHour) return hour >= minHour && hour <= maxHour;
@@ -85,4 +96,6 @@ public class GameEvent {
             default          -> stat;
         };
     }
+
+
 }

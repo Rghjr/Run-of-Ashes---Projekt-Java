@@ -83,7 +83,7 @@ public class GameHUD extends VBox {
         timeLabel.setText(p.getTimeFormatted());
         distanceLabel.setText(p.getDistance() + " km do Krakowa");
 
-        biomeLabel.setText(engine.getCurrentBiome().getEmoji() + " " + engine.getCurrentBiome().getLabel());
+        biomeLabel.setText("🚩 " + engine.getCurrentStageName() + "  |  "  + engine.getCurrentBiome().getEmoji() + " " + engine.getCurrentBiome().getLabel());
         weatherLabel.setText(engine.getCurrentWeather().getEmoji() + " " + engine.getCurrentWeather().getLabel());
 
         Difficulty diff = engine.getDifficulty();

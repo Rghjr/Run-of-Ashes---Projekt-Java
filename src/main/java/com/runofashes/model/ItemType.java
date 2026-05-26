@@ -75,6 +75,47 @@ public enum ItemType {
             Map.of("hunger", 6),
             Map.of("health", 4),
             1
+    ),
+    // --- UNIKALNE PRZEDMIOTY ---
+    MYSTERIOUS_VIAL(
+            "Tajemnicza fiolka",
+            "🧪",
+            1,
+            Map.of("health", 40, "morale", -15),
+            null,
+            0
+    ),
+    HERMIT_BREW(
+            "Wywar pustelnika",
+            "🍵",
+            1,
+            Map.of("energy", 35, "hydration", -20),
+            null,
+            0
+    ),
+    GLOWING_ORE(
+            "Świecąca ruda",
+            "🔮",
+            1,
+            Map.of("energy", 25, "health", -10, "morale", -10),
+            null,
+            0
+    ),
+    STRANGE_FUNGUS(
+            "Dziwny grzyb",
+            "🍄",
+            1,
+            Map.of("hunger", 30, "health", -15),
+            Map.of("health", -5),
+            2
+    ),
+    MILITARY_STIMPACK(
+            "Stymulant bojowy",
+            "💉",
+            1,
+            Map.of("energy", 50, "morale", 30, "health", -20),
+            null,
+            0
     );
 
     // ── Pola ──────────────────────────────────────────────────────────────────
