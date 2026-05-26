@@ -259,6 +259,14 @@ public class GameEngine {
         };
     }
 
+    /** Zwraca nazwę głównego etapu podróży w zależności od przebytych kilometrów. */
+    public String getCurrentStageName() {
+        int d = player.getDistance();
+        if (d > 2200) return "Azja Mniejsza";
+        if (d > 1400) return "Góry";
+        return "Europa";
+    }
+
     // Metoda do obsługi halucynacji
     private Map<String, Integer> applyHallucinations(Map<String, Integer> fx) {
         if (fx == null || !statusManager.hasHallucinations()) return fx;

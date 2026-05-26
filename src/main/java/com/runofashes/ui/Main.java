@@ -392,8 +392,13 @@ public class Main extends Application {
                     + " — " + triggered.getDescription());
         }
 
+        // AKTUALIZACJA PANELU ŚRODOWISKA
         Biome currentBiome = engine.getCurrentBiome();
         Weather currentWeather = engine.getCurrentWeather();
+        String currentStage = engine.getCurrentStageName();
+
+        biomeTitleLabel.setText("🚩 " + currentStage.toUpperCase()
+                + "   |   " + currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase()  + "   |   " + currentWeather.getEmoji() + " " + currentWeather.getLabel().toUpperCase());
 
         biomeTitleLabel.setText(currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase());
         biomeDescLabel.setText(currentBiome.getEntryMessage());
