@@ -1,6 +1,7 @@
 package com.runofashes;
 
 import com.runofashes.engine.StatusManager;
+import com.runofashes.model.Difficulty;
 import com.runofashes.model.Player;
 import com.runofashes.model.StatusEffect;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,10 +26,10 @@ public class StatusManagerTest {
         manager.addDelayedEffect(Map.of("energy", 20), 5, 2);
         player.setEnergy(50);
 
-        manager.tick(player, 6);
+        manager.tick(player, 6, Difficulty.NORMAL);
         assertEquals(50, player.getEnergy(), "Energia nie powinna wzrosnąć przed czasem");
 
-        manager.tick(player, 7);
+        manager.tick(player, 7, Difficulty.NORMAL);
         assertEquals(70, player.getEnergy(), "Energia powinna wzrosnąć o 20 w docelowej turze");
     }
 
@@ -51,7 +52,7 @@ public class StatusManagerTest {
         manager.activate(StatusEffect.FEVER);
         player.setHealth(100);
 
-        manager.tick(player, 1);
+        manager.tick(player, 1, Difficulty.NORMAL);
 
         // FEVER: -8 health, -5 energy, -3 morale per tura
         int expectedHealth = 100 + StatusEffect.FEVER.getPerTurnEffects().getOrDefault("health", 0);

@@ -1,5 +1,6 @@
 package com.runofashes.engine;
 
+import com.runofashes.model.Difficulty;
 import com.runofashes.model.Player;
 import com.runofashes.model.Trait;
 
@@ -39,10 +40,17 @@ public class TraitManager {
      * Tick per-turowych modyfikatorów statów.
      * Wywołać po executeEvent(), razem z StatusManager.tick().
      */
-    public void tick(Player player) {
+    public void tick(Player player, Difficulty difficulty) {
         for (Trait t : activeTraits) {
-            t.getPerTurnMods().forEach(player::modifyStat);
+            t.getPerTurnMods().forEach((stat, delta) -> applyStat(player, stat, delta, difficulty));
         }
+    }
+
+    private void applyStat(Player player, String stat, int delta, Difficulty difficulty) {
+        if (delta < 0 && (stat.equals("hunger") || stat.equals("hydration"))) {
+            delta = (int) Math.round(delta * difficulty.getDrainMultiplier());
+        }
+        player.modifyStat(stat, delta);
     }
 
     /**

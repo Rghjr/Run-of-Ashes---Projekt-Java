@@ -1,5 +1,6 @@
 package com.runofashes.engine;
 
+import com.runofashes.model.Difficulty;
 import com.runofashes.model.Player;
 import com.runofashes.model.StatusEffect;
 
@@ -17,12 +18,12 @@ public class StatusManager {
 
     // ── Publiczne API ─────────────────────────────────────────────────────────
 
-    public void tick(Player player, int currentTurn) {
+    public void tick(Player player, int currentTurn, Difficulty difficulty) {
         // Statusy per-tura
         Iterator<Map.Entry<StatusEffect, Integer>> it = activeStatuses.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<StatusEffect, Integer> entry = it.next();
-            applyEffects(player, entry.getKey().getPerTurnEffects());
+            applyEffects(player, entry.getKey().getPerTurnEffects(), difficulty);
             int remaining = entry.getValue() - 1;
             if (remaining <= 0) it.remove();
             else entry.setValue(remaining);
@@ -30,7 +31,7 @@ public class StatusManager {
 
         // Opóźnione efekty itemów
         Map<String, Integer> due = delayedEffects.remove(currentTurn);
-        if (due != null) applyEffects(player, due);
+        if (due != null) applyEffects(player, due, difficulty);
     }
 
     public boolean rollTriggers(Player player) {
@@ -88,9 +89,14 @@ public class StatusManager {
         return ratio * 0.40;
     }
 
-    private void applyEffects(Player player, Map<String, Integer> effects) {
+    private void applyEffects(Player player, Map<String, Integer> effects, Difficulty difficulty) {
         if (effects != null) {
-            effects.forEach(player::modifyStat);
+            effects.forEach((stat, delta) -> {
+                if (delta < 0 && (stat.equals("hunger") || stat.equals("hydration"))) {
+                    delta = (int) Math.round(delta * difficulty.getDrainMultiplier());
+                }
+                player.modifyStat(stat, delta);
+            });
         }
     }
 }

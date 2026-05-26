@@ -1,16 +1,14 @@
 package com.runofashes.ui;
 
 import com.runofashes.engine.GameEngine;
-import com.runofashes.model.Difficulty;
-import com.runofashes.model.GameEvent;
-import com.runofashes.model.StatusEffect;
-import com.runofashes.model.Trait;
+import com.runofashes.model.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -42,6 +40,13 @@ public class Main extends Application {
     private GameHUD hud;
     private QuestPanel questPanel;
     private InventoryPanel inventoryPanel;
+    private VBox activeStatusesBox;
+
+    private VBox biomeInfoPanel;
+    private Label biomeTitleLabel;
+    private Label biomeDescLabel;
+    private Label biomeEffectsLabel;
+
     private Label messageLabel;
     private final List<VBox> cardSlots = new ArrayList<>();
 
@@ -54,11 +59,14 @@ public class Main extends Application {
         endRoot  = buildEndScreen();
         winRoot  = buildWinScreen();
 
-        // mainScene musi istnieć PRZED showDifficultyScreen() — tworzymy Scene tu wprost
         difficultyScreen = new DifficultyScreen(this::onDifficultyConfirmed);
-        mainScene = new Scene(difficultyScreen, 960, 860);
+        mainScene = new Scene(difficultyScreen, 980, 860);
 
         stage.setTitle("Run of Ashes");
+
+        stage.setMinWidth(980);
+        stage.setMinHeight(750);
+
         stage.setScene(mainScene);
         stage.show();
     }
@@ -87,7 +95,6 @@ public class Main extends Application {
         engine.configure(diff, traits);
         engine.reset();
         refreshAll();
-        primaryStage.setWidth(920);
         mainScene.setRoot(gameRoot);
     }
 
@@ -129,7 +136,24 @@ public class Main extends Application {
         inventoryPanel = new InventoryPanel(engine, this::refreshAll);
         questPanel = new QuestPanel(engine);
 
-        StackPane rightContent = new StackPane(questPanel, inventoryPanel);
+        ScrollPane invScroll = new ScrollPane(inventoryPanel);
+        invScroll.setFitToWidth(true);
+        invScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        invScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        invScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; -fx-viewport-background-color: transparent; -fx-border-color: transparent;");
+
+        ScrollPane questScroll = new ScrollPane(questPanel);
+        questScroll.setFitToWidth(true);
+        questScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        questScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        questScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; -fx-viewport-background-color: transparent; -fx-border-color: transparent;");
+
+        StackPane rightContent = new StackPane(questScroll, invScroll);
+
+        VBox.setVgrow(rightContent, Priority.ALWAYS);
+
+        invScroll.setVisible(true);
+        questScroll.setVisible(false);
 
         Button btnInv   = new Button("🎒 Ekwipunek");
         Button btnQuest = new Button("📜 Questy");
@@ -142,15 +166,58 @@ public class Main extends Application {
         btnInv.setStyle(btnActive);
         btnQuest.setStyle(btnInactive);
 
-        btnInv.setOnAction(e -> { inventoryPanel.toFront(); btnInv.setStyle(btnActive); btnQuest.setStyle(btnInactive); });
-        btnQuest.setOnAction(e -> { questPanel.toFront(); btnQuest.setStyle(btnActive); btnInv.setStyle(btnInactive); });
+        btnInv.setOnAction(e -> {
+            invScroll.setVisible(true);
+            questScroll.setVisible(false);
+            btnInv.setStyle(btnActive);
+            btnQuest.setStyle(btnInactive);
+        });
 
+        btnQuest.setOnAction(e -> {
+            questScroll.setVisible(true);
+            invScroll.setVisible(false);
+            btnQuest.setStyle(btnActive);
+            btnInv.setStyle(btnInactive);
+        });
         HBox tabButtons = new HBox(4, btnInv, btnQuest);
-        VBox rightSide  = new VBox(8, tabButtons, rightContent);
+
+        biomeTitleLabel = new Label();
+        biomeTitleLabel.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 14px; -fx-font-weight: bold;");
+
+        biomeDescLabel = new Label();
+        biomeDescLabel.setWrapText(true);
+        biomeDescLabel.setStyle("-fx-text-fill: #999; -fx-font-size: 12px; -fx-font-style: italic;");
+
+        biomeEffectsLabel = new Label();
+        biomeEffectsLabel.setWrapText(true);
+        biomeEffectsLabel.setStyle("-fx-text-fill: #ccc; -fx-font-size: 13px; -fx-line-spacing: 5px;"); // line-spacing daje oddech między linijkami
+
+        biomeInfoPanel = new VBox(8, biomeTitleLabel, biomeDescLabel, biomeEffectsLabel);
+        biomeInfoPanel.setStyle("""
+            -fx-background-color: #151522;
+            -fx-padding: 16;
+            -fx-background-radius: 8;
+            -fx-border-color: #2a2a3a;
+            -fx-border-radius: 8;
+            -fx-border-width: 1;
+            -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 4);
+        """);
+
+        VBox.setVgrow(rightContent, Priority.ALWAYS);
+
+        activeStatusesBox = new VBox(6);
+        activeStatusesBox.setPadding(new Insets(12, 0, 0, 0));
+        activeStatusesBox.setMinHeight(80);
+
+        VBox rightSide = new VBox(8, biomeInfoPanel, tabButtons, rightContent, activeStatusesBox);
 
         HBox mainLayout = new HBox(12, gameContentVBox, rightSide);
         mainLayout.setPadding(new Insets(18));
         mainLayout.setStyle("-fx-background-color: #0d0d1a;");
+
+        gameContentVBox.prefWidthProperty().bind(mainLayout.widthProperty().multiply(0.7).subtract(24));
+        rightSide.prefWidthProperty().bind(mainLayout.widthProperty().multiply(0.3).subtract(24));
+
         return mainLayout;
     }
 
@@ -323,6 +390,40 @@ public class Main extends Application {
             messageLabel.setText(messageLabel.getText()
                     + "\n" + triggered.getEmoji() + " Nowy status: " + triggered.getLabel()
                     + " — " + triggered.getDescription());
+        }
+
+        Biome currentBiome = engine.getCurrentBiome();
+        Weather currentWeather = engine.getCurrentWeather();
+
+        biomeTitleLabel.setText(currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase());
+        biomeDescLabel.setText(currentBiome.getEntryMessage());
+        biomeEffectsLabel.setText(engine.buildBiomeInfo(currentBiome));
+
+        activeStatusesBox.getChildren().clear();
+        Label statusTitle = new Label("✦ Aktywne statusy");
+        statusTitle.setStyle("-fx-text-fill: #9ab; -fx-font-size: 14px;");
+        activeStatusesBox.getChildren().add(statusTitle);
+
+        var statuses = engine.getStatusManager().getActiveStatuses();
+        if (statuses.isEmpty()) {
+            Label empty = new Label("Brak aktywnych statusów.");
+            empty.setStyle("-fx-text-fill: #555; -fx-font-style: italic; -fx-font-size: 13px;");
+            activeStatusesBox.getChildren().add(empty);
+        } else {
+            statuses.forEach((status, turns) -> {
+                VBox statusBox = new VBox(2);
+
+                String t = turns == 1 ? "tura" : (turns < 5 ? "tury" : "tur");
+                Label nameLbl = new Label(status.getEmoji() + " " + status.getLabel() + " (" + turns + " " + t + ")");
+                nameLbl.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 13px;");
+
+                Label descLbl = new Label(status.getDescription());
+                descLbl.setStyle("-fx-text-fill: #aaa; -fx-font-size: 11px;");
+                descLbl.setWrapText(true);
+
+                statusBox.getChildren().addAll(nameLbl, descLbl);
+                activeStatusesBox.getChildren().add(statusBox);
+            });
         }
     }
 

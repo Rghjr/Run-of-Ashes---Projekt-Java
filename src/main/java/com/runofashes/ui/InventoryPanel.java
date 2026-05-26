@@ -31,17 +31,12 @@ public class InventoryPanel extends VBox {
         setStyle("-fx-background-color: #111122; -fx-background-radius: 8;");
         setPadding(new Insets(14));
         setSpacing(14);
-        setMinWidth(260);
-        setMaxWidth(260);
 
         Label title = new Label("⚙  Ekwipunek");
         title.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 15px;");
         title.setFont(Font.font("Georgia", 15));
 
-        Label statusTitle = new Label("✦  Aktywne statusy");
-        statusTitle.setStyle("-fx-text-fill: #aaa; -fx-font-size: 13px;");
-
-        getChildren().addAll(title, itemList, separator(), statusTitle, statusList);
+        getChildren().addAll(title, itemList);
         refresh();
     }
 
