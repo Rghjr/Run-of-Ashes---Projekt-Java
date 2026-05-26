@@ -2,74 +2,92 @@
   {
     "id": "rare_plague_doctor",
     "label": "??? Spotkaj doktora dżumy na opustoszałej drodze",
+    "lowMoraleLabel": "Wpatruj się z apatią w przerażającą maskę doktora dżumy",
     "timeCost": 2,
     "category": "rare",
     "hiddenEffects": true,
     "revealMessage": "Maska z ptasim dziobem. Oczy zimne i zmęczone. Obejrzał cię i milczał długo. 'Idź dalej' — powiedział. 'I nie dotykaj nikogo.'",
+    "lowMoraleSuccessMessage": "Zostawił ci trochę medykamentów. Wziąłeś je mechanicznie. Nawet nie wiesz po co, skoro i tak wszyscy zaraz dołączycie do martwych.",
     "effects": { "health": 18, "morale": 20, "energy": 10 },
     "itemEffects": { "HERBS": 2, "BANDAGE": 1 },
     "failEffects": { "health": -40, "morale": -35 },
-    "failMessage": "Doktor był chory. Sam zarażony. Uciekłeś — ale czy wystarczająco daleko?"
+    "failMessage": "Doktor był chory. Sam zarażony. Uciekłeś — ale czy wystarczająco daleko?",
+    "lowMoraleFailMessage": "Oczywiście, że sam był chory. Nawet ci, którzy mieli leczyć, są już po prostu trupami w śmiesznych maskach."
   },
   {
     "id": "rare_dying_monk",
     "label": "??? Zatrzymaj się przy umierającym mnichu",
+    "lowMoraleLabel": "Patrz tępym wzrokiem na konającego przy drodze mnicha",
     "timeCost": 1,
     "category": "rare",
     "hiddenEffects": true,
     "revealMessage": "Powiedział ci coś o skrócie przez Karpaty. Potem zamknął oczy. Zapamiętałeś każde słowo.",
+    "lowMoraleSuccessMessage": "Szeptał coś o skrótach, a ty zabrałeś jego rzeczy. Umarł, zanim zniknąłeś mu z oczu. W tym świecie nie ma miejsca na godną śmierć.",
     "effects": { "morale": 25, "energy": 15 },
     "itemEffects": { "TALLOW_CANDLE": 1, "HERBS": 1 },
     "failEffects": { "health": -35, "morale": -40 },
-    "failMessage": "Mnich nie mówił. Leżał w gorączce z czarnymi plamami. Wiedziałeś co to znaczy. Odszedłeś szybko."
+    "failMessage": "Mnich nie mówił. Leżał w gorączce z czarnymi plamami. Wiedziałeś co to znaczy. Odszedłeś szybko.",
+    "lowMoraleFailMessage": "Czarna śmierć już go wzięła. Zostawiłeś go z parszywym przekonaniem, że niedługo spotkacie się w piekle."
   },
   {
     "id": "rare_abandoned_cart",
     "label": "??? Zbadaj porzucony wóz pośrodku drogi",
+    "lowMoraleLabel": "Szabruj porzucony wóz jak zwykła hiena cmentarna",
     "timeCost": 1,
     "category": "rare",
     "hiddenEffects": true,
     "revealMessage": "Koce, prowiant, skóra do pisania, nóż. Właściciel nie wróci. Ty wziąłeś wszystko czego potrzebowałeś.",
+    "lowMoraleSuccessMessage": "Okradłeś wóz kogoś, kto już nie wróci. Kolejny gorzki dowód na to, że przeżycie wymaga odrzucenia resztek człowieczeństwa.",
     "effects": { "hunger": 25, "hydration": 15, "morale": 15, "energy": 10 },
     "itemEffects": { "DRIED_MEAT": 1, "WINE": 1, "WATER": 1 },
     "failEffects": { "health": -50, "morale": -35 },
-    "failMessage": "Wóz nie był pusty. Był zajęty przez kogoś umierającego. I przez to co go zabiło."
+    "failMessage": "Wóz nie był pusty. Był zajęty przez kogoś umierającego. I przez to co go zabiło.",
+    "lowMoraleFailMessage": "Zwłoki w środku cuchnęły dokładnie tak, jak twoja własna przyszłość. Uciekłeś, dławiąc się łzami bezsilności."
   },
   {
     "id": "rare_mongol_rider",
     "label": "??? Stój — jeździec na horyzoncie zmierza ku tobie",
+    "lowMoraleLabel": "Czekaj obojętnie na cios od pędzącego ku tobie jeźdźca",
     "timeCost": 1,
     "category": "rare",
     "hiddenEffects": true,
     "revealMessage": "Mongolski goniec. Spojrzał na ciebie bez wrogości. Rzucił worek i pojechał dalej. Może też uciekał.",
+    "lowMoraleSuccessMessage": "Zostawił ci worek ochłapów i odjechał. Nie zabił cię, bo uznał, że nie jesteś tego wart. Czułeś się jak najgorszy śmieć.",
     "effects": { "hunger": 30, "energy": 18, "morale": 28 },
     "itemEffects": { "DRIED_MEAT": 2, "SALT": 1 },
     "failEffects": { "health": -45, "hunger": -15, "morale": -40 },
-    "failMessage": "Nie był gońcem. Szabla była szybsza niż twoje nogi. Ledwo uciekłeś."
+    "failMessage": "Nie był gońcem. Szabla była szybsza niż twoje nogi. Ledwo uciekłeś.",
+    "lowMoraleFailMessage": "Cięcie było szybkie. Zwijając się z bólu, żałowałeś tylko, że uderzył za słabo, by zakończyć tę farsę."
   },
   {
     "id": "rare_wise_woman",
     "label": "??? Wejdź do chaty starej kobiety przy lesie",
+    "lowMoraleLabel": "Wlecz się do leśnej chaty, szukając jakiejkolwiek ułudy ratunku",
     "timeCost": 2,
     "category": "rare",
     "hiddenEffects": true,
     "revealMessage": "Znała zioła, których nazw nie znałeś. Naparzyła coś gorzkiego i dała zapasy na drogę. Rano byłeś innym człowiekiem.",
+    "lowMoraleSuccessMessage": "Jej wywary przywróciły siły ciału, ale w głowie wciąż miałeś tylko mrok. Uciekłeś stamtąd o świcie, nie dziękując.",
     "effects": { "health": 28, "energy": 25, "morale": 22, "hydration": 12 },
     "itemEffects": { "HERBS": 2, "BANDAGE": 1, "WATER": 1 },
     "failEffects": { "health": -35, "morale": -25, "energy": -20 },
-    "failMessage": "Cokolwiek dała ci do picia — nie było to lekarstwo. Albo nie dla ciebie."
+    "failMessage": "Cokolwiek dała ci do picia — nie było to lekarstwo. Albo nie dla ciebie.",
+    "lowMoraleFailMessage": "Trucizna. Rzygałeś krwią przed jej chatą, przeklinając własną, nieskończoną naiwność i łatwowierność."
   },
   {
     "id": "rare_ghost_village",
     "label": "??? Wejdź do kompletnie opustoszałej wsi",
+    "lowMoraleLabel": "Wejdź między martwe mury całkowicie wyludnionej wioski",
     "timeCost": 3,
     "distanceCost": 1,
     "category": "rare",
     "hiddenEffects": true,
     "revealMessage": "Domy stały otwarte. Gotowanie przerwane w pół kroku. Piwnice pełne. Ludzie zniknęli — nie umarli, po prostu odeszli. Wziąłeś tylko co niezbędne.",
+    "lowMoraleSuccessMessage": "Zabierałeś zapasy, słysząc własny oddech w upiornej ciszy. Byli martwi, a ty ogałacałeś ich cichy grobowiec.",
     "effects": { "hunger": 30, "hydration": 20, "morale": -10 },
     "itemEffects": { "DRIED_MEAT": 1, "GRAPES": 1, "TALLOW_CANDLE": 2, "WATER": 1 },
     "failEffects": { "health": -30, "morale": -45 },
-    "failMessage": "Wioska nie była pusta. Zaraza była — i ty wszedłeś w sam jej środek."
+    "failMessage": "Wioska nie była pusta. Zaraza była — i ty wszedłeś w sam jej środek.",
+    "lowMoraleFailMessage": "Oszukali cię zza grobu. Wszedłeś w sam środek wylęgarni zarazy, definitywnie przypieczętowując swój żałosny los."
   }
 ]

@@ -11,17 +11,22 @@ public class GameEvent {
     private String requiredStage;
 
     private Map<String, Integer> effects;
-    private String successMessage;
     private Map<String, Integer> itemEffects;
 
     private double failChance = 0.0;
     private Map<String, Integer> failEffects;
-    private String failMessage;
 
     private String questId;
     private int questStage;
     private int turnsUntilNext;
     private boolean localQuest;
+
+    private String successMessage;
+    private String failMessage;
+
+    private String lowMoraleLabel;
+    private String lowMoraleSuccessMessage;
+    private String lowMoraleFailMessage;
 
     /**
      * Jeśli true, w trakcie oczekiwania na kolejny etap questa pojawia się
@@ -61,6 +66,10 @@ public class GameEvent {
 
     public boolean isHiddenEffects()             { return hiddenEffects; }
     public String getRevealMessage()             { return revealMessage; }
+
+    public String getLowMoraleLabel()           { return lowMoraleLabel; }
+    public String getLowMoraleSuccessMessage()  { return lowMoraleSuccessMessage; }
+    public String getLowMoraleFailMessage()     { return lowMoraleFailMessage; }
 
     public boolean isAvailableAt(int hour) {
         if (minHour <= maxHour) return hour >= minHour && hour <= maxHour;

@@ -2,6 +2,7 @@
   {
     "id": "rest_roadside",
     "label": "Odpocznij przy przydrożnym kamieniu",
+    "lowMoraleLabel": "Upadnij z wyczerpania przy drodze",
     "timeCost": 2,
     "category": "energy",
     "effects": {
@@ -10,15 +11,18 @@
       "hydration": -4
     },
     "successMessage": "Zdjąłeś buty. Stopy podziękowały. Po godzinie byłeś gotowy znów.",
+    "lowMoraleSuccessMessage": "Nogi drżały. Kamień był zimny. Przymusiłeś się do wstania, byle tylko umrzeć trochę dalej.",
     "failEffects": {
       "energy": 8,
       "morale": -12
     },
-    "failMessage": "Nie mogłeś przestać myśleć. Odpoczynek ciała, nie ducha."
+    "failMessage": "Nie mogłeś przestać myśleć. Odpoczynek ciała, nie ducha.",
+    "lowMoraleFailMessage": "Kamień wydawał się lepszym miejscem na grób niż jakikolwiek cmentarz. Ciało nie chciało współpracować."
   },
   {
     "id": "sleep_inn",
     "label": "Śpij w karczmie na słomie",
+    "lowMoraleLabel": "Ukryj się przed światem w cuchnącej karczmie",
     "timeCost": 6,
     "minHour": 19,
     "maxHour": 4,
@@ -30,16 +34,19 @@
       "morale": 15
     },
     "successMessage": "Słoma była twarda i cuchnęła psem. Spałeś jak nieboszczyk — i obudziłeś się żywy.",
+    "lowMoraleSuccessMessage": "Smród stajni pasował do tego, kim się stałeś. Zyskałeś siły na kolejny dzień bezcelowego marszu.",
     "failEffects": {
       "energy": 18,
       "morale": -20,
       "health": -10
     },
-    "failMessage": "Karczma pełna kaszlu i gorączki. Uciekłeś przed świtem."
+    "failMessage": "Karczma pełna kaszlu i gorączki. Uciekłeś przed świtem.",
+    "lowMoraleFailMessage": "Rozpacz dookoła. Ktoś rzęził w kącie całą noc. Uciekłeś, ale kaszel wciąż dzwonił ci w uszach."
   },
   {
     "id": "sleep_monastery",
     "label": "Proś o nocleg w klasztorze",
+    "lowMoraleLabel": "Błagaj u wrót klasztoru o ratunek",
     "timeCost": 8,
     "minHour": 17,
     "maxHour": 4,
@@ -55,15 +62,18 @@
       "TALLOW_CANDLE": 1
     },
     "successMessage": "Mnisi dali ci celę, świecę i ciszę. Obudziłeś się o jutrzni — prawie człowiek.",
+    "lowMoraleSuccessMessage": "Cisza celi przypominała grobowiec. Zabrakło ci nawet sił na wdzięczność, gdy dali ci świecę.",
     "failEffects": {
       "energy": 20,
       "morale": -15
     },
-    "failMessage": "Klasztor nie przyjmował wędrowców. Zaraza zamknęła wiele bram."
+    "failMessage": "Klasztor nie przyjmował wędrowców. Zaraza zamknęła wiele bram.",
+    "lowMoraleFailMessage": "Odmówiono ci azylu. Nawet Bóg zatrzasnął przed tobą drzwi na cztery spusty."
   },
   {
     "id": "nap_tree",
     "label": "Zdrzemnij się pod drzewem",
+    "lowMoraleLabel": "Zwiń się w kłębek w cieniu uschłego drzewa",
     "timeCost": 1,
     "category": "energy",
     "effects": {
@@ -71,15 +81,18 @@
       "hunger": -4
     },
     "successMessage": "Krótko, ale głęboko. Obudziłeś się gdy słońce się przesunęło.",
+    "lowMoraleSuccessMessage": "Krótki sen przyniósł jedynie ucieczkę od jawy. Otwarcie oczu było prawdziwym cierpieniem.",
     "failEffects": {
       "energy": 4,
       "morale": -8
     },
-    "failMessage": "Sny nie dały spokoju. Twarze tych których zostawiłeś za sobą."
+    "failMessage": "Sny nie dały spokoju. Twarze tych których zostawiłeś za sobą.",
+    "lowMoraleFailMessage": "Umysł torturował cię wizjami. Drzewo stało się szubienicą dla twoich marzeń o powrocie."
   },
   {
     "id": "campfire_rest",
     "label": "Roznieć ognisko i odpoczywaj przy nim",
+    "lowMoraleLabel": "Wpatruj się pustym wzrokiem w marny ogień",
     "timeCost": 3,
     "category": "energy",
     "effects": {
@@ -92,15 +105,18 @@
       "TALLOW_CANDLE": 1
     },
     "successMessage": "Ogień trzaskał i dawał ciepło. Przy świetle znalazłeś starą świecę w torbie.",
+    "lowMoraleSuccessMessage": "Płomienie były słabe i wkrótce zgasną. Jak wszystko. Światło obnażyło tylko brud na twoich dłoniach.",
     "failEffects": {
       "energy": 8,
       "morale": -15
     },
-    "failMessage": "Drewno mokre od deszczu. Dym zamiast płomienia. Zimno zostało."
+    "failMessage": "Drewno mokre od deszczu. Dym zamiast płomienia. Zimno zostało.",
+    "lowMoraleFailMessage": "Nawet iskra się nie utrzymała. Dym szczypał w oczy, ale nie miałeś siły zapłakać z zimna."
   },
   {
     "id": "prayer_strength",
     "label": "Módl się o siłę do dalszej drogi",
+    "lowMoraleLabel": "Osuń się na kolana, błagając w ciszy o szybki koniec",
     "timeCost": 1,
     "category": "energy",
     "effects": {
@@ -108,14 +124,17 @@
       "morale": 22
     },
     "successMessage": "Słowa modlitwy znałeś na pamięć. Tym razem poczułeś że ktoś słucha.",
+    "lowMoraleSuccessMessage": "Szeptałeś znane z dzieciństwa słowa. Pustka była ogromna, ale dała ci upartą chęć robienia jej na złość.",
     "failEffects": {
       "morale": -15
     },
-    "failMessage": "Cisza odpowiedziała ciszą. Idziesz sam — zawsze będziesz szedł sam."
+    "failMessage": "Cisza odpowiedziała ciszą. Idziesz sam — zawsze będziesz szedł sam.",
+    "lowMoraleFailMessage": "Głos utknął w gardle. Odpowiedział ci tylko suchy wiatr. Bóg cię opuścił."
   },
   {
     "id": "cold_stream",
     "label": "Zanurz się w zimnym strumieniu",
+    "lowMoraleLabel": "Opadnij bezwładnie do lodowatej wody",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "energy",
@@ -125,16 +144,19 @@
       "morale": 8
     },
     "successMessage": "Zimna woda wybudziła każdą kość. Boleśnie żywy — ale żywy.",
+    "lowMoraleSuccessMessage": "Szok termiczny wyrwał cię na chwilę z letargu. Jesteś przeraźliwie zmarznięty i wciąż sam.",
     "failEffects": {
       "health": -20,
       "energy": -8,
       "morale": -12
     },
-    "failMessage": "Prąd pochwycił cię za nogi. Wyszedłeś niżej niż wszedłeś."
+    "failMessage": "Prąd pochwycił cię za nogi. Wyszedłeś niżej niż wszedłeś.",
+    "lowMoraleFailMessage": "Nurt prawie porwał słabe ciało. Wyszarpnąłeś się z wody, raniąc się o kamienie, bez sił do dalszej ucieczki."
   },
   {
     "id": "deep_sleep_field",
     "label": "Śpij do świtu pod gołym niebem",
+    "lowMoraleLabel": "Zwiń się na twardej ziemi i zamknij oczy, czekając na najgorsze",
     "timeCost": 9,
     "minHour": 20,
     "maxHour": 4,
@@ -146,16 +168,19 @@
       "morale": 10
     },
     "successMessage": "Gwiazdy kręciły się powoli nad tobą. Obudziłeś się gdy zrobiło się szaro.",
+    "lowMoraleSuccessMessage": "Przetrwałeś noc, ale brzask zwiastował jedynie przedłużenie twojego wyroku.",
     "failEffects": {
       "energy": 22,
       "morale": -22,
       "health": -12
     },
-    "failMessage": "Deszcz i zimno nie dały spać. Wstałeś gorszy niż się kładłeś."
+    "failMessage": "Deszcz i zimno nie dały spać. Wstałeś gorszy niż się kładłeś.",
+    "lowMoraleFailMessage": "Każda kropla deszczu była jak policzek. Kładąc się, chciałeś zniknąć. Wstając, nienawidziłeś siebie za to, że żyjesz."
   },
   {
     "id": "stretch_morning",
     "label": "Rozciągaj mięśnie o świcie",
+    "lowMoraleLabel": "Spróbuj rozruszać drętwiejące, pozbawione sił ciało",
     "timeCost": 1,
     "minHour": 4,
     "maxHour": 9,
@@ -166,16 +191,19 @@
       "hunger": -4
     },
     "successMessage": "Nogi poskarżyły się przez chwilę. Potem podziękowały.",
+    "lowMoraleSuccessMessage": "Mięśnie paliły, ścięgna rwały. Poruszyłeś się wbrew własnej woli.",
     "failEffects": {
       "health": -8,
       "energy": -5,
       "morale": -12
     },
-    "failMessage": "Coś strzyknęło w kolanie. Dziś będziesz szedł wolniej."
+    "failMessage": "Coś strzyknęło w kolanie. Dziś będziesz szedł wolniej.",
+    "lowMoraleFailMessage": "Ciało było z drewna. Ruch skończył się upadkiem i spazmem bólu w mięśniach. Bezsilność triumfowała."
   },
   {
     "id": "sleep_ruins",
     "label": "Śpij w ruinach kościoła",
+    "lowMoraleLabel": "Szukaj schronienia w zapomnianych przez wszystkich gruzach",
     "timeCost": 7,
     "minHour": 18,
     "maxHour": 5,
@@ -190,16 +218,19 @@
       "TALLOW_CANDLE": 1
     },
     "successMessage": "Dach był połowiczny, ale wystarczał. Przy ołtarzu leżała łojowa świeca. Wziąłeś ją.",
+    "lowMoraleSuccessMessage": "Mury nie dawały poczucia bezpieczeństwa. W zrujnowanym świętym miejscu nawet sen był bluźnierczy.",
     "failEffects": {
       "energy": 15,
       "morale": -18,
       "health": -8
     },
-    "failMessage": "Ruiny nie stały całą noc. Gruz i wiatr. Obudziłeś się przed świtem z zimna."
+    "failMessage": "Ruiny nie stały całą noc. Gruz i wiatr. Obudziłeś się przed świtem z zimna.",
+    "lowMoraleFailMessage": "Wycie wiatru mieszało się z wyciem w twojej głowie. Kościół był pełen mroku, a gruz zimniejszy niż lodowiec."
   },
   {
     "id": "candle_meditation",
     "label": "Siedź przy świecy i zbieraj myśli",
+    "lowMoraleLabel": "Wpatruj się w gaśnięcie świecy, widząc w nim swój los",
     "timeCost": 1,
     "minHour": 19,
     "maxHour": 6,
@@ -209,14 +240,17 @@
       "morale": 25
     },
     "successMessage": "Płomień był mały. Wystarczał. Jutro będzie jak jutro — dziś przeżyłeś.",
+    "lowMoraleSuccessMessage": "Wosk spłynął powoli. Tak, powinieneś wstać. Zmusiłeś się do tego dla zasady, nie z woli.",
     "failEffects": {
       "morale": -10
     },
-    "failMessage": "Świeca zgasła za wcześnie. Ciemność znowu — jakby nic się nie zmieniło."
+    "failMessage": "Świeca zgasła za wcześnie. Ciemność znowu — jakby nic się nie zmieniło.",
+    "lowMoraleFailMessage": "Kiedy Knot upadł, opadły ci ręce. Ciemność pochłonęła ostatnie iskierki twojego oporu."
   },
   {
     "id": "tend_blisters",
     "label": "Opatrz pęcherze i odpoczni nogi",
+    "lowMoraleLabel": "Zaklej krwawiące odciski, z żalem zważając na własne zniszczenie",
     "timeCost": 1,
     "category": "energy",
     "effects": {
@@ -224,16 +258,19 @@
       "health": 6
     },
     "successMessage": "Nogi wyglądały okropnie. Teraz tylko źle. Wystarczy.",
+    "lowMoraleSuccessMessage": "Brud i krew pokrywały bandaże. Załatałeś usterki, choć wiedziałeś, że jutro będzie to samo.",
     "failEffects": {
       "health": -10,
       "energy": -5,
       "morale": -12
     },
-    "failMessage": "Rany zamiast się goić, otworzyły się szerzej. Jutro będzie gorzej."
+    "failMessage": "Rany zamiast się goić, otworzyły się szerzej. Jutro będzie gorzej.",
+    "lowMoraleFailMessage": "Piekący ból odwrócił uwagę, ale pogorszył tylko stan ran. Każdy krok był odtąd potępieniem."
   },
   {
     "id": "warm_soup_inn",
     "label": "Zjedz gorącą zupę w karczmie",
+    "lowMoraleLabel": "Zmusisz się do przełknięcia marnej brei w przygnębiającej oberży",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "energy",
@@ -246,15 +283,18 @@
       "WATER": 1
     },
     "successMessage": "Zupa była tłusta i gorąca. Wzięłeś też manierkę na drogę.",
+    "lowMoraleSuccessMessage": "Misak rozlała ciepło w brzuchu, ale wydała się bez smaku. Przełknąłeś dla samego trwania.",
     "failEffects": {
       "morale": -15,
       "energy": 5
     },
-    "failMessage": "Karczma pusta. Na stole stała zimna miska — ktoś wyszedł w pośpiechu."
+    "failMessage": "Karczma pusta. Na stole stała zimna miska — ktoś wyszedł w pośpiechu.",
+    "lowMoraleFailMessage": "Brudna ciecz w misie śmierdziała, ale zmusiłeś się. Organizm i tak to odrzucił."
   },
   {
     "id": "massage_legs",
     "label": "Rozmasuj zmęczone mięśnie przy ogniu",
+    "lowMoraleLabel": "Ugniataj bezwładne łydki przy dogasającym żarze",
     "timeCost": 1,
     "minHour": 18,
     "maxHour": 6,
@@ -265,15 +305,18 @@
       "morale": 8
     },
     "successMessage": "Ból odpuścił po chwili. Ciepło ognia robiło swoje.",
+    "lowMoraleSuccessMessage": "Rytmiczny ucisk działał mechanicznie, lecz ulga w mięśniach nie sięgnęła duszy.",
     "failEffects": {
       "energy": -5,
       "morale": -8
     },
-    "failMessage": "Za zimno żeby się rozluźnić. Drewno mokre, ogień słaby."
+    "failMessage": "Za zimno żeby się rozluźnić. Drewno mokre, ogień słaby.",
+    "lowMoraleFailMessage": "Ręce omdlewały bez siły. Nacisk sprawiał więcej bólu niż ulgi, a wiatr i tak niósł przejmujący chłód."
   },
   {
     "id": "shelter_barn",
     "label": "Śpij w stodole u nieznajomego chłopa",
+    "lowMoraleLabel": "Ukryj się w zakurzonej szopie na końcu świata",
     "timeCost": 5,
     "minHour": 20,
     "maxHour": 5,
@@ -288,16 +331,19 @@
       "GRAPES": 1
     },
     "successMessage": "Chłop nie pytał skąd idziesz. Słoma ciepła, woły spokojne. Rano znalazłeś garść winogron przy drzwiach.",
+    "lowMoraleSuccessMessage": "Zapach obory zdawał się być twoim domem. Przypomniałeś sobie, kim byłeś, a jedzenie traktowałeś jak żałosną jałmużnę.",
     "failEffects": {
       "energy": 15,
       "morale": -18,
       "health": -8
     },
-    "failMessage": "Psy szczekały całą noc. Nie spałeś. Chłop wyrzucił cię przed świtem."
+    "failMessage": "Psy szczekały całą noc. Nie spałeś. Chłop wyrzucił cię przed świtem.",
+    "lowMoraleFailMessage": "Wrogość zwierząt psuła resztki odwagi. Nawet tu nikt cię nie chciał. Zostałeś sam w ciemności."
   },
   {
     "id": "cold_water_feet",
     "label": "Mocz nogi w zimnym potoku",
+    "lowMoraleLabel": "Mocz bezwładne, obolałe stopy w brudnej wodzie",
     "timeCost": 1,
     "category": "energy",
     "effects": {
@@ -306,15 +352,18 @@
       "hydration": 8
     },
     "successMessage": "Dziesięć minut zimnej wody i czułeś się jak nowy człowiek. Prawie.",
+    "lowMoraleSuccessMessage": "Przenikliwy chłód stępił na moment odczucie cierpienia, przynosząc dziwną, odrętwiałą satysfakcję.",
     "failEffects": {
       "health": -8,
       "morale": -12
     },
-    "failMessage": "Potok był zbyt zimny. Skurcz w łydce trzymał przez godzinę."
+    "failMessage": "Potok był zbyt zimny. Skurcz w łydce trzymał przez godzinę.",
+    "lowMoraleFailMessage": "Skurcz poraził całą nogę. Każde pociągnięcie mięśnia to był koszmar odzierający z nadziei na chód."
   },
   {
     "id": "breathe_forest",
     "label": "Zatrzymaj się i oddychaj w ciszy lasu",
+    "lowMoraleLabel": "Zakop się w liściach i pozwól ciszy lasu cię przytłoczyć",
     "timeCost": 1,
     "category": "energy",
     "effects": {
@@ -322,14 +371,17 @@
       "morale": 18
     },
     "successMessage": "Las był cichy. Przez chwilę zarazy nie było. Był tylko wiatr i drzewa.",
+    "lowMoraleSuccessMessage": "Drzewa trwały niewzruszenie, w przeciwieństwie do ciebie. Czerpałeś ich spokój w akcie desperacji.",
     "failEffects": {
       "morale": -10
     },
-    "failMessage": "Cisza była zbyt głęboka. W takim lesie ginęli ludzie — i wiedziałeś o tym."
+    "failMessage": "Cisza była zbyt głęboka. W takim lesie ginęli ludzie — i wiedziałeś o tym.",
+    "lowMoraleFailMessage": "Złowieszczy chrzęst i dziwne hałasy wprawiały cię w panikę. Opadłeś z resztek animuszu pod konarem."
   },
   {
     "id": "short_nap_noon",
     "label": "Zdrzemnij się w południe w cieniu",
+    "lowMoraleLabel": "Padnij w cień uciekając przed żarem w marną drzemkę",
     "timeCost": 2,
     "minHour": 11,
     "maxHour": 15,
@@ -340,15 +392,18 @@
       "hydration": -4
     },
     "successMessage": "Godzina snu w południe warta jest dwóch w nocy. Stare powiedzenie — i prawdziwe.",
+    "lowMoraleSuccessMessage": "Chwila letargu była zbawienna. Gdy sen odszedł, świat znów wydał się obrzydliwy i wypalony.",
     "failEffects": {
       "energy": 6,
       "morale": -10
     },
-    "failMessage": "Słońce biło prosto w twarz. Upał nie pozwolił zasnąć."
+    "failMessage": "Słońce biło prosto w twarz. Upał nie pozwolił zasnąć.",
+    "lowMoraleFailMessage": "Gorąc nie dawał usnąć, męcząc twoje ciało. Pot ściekał w pyle, gdy tylko patrzyłeś błędnym wzrokiem w niebo."
   },
   {
     "id": "evening_wash",
     "label": "Umyj się w rzece wieczorem",
+    "lowMoraleLabel": "Zmywaj zmęczenie w zamulonym nurcie o zmroku",
     "timeCost": 1,
     "minHour": 17,
     "maxHour": 22,
@@ -359,11 +414,13 @@
       "health": 5
     },
     "successMessage": "Pierwsza kąpiel od tygodnia. Czułeś się jak człowiek, nie jak kurz.",
+    "lowMoraleSuccessMessage": "Woda zmyła błoto, ale zostawiła lepki osad świadomości wszystkich popełnionych czynów.",
     "failEffects": {
       "health": -12,
       "energy": -5,
       "morale": -12
     },
-    "failMessage": "Rzeka była brudna od wsi powyżej. Wyszedłeś brudniejszy niż wszedłeś."
+    "failMessage": "Rzeka była brudna od wsi powyżej. Wyszedłeś brudniejszy niż wszedłeś.",
+    "lowMoraleFailMessage": "Mdły odór gnicia przylgnął do ciała. Przez dłuższą chwilę nie miałeś woli podnieść się z mułu."
   }
 ]

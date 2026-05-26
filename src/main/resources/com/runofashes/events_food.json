@@ -2,6 +2,7 @@
   {
     "id": "hunt_bow",
     "label": "Zapoluj z łukiem na zwierzynę",
+    "lowMoraleLabel": "Spróbuj zabić coś, co w przeciwieństwie do ciebie jeszcze chce żyć",
     "timeCost": 3,
     "distanceCost": 2,
     "category": "food",
@@ -13,16 +14,19 @@
       "DRIED_MEAT": 1
     },
     "successMessage": "Zając. Niezbyt duży — ale twój. Mięso upieczone, resztę zawinąłeś na drogę.",
+    "lowMoraleSuccessMessage": "Zabiłeś go, choć zając pewnie miał więcej woli życia niż ty. Żujesz twarde mięso bez smaku.",
     "failEffects": {
       "energy": -20,
       "hunger": -8,
       "morale": -15
     },
-    "failMessage": "Zwierzę uciekło. Trzy godziny za niczym. Wróciłeś głodniejszy niż wyszedłeś."
+    "failMessage": "Zwierzę uciekło. Trzy godziny za niczym. Wróciłeś głodniejszy niż wyszedłeś.",
+    "lowMoraleFailMessage": "Nawet zwierzęta tobą gardzą. Uciekło, a ty nie miałeś nawet siły przekląć z bezsilności."
   },
   {
     "id": "beg_monastery",
     "label": "Żebrz o chleb przy bramie klasztoru",
+    "lowMoraleLabel": "Upokórz się i żebrz o resztki u wrót klasztoru",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -34,15 +38,18 @@
       "WATER": 1
     },
     "successMessage": "Mnich dał ci bochenek i manierkę wody. Nie pytał o imię. Boże mu zapłać.",
+    "lowMoraleSuccessMessage": "Dali ci chleb z litości. Przeżuwasz tę jałmużnę, czując na sobie ich puste spojrzenia.",
     "failEffects": {
       "morale": -20,
       "hunger": -5
     },
-    "failMessage": "Brama była zamknięta. Na desce napis: 'Zaraza. Nie wchodzić.' Rozumiesz."
+    "failMessage": "Brama była zamknięta. Na desce napis: 'Zaraza. Nie wchodzić.' Rozumiesz.",
+    "lowMoraleFailMessage": "Zamknięte. Oczywiście. Nawet słudzy Boga wiedzą, że nie ma już dla ciebie ratunku."
   },
   {
     "id": "buy_village",
     "label": "Kup jedzenie w wiosce za grosz",
+    "lowMoraleLabel": "Oddaj ostatnie miedziaki za marne resztki w wiosce",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -54,15 +61,18 @@
       "GRAPES": 1
     },
     "successMessage": "Chleb, kawałek sera, garść winogron. Wystarczy na jutro.",
+    "lowMoraleSuccessMessage": "Kupiłeś jedzenie, ale w smaku przypominało popiół. Jeszcze jeden dzień nędzy zaspokojony.",
     "failEffects": {
       "morale": -25,
       "hunger": -5
     },
-    "failMessage": "Wioska była pusta. Domy stały z otwartymi drzwiami. Nie wszedłeś do żadnego."
+    "failMessage": "Wioska była pusta. Domy stały z otwartymi drzwiami. Nie wszedłeś do żadnego.",
+    "lowMoraleFailMessage": "Puste domy. Wszyscy odeszli albo poumierali, a ty znów zostałeś sam ze swoim głodem."
   },
   {
     "id": "catch_fish",
     "label": "Łów ryby przy rzece",
+    "lowMoraleLabel": "Patrz tępym wzrokiem w wodę, licząc na głupią rybę",
     "timeCost": 3,
     "distanceCost": 1,
     "category": "food",
@@ -71,15 +81,18 @@
       "hydration": 5
     },
     "successMessage": "Dwie ryby na zaimprowizowanym haczyku. Surowe, ale ciało przyjęło je z wdzięcznością.",
+    "lowMoraleSuccessMessage": "Wyciągnąłeś je z zimnej wody i ubiłeś. Zjadłeś surowe oślizgłe mięso z całkowitą obojętnością.",
     "failEffects": {
       "energy": -15,
       "morale": -10
     },
-    "failMessage": "Rzeka była za głęboka, prąd za silny. Trzy godziny zimna i nic."
+    "failMessage": "Rzeka była za głęboka, prąd za silny. Trzy godziny zimna i nic.",
+    "lowMoraleFailMessage": "Woda była czarna i lodowata. Przez chwilę myślałeś, żeby po prostu do niej wejść i nie wracać."
   },
   {
     "id": "eat_berries",
     "label": "Szukaj jagód i dzikich owoców",
+    "lowMoraleLabel": "Wydłubuj resztki zwiędłych jagód z ciernistych krzewów",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -90,15 +103,18 @@
       "GRAPES": 1
     },
     "successMessage": "Garść tarniny i kilka dzikich śliwek. Cierpkie — ale żołądek się uspokoił.",
+    "lowMoraleSuccessMessage": "Skwaśniałe i małe. Wpychałeś je do ust, w ogóle nie dbając o zadrapania od cierni.",
     "failEffects": {
       "hunger": -5,
       "morale": -12
     },
-    "failMessage": "Krzaki ogołocone. Ktoś był tu przed tobą."
+    "failMessage": "Krzaki ogołocone. Ktoś był tu przed tobą.",
+    "lowMoraleFailMessage": "Nawet ptaki cię ubiegły. Ziemia jest równie jałowa, co twoja nadzieja."
   },
   {
     "id": "eat_mushrooms",
     "label": "Zbierz grzyby z powalonego dębu",
+    "lowMoraleLabel": "Zerwij śliskie grzyby z gnijącego pnia",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "food",
@@ -107,16 +123,19 @@
       "morale": 5
     },
     "successMessage": "Jadalne. Upieczone na kamieniu smakowały jak nic innego na tej drodze.",
+    "lowMoraleSuccessMessage": "Zjadłeś to, co wyrosło na śmierci drzewa. Ironia losu, że trzyma cię to przy życiu.",
     "failEffects": {
       "health": -40,
       "hunger": -15,
       "morale": -20
     },
-    "failMessage": "Pomyliłeś gatunki. Przez noc płaciłeś za ten błąd."
+    "failMessage": "Pomyliłeś gatunki. Przez noc płaciłeś za ten błąd.",
+    "lowMoraleFailMessage": "Skurcze żołądka były karą za próbę przetrwania. Może trzeba było zjeść ich więcej i skończyć z tym trudem."
   },
   {
     "id": "trade_food",
     "label": "Wymień coś za jedzenie z podróżnym",
+    "lowMoraleLabel": "Oddaj swoje rzeczy desperatowi za kawałek jedzenia",
     "timeCost": 1,
     "category": "food",
     "effects": {
@@ -127,15 +146,18 @@
       "DRIED_MEAT": 1
     },
     "successMessage": "Pasek skórzany za suszone mięso i sucharki. Dobry interes.",
+    "lowMoraleSuccessMessage": "Zrobiłeś interes, ale świadomość, że obdzieracie się nawzajem z resztek, dobijała.",
     "failEffects": {
       "morale": -20,
       "hunger": -5
     },
-    "failMessage": "Podróżny miał w oczach coś złego. Odszedłeś zanim doszło do targowania."
+    "failMessage": "Podróżny miał w oczach coś złego. Odszedłeś zanim doszło do targowania.",
+    "lowMoraleFailMessage": "Widziałeś w nim własne szaleństwo. Odeszliście od siebie, unikając wzroku, jak dwa upiory."
   },
   {
     "id": "set_trap",
     "label": "Postaw sidła i wróć po godzinie",
+    "lowMoraleLabel": "Załóż prymitywną pętlę i czekaj na cudzą śmierć",
     "timeCost": 2,
     "category": "food",
     "effects": {
@@ -146,15 +168,18 @@
       "DRIED_MEAT": 1
     },
     "successMessage": "Kuropatwa. Mała, ale całkowicie twoja. Pióra zostawiłeś wiatrowi.",
+    "lowMoraleSuccessMessage": "Ukręciłeś kark ptakowi mrugając zaledwie. Tyle zachodu dla garstki nędznego mięsa.",
     "failEffects": {
       "energy": -8,
       "morale": -10
     },
-    "failMessage": "Sidła puste. Coś je wywróciło — może lis, może inne sidła."
+    "failMessage": "Sidła puste. Coś je wywróciło — może lis, może inne sidła.",
+    "lowMoraleFailMessage": "Nic z tego. Przynajmniej jedno z was uniknęło dzisiaj stryczka."
   },
   {
     "id": "dig_roots",
     "label": "Wykopuj korzenie przy rzece",
+    "lowMoraleLabel": "Ryć w zimnym błocie jak zwierzę za twardymi korzeniami",
     "timeCost": 2,
     "category": "food",
     "effects": {
@@ -162,15 +187,18 @@
       "hydration": 5
     },
     "successMessage": "Korzenie chrzanu i jakiś bulwiasty korzeń. Nie smakowały niczym — ale trzymały przy życiu.",
+    "lowMoraleSuccessMessage": "Ziemia chrzęściła w zębach. Przełykałeś twardą miazgę, zastanawiając się, czy upadłeś już na samo dno.",
     "failEffects": {
       "energy": -10,
       "morale": -12
     },
-    "failMessage": "Ziemia zamarznięta. Kilka zadrapań i nic."
+    "failMessage": "Ziemia zamarznięta. Kilka zadrapań i nic.",
+    "lowMoraleFailMessage": "Połamane paznokcie i krew. Ziemia broniła swoich skarbów, po cichu drwiąc z twojej słabości."
   },
   {
     "id": "scavenge_cart",
     "label": "Przeszukaj porzucony wóz przy drodze",
+    "lowMoraleLabel": "Przeszukaj wóz trupa jak pospolity ścierwojad",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -183,15 +211,18 @@
       "WINE": 1
     },
     "successMessage": "Znalazłeś suszone mięso i butelkę wina. Właściciel nie wróci po to.",
+    "lowMoraleSuccessMessage": "Wziąłeś zapasy kogoś, kto już zginął. Zastanawiałeś się, kto wkrótce obszuka twoje kieszenie.",
     "failEffects": {
       "health": -15,
       "morale": -25
     },
-    "failMessage": "Wóz nie był tak pusty jak wyglądał. Ktoś w nim leżał. Cofnąłeś się szybko."
+    "failMessage": "Wóz nie był tak pusty jak wyglądał. Ktoś w nim leżał. Cofnąłeś się szybko.",
+    "lowMoraleFailMessage": "Umarli powitali cię potwornym smrodem gnicia. Zwymiotowałeś, tracąc w pył resztki swoich sił."
   },
   {
     "id": "monastery_soup",
     "label": "Wejdź do klasztoru po wieczorną zupę",
+    "lowMoraleLabel": "Wlecz się do klasztoru na litościwą breję",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "food",
@@ -204,14 +235,17 @@
       "HERBS": 1
     },
     "successMessage": "Mnisi podali zupę i ziółka na drogę. 'Niech Bóg strzeże' — powiedzieli.",
+    "lowMoraleSuccessMessage": "Ciepła zupa smakowała czystą litością. Ich modlitwy wydawały ci się puste, ale zjadłeś wszystko.",
     "failEffects": {
       "morale": -20
     },
-    "failMessage": "Klasztor stał opuszczony. Na ścianach krzyże narysowane wapnem. Zły znak."
+    "failMessage": "Klasztor stał opuszczony. Na ścianach krzyże narysowane wapnem. Zły znak.",
+    "lowMoraleFailMessage": "Martwy klasztor. Jeśli Bóg nie oszczędził nawet swoich sług, dlaczego miałby oszczędzić ciebie?"
   },
   {
     "id": "forage_herbs",
     "label": "Zbieraj jadalne zioła i trawę",
+    "lowMoraleLabel": "Żuj gorzką trawę z pobocza jak bydlę",
     "timeCost": 1,
     "category": "food",
     "effects": {
@@ -222,16 +256,19 @@
       "HERBS": 1
     },
     "successMessage": "Szczaw, pokrzywa, dziki czosnek. Garść ziół do kieszeni na potem.",
+    "lowMoraleSuccessMessage": "Zjadłeś zielsko, krztusząc się jego goryczą. To nie posiłek, to ponura farsa życia.",
     "failEffects": {
       "health": -15,
       "hunger": -8,
       "morale": -12
     },
-    "failMessage": "Nie wszystkie zioła są jadalne. Ta lekcja kosztuje."
+    "failMessage": "Nie wszystkie zioła są jadalne. Ta lekcja kosztuje.",
+    "lowMoraleFailMessage": "Zatrułeś się własną desperacją. Gardło paliło, a świat chwiał się wokół w złowrogim tańcu."
   },
   {
     "id": "salt_trade",
     "label": "Kup sól od miejscowego handlarza",
+    "lowMoraleLabel": "Błagaj przerażonego handlarza o drobinę soli",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -244,14 +281,17 @@
       "DRIED_MEAT": 1
     },
     "successMessage": "Sól i kawał mięsa. Kupiec powiedział że na zachodzie jest spokojniej. Oby.",
+    "lowMoraleSuccessMessage": "Kupiłeś słone, wysuszone mięso. Przynajmniej pragnienie zabije cię szybciej niż głód.",
     "failEffects": {
       "morale": -12
     },
-    "failMessage": "Handlarz uciekł na twój widok. Może słyszał o zarazie. Może o tobie."
+    "failMessage": "Handlarz uciekł na twój widok. Może słyszał o zarazie. Może o tobie.",
+    "lowMoraleFailMessage": "Cofnął się z obrzydzeniem na twój widok. Wyglądasz jak trup, a ludzie panicznie boją się trupów."
   },
   {
     "id": "fire_smoke_signal",
     "label": "Zapal ogień i czekaj na odpowiedź wioski",
+    "lowMoraleLabel": "Rozpal żałosny dym i czekaj ulegle na jałmużnę",
     "timeCost": 3,
     "category": "food",
     "effects": {
@@ -263,15 +303,18 @@
       "GRAPES": 1
     },
     "successMessage": "Przyszedł chłop z dzbankiem i owocami. Nie wchodził blisko — zostawił pod drzewem i odszedł.",
+    "lowMoraleSuccessMessage": "Dostałeś jedzenie, ale potraktowano cię jak wygnańca z trądem. Jadłeś w ciemności i samotności.",
     "failEffects": {
       "energy": -12,
       "morale": -15
     },
-    "failMessage": "Nikt nie odpowiedział. Dym rozwiał się w niebo i tyle."
+    "failMessage": "Nikt nie odpowiedział. Dym rozwiał się w niebo i tyle.",
+    "lowMoraleFailMessage": "Zignorowali cię. Twój dym był tylko kolejną szarą skazą na niebie, na którą nikt nie zwraca uwagi."
   },
   {
     "id": "find_abandoned_cellar",
     "label": "Znajdź piwnicę przy opuszczonym domu",
+    "lowMoraleLabel": "Zejdź w mrok obcej piwnicy po porzucone zapasy",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "food",
@@ -291,11 +334,13 @@
       "health": -20,
       "morale": -25
     },
-    "failMessage": "Piwnica nie była pusta. Powietrze było gęste od śmierci. Wybiegłeś."
+    "failMessage": "Piwnica nie była pusta. Powietrze było gęste od śmierci. Wybiegłeś.",
+    "lowMoraleFailMessage": "Znalazłeś tylko gnilną śmierć. Smród dusił cię w płucach jeszcze długo po tym, jak wyczołgałeś się na zewnątrz."
   },
   {
     "id": "barter_bread",
     "label": "Wymień nóż za bochenek chleba",
+    "lowMoraleLabel": "Oddaj swoją jedyną broń za czerstwy chleb",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -304,14 +349,17 @@
       "morale": 10
     },
     "successMessage": "Chleb był czerstwy i twardy. Łamałeś go zębami. Najlepszy posiłek od trzech dni.",
+    "lowMoraleSuccessMessage": "Oddałeś nóż za kamienny chleb. Zyskałeś dzień życia kosztem ochrony. Żałosny, pozbawiony przyszłości wybór.",
     "failEffects": {
       "morale": -18
     },
-    "failMessage": "Chłop powiedział że nie ma co jeść sam. I miał w oczach coś co kazało mu wierzyć."
+    "failMessage": "Chłop powiedział że nie ma co jeść sam. I miał w oczach coś co kazało mu wierzyć.",
+    "lowMoraleFailMessage": "Odmowa smakowała gorzej niż wielodniowy głód. Zobaczyłeś w jego pustych oczach własną nieuchronną śmierć."
   },
   {
     "id": "pick_wild_garlic",
     "label": "Zbieraj dziki czosnek przy strumieniu",
+    "lowMoraleLabel": "Szarp się z ziemią o palący, dziki czosnek",
     "timeCost": 1,
     "category": "food",
     "effects": {
@@ -322,15 +370,18 @@
       "HERBS": 1
     },
     "successMessage": "Ostry i surowy — ale czosnek leczy. Resztę wysuszyłeś i schowałeś do kieszeni.",
+    "lowMoraleSuccessMessage": "Ostrość wycisnęła łzy, na które nawet nie miałeś ochoty. Każdy kęs przypominał o trwaniu za wszelką cenę.",
     "failEffects": {
       "health": -10,
       "morale": -12
     },
-    "failMessage": "Pomyliłeś rośliny. Przez godzinę czułeś jak coś pali od środka."
+    "failMessage": "Pomyliłeś rośliny. Przez godzinę czułeś jak coś pali od środka.",
+    "lowMoraleFailMessage": "Trucizna paliła wnętrzności. Twoja własna bezmyślność wkrótce sama dokończy to, czego zaraza nie zdołała."
   },
   {
     "id": "raid_bird_nest",
     "label": "Wybierz jaja z ptasiego gniazda",
+    "lowMoraleLabel": "Wyżeraj surowe jaja ze zrabowanego gniazda",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -339,15 +390,18 @@
       "morale": 8
     },
     "successMessage": "Trzy jaja. Surowe, ale świeże. Zjadłeś je szybko zanim zdążyłeś o tym myśleć.",
+    "lowMoraleSuccessMessage": "Rozbiłeś nienarodzone życie, by przedłużyć własne nędzne. Wessałeś je chciwie, nie plując nawet skorupkami.",
     "failEffects": {
       "energy": -8,
       "morale": -14
     },
-    "failMessage": "Gniazdo puste. Albo ptak był szybszy, albo ktoś przed tobą."
+    "failMessage": "Gniazdo puste. Albo ptak był szybszy, albo ktoś przed tobą.",
+    "lowMoraleFailMessage": "Puste. Tak samo puste, jak cały ten przeklęty szlak. Zostałeś z brudnymi, drżącymi rękami."
   },
   {
     "id": "monastery_bread_morning",
     "label": "Czekaj przy bramie klasztoru na poranny chleb",
+    "lowMoraleLabel": "Koczuj pod murami klasztoru, licząc na rzucony kawałek",
     "timeCost": 2,
     "minHour": 5,
     "maxHour": 9,
@@ -361,14 +415,17 @@
       "WATER": 1
     },
     "successMessage": "Mnisi rozdawali chleb i wodę przy jutrzni. Nie pytali — po prostu dawali. To wystarczyło.",
+    "lowMoraleSuccessMessage": "Brałeś z opuszczoną w dół głową. Nie czułeś nawet wstydu. Przeżuwasz tę papkę bez namysłu, jak pusta maszyna.",
     "failEffects": {
       "morale": -20
     },
-    "failMessage": "Klasztor nie otworzył bramy o świcie. Zaraza zmieniła nawet rytm modlitwy."
+    "failMessage": "Klasztor nie otworzył bramy o świcie. Zaraza zmieniła nawet rytm modlitwy.",
+    "lowMoraleFailMessage": "Bramy pozostały zamknięte. Modlitwy nie nakarmią żołądka, a milczący mnisi za murem najwyraźniej już zgnili."
   },
   {
     "id": "eat_raw_fish",
     "label": "Złap rybę gołymi rękami w płytkiej wodzie",
+    "lowMoraleLabel": "Tarzaj się w mule, by złapać oślizgłą rybę",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "food",
@@ -377,15 +434,18 @@
       "hydration": 8
     },
     "successMessage": "Małe szczupaczki w mule. Surowe i zimne — ale białko to białko.",
+    "lowMoraleSuccessMessage": "Połknąłeś je bez żucia, pełne mułu i rybiej krwi. Idealne danie dla kogoś, kto już dawno stracił ludzką godność.",
     "failEffects": {
       "energy": -12,
       "morale": -14
     },
-    "failMessage": "Ryby były za szybkie albo za głęboko. Mokre nogi i pusty żołądek."
+    "failMessage": "Ryby były za szybkie albo za głęboko. Mokre nogi i pusty żołądek.",
+    "lowMoraleFailMessage": "Nawet ślepa ryba unika ciebie z łatwością. Siedzisz w zimnym błocie, żałując, że nie możesz utonąć w tej kałuży."
   },
   {
     "id": "find_orchard",
     "label": "Znajdź opuszczony sad przy dawnym folwarku",
+    "lowMoraleLabel": "Włócz się po martwym sadzie, zrywając ocalałe resztki",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "food",
@@ -398,14 +458,17 @@
       "GRAPES": 1
     },
     "successMessage": "Jabłonie, śliwki, dzikie gruszki. Folwark opuszczony — drzewa nie. Jadłeś stojąc i zabrałeś tyle ile uniosłeś.",
+    "lowMoraleSuccessMessage": "Owoce były cierpkie, ale wokół panowała martwa cisza. Trupi zapach mieszał się w twoich ustach ze smakiem śliwek.",
     "failEffects": {
       "morale": -15
     },
-    "failMessage": "Sad był, ale owoce zgniłe albo jeszcze twarde. Nie w tej porze roku."
+    "failMessage": "Sad był, ale owoce zgniłe albo jeszcze twarde. Nie w tej porze roku.",
+    "lowMoraleFailMessage": "Wszystko gnije dokładnie tak, jak ty i ten przeklęty świat. Zgniłe owoce to metafora, na którą patrzysz z odrazą."
   },
   {
     "id": "buy_flatbread",
     "label": "Kup podpłomyk od kobiety przy ognisku",
+    "lowMoraleLabel": "Zapłać przerażonej kobiecie za garść wypieczonego ciasta",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -414,14 +477,17 @@
       "morale": 12
     },
     "successMessage": "Gorący, prosty, dobry. Kobieta nie wzięła za dużo. Świat ma jeszcze dobre miejsca.",
+    "lowMoraleSuccessMessage": "Żułeś ciepły kęs, ale widok jej wielkich, przerażonych oczu skutecznie odebrał mu jakikolwiek smak.",
     "failEffects": {
       "morale": -16
     },
-    "failMessage": "Kobieta uciekła gdy zbliżyłeś się za blisko. Zaraza zrobiła z ciebie zagrożenie nawet dla nieznajomych."
+    "failMessage": "Kobieta uciekła gdy zbliżyłeś się za blisko. Zaraza zrobiła z ciebie zagrożenie nawet dla nieznajomych.",
+    "lowMoraleFailMessage": "Uciekła wrzeszcząc, jakbyś był demonem śmierci. Może już nim jesteś. Moneta została ci w dłoni, chłód pozostał."
   },
   {
     "id": "eat_acorns",
     "label": "Gotuj żołędzie nad małym ogniem",
+    "lowMoraleLabel": "Gotuj twarde, paszowe żołędzie w ostatecznej desperacji",
     "timeCost": 2,
     "category": "food",
     "effects": {
@@ -429,15 +495,18 @@
       "energy": -5
     },
     "successMessage": "Gorzkie i twarde — ale gotowane dawały jakiś pożytek. Nie po raz pierwszy ludzkie ciało jadło to co jadły świnie.",
+    "lowMoraleSuccessMessage": "Zjadałeś świński pokarm, by przeżyć ludzkie piekło. Z każdym marnym kęsem nienawidziłeś tego świata coraz mocniej.",
     "failEffects": {
       "health": -8,
       "morale": -14
     },
-    "failMessage": "Za krótko gotowane. Żołądek powiedział nie i miał rację."
+    "failMessage": "Za krótko gotowane. Żołądek powiedział nie i miał rację.",
+    "lowMoraleFailMessage": "Skurcze brzucha wygięły cię drastycznie w pół. Przeklinałeś swoją bezdenną głupotę przez następną godzinę."
   },
   {
     "id": "smoke_meat_overnight",
     "label": "Uwędź mięso na noc nad ogniem",
+    "lowMoraleLabel": "Wpatruj się w czarną noc, dymiąc ohydne resztki mięsa",
     "timeCost": 6,
     "minHour": 19,
     "maxHour": 5,
@@ -450,15 +519,18 @@
       "DRIED_MEAT": 1
     },
     "successMessage": "Wolne i cierpliwe. Mięso wyszło twarde jak podeszwa — i trwałe. Schowałeś je na gorsze dni.",
+    "lowMoraleSuccessMessage": "Mięso wyschło na kamienny wiór, zupełnie tak, jak twoja dusza. Upchałeś je do wora, nie czując żadnej pociechy.",
     "failEffects": {
       "energy": -10,
       "morale": -14
     },
-    "failMessage": "Ogień zgasł w nocy. Mięso niedowędzone — za ryzykowne żeby jeść. Wyrzuciłeś."
+    "failMessage": "Ogień zgasł w nocy. Mięso niedowędzone — za ryzykowne żeby jeść. Wyrzuciłeś.",
+    "lowMoraleFailMessage": "Obudziłeś się w zimnie. Ogień zgasł, a mięso zaczęło obrzydliwie pachnieć padliną. Nocna warta poszła na marne."
   },
   {
     "id": "trade_salt_for_food",
     "label": "Zamień sól za jedzenie u chłopa",
+    "lowMoraleLabel": "Zmuś się do fałszywej rozmowy, by przehandlować sól",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "food",
@@ -470,14 +542,17 @@
       "GRAPES": 1
     },
     "successMessage": "Sól jest wszędzie ceniona. Chłop dał ci chleb, owoce i uśmiech. Rzadka kombinacja.",
+    "lowMoraleSuccessMessage": "Dostałeś jedzenie, on pokazał udawany uśmiech. Oboje kłamaliście przed sobą, że świat wciąż jakoś funkcjonuje.",
     "failEffects": {
       "morale": -15
     },
-    "failMessage": "Chłop miał za mało sam. Nie można brać od kogoś kto sam głoduje."
+    "failMessage": "Chłop miał za mało sam. Nie można brać od kogoś kto sam głoduje.",
+    "lowMoraleFailMessage": "Był tak samo wypalony i pusty jak ty. Odszedłeś cicho, nie było tam kogo nienawidzić, poza własnym parszywym losem."
   },
   {
     "id": "find_honey_tree",
     "label": "Znajdź dzikie pszczoły i weź miód",
+    "lowMoraleLabel": "Pozwól oszalałym pszczołom żądlić, by zlizywać miód",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "food",
@@ -487,15 +562,18 @@
       "morale": 22
     },
     "successMessage": "Użądliło cię pięć razy. Miód był tego wart.",
+    "lowMoraleSuccessMessage": "Jad palący ciało przypomniał, że wciąż jakoś żyjesz. Gęsty miód zalepił na moment świadomość bolesnej egzystencji.",
     "failEffects": {
       "health": -15,
       "morale": -16
     },
-    "failMessage": "Rój okazał się większy niż wyglądał. Uciekałeś przez kwadrans."
+    "failMessage": "Rój okazał się większy niż wyglądał. Uciekałeś przez kwadrans.",
+    "lowMoraleFailMessage": "Uciekałeś w panice potykając się. Żałosny, rozedrgany wrak z opuchniętą twarzą, który nawet nie potrafi nic ukraść drzewu."
   },
   {
     "id": "strip_bark_birch",
     "label": "Gotuj korę brzozową na głodowy wywar",
+    "lowMoraleLabel": "Obdzieraj zębami korę, byle tylko oszukać ból żołądka",
     "timeCost": 2,
     "category": "food",
     "effects": {
@@ -503,10 +581,12 @@
       "health": 4
     },
     "successMessage": "Łykowaty i gorzki. Ciało wzięło co mogło. Na stepie jada się to czego step nie odmówi.",
+    "lowMoraleSuccessMessage": "Przełykałeś tępą, ohydną wodę drzewną, patrząc w przepaść nicości. Granica między ludzkim a zwierzęcym trwaniem zniknęła.",
     "failEffects": {
       "energy": -8,
       "morale": -12
     },
-    "failMessage": "Wywar nie nadawał się do picia. Wyplułeś po pierwszym łyku."
+    "failMessage": "Wywar nie nadawał się do picia. Wyplułeś po pierwszym łyku.",
+    "lowMoraleFailMessage": "Smakowało to jak brud z grobów. Wymiotowałeś gorzką żółcią, płacząc nad swoim ostatecznym upadkiem."
   }
 ]

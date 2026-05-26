@@ -2,6 +2,7 @@
   {
     "id": "quest_village_warn_1",
     "label": "Ostrzeż wioskę przed nadchodzącą zarazą",
+    "lowMoraleLabel": "Krzycz jak wariat o nadchodzącej śmierci do obcych ludzi",
     "timeCost": 2,
     "distanceCost": 2,
     "category": "quest",
@@ -10,11 +11,13 @@
       "morale": 20
     },
     "successMessage": "Słuchali. Część płakała. Część nie wierzyła. Powiedziałeś co wiedziałeś. Za 3 tury wróć sprawdzić.",
+    "lowMoraleSuccessMessage": "Powiedziałeś im, że zginą. Nawet nie wiesz, po co to zrobiłeś. Zostawiłeś ich we łzach i histerii, samemu niewiele się od nich różniąc.",
     "failEffects": {
       "morale": -20,
       "energy": -15
     },
     "failMessage": "Przepędzili cię kamieniami. Zwiastun złej wieści to wróg — tak myśleli.",
+    "lowMoraleFailMessage": "Kamienie uderzające w twoje plecy były dokładnie tym, na co zasłużyłeś, mieszając się w ich głupie, bezwartościowe życia.",
     "questId": "village_warn",
     "questStage": 1,
     "turnsUntilNext": 3,
@@ -24,6 +27,7 @@
   {
     "id": "quest_village_warn_2",
     "label": "Wróć do ostrzeżonej wsi — co się stało? (FINAŁ)",
+    "lowMoraleLabel": "Wróć do wsi, by napawać się własną racją na widok trupów",
     "timeCost": 2,
     "distanceCost": 2,
     "category": "quest",
@@ -37,11 +41,13 @@
       "WATER": 1
     },
     "successMessage": "Wioska żyła. Uciekli zanim zaraza dotarła. Starzec zostawił ci prowiant i błogosławieństwo.",
+    "lowMoraleSuccessMessage": "Przeżyli, na razie. Wziąłeś żarcie od starca i odszedłeś. Obaj wiecie, że zaraza prędzej czy później ich dopadnie.",
     "failEffects": {
       "health": -15,
       "morale": -45
     },
     "failMessage": "Wioska milczała. Zbyt późno. Nie patrzyłeś długo — i tak to zapamiętasz.",
+    "lowMoraleFailMessage": "Wszyscy gniją. Taki jest koniec twoich marnych prób bycia bohaterem. Od teraz już tylko popiół i pył.",
     "questId": "village_warn",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -49,6 +55,7 @@
   {
     "id": "quest_map_merchant_1",
     "label": "Zaoferuj pomoc choremu kupcowi przy drodze",
+    "lowMoraleLabel": "Podejdź do rzężącego kupca, licząc na darmowy łup",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "quest",
@@ -57,11 +64,13 @@
       "morale": 15
     },
     "successMessage": "Kupiec żył, ale był słaby. Obiecał ci mapę gdy wróci do siebie. Za 4 tury.",
+    "lowMoraleSuccessMessage": "Kupiec zawarł z tobą układ, charcząc krwawo. Trzymasz go przy życiu tylko z egoizmu. Za cztery tury zdecydujesz co dalej.",
     "failEffects": {
       "health": -20,
       "morale": -10
     },
     "failMessage": "Kupiec gorączkował. Odsunąłeś się gdy zobaczyłeś zmiany na skórze.",
+    "lowMoraleFailMessage": "Odrzuciłeś go z obrzydzeniem i pogardą, widząc zarazę. Przestałeś się oszukiwać — w tym świecie nie ma miejsca na łaskę.",
     "questId": "map_merchant",
     "questStage": 1,
     "turnsUntilNext": 4,
@@ -71,6 +80,7 @@
   {
     "id": "quest_map_merchant_2",
     "label": "Wróć do kupca po mapę (FINAŁ)",
+    "lowMoraleLabel": "Wróć, by odebrać dług albo obrabować zwłoki kupca",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "quest",
@@ -83,11 +93,13 @@
       "GRAPES": 1
     },
     "successMessage": "Kupiec wyzdrowił. Dał ci mapę Karpat ze skrótem i resztki prowiantu. Dwa dni oszczędzone.",
+    "lowMoraleSuccessMessage": "Zapłacił ci. Oboje wiedzieliście, że to tylko chłodna, makabryczna transakcja. Zabrałeś wszystko z pustym wzrokiem.",
     "failEffects": {
       "morale": -35,
       "health": -10
     },
     "failMessage": "Kupiec nie żył. Mapa leżała obok — ale nie chciałeś jej dotknąć.",
+    "lowMoraleFailMessage": "Kupiec to teraz wzdęty wór mięsa. Zostawiłeś mapę; niech zgnije razem z nim i całym tym bezcelowym światem.",
     "questId": "map_merchant",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -95,6 +107,7 @@
   {
     "id": "quest_letter_bishop_1",
     "label": "Przyjmij list od biskupa do przekazania w Polsce",
+    "lowMoraleLabel": "Wysłuchaj bełkotu biskupa o zbawieniu i weź list",
     "timeCost": 2,
     "category": "quest",
     "effects": {
@@ -102,11 +115,13 @@
       "energy": -10
     },
     "successMessage": "Biskup spojrzał na ciebie długo. 'Masz twarz człowieka który dotrze.' Wziąłeś list. Za 3 tury ruszasz dalej.",
+    "lowMoraleSuccessMessage": "Biskup wręczył ci papier i złudzenia. Przyjąłeś to z pogardą, widząc go jako żałosnego głupca, który wciąż w coś wierzy.",
     "failEffects": {
       "morale": -10,
       "energy": -15
     },
     "failMessage": "Biskupstwo stało zamknięte. Na bramie pieczęć z krzyżem. Zaraza weszła tu wcześniej.",
+    "lowMoraleFailMessage": "Kościół upadł jak wszystko inne. Z satysfakcją godną obłąkańca splunąłeś na pieczęć zarazy na drzwiach biskupa.",
     "questId": "bishop_letter",
     "questStage": 1,
     "turnsUntilNext": 3,
@@ -116,6 +131,7 @@
   {
     "id": "quest_letter_bishop_2",
     "label": "Dostarcz list do pierwszego polskiego kościoła (FINAŁ)",
+    "lowMoraleLabel": "Dostarcz bezwartościowy papier do martwego kościoła",
     "timeCost": 2,
     "distanceCost": 3,
     "category": "quest",
@@ -130,11 +146,13 @@
       "TALLOW_CANDLE": 1
     },
     "successMessage": "Ksiądz wziął list drżącymi rękami. Przeczytał. 'Zostań. Zjedz.' Po raz pierwszy nie odmawiałeś.",
+    "lowMoraleSuccessMessage": "Wcisnąłeś list księdzu, który trząsł się ze strachu. Zeżarłeś to, co rzucił ci w zapłacie. Nic cię nie uratuje.",
     "failEffects": {
       "morale": -30,
       "health": -15
     },
     "failMessage": "Kościół opustoszały. List zostawiłeś na ołtarzu i poszedłeś. Może ktoś przeczyta.",
+    "lowMoraleFailMessage": "Bóg nie przyjmuje dziś listów. Rzuciłeś pergamin w brud i kurz. Wszyscy odeszli, kościół to tylko pusta skorupa.",
     "questId": "bishop_letter",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -142,6 +160,7 @@
   {
     "id": "quest_cave_1",
     "label": "Zbadaj jaskinię przy szlaku — ktoś tam mieszkał",
+    "lowMoraleLabel": "Wczołgaj się do brudnej dziury szukając czegokolwiek",
     "timeCost": 2,
     "category": "quest",
     "effects": {
@@ -149,11 +168,13 @@
       "morale": 12
     },
     "successMessage": "Wnętrze ciepłe, ślady ogniska świeże. Ktoś tu był — może wróci za 3 tury.",
+    "lowMoraleSuccessMessage": "Gapiłeś się w dogasający popiół jak zwierzę do nory. Postanowiłeś poczekać na gospodarza; może będzie miał cokolwiek do zrabowania.",
     "failEffects": {
       "energy": -12,
       "morale": -8
     },
     "failMessage": "Jaskinia pusta i zimna. Dawno opuszczona.",
+    "lowMoraleFailMessage": "Pusta jama w kamieniu, bezlitosna i zimna jak grób. Taki też będzie kiedyś twój własny koniec.",
     "questId": "cave",
     "questStage": 1,
     "turnsUntilNext": 3,
@@ -163,6 +184,7 @@
   {
     "id": "quest_cave_2",
     "label": "Wróć do jaskini — ktoś zostawił prowiant (FINAŁ)",
+    "lowMoraleLabel": "Wróć do nory, by wyrwać resztki zapasów gospodarzowi",
     "timeCost": 1,
     "category": "quest",
     "effects": {
@@ -177,11 +199,13 @@
       "WATER": 1
     },
     "successMessage": "Pustelnik. Stary, milczący — ale żywy. Nakarmił cię i wskazał krótszą drogę przez góry.",
+    "lowMoraleSuccessMessage": "Wziąłeś jedzenie z rąk szaleńca. Jego rady przyjąłeś z pogardą, przeżuwając żarłocznie podarowane ochłapy.",
     "failEffects": {
       "health": -20,
       "morale": -30
     },
     "failMessage": "W jaskini leżał człowiek z czarnymi plamami. Pobiegłeś bez odwracania się.",
+    "lowMoraleFailMessage": "Dziura stała się kryptą dla gnilnych zwłok. Przeklinałeś swój los, uciekając stamtąd we łzach zmieszanych z błotem.",
     "questId": "cave",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -189,6 +213,7 @@
   {
     "id": "quest_wounded_soldier_1",
     "label": "Pomóż rannemu żołnierzowi przy drodze",
+    "lowMoraleLabel": "Wytrzymaj smród krwi i ropy żołnierza licząc na łup",
     "timeCost": 3,
     "distanceCost": 1,
     "category": "quest",
@@ -198,11 +223,13 @@
     },
     "itemEffects": {},
     "successMessage": "Żołnierz żył — ledwo. Opatrzyłeś ranę czym miałeś. 'Wróć za 3 dni' — powiedział. 'Będę miał coś dla ciebie.'",
+    "lowMoraleSuccessMessage": "Prowizorycznie załatałeś trupa w mundurze. Jeśli przeżyje, odda ci zapasy. Jeśli nie — weźmiesz je z jego martwych rąk.",
     "failEffects": {
       "health": -15,
       "morale": -20
     },
     "failMessage": "Żołnierz był zbyt daleko. Strata czasu i sił.",
+    "lowMoraleFailMessage": "Zignorowałeś jego krzyki. Strata zasobów na trupa to szaleństwo, na które cię już nie stać. Odszedłeś bez żalu.",
     "questId": "wounded_soldier",
     "questStage": 1,
     "turnsUntilNext": 3,
@@ -212,6 +239,7 @@
   {
     "id": "quest_wounded_soldier_2",
     "label": "Wróć do rannego żołnierza (FINAŁ)",
+    "lowMoraleLabel": "Wróć do żołnierza, by zabrać obiecany dług lub ogołocić zwłoki",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "quest",
@@ -225,11 +253,13 @@
       "DRIED_MEAT": 1
     },
     "successMessage": "Żołnierz żył. Dał ci bandaże, sól i mięso z plecaka. 'Ty będziesz żył dłużej niż ja' — powiedział. Może miał rację.",
+    "lowMoraleSuccessMessage": "Żołnierz rzucił ci w zapłacie bandaże. 'Będziesz żył dłużej' powiedział. Spojrzałeś na niego pustym wzrokiem. Obaj jesteście już martwi.",
     "failEffects": {
       "morale": -40,
       "health": -10
     },
     "failMessage": "Żołnierz nie żył. Przy nim leżały bandaże — już nie jego.",
+    "lowMoraleFailMessage": "Znalazłeś rozdęte truchło. Plądrując jego ciało odczuwałeś tylko mdlącą obojętność wobec ludzkiego życia.",
     "questId": "wounded_soldier",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -237,6 +267,7 @@
   {
     "id": "quest_sick_child_1",
     "label": "Kobieta przy drodze błaga o pomoc — jej dziecko gorączkuje",
+    "lowMoraleLabel": "Wysłuchaj jęków oszalałej matki i jej umierającego bękarta",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "quest",
@@ -245,11 +276,13 @@
       "morale": 18
     },
     "successMessage": "Zostałeś przy dziecku godzinę. Gorączka nie spada — ale matka wiedziała że ktoś się zatrzymał. Wróć za 4 tury.",
+    "lowMoraleSuccessMessage": "Wpatrywałeś się w konającego bachora z chorobliwą fascynacją. Śmierć zabiera każdego, dlaczego ten miałby być wyjątkiem?",
     "failEffects": {
       "morale": -15,
       "health": -10
     },
     "failMessage": "Dziecko miało plamy na szyi. Odskoczyłeś — i przez to nienawidzisz siebie trochę bardziej.",
+    "lowMoraleFailMessage": "Uciekłeś z piskiem przerażenia, widząc zarazę u dziecka. Twój heroizm roztrzaskał się o przyziemny, żałosny strach o własne, wstrętne życie.",
     "questId": "sick_child",
     "questStage": 1,
     "turnsUntilNext": 4,
@@ -259,6 +292,7 @@
   {
     "id": "quest_sick_child_2",
     "label": "Wróć do kobiety — sprawdź czy dziecko żyje (FINAŁ)",
+    "lowMoraleLabel": "Sprawdź dla chorobliwej pewności, czy zaraza pożarła bachora",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "quest",
@@ -271,11 +305,13 @@
       "WATER": 1
     },
     "successMessage": "Dziecko żyło. Gorączka minęła. Matka nie miała nic — dała ci ziółka i wodę ze studni. Niektóre rzeczy warte są postoju.",
+    "lowMoraleSuccessMessage": "Dzieciak wywinął się śmierci, a ty przyjąłeś zapłatę matki z głuchą zawiścią. Ile to jeszcze potrwa, nim znów zachoruje?",
     "failEffects": {
       "morale": -50,
       "health": -15
     },
     "failMessage": "Chata stała cicha. Drzwi otwarte. Nie wszedłeś — i nie musisz wiedzieć dlaczego.",
+    "lowMoraleFailMessage": "Krzyków już nie było, tylko radosny chrzęst żerujących na mięsie much. Zostawiłeś to potępione miejsce za plecami.",
     "questId": "sick_child",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -283,6 +319,7 @@
   {
     "id": "quest_burned_village_1",
     "label": "W zgliszczach wioski słyszysz kogoś pod gruzem",
+    "lowMoraleLabel": "Rozkopuj dymiące gruzy, szukając korzyści wśród umarłych",
     "timeCost": 3,
     "distanceCost": 1,
     "category": "quest",
@@ -291,12 +328,14 @@
       "morale": 15
     },
     "successMessage": "Wyciągnąłeś starą kobietę spod belki. Żyła. Powiedziała o piwnicy z zapasami — nietkniętej. Za 3 tury może do niej dotrzeć.",
+    "lowMoraleSuccessMessage": "Wydobyłeś ją z grobu wyłącznie po to, by usłyszeć o ukrytych zapasach. Czysty pasożytnictwo nakazuje wrócić tam później.",
     "failEffects": {
       "energy": -18,
       "morale": -20,
       "health": -10
     },
     "failMessage": "Głos ucichł zanim doszedłeś. Belki były zbyt ciężkie.",
+    "lowMoraleFailMessage": "Słuchałeś, jak ofiara dusi się i kona pod gruzami, nie mając w sobie woli, by ruszyć palcem. Pustka była absolutna.",
     "questId": "burned_village",
     "questStage": 1,
     "turnsUntilNext": 3,
@@ -306,6 +345,7 @@
   {
     "id": "quest_burned_village_2",
     "label": "Znajdź piwnicę w zgliszczach wioski (FINAŁ)",
+    "lowMoraleLabel": "Szukaj piwnicy z zapasami w zwęglonych ruinach chaty",
     "timeCost": 2,
     "distanceCost": 1,
     "category": "quest",
@@ -320,11 +360,13 @@
       "SALT": 1
     },
     "successMessage": "Piwnica była nienaruszona. Mięso, sól, woda. Stara kobieta wskazała ci drogę przez las — dwa dni krócej.",
+    "lowMoraleSuccessMessage": "Rozgrabiłeś żarcie staruchy bez drgnięcia sumienia. Zabrałeś jej sekrety, by choć na chwilę oddalić własną nędzę.",
     "failEffects": {
       "morale": -30,
       "energy": -15
     },
     "failMessage": "Piwnica zawaliła się. Zgliszcza pochłonęły wszystko.",
+    "lowMoraleFailMessage": "Ogień spopielił wszystko. Przeklinałeś bezduszny przypadek, kopiąc zwęglone kawałki drewna aż do zdarcia nóg do krwi.",
     "questId": "burned_village",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -332,6 +374,7 @@
   {
     "id": "quest_runaway_monk_1",
     "label": "Mnich w świeckich ubraniach prosi o eskortę do klasztoru",
+    "lowMoraleLabel": "Wlecz się z żałosnym tchórzem w habitach ku klasztorowi",
     "timeCost": 2,
     "distanceCost": 2,
     "category": "quest",
@@ -340,11 +383,13 @@
       "morale": 20
     },
     "successMessage": "Szedłeś z nim przez godzinę. Bał się — ale szedł. Obiecał modlitwę i klucz do spiżarni. Za 3 tury klasztor w zasięgu.",
+    "lowMoraleSuccessMessage": "Eskortowałeś tę uosobioną hipokryzję tylko po to, by dobrać się do spiżarni klasztoru. Gardziłeś nim i sobą z każdym krokiem.",
     "failEffects": {
       "morale": -12,
       "energy": -15
     },
     "failMessage": "Mnich uciekł gdy zobaczył cienie na wzgórzu. Strachu nie da się przekonać argumentami.",
+    "lowMoraleFailMessage": "Tchórz zwiał szybciej, niż zdążyłeś mu cokolwiek zabrać. Splunąłeś za nim, żałując, że w ogóle się odezwałeś.",
     "questId": "runaway_monk",
     "questStage": 1,
     "turnsUntilNext": 3,
@@ -354,6 +399,7 @@
   {
     "id": "quest_runaway_monk_2",
     "label": "Dotrzymaj obietnicy — zaprowadź mnicha do klasztoru (FINAŁ)",
+    "lowMoraleLabel": "Domagaj się zapłaty od przerażonego klechy u wrót klasztoru",
     "timeCost": 2,
     "distanceCost": 3,
     "category": "quest",
@@ -368,11 +414,13 @@
       "DRIED_MEAT": 1
     },
     "successMessage": "Klasztor przyjął mnicha. Przeor spojrzał na ciebie długo i dał ci spiżarnię na jedną noc. Spałeś przy świecach i jadłeś przy ciepłym ogniu.",
+    "lowMoraleSuccessMessage": "Gdy zżerałeś zasoby klasztoru, przeor patrzył na ciebie jak na potwora. Nawet oni wiedzieli, że stoisz u bram piekła.",
     "failEffects": {
       "morale": -25,
       "energy": -12
     },
     "failMessage": "Klasztor był oblężony przez chorych. Nie weszliście. Mnich zawrócił. Ty poszedłeś dalej sam.",
+    "lowMoraleFailMessage": "Tłum zarażonych wyrwał drzwi klasztoru. Mnich został rozszarpany, a ty uciekłeś w rynsztoku, po raz kolejny dowodząc swej małości.",
     "questId": "runaway_monk",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -380,6 +428,7 @@
   {
     "id": "quest_lone_guard_1",
     "label": "Strażnik pilnuje mostu sam — od tygodnia nikt go nie zmienił",
+    "lowMoraleLabel": "Dobij targu z na wpół oszalałym, porzuconym strażnikiem mostu",
     "timeCost": 1,
     "distanceCost": 2,
     "category": "quest",
@@ -388,10 +437,12 @@
       "morale": 22
     },
     "successMessage": "Porozmawiałeś z nim. Trzymał się — ledwo. Obiecałeś wrócić z wieściami za 3 tury. On obiecał przepuścić cię bez pytań.",
+    "lowMoraleSuccessMessage": "Rozmawiałeś ze szczątkiem człowieka, karmionym iluzją lojalności. Przytaknąłeś tylko po to, by kupić sobie swobodny przejazd.",
     "failEffects": {
       "morale": -10
     },
     "failMessage": "Strażnik nie chciał rozmawiać. Przepuścił cię bez słowa — i bez obietnicy.",
+    "lowMoraleFailMessage": "Brak reakcji z jego strony dowiódł ci, że on również od dawna jest martwy w środku. Ominąłeś go jak zmurszały pień.",
     "questId": "lone_guard",
     "questStage": 1,
     "turnsUntilNext": 3,
@@ -401,6 +452,7 @@
   {
     "id": "quest_lone_guard_2",
     "label": "Wróć do strażnika z mostu (FINAŁ)",
+    "lowMoraleLabel": "Wróć na most, by okraść zapomnianego strażnika z jego racji",
     "timeCost": 1,
     "distanceCost": 2,
     "category": "quest",
@@ -413,10 +465,12 @@
       "BANDAGE": 1
     },
     "successMessage": "Strażnik żył. Zmiennik w końcu przyszedł. Dał ci prowiant z wartowni i przepuścił przez most bez opłaty. Małe gesty — duże znaczenie.",
+    "lowMoraleSuccessMessage": "Dał ci żarcie, rzucając ci je pod nogi. Jesteś dla niego tylko bezimiennym psem. Odpłaciłeś mu tym samym milczeniem.",
     "failEffects": {
       "morale": -35
     },
     "failMessage": "Most stał pusty. Strażnik odszedł — albo padł. Most był wolny, ale to nie cieszyło.",
+    "lowMoraleFailMessage": "Wartownia była rozszabrowana. Kolejny dowód, że honor i wierność to bzdury. Splunąłeś na połamane deski budki.",
     "questId": "lone_guard",
     "questStage": 2,
     "turnsUntilNext": 0
@@ -424,6 +478,7 @@
   {
     "id": "quest_mystery_letter_1",
     "label": "Znajdź list przy martwym posłańcu — adresat jest w następnej wsi",
+    "lowMoraleLabel": "Odwiąż sakiewkę od szyi gnijącego na słońcu posłańca",
     "timeCost": 1,
     "distanceCost": 1,
     "category": "quest",
@@ -432,10 +487,12 @@
       "energy": -8
     },
     "successMessage": "Wziąłeś list. Pieczęć nienaruszona — nie wiesz co w środku. Adresat jest dwa dni marszu stąd. Za 4 tury.",
+    "lowMoraleSuccessMessage": "Odarłeś zmarłego z listu. Nie obchodzi cię treść; liczysz, że adresat głupio wymieni papier na kawałek chleba.",
     "failEffects": {
       "morale": -8
     },
     "failMessage": "List był zniszczony — deszcz i błoto zrobiły swoje. Nie dało się odczytać adresata.",
+    "lowMoraleFailMessage": "List rozpadł się w twoich drżących rękach. Wkurzyłeś się i podeptałeś resztki, wrzeszcząc do martwego posłańca.",
     "questId": "mystery_letter",
     "questStage": 1,
     "turnsUntilNext": 4,
@@ -445,6 +502,7 @@
   {
     "id": "quest_mystery_letter_2",
     "label": "Dostarcz tajemniczy list do adresata (FINAŁ)",
+    "lowMoraleLabel": "Wymuś zapłatę od adresata w zamian za pobrudzony pismak",
     "timeCost": 2,
     "distanceCost": 2,
     "category": "quest",
@@ -458,11 +516,13 @@
       "TALLOW_CANDLE": 1
     },
     "successMessage": "Kupiec otworzył list i zbladł. Nie powiedział co w nim było. Zapłacił prowiantem i podziękował bez słów. Tajemnica pozostaje tajemnicą.",
+    "lowMoraleSuccessMessage": "Rzuciłeś mu list na stół i zażądałeś zapłaty. Zapłacił bez słowa, patrząc na ciebie z mieszaniną grozy i absolutnego obrzydzenia.",
     "failEffects": {
       "morale": -20,
       "energy": -10
     },
     "failMessage": "Adresata nie było. Dom stał pusty. List zostawiłeś na progu — może ktoś wróci.",
+    "lowMoraleFailMessage": "Oczywiście, że adresat nie żyje. To kolejny martwy dom, z którym dzieliłeś czas. Pusty śmiech wyrwał się z twego zaschniętego gardła.",
     "questId": "mystery_letter",
     "questStage": 2,
     "turnsUntilNext": 0
