@@ -8,6 +8,7 @@ public class GameEvent {
     private String label;
     private int timeCost     = 1;
     private int distanceCost = 0;
+    private String requiredStage;
 
     private Map<String, Integer> effects;
     private String successMessage;
@@ -42,6 +43,7 @@ public class GameEvent {
     public int getTimeCost()                     { return timeCost; }
     public int getDistanceCost()                 { return distanceCost; }
     public String getCategory()                  { return category; }
+    public String getRequiredStage()             { return requiredStage; }
 
     public Map<String, Integer> getEffects()     { return effects; }
     public String getSuccessMessage()            { return successMessage; }

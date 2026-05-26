@@ -1,0 +1,323 @@
+[
+  {
+    "id": "am_przewodnik_1",
+    "questId": "am_przewodnik",
+    "questStage": 1,
+    "requiredStage": "Azja Mniejsza",
+    "label": "Tajemniczy tubylec oferuje, że przeprowadzi cię przez zrujnowane pustkowia.",
+    "successMessage": "Zgodził się pomóc, ale musi najpierw zgubić pościg. Każe ci czekać w ukryciu.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "am_przewodnik_2",
+    "questId": "am_przewodnik",
+    "questStage": 2,
+    "label": "Przewodnik wraca. Szlak jest wolny, ruszacie w drogę szybkim tempem.",
+    "effects": {"energy": -10, "hydration": -15},
+    "distanceCost": 120,
+    "successMessage": "Nadrobiliście mnóstwo kilometrów! Zapłaciłeś za to skrajnym wyczerpaniem."
+  },
+  {
+    "id": "am_woda_1",
+    "questId": "am_woda",
+    "questStage": 1,
+    "requiredStage": "Azja Mniejsza",
+    "label": "W oddali widzisz zapomnianą oazę. Kręcą się tam zbrojni.",
+    "failChance": 0.3,
+    "successMessage": "Udało ci się przemknąć i napełnić manierki. Znalazłeś też trochę jedzenia.",
+    "failMessage": "Zostałeś zauważony! Musiałeś uciekać, gubiąc cenne zapasy.",
+    "itemEffects": {"WATER": 2, "DRIED_MEAT": 1},
+    "failEffects": {"health": -15, "energy": -20},
+    "turnsUntilNext": 1,
+    "allowWait": false
+  },
+  {
+    "id": "am_woda_2",
+    "questId": "am_woda",
+    "questStage": 2,
+    "label": "Zbrojni z oazy ruszyli twoim tropem. Musisz zgubić pościg w wąwozie.",
+    "distanceCost": 30,
+    "failChance": 0.4,
+    "successMessage": "Zgubiłeś ich w labiryncie skał.",
+    "failMessage": "Dopadli cię z daleka. Strzała drasnęła ramię, ale ostatecznie uciekłeś.",
+    "failEffects": {"health": -25, "morale": -15}
+  },
+  {
+    "id": "am_karawana_1",
+    "questId": "am_karawana",
+    "questStage": 1,
+    "requiredStage": "Azja Mniejsza",
+    "label": "Natrafiasz na rozbitą karawanę uchodźców. Potrzebują medykamentów.",
+    "itemEffects": {"BANDAGE": -1},
+    "successMessage": "Oddałeś im bandaże. Wdzięczni uchodźcy proponują, że w nocy wskażą ci tajny skrót.",
+    "failChance": 0.5,
+    "failMessage": "Nie miałeś czym im pomóc. Odchodzisz z ciężkim sercem.",
+    "failEffects": {"morale": -20},
+    "turnsUntilNext": 1,
+    "allowWait": true
+  },
+  {
+    "id": "am_karawana_2",
+    "questId": "am_karawana",
+    "questStage": 2,
+    "label": "Uchodźcy prowadzą cię nocą przez ukryty szlak przemytników.",
+    "distanceCost": 80,
+    "successMessage": "Bezpiecznie pominęliście najbardziej niebezpieczny sektor."
+  },
+  {
+    "id": "am_burza_1",
+    "questId": "am_burza",
+    "questStage": 1,
+    "requiredStage": "Azja Mniejsza",
+    "label": "Zbliża się potężna burza piaskowa. Widzisz wejście do zasypanej jaskini.",
+    "successMessage": "Schroniłeś się na czas. Przeczekujesz najgorsze uderzenie wiatru.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "am_burza_2",
+    "questId": "am_burza",
+    "questStage": 2,
+    "label": "W głębi jaskini dostrzegasz zwłoki dawnego podróżnika. Ma przy sobie zapasy.",
+    "itemEffects": {"WATER": 1, "DRIED_MEAT": 1},
+    "effects": {"morale": -10},
+    "successMessage": "Zabierasz zapasy. Trupi odór psuje ci humor."
+  },
+  {
+    "id": "am_wrak_1",
+    "questId": "am_wrak",
+    "questStage": 1,
+    "requiredStage": "Azja Mniejsza",
+    "label": "Przeszukujesz wrak wojskowego pojazdu na środku wyschniętego jeziora.",
+    "failChance": 0.4,
+    "successMessage": "Znalazłeś nietkniętą apteczkę i sole trzeźwiące!",
+    "failMessage": "Podczas przeszukiwania zardzewiała blacha rozcięła ci dłoń. Nic nie znalazłeś.",
+    "itemEffects": {"BANDAGE": 2},
+    "failEffects": {"health": -20, "energy": -10}
+  },
+  {
+    "id": "am_kultyci_1",
+    "questId": "am_kultyci",
+    "questStage": 1,
+    "requiredStage": "Azja Mniejsza",
+    "label": "Kultyści ognia rozbili obóz na twojej drodze. Musisz to obejść długim łukiem.",
+    "effects": {"energy": -15, "hunger": -10},
+    "distanceCost": -20,
+    "successMessage": "Straciłeś mnóstwo czasu i sił, ale uniknąłeś walki."
+  },
+
+  {
+    "id": "gory_lawina_1",
+    "questId": "gory_lawina",
+    "questStage": 1,
+    "requiredStage": "Góry",
+    "label": "Słyszysz trzask lodu. Główny szlak zaraz zejdzie z lawiną! Musisz uciekać na grań.",
+    "failChance": 0.3,
+    "effects": {"energy": -25},
+    "successMessage": "W ostatniej chwili wskakujesz na bezpieczną półkę skalną.",
+    "failMessage": "Biały pył cię dogonił. Jesteś poobijany i przemarznięty.",
+    "failEffects": {"health": -30, "morale": -15},
+    "turnsUntilNext": 1,
+    "allowWait": false
+  },
+  {
+    "id": "gory_lawina_2",
+    "questId": "gory_lawina",
+    "questStage": 2,
+    "label": "Jesteś odcięty. Musisz ostrożnie zejść po stromym zboczu, by wrócić na trasę.",
+    "timeCost": 6,
+    "distanceCost": 20,
+    "successMessage": "Zejście zajęło pół dnia, ale żyjesz."
+  },
+  {
+    "id": "gory_pustelnik_1",
+    "questId": "gory_pustelnik",
+    "questStage": 1,
+    "requiredStage": "Góry",
+    "label": "W zamieci dostrzegasz chatkę. Mieszka w niej pustelnik, zaprasza cię do ognia.",
+    "effects": {"morale": 30, "energy": 20},
+    "successMessage": "Ciepło i rozmowa stawiają cię na nogi. Pustelnik mówi, że zna bezpieczny szlak przez przełęcz.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "gory_pustelnik_2",
+    "questId": "gory_pustelnik",
+    "questStage": 2,
+    "label": "Wyruszasz z pustelnikiem w stronę przełęczy.",
+    "distanceCost": 70,
+    "successMessage": "Jego wiedza pozwoliła zaoszczędzić dni wędrówki. Żegnacie się na szczycie."
+  },
+  {
+    "id": "gory_wilki_1",
+    "questId": "gory_wilki",
+    "questStage": 1,
+    "requiredStage": "Góry",
+    "label": "Nocą słyszysz wycie. Wygłodniała wataha wilków otacza twój obóz.",
+    "failChance": 0.4,
+    "successMessage": "Udało ci się je odstraszyć pochodnią.",
+    "failMessage": "Jeden z wilków rzucił się na ciebie. Jesteś ranny, ale przetrwałeś.",
+    "failEffects": {"health": -35, "energy": -20, "morale": -10},
+    "turnsUntilNext": 1,
+    "allowWait": false
+  },
+  {
+    "id": "gory_wilki_2",
+    "questId": "gory_wilki",
+    "questStage": 2,
+    "label": "Wilki poszarpały twoje zapasy. Próbujesz ocalić to, co zostało.",
+    "effects": {"hunger": -20},
+    "successMessage": "Straciłeś część prowiantu w walce. Musisz ruszać dalej."
+  },
+  {
+    "id": "gory_kopalnia_1",
+    "questId": "gory_kopalnia",
+    "questStage": 1,
+    "requiredStage": "Góry",
+    "label": "Odkrywasz wejście do opuszczonej kopalni. Można by nią przejść pod górą.",
+    "timeCost": 3,
+    "distanceCost": 60,
+    "effects": {"morale": -15},
+    "successMessage": "Przejście w ciemności było przerażające, ale wyszedłeś po drugiej stronie szczytu!"
+  },
+  {
+    "id": "gory_szczelina_1",
+    "questId": "gory_szczelina",
+    "questStage": 1,
+    "requiredStage": "Góry",
+    "label": "Przed tobą lodowa szczelina. Musisz przez nią przeskoczyć.",
+    "failChance": 0.25,
+    "successMessage": "Skok życia! Wylądowałeś bezpiecznie po drugiej stronie.",
+    "failMessage": "Poślizgnąłeś się przy lądowaniu i uderzyłeś o krawędź lodu.",
+    "failEffects": {"health": -25, "energy": -15}
+  },
+  {
+    "id": "gory_zamiec_1",
+    "questId": "gory_zamiec",
+    "questStage": 1,
+    "requiredStage": "Góry",
+    "label": "Trafiasz w samo serce potężnej zamieci śnieżnej. Idziesz po omacku.",
+    "effects": {"hydration": -10, "energy": -20},
+    "distanceCost": 15,
+    "successMessage": "Każdy krok był walką o życie. Ledwo idziesz naprzód."
+  },
+  {
+    "id": "gory_namiot_1",
+    "questId": "gory_namiot",
+    "questStage": 1,
+    "requiredStage": "Góry",
+    "label": "Zamarznięty namiot wspinaczkowy sprzed dekad. Może są tam leki.",
+    "failChance": 0.3,
+    "itemEffects": {"BANDAGE": 1},
+    "successMessage": "Znalazłeś sterylne bandaże w zmarzniętym plecaku.",
+    "failMessage": "Podczas prób otwarcia zardzewiałego suwaka odmroziłeś palce.",
+    "failEffects": {"health": -10, "energy": -10}
+  },
+
+  {
+    "id": "eu_kordon_1",
+    "questId": "eu_kordon",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Docierasz do granic zrujnowanej strefy kordonu sanitarnego. Strzegą go zdesperowani zwiadowcy.",
+    "successMessage": "Udało ci się z nimi porozumieć. Każili ci poczekać na dowódcę.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "eu_kordon_2",
+    "questId": "eu_kordon",
+    "questStage": 2,
+    "label": "Dowódca pozwala ci przejść starym szlakiem zaopatrzeniowym w zamian za informacje.",
+    "distanceCost": 50,
+    "successMessage": "Bezpieczne drogi w Europie to rzadkość. Szybko posuwasz się naprzód."
+  },
+  {
+    "id": "eu_zaraza_1",
+    "questId": "eu_zaraza",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Wchodzisz do opuszczonej, gnijącej wioski. Powietrze jest gęste od zarodników.",
+    "failChance": 0.5,
+    "successMessage": "Udało ci się przemknąć na wdechu przez najgorszy sektor.",
+    "failMessage": "Zakrztusiłeś się trującym oparem. Zaczynasz kaszleć krwią.",
+    "failEffects": {"health": -30, "morale": -20, "energy": -25},
+    "turnsUntilNext": 1,
+    "allowWait": false
+  },
+  {
+    "id": "eu_zaraza_2",
+    "questId": "eu_zaraza",
+    "questStage": 2,
+    "label": "Uciekasz z terenu zarazy, byle dalej od toksycznego oparu.",
+    "distanceCost": 40,
+    "effects": {"energy": -20},
+    "successMessage": "Uciekałeś nie patrząc pod nogi. Jesteś bezpieczny, ale wyczerpany."
+  },
+  {
+    "id": "eu_krakow_patrol_1",
+    "questId": "eu_krakow_patrol",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Napotykasz opancerzony patrol z Krakowa. Żądają daniny w żywności za ochronę na szlaku.",
+    "itemEffects": {"DRIED_MEAT": -1},
+    "successMessage": "Oddałeś mięso. Objęli cię ochroną, idziesz pod ich osłoną.",
+    "failChance": 0.4,
+    "failMessage": "Nie miałeś czym zapłacić. Pobili cię i przegonili ze szlaku.",
+    "failEffects": {"health": -20, "morale": -30},
+    "turnsUntilNext": 2,
+    "allowWait": false
+  },
+  {
+    "id": "eu_krakow_patrol_2",
+    "questId": "eu_krakow_patrol",
+    "questStage": 2,
+    "label": "Maszerujesz w cieniu krakowskiego patrolu. Droga jest absolutnie bezpieczna.",
+    "distanceCost": 60,
+    "effects": {"morale": 10},
+    "successMessage": "Pierwszy raz od miesięcy mogłeś iść nie oglądając się za siebie."
+  },
+  {
+    "id": "eu_las_1",
+    "questId": "eu_las",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Przechodzisz przez gęsty, mroczny las na rubieżach dawnej Polski.",
+    "timeCost": 4,
+    "distanceCost": 35,
+    "effects": {"hydration": -10, "morale": -10},
+    "successMessage": "Las wydawał się nie mieć końca. Mroczne cienie grały na twoich nerwach."
+  },
+  {
+    "id": "eu_ruiny_wawel_1",
+    "questId": "eu_ruiny_wawel",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "W zgliszczach starego schroniska znajdujesz czystą wodę w zapieczętowanych beczkach.",
+    "itemEffects": {"WATER": 2},
+    "successMessage": "Prawdziwy skarb w tym zatrutym świecie."
+  },
+  {
+    "id": "eu_ostatni_oddech_1",
+    "questId": "eu_ostatni_oddech",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Kraków już blisko, ale twoje ciało odmawia posłuszeństwa. Zbierasz resztki sił.",
+    "effects": {"energy": -30, "morale": 20},
+    "distanceCost": 50,
+    "successMessage": "Biegniesz siłą woli. Meta jest o krok."
+  },
+  {
+    "id": "eu_handlarz_1",
+    "questId": "eu_handlarz",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Czarnorynkowy handlarz pod Krakowem. Wymienia wszystko na leki.",
+    "itemEffects": {"WATER": 1, "DRIED_MEAT": 1},
+    "failChance": 0.2,
+    "successMessage": "Ubiłeś targ. Zyskałeś cenne zapasy na sam koniec drogi.",
+    "failMessage": "Próbował cię oszukać i okradł z resztek.",
+    "failEffects": {"morale": -15}
+  }
+]

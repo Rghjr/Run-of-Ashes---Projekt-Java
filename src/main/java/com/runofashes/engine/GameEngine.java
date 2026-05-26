@@ -13,6 +13,7 @@ public class GameEngine {
 
     private Player player = new Player();
     private int turnCount = 0;
+    private int mainQuestWeight = 1; // Waga tylko dla questów fabularnych
 
     private final Map<String, QuestState> activeQuests    = new LinkedHashMap<>();
     private final Set<String>             completedQuests = new HashSet<>();
@@ -59,9 +60,12 @@ public class GameEngine {
         energyEvents    = EventLoader.loadEvents("events_energy.json");
         moraleEvents    = EventLoader.loadEvents("events_morale.json");
         moveEvents      = EventLoader.loadEvents("events_move.json");
-        questEvents     = EventLoader.loadEvents("events_quests.json");
         rareEvents      = EventLoader.loadEvents("events_rare.json");
         endings         = EventLoader.loadEndings();
+
+        questEvents = new ArrayList<>(EventLoader.loadEvents("events_quests.json"));
+        List<GameEvent> stageQuests = EventLoader.loadEvents("events_stages_quests.json");
+        questEvents.addAll(stageQuests);
 
         questEventMap = new HashMap<>();
         for (GameEvent e : questEvents) {
@@ -119,9 +123,12 @@ public class GameEngine {
             return;
         }
 
+        if (event.getQuestId() != null && event.getQuestStage() == 1 && event.getRequiredStage() != null) {
+            mainQuestWeight = 5;
+        }
+
         EventResult result = resolveResult(event);
 
-        //bez tego switch(lastResult) zawsze używał wyniku z poprzedniej tury
         lastResult = result;
 
         switch (lastResult) {
@@ -169,6 +176,7 @@ public class GameEngine {
         traitManager.tick(player, difficulty);
         player.addTime(timeCost);
         turnCount++;
+        mainQuestWeight += 0.5;
         tickQuests();
         tickWeather();
         checkBiomeChange();
@@ -262,8 +270,8 @@ public class GameEngine {
     /** Zwraca nazwę głównego etapu podróży w zależności od przebytych kilometrów. */
     public String getCurrentStageName() {
         int d = player.getDistance();
-        if (d > 2200) return "Azja Mniejsza";
-        if (d > 1400) return "Góry";
+        if (d < 1400) return "Azja Mniejsza";
+        if (d < 2600) return "Góry";
         return "Europa";
     }
 
@@ -411,7 +419,23 @@ public class GameEngine {
         List<GameEvent> availableNewQuests = getAvailableNewQuests();
 
         List<GameEvent> pool = buildWeightedPool(currentHour);
-        addWeighted(pool, availableNewQuests, 6);
+
+        // --- Podział na questy główne i poboczne ---
+        List<GameEvent> mainQuests = new ArrayList<>();
+        List<GameEvent> sideQuests = new ArrayList<>();
+        String currentStage = getCurrentStageName();
+
+        for (GameEvent eq : availableNewQuests) {
+            if (eq.getRequiredStage() != null) {
+                if (eq.getRequiredStage().equals(currentStage)) {
+                    mainQuests.add(eq);
+                }
+            } else {
+                sideQuests.add(eq);
+            }
+        }
+        addWeighted(pool, sideQuests, 6);
+        addWeighted(pool, mainQuests, mainQuestWeight);
 
         Collections.shuffle(pool, RNG);
 
