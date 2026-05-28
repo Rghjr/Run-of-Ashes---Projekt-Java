@@ -3,7 +3,6 @@ package com.runofashes.ui;
 import com.runofashes.engine.GameEngine;
 import com.runofashes.engine.Inventory;
 import com.runofashes.model.ItemType;
-import com.runofashes.model.StatusEffect;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -21,8 +20,13 @@ public class InventoryPanel extends VBox {
 
     private final GameEngine engine;
     private final Runnable onUseCallback;
-    private final VBox       itemList   = new VBox(8);
-    private final VBox       statusList = new VBox(6);
+    private final VBox itemList = new VBox(8);
+
+    // BUG FIX: usunięto pole statusList i metodę buildStatusList() — były martwym kodem.
+    // statusList był wypełniany w każdym refresh() ale nigdy nie był dodany do getChildren(),
+    // więc użytkownik nigdy go nie widział. Statusy są wyświetlane przez activeStatusesBox
+    // w Main.java. Wasted computation na każdy refresh ekwipunku.
+
     // ── Konstruktor ───────────────────────────────────────────────────────────
 
     public InventoryPanel(GameEngine engine, Runnable onUseCallback) {
@@ -44,7 +48,7 @@ public class InventoryPanel extends VBox {
 
     public void refresh() {
         buildItemList();
-        buildStatusList();
+        // BUG FIX: buildStatusList() usunięte — patrz komentarz przy klasie
     }
 
     // ── Budowanie sekcji itemów ───────────────────────────────────────────────
@@ -109,50 +113,5 @@ public class InventoryPanel extends VBox {
         row.setPadding(new Insets(8));
         row.setStyle("-fx-background-color: #16213e; -fx-background-radius: 6;");
         return row;
-    }
-
-    // ── Budowanie sekcji statusów ─────────────────────────────────────────────
-
-    private void buildStatusList() {
-        statusList.getChildren().clear();
-
-        Map<StatusEffect, Integer> active = engine.getStatusManager().getActiveStatuses();
-
-        if (active.isEmpty()) {
-            Label none = new Label("Brak aktywnych statusów.");
-            none.setStyle("-fx-text-fill: #555; -fx-font-style: italic; -fx-font-size: 12px;");
-            statusList.getChildren().add(none);
-            return;
-        }
-
-        for (Map.Entry<StatusEffect, Integer> entry : active.entrySet()) {
-            StatusEffect se    = entry.getKey();
-            int          turns = entry.getValue();
-
-            Label badge = new Label(se.getEmoji() + "  " + se.getLabel()
-                    + "  (" + turns + (turns == 1 ? " tura)" : " tury)"));
-            badge.setWrapText(true);
-            badge.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 12px;"
-                    + "-fx-background-color: #1a1a0e; -fx-background-radius: 4;"
-                    + "-fx-padding: 5 8;");
-            badge.setMaxWidth(Double.MAX_VALUE);
-
-            Label desc = new Label(se.getDescription());
-            desc.setStyle("-fx-text-fill: #888; -fx-font-size: 11px;");
-            desc.setWrapText(true);
-
-            VBox box = new VBox(2, badge, desc);
-            statusList.getChildren().add(box);
-        }
-    }
-
-    // ── Helper ────────────────────────────────────────────────────────────────
-
-    private Region separator() {
-        Region sep = new Region();
-        sep.setStyle("-fx-background-color: #2a2a3a;");
-        sep.setPrefHeight(1);
-        sep.setMaxWidth(Double.MAX_VALUE);
-        return sep;
     }
 }

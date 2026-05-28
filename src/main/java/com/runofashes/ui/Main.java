@@ -27,16 +27,13 @@ public class Main extends Application {
     private Stage primaryStage;
     private Scene mainScene;
 
-    // Ekrany pre-game
     private DifficultyScreen    difficultyScreen;
     private TraitSelectionScreen traitScreen;
 
-    // Ekrany gry
     private Pane gameRoot;
     private VBox endRoot, winRoot;
     private Label endTextLabel;
 
-    // HUD
     private GameHUD hud;
     private QuestPanel questPanel;
     private InventoryPanel inventoryPanel;
@@ -63,10 +60,8 @@ public class Main extends Application {
         mainScene = new Scene(difficultyScreen, 980, 860);
 
         stage.setTitle("Run of Ashes");
-
         stage.setMinWidth(980);
         stage.setMinHeight(750);
-
         stage.setScene(mainScene);
         stage.show();
     }
@@ -75,7 +70,6 @@ public class Main extends Application {
     //  Przepływ ekranów pre-game
     // ══════════════════════════════════════════════════════════════════════════
 
-    // Wywoływane przy restarcie (EndScreen/WinScreen) — mainScene juz istnieje
     private void showDifficultyScreen() {
         difficultyScreen = new DifficultyScreen(this::onDifficultyConfirmed);
         mainScene.setRoot(difficultyScreen);
@@ -149,7 +143,6 @@ public class Main extends Application {
         questScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; -fx-viewport-background-color: transparent; -fx-border-color: transparent;");
 
         StackPane rightContent = new StackPane(questScroll, invScroll);
-
         VBox.setVgrow(rightContent, Priority.ALWAYS);
 
         invScroll.setVisible(true);
@@ -172,7 +165,6 @@ public class Main extends Application {
             btnInv.setStyle(btnActive);
             btnQuest.setStyle(btnInactive);
         });
-
         btnQuest.setOnAction(e -> {
             questScroll.setVisible(true);
             invScroll.setVisible(false);
@@ -190,7 +182,7 @@ public class Main extends Application {
 
         biomeEffectsLabel = new Label();
         biomeEffectsLabel.setWrapText(true);
-        biomeEffectsLabel.setStyle("-fx-text-fill: #ccc; -fx-font-size: 13px; -fx-line-spacing: 5px;"); // line-spacing daje oddech między linijkami
+        biomeEffectsLabel.setStyle("-fx-text-fill: #ccc; -fx-font-size: 13px; -fx-line-spacing: 5px;");
 
         biomeInfoPanel = new VBox(8, biomeTitleLabel, biomeDescLabel, biomeEffectsLabel);
         biomeInfoPanel.setStyle("""
@@ -235,7 +227,6 @@ public class Main extends Application {
 
         String bg, bgHo, badgeText, badgeColor;
 
-        // --- Kolory tła i etykiet ---
         if (isWait) {
             bg = "#1a1a0e"; bgHo = "#2a2a18";
             badgeText = "⏳ przeczekanie"; badgeColor = "#f0c040";
@@ -279,7 +270,6 @@ public class Main extends Application {
         Label metaLbl = new Label("⏱ " + event.getTimeCost() + "h" + distText);
         metaLbl.setStyle("-fx-text-fill: #666; -fx-font-size: 12px;");
 
-        // Dodawanie podstawowych elementów
         card.getChildren().addAll(lbl, fxLabel, metaLbl);
 
         if (!badgeText.isEmpty()) {
@@ -294,7 +284,6 @@ public class Main extends Application {
             card.getChildren().add(warnLbl);
         }
 
-        // Efekty najechania myszką
         card.setOnMouseEntered(e -> card.setStyle(card.getStyle().replace(bg, bgHo)));
         card.setOnMouseExited(e  -> card.setStyle(card.getStyle().replace(bgHo, bg)));
         card.setOnMouseClicked(e -> onCardClicked(event));
@@ -416,15 +405,17 @@ public class Main extends Application {
                     + " — " + triggered.getDescription());
         }
 
-        // AKTUALIZACJA PANELU ŚRODOWISKA
-        Biome currentBiome = engine.getCurrentBiome();
+        // BUG FIX: usunięto pierwszą (martwą) linię setText, która była natychmiast
+        // nadpisywana drugą. Teraz tytuł panelu biomu pokazuje etap + biom + pogodę.
+        Biome currentBiome     = engine.getCurrentBiome();
         Weather currentWeather = engine.getCurrentWeather();
-        String currentStage = engine.getCurrentStageName();
+        String currentStage    = engine.getCurrentStageName();
 
-        biomeTitleLabel.setText("🚩 " + currentStage.toUpperCase()
-                + "   |   " + currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase()  + "   |   " + currentWeather.getEmoji() + " " + currentWeather.getLabel().toUpperCase());
-
-        biomeTitleLabel.setText(currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase());
+        biomeTitleLabel.setText(
+                "🚩 " + currentStage.toUpperCase()
+                        + "   |   " + currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase()
+                        + "   |   " + currentWeather.getEmoji() + " " + currentWeather.getLabel().toUpperCase()
+        );
         biomeDescLabel.setText(currentBiome.getEntryMessage());
         biomeEffectsLabel.setText(engine.buildBiomeInfo(currentBiome));
 
@@ -441,15 +432,12 @@ public class Main extends Application {
         } else {
             statuses.forEach((status, turns) -> {
                 VBox statusBox = new VBox(2);
-
                 String t = turns == 1 ? "tura" : (turns < 5 ? "tury" : "tur");
                 Label nameLbl = new Label(status.getEmoji() + " " + status.getLabel() + " (" + turns + " " + t + ")");
                 nameLbl.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 13px;");
-
                 Label descLbl = new Label(status.getDescription());
                 descLbl.setStyle("-fx-text-fill: #aaa; -fx-font-size: 11px;");
                 descLbl.setWrapText(true);
-
                 statusBox.getChildren().addAll(nameLbl, descLbl);
                 activeStatusesBox.getChildren().add(statusBox);
             });

@@ -13,7 +13,7 @@ public class GameEngine {
 
     private Player player = new Player();
     private int turnCount = 0;
-    private double mainQuestWeight = 1; // Waga tylko dla questów fabularnych
+    private double mainQuestWeight = 1;
 
     private final Map<String, QuestState> activeQuests    = new LinkedHashMap<>();
     private final Set<String>             completedQuests = new HashSet<>();
@@ -44,9 +44,7 @@ public class GameEngine {
     private Biome   currentBiome   = Biome.STEPPE;
     private int     biomeStartDistance = 4000;
     private Weather currentWeather = Weather.CLEAR;
-    /** Liczba tur zanim pogoda się zmieni. */
     private int     weatherTurnsLeft = 5;
-    /** Wiadomość o zmianie biomu/pogody — pokazywana w tym samym polu co lastMessage. */
     private String  biomeChangeMessage = "";
     private String  weatherChangeMessage = "";
 
@@ -97,6 +95,9 @@ public class GameEngine {
         biomeChangeMessage   = "";
         weatherChangeMessage = "";
 
+        // BUG FIX: mainQuestWeight nie był resetowany między partiami
+        mainQuestWeight = 1;
+
         applyDifficultyAndTraits();
         addStarterItems();
         drawCards();
@@ -112,7 +113,6 @@ public class GameEngine {
     // ══════════════════════════════════════════════════════════════════════════
 
     public void executeEvent(GameEvent event) {
-        // Specjalny event "przeczekaj turę"
         if ("WAIT_TURN".equals(event.getId())) {
             lastResult  = EventResult.SUCCESS;
             lastMessage = event.getSuccessMessage() != null
@@ -140,8 +140,17 @@ public class GameEngine {
                         ? event.getLowMoraleSuccessMessage()
                         : event.getSuccessMessage();
                 lastMessage = msg != null ? msg : "";
-
                 handleQuestProgress(event);
+
+                // BUG FIX: distanceCost i cancelLocalQuests tylko gdy event się powiódł.
+                // Eventy takie jak move_forest_path (fail: "wyszedłeś tam gdzie wszedłeś")
+                // nie powinny przesuwać gracza przy FAIL.
+                // BUG FIX #2: zmieniono > 0 na != 0, żeby obsłużyć ujemny distanceCost
+                // (np. am_kultyci_1 z distanceCost: -20 oznacza objazd — wcześniej był ignorowany)
+                if (event.getDistanceCost() != 0) {
+                    player.addDistance(event.getDistanceCost());
+                    cancelLocalQuests(event.getQuestId());
+                }
             }
             case PARTIAL -> {
                 applyEffectsPartial(applyHallucinations(event.getEffects()));
@@ -150,17 +159,24 @@ public class GameEngine {
                         ? "Nawet gdy coś się udaje, smakuje to jak porażka."
                         : "Nie poszło idealnie — efekt był słabszy niż oczekiwałeś.";
                 handleQuestProgress(event);
+
+                // PARTIAL: gracz się ruszył, lokalnych questów nie utrzyma
+                if (event.getDistanceCost() != 0) {
+                    player.addDistance(event.getDistanceCost());
+                    cancelLocalQuests(event.getQuestId());
+                }
             }
             case FAIL -> {
                 applyEffects(event.getFailEffects());
-                String msg = (isDepressed && event.getLowMoraleFailMessage() != null)
+                String failMsg = (isDepressed && event.getLowMoraleFailMessage() != null)
                         ? event.getLowMoraleFailMessage()
                         : event.getFailMessage();
-                lastMessage = msg != null ? msg : "";
+                lastMessage = failMsg != null ? failMsg : "";
                 if (event.getQuestId() != null && event.getTurnsUntilNext() == 0) {
                     activeQuests.remove(event.getQuestId());
                     completedQuests.add(event.getQuestId());
                 }
+                // FAIL: gracz się NIE rusza, lokalne questy zostają
             }
         }
 
@@ -170,15 +186,11 @@ public class GameEngine {
                     : lastMessage + "\n\n" + event.getRevealMessage();
         }
 
-        if (event.getDistanceCost() > 0) {
-            player.addDistance(event.getDistanceCost());
-            cancelLocalQuests(event.getQuestId());
-        }
-
         advanceTurn(event.getTimeCost());
     }
 
-    // Metoda do przesuwania tury
+    // ── Tura ─────────────────────────────────────────────────────────────────
+
     private void advanceTurn(int timeCost) {
         applyWeatherEffects();
         statusManager.tick(player, turnCount, difficulty);
@@ -195,7 +207,6 @@ public class GameEngine {
 
     // ── Biom i pogoda ─────────────────────────────────────────────────────────
 
-    /** Aplikuje per-turowe efekty aktualnej pogody, skalowane mnożnikiem biomu dla hunger/hydration. */
     private void applyWeatherEffects() {
         currentWeather.getPerTurnEffects().forEach((stat, delta) -> {
             if (delta < 0 && (stat.equals("hunger") || stat.equals("hydration") || stat.equals("energy"))) {
@@ -206,42 +217,34 @@ public class GameEngine {
         });
     }
 
-    /** Tick pogody — zmniejsza licznik i ewentualnie losuje nową. */
     private void tickWeather() {
         weatherTurnsLeft--;
         if (weatherTurnsLeft <= 0) {
             Weather next = Weather.rollNext(currentWeather, RNG);
             currentWeather   = next;
             weatherTurnsLeft = RNG.nextInt(next.getMaxTurns() - next.getMinTurns() + 1) + next.getMinTurns();
-
         } else {
             weatherChangeMessage = "";
         }
     }
 
-    /** Sprawdza czy gracz przeszedł 400 km w obecnym biomie. */
     private void checkBiomeChange() {
         int distanceTraveledInBiome = biomeStartDistance - player.getDistance();
-
         if (distanceTraveledInBiome >= 400) {
             Biome newBiome = Biome.rollNext(currentBiome, RNG);
             currentBiome = newBiome;
             biomeStartDistance = player.getDistance();
-
         }
     }
 
-    /** Tworzy czytelny tekst wyjaśniający wpływ biomu na grę. */
     public String buildBiomeInfo(Biome biome) {
         StringBuilder sb = new StringBuilder("Wpływ środowiska:\n");
-
         biome.getDecayMultipliers().forEach((stat, val) -> {
             if (val != 1.0) {
                 String desc = val > 1.0 ? "szybszy spadek" : "wolniejszy spadek";
                 sb.append(" • ").append(statEmoji(stat)).append(" ").append(desc).append(" (x").append(val).append(")\n");
             }
         });
-
         biome.getEventWeightMods().forEach((cat, val) -> {
             String catName = switch (cat) {
                 case "food"      -> "🍗 jedzenia";
@@ -255,11 +258,9 @@ public class GameEngine {
             String desc = val > 0 ? "Więcej kart" : "Mniej kart";
             sb.append(" • 🃏 ").append(desc).append(" ").append(catName).append("\n");
         });
-
         return sb.toString().trim();
     }
 
-    /** Buduje krótki string "+X stat -Y stat" z mapy efektów. */
     private String buildEffectSummary(java.util.Map<String, Integer> effects) {
         StringBuilder sb = new StringBuilder();
         effects.forEach((stat, val) -> sb.append(val > 0 ? "+" : "").append(val).append(" ").append(statEmoji(stat)).append(" "));
@@ -277,7 +278,6 @@ public class GameEngine {
         };
     }
 
-    /** Zwraca nazwę głównego etapu podróży w zależności od przebytych kilometrów. */
     public String getCurrentStageName() {
         int d = player.getDistance();
         if (d > 2600) return "Azja Mniejsza";
@@ -285,7 +285,8 @@ public class GameEngine {
         return "Europa";
     }
 
-    // Metoda do obsługi halucynacji
+    // ── Halucynacje ───────────────────────────────────────────────────────────
+
     private Map<String, Integer> applyHallucinations(Map<String, Integer> fx) {
         if (fx == null || !statusManager.hasHallucinations()) return fx;
         Map<String, Integer> hallFx = new HashMap<>(fx);
@@ -293,20 +294,30 @@ public class GameEngine {
         return hallFx;
     }
 
-    // Metoda ujednolicająca dodawanie itemów z kart
+    // ── Itemy z kart ─────────────────────────────────────────────────────────
+
+    /**
+     * BUG FIX: ujemne wartości w itemEffects (np. BANDAGE: -1) były wcześniej przekazywane
+     * do inventory.add(), co tworzyło ujemne stany lub cicho nie usuwało przedmiotu.
+     * Teraz ujemne wartości wywołują inventory.consume(), a dodatnie inventory.add().
+     */
     private void processItemEffects(Map<String, Integer> items, boolean isPartial) {
         if (items == null) return;
         items.forEach((itemName, amount) -> {
-            if (isPartial && !RNG.nextBoolean()) return; // 50% szans w przypadku PARTIAL
+            if (isPartial && !RNG.nextBoolean()) return;
             try {
-                ItemType type  = ItemType.valueOf(itemName);
-                int      added = inventory.add(type, amount);
-                int overflow = amount - added;
-                if (overflow > 0) {
-                    Map<String, Integer> itemFx = type.getImmediateEffects();
-                    if (itemFx != null) {
-                        for (int i = 0; i < overflow; i++) applyEffects(itemFx);
+                ItemType type = ItemType.valueOf(itemName);
+                if (amount > 0) {
+                    int added    = inventory.add(type, amount);
+                    int overflow = amount - added;
+                    if (overflow > 0) {
+                        Map<String, Integer> itemFx = type.getImmediateEffects();
+                        if (itemFx != null) {
+                            for (int i = 0; i < overflow; i++) applyEffects(itemFx);
+                        }
                     }
+                } else if (amount < 0) {
+                    inventory.consume(type, -amount);
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("Błąd: Nieznany przedmiot w JSON: " + itemName);
@@ -430,7 +441,6 @@ public class GameEngine {
 
         List<GameEvent> pool = buildWeightedPool(currentHour);
 
-        // --- Podział na questy główne i poboczne ---
         List<GameEvent> mainQuests = new ArrayList<>();
         List<GameEvent> sideQuests = new ArrayList<>();
         String currentStage = getCurrentStageName();
@@ -452,14 +462,12 @@ public class GameEngine {
         currentCards = new ArrayList<>();
         Set<String> usedIds = new HashSet<>();
 
-        // Dodajemy WSZYSTKIE gotowe kontynuacje questów (do limitu 4),
         for (GameEvent cont : readyContinuations) {
             if (currentCards.size() >= 4) break;
             currentCards.add(cont);
             usedIds.add(cont.getId());
         }
 
-        // Karta "Przeczekaj turę" jeśli quest z allowWait jeszcze nie gotowy
         GameEvent waitCard = buildWaitCard();
         if (waitCard != null && currentCards.size() < 4) {
             currentCards.add(waitCard);
