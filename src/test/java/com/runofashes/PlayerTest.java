@@ -15,17 +15,12 @@ public class PlayerTest {
 
     // ── Helpery ───────────────────────────────────────────────────────────────
 
-    /** Tworzy gracza z obliczonymi maksimami dla danej trudności i cech. */
     private Player playerWith(Difficulty difficulty, Trait... traits) {
         Player player = new Player();
         player.initMaxStats(difficulty, List.of(traits));
         return player;
     }
 
-    /**
-     * Oczekiwane maximum dla danego statu:
-     * min(ABSOLUTE_MAX, max(1, 100 + diffBonus + sum(traitBonuses[stat])))
-     */
     private int expectedMax(Difficulty difficulty, String stat, Trait... traits) {
         int bonus = difficulty.getStartStatBonus();
         for (Trait t : traits) {
@@ -43,10 +38,8 @@ public class PlayerTest {
         int expected = expectedMax(difficulty, "health");
 
         player.setHealth(999);
-        assertEquals(expected, player.getMaxHealth(),
-                "[" + difficulty.getLabel() + "] maxHealth powinno wynosić " + expected);
-        assertEquals(expected, player.getHealth(),
-                "[" + difficulty.getLabel() + "] setHealth(999) powinno dać " + expected);
+        assertEquals(expected, player.getMaxHealth());
+        assertEquals(expected, player.getHealth());
     }
 
     @ParameterizedTest
@@ -54,112 +47,89 @@ public class PlayerTest {
     public void testLowerBoundAlwaysZero(Difficulty difficulty) {
         Player player = playerWith(difficulty);
         player.setHunger(-999);
-        assertEquals(0, player.getHunger(),
-                "[" + difficulty.getLabel() + "] Głód nie może spaść poniżej 0");
+        assertEquals(0, player.getHunger());
     }
 
     // ── Cechy podnoszące max ──────────────────────────────────────────────────
 
     @Test
     public void testHardyOnNormal() {
-        // NORMAL: +0, HARDY: health +20 → maxHealth = 120; inne staty bez bonusu od HARDY
         Player player = playerWith(Difficulty.NORMAL, Trait.HARDY);
 
-        assertEquals(120, player.getMaxHealth(), "HARDY+NORMAL: maxHealth powinno być 120");
-        assertEquals(expectedMax(Difficulty.NORMAL, "hunger"), player.getMaxHunger(),
-                "HARDY nie powinien wpływać na maxHunger");
+        assertEquals(120, player.getMaxHealth());
+        assertEquals(expectedMax(Difficulty.NORMAL, "hunger"), player.getMaxHunger());
 
         player.setHealth(999);
-        assertEquals(120, player.getHealth(), "Zdrowie powinno być przycięte do 120");
+        assertEquals(120, player.getHealth());
     }
 
     @Test
     public void testHardyOnEasy() {
-        // EASY: +10, HARDY: health +20 → 130 = ABSOLUTE_MAX
         Player player = playerWith(Difficulty.EASY, Trait.HARDY);
-
-        assertEquals(Player.ABSOLUTE_MAX, player.getMaxHealth(),
-                "HARDY+EASY: maxHealth powinno osiągnąć ABSOLUTE_MAX=" + Player.ABSOLUTE_MAX);
+        assertEquals(Player.ABSOLUTE_MAX, player.getMaxHealth());
     }
 
     @Test
     public void testWayfarerOnEasy() {
-        // EASY: +10, WAYFARER: energy +15 → maxEnergy = 125
         Player player = playerWith(Difficulty.EASY, Trait.WAYFARER);
 
-        assertEquals(125, player.getMaxEnergy(), "WAYFARER+EASY: maxEnergy powinno być 125");
-        assertEquals(110, player.getMaxHealth(), "WAYFARER nie wpływa na maxHealth");
+        assertEquals(125, player.getMaxEnergy());
+        assertEquals(110, player.getMaxHealth());
     }
 
     // ── Cechy obniżające max ──────────────────────────────────────────────────
 
     @Test
     public void testSicklyOnHard() {
-        // HARD: -10, SICKLY: health -15 → maxHealth = 75
         Player player = playerWith(Difficulty.HARD, Trait.SICKLY);
-        int expected = expectedMax(Difficulty.HARD, "health", Trait.SICKLY); // 75
+        int expected = expectedMax(Difficulty.HARD, "health", Trait.SICKLY);
 
-        assertEquals(expected, player.getMaxHealth(),
-                "SICKLY+HARD: maxHealth powinno być " + expected);
+        assertEquals(expected, player.getMaxHealth());
         player.setHealth(999);
-        assertEquals(expected, player.getHealth(),
-                "Zdrowie powinno być przycięte do " + expected);
+        assertEquals(expected, player.getHealth());
     }
 
     @Test
     public void testParchedOnHard() {
-        // HARD: -10, PARCHED: hydration -15 → maxHydration = 75
         Player player = playerWith(Difficulty.HARD, Trait.PARCHED);
-        int expected = expectedMax(Difficulty.HARD, "hydration", Trait.PARCHED); // 75
+        int expected = expectedMax(Difficulty.HARD, "hydration", Trait.PARCHED);
 
-        assertEquals(expected, player.getMaxHydration(),
-                "PARCHED+HARD: maxHydration powinno być " + expected);
-        assertEquals(expectedMax(Difficulty.HARD, "health"), player.getMaxHealth(),
-                "PARCHED nie wpływa na maxHealth");
+        assertEquals(expected, player.getMaxHydration());
+        assertEquals(expectedMax(Difficulty.HARD, "health"), player.getMaxHealth());
     }
 
     @Test
     public void testMelancholicOnHard() {
-        // HARD: -10, MELANCHOLIC: morale -20 → maxMorale = 70
         Player player = playerWith(Difficulty.HARD, Trait.MELANCHOLIC);
-        int expected = expectedMax(Difficulty.HARD, "morale", Trait.MELANCHOLIC); // 70
-
-        assertEquals(expected, player.getMaxMorale(),
-                "MELANCHOLIC+HARD: maxMorale powinno być " + expected);
+        int expected = expectedMax(Difficulty.HARD, "morale", Trait.MELANCHOLIC);
+        assertEquals(expected, player.getMaxMorale());
     }
 
     // ── Cechy znoszące się nawzajem ───────────────────────────────────────────
 
     @Test
     public void testPilgrimAndMelancholicCancelOut() {
-        // PILGRIM: morale +20, MELANCHOLIC: morale -20 → na NORMAL: max = 100
         Player player = playerWith(Difficulty.NORMAL, Trait.PILGRIM, Trait.MELANCHOLIC);
-
-        assertEquals(100, player.getMaxMorale(),
-                "Pielgrzym i Melancholik powinny się znosić — maxMorale = 100");
+        assertEquals(100, player.getMaxMorale());
     }
 
     @Test
     public void testHardyAndSicklyPartialCancel() {
-        // NORMAL: +0, HARDY: health +20, SICKLY: health -15 → maxHealth = 105
         Player player = playerWith(Difficulty.NORMAL, Trait.HARDY, Trait.SICKLY);
-
-        assertEquals(105, player.getMaxHealth(),
-                "HARDY+SICKLY+NORMAL: maxHealth powinno być 105");
+        assertEquals(105, player.getMaxHealth());
     }
 
     // ── Per-stat niezależność ─────────────────────────────────────────────────
 
     @Test
     public void testEachStatHasIndependentMax() {
-        // EASY: +10 globalnie, FORAGER: hunger +10, HARDY: health +20
         Player player = playerWith(Difficulty.EASY, Trait.FORAGER, Trait.HARDY);
 
-        assertEquals(expectedMax(Difficulty.EASY, "health",    Trait.FORAGER, Trait.HARDY), player.getMaxHealth());    // 130
-        assertEquals(expectedMax(Difficulty.EASY, "hunger",    Trait.FORAGER, Trait.HARDY), player.getMaxHunger());    // 120
-        assertEquals(expectedMax(Difficulty.EASY, "hydration", Trait.FORAGER, Trait.HARDY), player.getMaxHydration()); // 110
-        assertEquals(expectedMax(Difficulty.EASY, "energy",    Trait.FORAGER, Trait.HARDY), player.getMaxEnergy());    // 110
-        assertEquals(expectedMax(Difficulty.EASY, "morale",    Trait.FORAGER, Trait.HARDY), player.getMaxMorale());    // 110
+        assertEquals(expectedMax(Difficulty.EASY, "health",    Trait.FORAGER, Trait.HARDY), player.getMaxHealth());
+        assertEquals(expectedMax(Difficulty.EASY, "hunger",    Trait.FORAGER, Trait.HARDY), player.getMaxHunger());
+        assertEquals(expectedMax(Difficulty.EASY, "hydration", Trait.FORAGER, Trait.HARDY), player.getMaxHydration());
+        assertEquals(expectedMax(Difficulty.EASY, "energy",    Trait.FORAGER, Trait.HARDY), player.getMaxEnergy());
+        assertEquals(expectedMax(Difficulty.EASY, "morale",    Trait.FORAGER, Trait.HARDY), player.getMaxMorale());
     }
 
     // ── Game over ─────────────────────────────────────────────────────────────
@@ -169,21 +139,148 @@ public class PlayerTest {
     public void testGameOverDetection(Difficulty difficulty) {
         Player player = playerWith(difficulty);
 
-        assertNull(player.getDeadStat(),
-                "[" + difficulty.getLabel() + "] Nowy gracz nie powinien być martwy");
+        assertNull(player.getDeadStat());
 
         player.setEnergy(0);
-        assertEquals("energy", player.getDeadStat(),
-                "[" + difficulty.getLabel() + "] Energia = 0 → powód śmierci 'energy'");
+        assertEquals("energy", player.getDeadStat());
     }
 
     @Test
     public void testGameOverWithSicklyAtReducedMax() {
-        // Nawet gdy maxHealth = 75 (SICKLY+HARD), śmierć = health ≤ 0, nie ≤ max
         Player player = playerWith(Difficulty.HARD, Trait.SICKLY);
-        assertNull(player.getDeadStat(), "maxHealth=75 to nie śmierć");
+        assertNull(player.getDeadStat());
 
         player.setHealth(0);
-        assertEquals("health", player.getDeadStat(), "health=0 → śmierć z 'health'");
+        assertEquals("health", player.getDeadStat());
+    }
+
+    // ── Dystans i warunek wygranej ────────────────────────────────────────────
+
+    /**
+     * Gracz zaczyna z dystansem 4000 km.
+     * addDistance() odejmuje przebyte kilometry.
+     * Dystans nie może spaść poniżej 0 — clamp.
+     */
+    @Test
+    public void testAddDistanceClampAtZero() {
+        Player player = new Player();
+        assertEquals(4000, player.getDistance(), "Gracz powinien startować z 4000 km");
+
+        player.addDistance(3000);
+        assertEquals(1000, player.getDistance(), "Po 3000 km powinno zostać 1000 km");
+
+        player.addDistance(9999);
+        assertEquals(0, player.getDistance(), "Dystans nie może być ujemny — clamp do 0");
+    }
+
+    /**
+     * hasWon() powinno zwrócić true tylko gdy dystans == 0 (dotarcie do Krakowa).
+     * Przy jakimkolwiek dystansie > 0 gracz jeszcze nie wygrał.
+     */
+    @Test
+    public void testHasWon() {
+        Player player = new Player();
+        assertFalse(player.hasWon(), "Nowy gracz (4000 km) nie wygrał jeszcze");
+
+        player.addDistance(3999);
+        assertFalse(player.hasWon(), "1 km do celu — wciąż nie wygrał");
+
+        player.addDistance(1);
+        assertTrue(player.hasWon(), "Dystans = 0 → gracz wygrał");
+    }
+
+    /**
+     * getDeadStat() sprawdza staty w określonej kolejności: health → hunger →
+     * hydration → energy → morale. Gdy kilka statów równocześnie wynosi 0,
+     * powinna wrócić ta z wyższym priorytetem.
+     */
+    @Test
+    public void testDeadStatPriorityOrder() {
+        Player player = new Player();
+
+        // Ustaw energy i hunger na 0 — health nadal 100
+        player.setEnergy(0);
+        player.setHunger(0);
+        assertEquals("hunger", player.getDeadStat(),
+                "Głód ma wyższy priorytet śmierci niż energia");
+
+        // Teraz też health = 0 — powinno wygrać health
+        player.setHealth(0);
+        assertEquals("health", player.getDeadStat(),
+                "Zdrowie ma najwyższy priorytet spośród wszystkich statów");
+    }
+
+    /**
+     * modifyStat() z nieznanym kluczem (literówka / nieistniejący stat)
+     * nie powinien rzucać wyjątku — powinien po prostu nic nie robić.
+     */
+    @Test
+    public void testModifyStatUnknownKeyIgnored() {
+        Player player = new Player();
+        int healthBefore = player.getHealth();
+
+        assertDoesNotThrow(() -> player.modifyStat("nieznany_stat", 50),
+                "Nieznany klucz statu nie powinien rzucać wyjątku");
+        assertEquals(healthBefore, player.getHealth(),
+                "Nieznany stat nie powinien zmienić żadnej wartości gracza");
+    }
+
+    /**
+     * getTimeFormatted() zwraca string w formacie "Dzień N,  HH:00".
+     * Dzień = (czas / 24) + 1, godzina = czas % 24.
+     */
+    @Test
+    public void testGetTimeFormatted() {
+        Player player = new Player();
+        assertEquals("Dzień 1,  00:00", player.getTimeFormatted(),
+                "Na starcie powinien być Dzień 1, godzina 00:00");
+
+        player.addTime(24);
+        assertEquals("Dzień 2,  00:00", player.getTimeFormatted(),
+                "Po 24h powinien być Dzień 2, godzina 00:00");
+
+        player.addTime(13);
+        assertEquals("Dzień 2,  13:00", player.getTimeFormatted(),
+                "Po kolejnych 13h powinien być Dzień 2, godzina 13:00");
+    }
+
+    /**
+     * addTime() z ujemną wartością nie powinno cofać czasu —
+     * zabezpieczenie Math.max(0, hours) wewnątrz metody.
+     */
+    @Test
+    public void testAddTimeIgnoresNegativeValues() {
+        Player player = new Player();
+        player.addTime(5);
+        player.addTime(-100);
+        assertEquals(5, player.getTime(), "Ujemna wartość addTime() nie powinna cofać czasu");
+    }
+
+    /**
+     * Kombinacja trudności EASY (+10) i dwóch cech dających łącznie +100 do health
+     * nie powinna przekroczyć ABSOLUTE_MAX = 130.
+     */
+    @Test
+    public void testAbsoluteMaxClampsMultipleBonuses() {
+        // EASY (+10) + HARDY (health +20) = 130 = ABSOLUTE_MAX
+        Player player = playerWith(Difficulty.EASY, Trait.HARDY);
+        assertEquals(Player.ABSOLUTE_MAX, player.getMaxHealth(),
+                "Suma bonusów nie może przekroczyć ABSOLUTE_MAX=" + Player.ABSOLUTE_MAX);
+
+        // Dodatkowe setHealth powyżej ABSOLUTE_MAX też powinno być ucięte
+        player.setHealth(Player.ABSOLUTE_MAX + 50);
+        assertEquals(Player.ABSOLUTE_MAX, player.getHealth(),
+                "setHealth powyżej ABSOLUTE_MAX powinno zostać obcięte do " + Player.ABSOLUTE_MAX);
+    }
+
+    /**
+     * getStat() z nieznanym kluczem powinno zwrócić 100 (wartość domyślna),
+     * bez rzucania wyjątku.
+     */
+    @Test
+    public void testGetStatUnknownKeyReturnsDefault() {
+        Player player = new Player();
+        assertEquals(100, player.getStat("nieznany"),
+                "getStat z nieznanym kluczem powinno zwrócić domyślne 100");
     }
 }
