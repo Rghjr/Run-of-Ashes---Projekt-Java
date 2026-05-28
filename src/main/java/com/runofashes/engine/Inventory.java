@@ -12,6 +12,7 @@ public class Inventory {
     // ── Dodawanie itemów ──────────────────────────────────────────────────────
 
     public int add(ItemType type, int amount) {
+        if (amount <= 0) return 0;   // BUG FIX: add() tylko dla dodatnich wartości
         int current = items.getOrDefault(type, 0);
         int canAdd  = type.getMaxStack() - current;
         if (canAdd <= 0) return 0;
@@ -22,6 +23,25 @@ public class Inventory {
 
     public boolean add(ItemType type) {
         return add(type, 1) > 0;
+    }
+
+    // ── Zabieranie itemów (ujemne itemEffects w JSON) ─────────────────────────
+
+    /**
+     * Zabiera {@code amount} sztuk przedmiotu z ekwipunku.
+     * Jeśli gracz ma mniej niż {@code amount}, zabiera wszystko co ma.
+     *
+     * @return ile faktycznie zabrano (0 jeśli gracz nie miał nic)
+     */
+    public int consume(ItemType type, int amount) {
+        if (amount <= 0) return 0;
+        int current = items.getOrDefault(type, 0);
+        if (current <= 0) return 0;
+        int toRemove = Math.min(amount, current);
+        int remaining = current - toRemove;
+        if (remaining == 0) items.remove(type);
+        else                items.put(type, remaining);
+        return toRemove;
     }
 
     // ── Używanie itemów ───────────────────────────────────────────────────────
