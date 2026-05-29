@@ -14,7 +14,15 @@ public class StatusManager {
 
     private StatusEffect lastTriggered = null;
 
-    private static final Random RNG = new Random();
+    private final Random rng;
+
+    public StatusManager() {
+        this(new Random());
+    }
+
+    public StatusManager(Random rng) {
+        this.rng = Objects.requireNonNull(rng);
+    }
 
     // ── Publiczne API ─────────────────────────────────────────────────────────
 
@@ -43,7 +51,7 @@ public class StatusManager {
             double chance = baseChance(se, player);
             if (chance <= 0) continue;
 
-            if (RNG.nextDouble() < chance) {
+            if (rng.nextDouble() < chance) {
                 activate(se);
                 lastTriggered = se;
                 return true; // max jeden na turę
@@ -70,6 +78,13 @@ public class StatusManager {
     public boolean isActive(StatusEffect se)                { return activeStatuses.containsKey(se); }
     public Map<StatusEffect, Integer> getActiveStatuses()   { return Collections.unmodifiableMap(activeStatuses); }
     public StatusEffect getLastTriggered()                  { return lastTriggered; }
+
+    /** Zwraca ostatnio wylosowany status i czyści go — do jednorazowego komunikatu w UI. */
+    public StatusEffect consumeLastTriggered() {
+        StatusEffect triggered = lastTriggered;
+        lastTriggered = null;
+        return triggered;
+    }
 
     public boolean hasHallucinations()                      { return isActive(StatusEffect.HALLUCINATIONS); }
 
