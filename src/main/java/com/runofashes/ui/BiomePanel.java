@@ -55,7 +55,7 @@ public class BiomePanel extends VBox {
         descLabel.setText(currentBiome.getEntryMessage());
         effectsLabel.setText(engine.buildBiomeInfo(currentBiome));
 
-        StatusEffect triggered = engine.getStatusManager().getLastTriggered();
+        StatusEffect triggered = engine.getStatusManager().consumeLastTriggered();
         if (triggered != null) {
             messageLabel.setText(messageLabel.getText()
                     + "\n" + triggered.getEmoji() + " Nowy status: " + triggered.getLabel()

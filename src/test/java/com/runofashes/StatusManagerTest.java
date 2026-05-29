@@ -6,10 +6,21 @@ import com.runofashes.model.Player;
 import com.runofashes.model.StatusEffect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.Map;
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StatusManagerTest {
+
+    /** Zawsze przechodzi roll RNG (< dowolnej dodatniej szansy). */
+    private static final class AlwaysHitRandom extends Random {
+        @Override
+        public double nextDouble() {
+            return 0.0;
+        }
+    }
 
     private StatusManager manager;
     private Player player;
@@ -34,12 +45,12 @@ public class StatusManagerTest {
 
     @Test
     public void testRollTriggersActivatesDehydration() {
+        StatusManager deterministic = new StatusManager(new AlwaysHitRandom());
         player.setHydration(10);
-        for (int i = 0; i < 50; i++) {
-            manager.rollTriggers(player);
-            if (manager.isActive(StatusEffect.DEHYDRATION)) break;
-        }
-        assertTrue(manager.isActive(StatusEffect.DEHYDRATION));
+
+        assertTrue(deterministic.rollTriggers(player));
+        assertTrue(deterministic.isActive(StatusEffect.DEHYDRATION));
+        assertEquals(StatusEffect.DEHYDRATION, deterministic.getLastTriggered());
     }
 
     @Test
@@ -54,12 +65,6 @@ public class StatusManagerTest {
         assertTrue(manager.isActive(StatusEffect.FEVER));
     }
 
-    // ── Nowe testy ────────────────────────────────────────────────────────────
-
-    /**
-     * Status wygasa po upływie defaultDuration tur.
-     * FEVER ma defaultDuration=4 — powinien zniknąć po 4 tickach.
-     */
     @Test
     public void testStatusExpiresAfterDefaultDuration() {
         manager.activate(StatusEffect.FEVER);
@@ -75,26 +80,18 @@ public class StatusManagerTest {
                 "Gorączka powinna wygasnąć po " + duration + " turach");
     }
 
-    /**
-     * Wywołanie activate() dla już aktywnego statusu resetuje jego czas trwania.
-     * Ponowna aktywacja nie stackuje czasu — zastępuje go.
-     */
     @Test
     public void testActivatingAlreadyActiveStatusResetsItsDuration() {
         manager.activate(StatusEffect.CRAMPS);
-        manager.tick(player, 1, Difficulty.NORMAL); // turnsLeft = 1
+        manager.tick(player, 1, Difficulty.NORMAL);
 
-        manager.activate(StatusEffect.CRAMPS); // reset do defaultDuration
+        manager.activate(StatusEffect.CRAMPS);
 
         int turns = manager.getActiveStatuses().get(StatusEffect.CRAMPS);
         assertEquals(StatusEffect.CRAMPS.getDefaultDuration(), turns,
                 "Ponowne activate() powinno zresetować czas trwania statusu");
     }
 
-    /**
-     * Kilka statusów może być aktywnych jednocześnie — nie blokują się nawzajem.
-     * Każdy tick odlicza czas wszystkich aktywnych.
-     */
     @Test
     public void testMultipleStatusesCanBeActiveSimultaneously() {
         manager.activate(StatusEffect.FEVER);
@@ -108,10 +105,6 @@ public class StatusManagerTest {
                 "Wszystkie trzy statusy powinny być aktywne jednocześnie");
     }
 
-    /**
-     * hasHallucinations() zwraca true tylko gdy HALLUCINATIONS jest aktywny,
-     * i false po jego wygaśnięciu. Używane przez applyHallucinations() w GameEngine.
-     */
     @Test
     public void testHasHallucinations() {
         assertFalse(manager.hasHallucinations(), "Na starcie brak halucynacji");
@@ -119,66 +112,54 @@ public class StatusManagerTest {
         manager.activate(StatusEffect.HALLUCINATIONS);
         assertTrue(manager.hasHallucinations(), "Po aktywacji halucynacje są aktywne");
 
-        // Tick tyle razy ile wynosi duration, by wygasły
         for (int i = 0; i < StatusEffect.HALLUCINATIONS.getDefaultDuration(); i++) {
             manager.tick(player, i, Difficulty.NORMAL);
         }
         assertFalse(manager.hasHallucinations(), "Halucynacje powinny wygasnąć po czasie");
     }
 
-    /**
-     * getLastTriggered() zwraca ostatni status wyzwolony przez rollTriggers().
-     * Po turze bez triggera powinien nadal przechowywać ostatnią wartość
-     * aż do kolejnego wywołania rollTriggers().
-     */
     @Test
     public void testLastTriggeredIsSetAfterSuccessfulRoll() {
-        // Ustawiamy stats poniżej progów żeby zwiększyć szansę triggera
-        player.setHydration(5); // poniżej progu DEHYDRATION (15)
+        StatusManager deterministic = new StatusManager(new AlwaysHitRandom());
+        player.setHydration(5);
 
-        StatusEffect triggered = null;
-        for (int i = 0; i < 100; i++) {
-            manager.rollTriggers(player);
-            triggered = manager.getLastTriggered();
-            if (triggered != null) break;
-        }
-
-        assertNotNull(triggered,
-                "Przy bardzo niskim nawodnieniu rollTriggers() powinien w końcu coś wyzwolić");
+        assertTrue(deterministic.rollTriggers(player));
+        assertEquals(StatusEffect.DEHYDRATION, deterministic.getLastTriggered());
     }
 
-    /**
-     * rollTriggers() pomija statusy które już są aktywne (containsKey check).
-     * Gracz nie może dostać podwójnej gorączki przez jeden roll.
-     */
+    @Test
+    public void testConsumeLastTriggeredClearsPendingNotification() {
+        StatusManager deterministic = new StatusManager(new AlwaysHitRandom());
+        player.setHydration(10);
+
+        deterministic.rollTriggers(player);
+        assertEquals(StatusEffect.DEHYDRATION, deterministic.consumeLastTriggered());
+        assertNull(deterministic.getLastTriggered());
+        assertNull(deterministic.consumeLastTriggered());
+    }
+
     @Test
     public void testRollTriggersSkipsAlreadyActiveStatuses() {
         manager.activate(StatusEffect.FEVER);
         int durationBefore = manager.getActiveStatuses().get(StatusEffect.FEVER);
 
-        // rollTriggers z bardzo niskim health by zwiększyć szansę na FEVER
         player.setHealth(5);
         for (int i = 0; i < 20; i++) {
             manager.rollTriggers(player);
         }
 
-        // Duration nie powinno wzrosnąć przez rollTriggers (tylko activate() to robi)
         int durationAfter = manager.getActiveStatuses().get(StatusEffect.FEVER);
         assertEquals(durationBefore, durationAfter,
                 "rollTriggers() nie powinien nadpisywać aktywnego statusu");
     }
 
-    /**
-     * Dwa opóźnione efekty zaplanowane na tę samą turę powinny się zmergować
-     * i obydwa zadziałać w jednym ticku.
-     */
     @Test
     public void testDelayedEffectsOnSameTurnMerge() {
         player.setEnergy(30);
         player.setHealth(50);
 
-        manager.addDelayedEffect(Map.of("energy", 10), 0, 3); // odpali na turze 3
-        manager.addDelayedEffect(Map.of("health", 15), 0, 3); // też na turze 3
+        manager.addDelayedEffect(Map.of("energy", 10), 0, 3);
+        manager.addDelayedEffect(Map.of("health", 15), 0, 3);
 
         manager.tick(player, 3, Difficulty.NORMAL);
 
