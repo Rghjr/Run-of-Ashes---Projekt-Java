@@ -1,6 +1,5 @@
 package com.runofashes.ui;
 
-import com.runofashes.engine.EventResult;
 import com.runofashes.engine.GameEngine;
 import com.runofashes.model.GameEvent;
 import javafx.animation.FadeTransition;

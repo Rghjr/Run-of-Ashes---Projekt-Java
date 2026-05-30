@@ -30,22 +30,22 @@ public final class EventCardView {
                 || event.getQuestId().startsWith("eu_"));
 
         String badgeText = "";
-        String badgeColor = "";
+        String badgeClass = "";
 
         if (isWait) {
             card.getStyleClass().add("event-card-wait");
-            badgeText = "⏳ przeczekanie"; badgeColor = "#f0c040";
+            badgeText = "⏳ przeczekanie"; badgeClass = "badge-wait";
         } else if (isMainQuest) {
             card.getStyleClass().add("event-card-main-quest");
             badgeText = event.getQuestStage() > 1 ? "🚩 kontynuacja wątku" : "🚩 główny wątek";
-            badgeColor = "#e74c3c";
+            badgeClass = "badge-main-quest";
         } else if (isQuest) {
             card.getStyleClass().add("event-card-quest");
             badgeText = event.getQuestStage() > 1 ? "📜 kontynuacja poboczna" : "📜 zadanie poboczne";
-            badgeColor = "#8bc48b";
+            badgeClass = "badge-quest";
         } else if (rare) {
             card.getStyleClass().add("event-card-rare");
-            badgeText = "✨ niezwykłe spotkanie"; badgeColor = "#ffaa44";
+            badgeText = "✨ niezwykłe spotkanie"; badgeClass = "badge-rare";
         } else {
             card.getStyleClass().add("event-card-normal");
         }
@@ -76,7 +76,7 @@ public final class EventCardView {
 
         if (!badgeText.isEmpty()) {
             Label badge = new Label(badgeText);
-            badge.setStyle("-fx-text-fill: " + badgeColor + "; -fx-font-size: 12px; -fx-font-weight: bold;");
+            badge.getStyleClass().addAll("badge-label", badgeClass);
             card.getChildren().add(badge);
         }
 

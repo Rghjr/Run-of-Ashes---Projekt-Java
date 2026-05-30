@@ -25,10 +25,10 @@ public class TraitSelectionScreen extends VBox {
     private final Set<Trait> selected = new LinkedHashSet<>();
     private final Map<Trait, VBox> cardMap = new EnumMap<>(Trait.class);
 
-    private HBox     statusBox;
-    private Label    statusLabel;
-    private FontIcon statusIcon;
-    private Button  confirmBtn;
+    private final HBox     statusBox;
+    private final Label    statusLabel;
+    private final FontIcon statusIcon;
+    private final Button  confirmBtn;
 
     public TraitSelectionScreen(Difficulty difficulty, Runnable onConfirm, Runnable onBack) {
         this.difficulty = difficulty;
