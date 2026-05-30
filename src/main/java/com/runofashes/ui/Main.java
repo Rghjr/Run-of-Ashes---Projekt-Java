@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class Main extends Application {
@@ -32,11 +33,14 @@ public class Main extends Application {
         winScreen  = new WinScreen(this::showDifficultyScreen, () -> primaryStage.close());
 
         difficultyScreen = new DifficultyScreen(this::onDifficultyConfirmed);
-        mainScene = new Scene(difficultyScreen, 980, 860);
+        mainScene = new Scene(difficultyScreen, 980, 800);
+
+        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().
+                getResource("/com/runofashes/ui/style.css")).toExternalForm());
 
         stage.setTitle("Run of Ashes");
         stage.setMinWidth(980);
-        stage.setMinHeight(750);
+        stage.setMinHeight(800);
         stage.setScene(mainScene);
         stage.show();
     }

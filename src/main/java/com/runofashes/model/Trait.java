@@ -18,7 +18,7 @@ public enum Trait {
 
     HARDY(
             "Zahartowany",
-            "💪",
+            "fas-dumbbell",
             "Zdrowie +20 na start. Mniej podatny na choroby i urazy.",
             true,
             Map.of("health", 20),
@@ -29,7 +29,7 @@ public enum Trait {
 
     FORAGER(
             "Zbieracz",
-            "🌿",
+            "fas-leaf",
             "Więcej szans na znalezienie jedzenia i przedmiotów w terenie.",
             true,
             Map.of("hunger", 10),
@@ -40,7 +40,7 @@ public enum Trait {
 
     PILGRIM(
             "Pielgrzym",
-            "✝",
+            "fas-cross",
             "Morale +20 na start. Modlitwa i odpoczynek dają więcej.",
             true,
             Map.of("morale", 20),
@@ -51,7 +51,7 @@ public enum Trait {
 
     WAYFARER(
             "Wędrowiec",
-            "👣",
+            "fas-shoe-prints",
             "Akcje ruchu kosztują mniej energii. Częściej trafiają się okazje podróży.",
             true,
             Map.of("energy", 15),
@@ -62,7 +62,7 @@ public enum Trait {
 
     HERBALIST(
             "Zielarz",
-            "🫙",
+            "fas-mortar-pestle",
             "Zioła i bandaże leczą więcej. Częstsze eventy ze źródłami wody.",
             true,
             Map.of(),
@@ -77,7 +77,7 @@ public enum Trait {
 
     SICKLY(
             "Chorowity",
-            "🤒",
+            "fas-thermometer-full",
             "Zdrowie -15 na start. Statusy chorobowe trwają dłużej.",
             false,
             Map.of("health", -15),
@@ -88,7 +88,7 @@ public enum Trait {
 
     GLUTTON(
             "Żarłok",
-            "🍖",
+            "fas-drumstick-bite",
             "Głód spada 2x szybciej. Potrzebujesz więcej jedzenia by przeżyć.",
             false,
             Map.of("hunger", -10),
@@ -99,7 +99,7 @@ public enum Trait {
 
     MELANCHOLIC(
             "Melancholik",
-            "😔",
+            "fas-sad-tear",
             "Morale -20 na start. Sukcesy dają mniej radości.",
             false,
             Map.of("morale", -20),
@@ -110,7 +110,7 @@ public enum Trait {
 
     CLUMSY(
             "Niezdarny",
-            "🪨",
+            "fas-band-aid",
             "Wyższe ryzyko niepowodzenia akcji. -10% szans na sukces.",
             false,
             Map.of(),
@@ -121,7 +121,7 @@ public enum Trait {
 
     PARCHED(
             "Suchy",
-            "🏜",
+            "fas-sun",
             "Nawodnienie spada 2x szybciej. Pragnienie zagraża szybciej.",
             false,
             Map.of("hydration", -15),

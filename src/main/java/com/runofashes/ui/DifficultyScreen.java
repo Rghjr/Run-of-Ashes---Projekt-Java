@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -15,28 +16,18 @@ public class DifficultyScreen extends VBox {
     private Difficulty selected = null;
     private final Runnable onConfirm;
 
-    private Button confirmBtn;
+    private final Button confirmBtn;
 
     private final Map<Difficulty, VBox>   cards       = new EnumMap<>(Difficulty.class);
-    private final Map<Difficulty, String> normalBgs   = new EnumMap<>(Difficulty.class);
-    private final Map<Difficulty, String> selectedBgs = new EnumMap<>(Difficulty.class);
     private final Map<Difficulty, String> accents     = new EnumMap<>(Difficulty.class);
 
     public DifficultyScreen(Runnable onConfirm) {
         this.onConfirm = onConfirm;
 
-        setStyle("-fx-background-color: #0d0d1a;");
+        getStyleClass().add("root-pane");
         setAlignment(Pos.CENTER);
         setSpacing(32);
         setPadding(new Insets(60, 48, 48, 48));
-
-        normalBgs.put(Difficulty.EASY,   "#16213e");
-        normalBgs.put(Difficulty.NORMAL, "#16213e");
-        normalBgs.put(Difficulty.HARD,   "#16213e");
-
-        selectedBgs.put(Difficulty.EASY,   "#1a2e1a");
-        selectedBgs.put(Difficulty.NORMAL, "#1a1a2e");
-        selectedBgs.put(Difficulty.HARD,   "#2e1a1a");
 
         accents.put(Difficulty.EASY,   "#7ec8a0");
         accents.put(Difficulty.NORMAL, "#f0c040");
@@ -82,10 +73,14 @@ public class DifficultyScreen extends VBox {
         card.setMinWidth(210);
         card.setMaxWidth(210);
         card.setAlignment(Pos.TOP_CENTER);
-        applyNormalStyle(card, diff);
 
-        Label emoji = new Label(diff.getEmoji());
-        emoji.setStyle("-fx-font-size: 32px;");
+        card.getStyleClass().add("selection-card");
+        card.setStyle("-fx-background-color: #16213e;");
+
+        FontIcon icon = new FontIcon(diff.getEmoji());
+        icon.setIconSize(40);
+        icon.setIconColor(javafx.scene.paint.Color.web(accents.get(diff)));
+        icon.getStyleClass().add("card-icon");
 
         Label name = new Label(diff.getLabel());
         name.setFont(Font.font("Georgia", FontWeight.BOLD, 18));
@@ -101,16 +96,8 @@ public class DifficultyScreen extends VBox {
         rules.setWrapText(true);
         rules.setTextAlignment(TextAlignment.CENTER);
 
-        card.getChildren().addAll(emoji, name, desc, rules, buildModsBox(diff));
+        card.getChildren().addAll(icon, name, desc, rules, buildModsBox(diff));
 
-        card.setOnMouseEntered(e -> {
-            if (selected != diff)
-                card.setStyle("-fx-background-color: #1e2a3e; -fx-background-radius: 10; -fx-cursor: hand;" +
-                        " -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 10;");
-        });
-        card.setOnMouseExited(e -> {
-            if (selected != diff) applyNormalStyle(card, diff);
-        });
         card.setOnMouseClicked(e -> selectDifficulty(diff));
 
         return card;
@@ -119,23 +106,18 @@ public class DifficultyScreen extends VBox {
     // ─── Selekcja ─────────────────────────────────────────────────────────────
 
     private void selectDifficulty(Difficulty diff) {
-        if (selected != null) applyNormalStyle(cards.get(selected), selected);
+        if (selected != null) cards.get(selected).getStyleClass().remove(getSelectionClass(selected));
         selected = diff;
-        applySelectedStyle(cards.get(diff), diff);
+        cards.get(diff).getStyleClass().add(getSelectionClass(diff));
         confirmBtn.setDisable(false);
     }
 
-    private void applyNormalStyle(VBox card, Difficulty diff) {
-        card.setStyle("-fx-background-color: " + normalBgs.get(diff) +
-                "; -fx-background-radius: 10; -fx-cursor: hand;" +
-                " -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 10;");
-    }
-
-    private void applySelectedStyle(VBox card, Difficulty diff) {
-        card.setStyle("-fx-background-color: " + selectedBgs.get(diff) +
-                "; -fx-background-radius: 10; -fx-cursor: hand;" +
-                " -fx-border-color: " + accents.get(diff) +
-                "; -fx-border-width: 1.5; -fx-border-radius: 10;");
+    private String getSelectionClass(Difficulty diff) {
+        return switch (diff) {
+            case EASY   -> "selection-card-selected-green";
+            case NORMAL -> "selection-card-selected-yellow";
+            case HARD   -> "selection-card-selected-red";
+        };
     }
 
     // ─── Modyfikatory ─────────────────────────────────────────────────────────
