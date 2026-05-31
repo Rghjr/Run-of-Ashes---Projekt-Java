@@ -100,7 +100,7 @@ public class GameHUD extends VBox {
 
         StackPane imageContainer = createFadedImageWrapper();
 
-        HBox bottomRow = new HBox(40, statsBox, imageContainer);
+        HBox bottomRow = new HBox(10, statsBox, imageContainer);
         bottomRow.setAlignment(Pos.CENTER_LEFT);
 
         getChildren().addAll(topRow, envRow, metaRow, bottomRow);
@@ -115,15 +115,23 @@ public class GameHUD extends VBox {
         Rectangle vignette = new Rectangle(240, 180);
 
         RadialGradient gradient = new RadialGradient(
-                0, 0, 0.5, 0.5, 0.45, true, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.TRANSPARENT),
+                0, 0, 0.5, 0.5, 0.5, true, CycleMethod.NO_CYCLE,
                 new Stop(0.3, Color.TRANSPARENT),
-                new Stop(1, Color.web("#1a1a2e", 1.0))
+                new Stop(0.75, Color.web("#1a1a2e", 0.6)),
+                new Stop(1.0, Color.web("#1a1a2e", 1.0))
         );
         vignette.setFill(gradient);
 
         StackPane container = new StackPane(eventImageView, vignette);
+        container.setMinSize(240, 180);
+        container.setMaxSize(240, 180);
         container.setPrefSize(240, 180);
+
+        Rectangle clipRect = new Rectangle(240, 180);
+        clipRect.setArcWidth(16);
+        clipRect.setArcHeight(16);
+        container.setClip(clipRect);
+
         return container;
     }
 
@@ -136,53 +144,50 @@ public class GameHUD extends VBox {
         }
     }
 
-    // --- NOWA METODA - SKANER KART ---
     public void setEventImage(GameEvent event) {
         if (event == null || event.getId() == null) return;
 
         String eventId = event.getId().toLowerCase();
-        String imageName = "event_default.png";
+        String imageName;
 
-        if (eventId.contains("village") || eventId.contains("wies") || eventId.contains("chata") || eventId.contains("inn") || eventId.contains("shelter")
-            || eventId.contains("cellar")) {
-            imageName = "village.png";
-        } else if (eventId.contains("well")) {
-            imageName = "well.png";
-        } else if (eventId.contains("rest") || eventId.contains("sleep") || eventId.contains("camp") || eventId.contains("nap")
-                || eventId.contains("fire") || eventId.contains("massage") || eventId.contains("candle") || eventId.contains("tent") || eventId.contains("blisters")
-                || eventId.contains("acorns") || eventId.contains("smoke") || eventId.contains("strip")) {
-            imageName = "camp.png";
-        } else if (eventId.contains("water") || eventId.contains("river") || eventId.contains("stream") || eventId.contains("drink") || eventId.contains("rain")
-                || eventId.contains("ford") || eventId.contains("wash") || eventId.contains("fish") || eventId.contains("dig") || eventId.contains("wild")) {
-            imageName = "river.png";
-        } else if (eventId.contains("fight") || eventId.contains("soldier") || eventId.contains("wilki") || eventId.contains("guard")) {
-            imageName = "soldier.png";
-        } else if (eventId.contains("merchant") || eventId.contains("trade") || eventId.contains("buy") || eventId.contains("karawana") || eventId.contains("barter")) {
-            imageName = "merchant.png";
-        } else if (eventId.contains("monastery") || eventId.contains("church") || eventId.contains("cross") || eventId.contains("prayer") ||
-                eventId.contains("monk") || eventId.contains("bishop")) {
+        if (eventId.contains("ruin") || eventId.contains("zaraza") || eventId.contains("wawel") || eventId.contains("kordon") || eventId.contains("burned") || eventId.contains("wrak")) {
+            imageName = "ruins.png";
+        } else if (eventId.contains("rare") || eventId.contains("plague") || eventId.contains("ghost") || eventId.contains("grave") || eventId.contains("mad")) {
+            imageName = "spooky.png";
+        } else if (eventId.contains("monastery") || eventId.contains("church") || eventId.contains("cross") || eventId.contains("prayer") || eventId.contains("monk") || eventId.contains("bishop") || eventId.contains("breviary") || eventId.contains("altar") || eventId.contains("god") || eventId.contains("kultyci")) {
             imageName = "religion.png";
         } else if (eventId.contains("mountain") || eventId.contains("gory") || eventId.contains("lawina") || eventId.contains("szczelina")) {
             imageName = "mountains.png";
-        } else if (eventId.contains("forest") || eventId.contains("las") || eventId.contains("tree") || eventId.contains("wood") || eventId.contains("hunt")
-                || eventId.contains("berries") || eventId.contains("mushroom") || eventId.contains("trap") || eventId.contains("herbs")
-                || eventId.contains("nest") || eventId.contains("orchard")) {
-            imageName = "forest.png";
-        } else if (eventId.contains("morning") || eventId.contains("dawn") || eventId.contains("sunrise") || eventId.contains("sunset") || eventId.contains("night") ) {
-            imageName = "morning.png";
-        } else if (eventId.contains("cart") || eventId.contains("road") || eventId.contains("move") || eventId.contains("route")
-                || eventId.contains("wagon") || eventId.contains("horse") || eventId.contains("path") || eventId.contains("szlak")) {
-            imageName = "road.png";
-        } else if (eventId.contains("ruin") || eventId.contains("zaraza") || eventId.contains("wawel") || eventId.contains("kordon") || eventId.contains("burned")) {
-            imageName = "ruins.png";
         } else if (eventId.contains("cave") || eventId.contains("kopalnia") || eventId.contains("burza")) {
             imageName = "cave.png";
         } else if (eventId.contains("krakow") || eventId.contains("city")) {
             imageName = "city.png";
-        } else if (eventId.contains("rare") || eventId.contains("plague") || eventId.contains("ghost") || eventId.contains("grave") || eventId.contains("mad")) {
-            imageName = "spooky.png";
+        } else if (eventId.contains("village") || eventId.contains("wies") || eventId.contains("chata") || eventId.contains("inn") || eventId.contains("shelter") || eventId.contains("cellar")) {
+            imageName = "village.png";
+        } else if (eventId.contains("well")) {
+            imageName = "well.png";
+        } else if (eventId.contains("traveler") || eventId.contains("pilgrim") || eventId.contains("compatriot") || eventId.contains("przewodnik") || eventId.contains("sick") || eventId.contains("child") || eventId.contains("pustelnik") || eventId.contains("letter")) {
+            imageName = "npc.png";
+        } else if (eventId.contains("merchant") || eventId.contains("trade") || eventId.contains("buy") || eventId.contains("karawana") || eventId.contains("caravan") || eventId.contains("barter") || eventId.contains("handlarz")) {
+            imageName = "merchant.png";
+        } else if (eventId.contains("fight") || eventId.contains("soldier") || eventId.contains("guard")) {
+            imageName = "soldier.png";
+        } else if (eventId.contains("forest") || eventId.contains("las") || eventId.contains("tree") || eventId.contains("wood") || eventId.contains("hunt") || eventId.contains("berries") || eventId.contains("mushroom") || eventId.contains("trap") || eventId.contains("herbs") || eventId.contains("nest") || eventId.contains("orchard") || eventId.contains("wilki") || eventId.contains("field") || eventId.contains("fruit") || eventId.contains("melon") || eventId.contains("garlic")) {
+            imageName = "forest.png";
+        } else if (eventId.contains("water") || eventId.contains("river") || eventId.contains("stream") || eventId.contains("drink") || eventId.contains("rain") || eventId.contains("ford") || eventId.contains("wash") || eventId.contains("fish") || eventId.contains("dig") || eventId.contains("wild") || eventId.contains("woda") || eventId.contains("moss")) {
+            imageName = "river.png";
+        } else if (eventId.contains("morning") || eventId.contains("sunrise") || eventId.contains("sunset")) {
+            imageName = "morning.png";
+        } else if (eventId.contains("dawn") || eventId.contains("night") || eventId.contains("evening") || eventId.contains("dusk")) {
+            imageName = "night.png";
+        } else if (eventId.contains("rest") || eventId.contains("camp") || eventId.contains("nap") || eventId.contains("fire") || eventId.contains("massage") || eventId.contains("candle") || eventId.contains("tent") || eventId.contains("blisters") || eventId.contains("acorns") || eventId.contains("smoke") || eventId.contains("strip") || eventId.contains("stars") || eventId.contains("song") || eventId.contains("family") || eventId.contains("coin") || eventId.contains("warning") || eventId.contains("oddech") || eventId.contains("ostatni") || eventId.contains("map")) {
+            imageName = "camp.png";
         } else if (eventId.contains("bird")) {
             imageName = "birds.png";
+        } else if (eventId.contains("cart") || eventId.contains("road") || eventId.contains("move") || eventId.contains("route") || eventId.contains("wagon") || eventId.contains("horse") || eventId.contains("path") || eventId.contains("szlak")) {
+            imageName = "road.png";
+        } else {
+            imageName = "event_default.png";
         }
 
         setEventImage(imageName);

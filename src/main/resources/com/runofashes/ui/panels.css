@@ -87,7 +87,7 @@
     -fx-font-weight: bold;
 }
 .biome-desc {
-    -fx-text-fill: #999999;
+    -fx-text-fill: #efefef;
     -fx-font-size: 12px;
     -fx-font-style: italic;
 }

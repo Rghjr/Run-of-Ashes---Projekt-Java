@@ -15,7 +15,8 @@ public final class EventCardView {
     public static void fill(VBox card, GameEvent event, GameEngine engine, Consumer<GameEvent> onClick) {
         card.getChildren().clear();
 
-        card.getStyleClass().removeAll("event-card-wait", "event-card-main-quest", "event-card-quest", "event-card-rare", "event-card-normal", "event-card-empty");
+        card.getStyleClass().removeAll("event-card-wait", "event-card-main-quest", "event-card-quest",
+                "event-card-rare", "event-card-normal", "event-card-empty");
         card.getStyleClass().add("event-card");
         card.setOnMouseEntered(null);
         card.setOnMouseExited(null);

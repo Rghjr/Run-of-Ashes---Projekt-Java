@@ -92,7 +92,4 @@ public enum Biome {
         } while (next == current);
         return next;
     }
-
-
-
 }

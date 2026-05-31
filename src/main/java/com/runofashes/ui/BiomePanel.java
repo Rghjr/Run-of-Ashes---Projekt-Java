@@ -48,7 +48,7 @@ public class BiomePanel extends StackPane {
         if (img == null) {
             img = com.runofashes.utils.FileLoader.loadUiImage("event_default.png");
         }
-        this.setBackground(com.runofashes.utils.FileLoader.createFadedBackground(img, "#1a1a2e"));
+        this.setBackground(com.runofashes.utils.FileLoader.createPlainBackground(img));
     }
 
     public VBox getStatusesBox() {
@@ -63,7 +63,7 @@ public class BiomePanel extends StackPane {
         String biomeName = currentBiome.name().toLowerCase();
         Image img = com.runofashes.utils.FileLoader.loadUiImage("biome_" + biomeName + ".png");
 
-        this.setBackground(com.runofashes.utils.FileLoader.createFadedBackground(img, "#1a1a2e"));
+        this.setBackground(com.runofashes.utils.FileLoader.createPlainBackground(img));
 
         titleFlow.getChildren().clear();
 

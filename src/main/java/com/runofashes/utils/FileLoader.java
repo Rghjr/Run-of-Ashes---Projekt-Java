@@ -3,10 +3,8 @@ package com.runofashes.utils;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
+import javafx.scene.paint.*;
+
 import java.util.Objects;
 
 public final class FileLoader {
@@ -34,31 +32,42 @@ public final class FileLoader {
     }
 
     /**
+     * Tworzy tło (Background) z samym obrazkiem, bez winiety.
+     * Używać tam gdzie nie chcemy efektu zanikania (np. BiomePanel).
+     */
+    public static Background createPlainBackground(Image image) {
+        if (image == null) {
+            return Background.EMPTY;
+        }
+        ImagePattern imagePattern = new ImagePattern(image, 0, 0, 1, 1, true);
+        return new Background(new BackgroundFill(imagePattern, CornerRadii.EMPTY, Insets.EMPTY));
+    }
+
+    /**
      * Tworzy tło (Background) z efektem miękkiego RadialGradientu (winiety) wtapiającej grafikę z każdej strony.
      * @param image Obrazek bazowy
      * @param hexColor Kolor interfejsu, w który ma się wtopić obrazek (np. "#1a1a2e")
      */
     public static Background createFadedBackground(Image image, String hexColor) {
         if (image == null) {
-            return Background.EMPTY;
+            BackgroundFill solidFill = new BackgroundFill(Color.web(hexColor), CornerRadii.EMPTY, Insets.EMPTY);
+            return new Background(solidFill);
         }
 
-        BackgroundImage bgi = new BackgroundImage(
-                image,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, false, true)
-        );
+        BackgroundFill solidFill = new BackgroundFill(Color.web(hexColor), CornerRadii.EMPTY, Insets.EMPTY);
+
+        ImagePattern imagePattern = new ImagePattern(image, 0, 0, 1, 1, true);
+        BackgroundFill imageFill = new BackgroundFill(imagePattern, CornerRadii.EMPTY, Insets.EMPTY);
 
         RadialGradient gradient = new RadialGradient(
-                0, 0, 0.5, 0.5, 0.45, true, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.web(hexColor, 0.3)),   // Środek widoczny
-                new Stop(0.6, Color.web(hexColor, 0.7)), // Miękkie wejście cienia
-                new Stop(1, Color.web(hexColor, 1.0))    // 100% stopienia przed samą krawędzią
+                0, 0, 0.5, 0.5, 0.7, true, CycleMethod.NO_CYCLE,
+                new Stop(0.0, Color.web(hexColor, 0.0)),  // Środek: obrazek w pełni widoczny
+                new Stop(0.5, Color.web(hexColor, 0.2)),  // Delikatne wejście winiety
+                new Stop(0.75, Color.web(hexColor, 0.7)), // Miękkie ściemnienie
+                new Stop(1.0, Color.web(hexColor, 1.0))   // Krawędzie: pełne wtopienie w kolor tła
         );
         BackgroundFill vignetteFill = new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY);
 
-        return new Background(new BackgroundFill[]{vignetteFill}, new BackgroundImage[]{bgi});
+        return new Background(solidFill, imageFill, vignetteFill);
     }
 }

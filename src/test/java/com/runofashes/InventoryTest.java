@@ -58,8 +58,6 @@ public class InventoryTest {
         assertFalse(used);
     }
 
-    // ── Nowe testy ────────────────────────────────────────────────────────────
-
     /**
      * Nowy ekwipunek powinien być pusty.
      * isEmpty() musi zwracać true, has() false dla każdego przedmiotu.

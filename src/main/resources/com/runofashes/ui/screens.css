@@ -46,9 +46,8 @@
 /* =========================================
    END SCREEN & WIN SCREEN
    ========================================= */
-.end-screen {
-    -fx-background-color: #0d0d1a;
-}
+.end-screen {}
+
 .end-title {
     -fx-text-fill: #e74c3c;
     -fx-font-size: 36px;
@@ -82,7 +81,7 @@
 }
 
 .end-box {
-    -fx-background-color: #151522;
+    -fx-background-color: rgba(21, 21, 34, 0.55);
     -fx-padding: 40 50;
     -fx-background-radius: 12;
     -fx-border-color: #4a1c1c;
@@ -97,7 +96,7 @@
 }
 
 .win-box {
-    -fx-background-color: #151522;
+    -fx-background-color: rgba(21, 21, 34, 0.55);
     -fx-padding: 40 50;
     -fx-background-radius: 12;
     -fx-border-color: #4a3c1c;

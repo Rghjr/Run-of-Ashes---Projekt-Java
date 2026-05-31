@@ -86,7 +86,7 @@ public class StatusManager {
         return triggered;
     }
 
-    public boolean hasHallucinations()                      { return isActive(StatusEffect.HALLUCINATIONS); }
+    public boolean hasHallucinations() { return isActive(StatusEffect.HALLUCINATIONS); }
 
     // ── Prywatne helpers ──────────────────────────────────────────────────────
 
