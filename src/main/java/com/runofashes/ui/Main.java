@@ -80,9 +80,7 @@ public class Main extends Application {
         engine.configure(diff, traits);
         engine.reset();
         mainScene.setRoot(gameScreen.getRoot());
-        javafx.application.Platform.runLater(() -> {
-            refreshAll();
-        });
+        javafx.application.Platform.runLater(this::refreshAll);
     }
 
     private void onCardClicked(GameEvent event) {

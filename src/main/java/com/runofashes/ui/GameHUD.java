@@ -26,7 +26,6 @@ import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;
-import java.util.Objects;
 
 public class GameHUD extends VBox {
 
@@ -99,7 +98,7 @@ public class GameHUD extends VBox {
                 statRow("😊  Nadzieja",    moraleBar,    moraleVal)
         );
 
-        StackPane imageContainer = createFadedImageWrapper(240, 180);
+        StackPane imageContainer = createFadedImageWrapper();
 
         HBox bottomRow = new HBox(40, statsBox, imageContainer);
         bottomRow.setAlignment(Pos.CENTER_LEFT);
@@ -107,13 +106,13 @@ public class GameHUD extends VBox {
         getChildren().addAll(topRow, envRow, metaRow, bottomRow);
     }
 
-    private StackPane createFadedImageWrapper(double width, double height) {
+    private StackPane createFadedImageWrapper() {
         eventImageView = new ImageView();
-        eventImageView.setFitWidth(width);
-        eventImageView.setFitHeight(height);
+        eventImageView.setFitWidth(240);
+        eventImageView.setFitHeight(180);
         eventImageView.setPreserveRatio(false);
 
-        Rectangle vignette = new Rectangle(width, height);
+        Rectangle vignette = new Rectangle(240, 180);
 
         RadialGradient gradient = new RadialGradient(
                 0, 0, 0.5, 0.5, 0.45, true, CycleMethod.NO_CYCLE,
@@ -124,7 +123,7 @@ public class GameHUD extends VBox {
         vignette.setFill(gradient);
 
         StackPane container = new StackPane(eventImageView, vignette);
-        container.setPrefSize(width, height);
+        container.setPrefSize(240, 180);
         return container;
     }
 
@@ -144,22 +143,46 @@ public class GameHUD extends VBox {
         String eventId = event.getId().toLowerCase();
         String imageName = "event_default.png";
 
-        if (eventId.contains("village") || eventId.contains("wies") || eventId.contains("chata") || eventId.contains("inn")) {
+        if (eventId.contains("village") || eventId.contains("wies") || eventId.contains("chata") || eventId.contains("inn") || eventId.contains("shelter")
+            || eventId.contains("cellar")) {
             imageName = "village.png";
-        } else if (eventId.contains("water") || eventId.contains("river") || eventId.contains("stream") || eventId.contains("drink") || eventId.contains("rain") || eventId.contains("ford")) {
-            imageName = "river.png";
-        } else if (eventId.contains("fight") || eventId.contains("soldier") || eventId.contains("wilki") || eventId.contains("hunt") || eventId.contains("guard")) {
-            imageName = "soldier.png";
-        } else if (eventId.contains("merchant") || eventId.contains("trade") || eventId.contains("buy") || eventId.contains("karawana")) {
-            imageName = "merchant.png";
-        } else if (eventId.contains("rest") || eventId.contains("sleep") || eventId.contains("camp") || eventId.contains("nap") || eventId.contains("fire")) {
+        } else if (eventId.contains("well")) {
+            imageName = "well.png";
+        } else if (eventId.contains("rest") || eventId.contains("sleep") || eventId.contains("camp") || eventId.contains("nap")
+                || eventId.contains("fire") || eventId.contains("massage") || eventId.contains("candle") || eventId.contains("tent") || eventId.contains("blisters")
+                || eventId.contains("acorns") || eventId.contains("smoke") || eventId.contains("strip")) {
             imageName = "camp.png";
-        } else if (eventId.contains("monastery") || eventId.contains("church") || eventId.contains("cross") || eventId.contains("pray") || eventId.contains("monk") || eventId.contains("bishop")) {
+        } else if (eventId.contains("water") || eventId.contains("river") || eventId.contains("stream") || eventId.contains("drink") || eventId.contains("rain")
+                || eventId.contains("ford") || eventId.contains("wash") || eventId.contains("fish") || eventId.contains("dig") || eventId.contains("wild")) {
+            imageName = "river.png";
+        } else if (eventId.contains("fight") || eventId.contains("soldier") || eventId.contains("wilki") || eventId.contains("guard")) {
+            imageName = "soldier.png";
+        } else if (eventId.contains("merchant") || eventId.contains("trade") || eventId.contains("buy") || eventId.contains("karawana") || eventId.contains("barter")) {
+            imageName = "merchant.png";
+        } else if (eventId.contains("monastery") || eventId.contains("church") || eventId.contains("cross") || eventId.contains("prayer") ||
+                eventId.contains("monk") || eventId.contains("bishop")) {
             imageName = "religion.png";
         } else if (eventId.contains("mountain") || eventId.contains("gory") || eventId.contains("lawina") || eventId.contains("szczelina")) {
             imageName = "mountains.png";
-        } else if (eventId.contains("forest") || eventId.contains("las") || eventId.contains("tree") || eventId.contains("wood")) {
+        } else if (eventId.contains("forest") || eventId.contains("las") || eventId.contains("tree") || eventId.contains("wood") || eventId.contains("hunt")
+                || eventId.contains("berries") || eventId.contains("mushroom") || eventId.contains("trap") || eventId.contains("herbs")
+                || eventId.contains("nest") || eventId.contains("orchard")) {
             imageName = "forest.png";
+        } else if (eventId.contains("morning") || eventId.contains("dawn") || eventId.contains("sunrise") || eventId.contains("sunset") || eventId.contains("night") ) {
+            imageName = "morning.png";
+        } else if (eventId.contains("cart") || eventId.contains("road") || eventId.contains("move") || eventId.contains("route")
+                || eventId.contains("wagon") || eventId.contains("horse") || eventId.contains("path") || eventId.contains("szlak")) {
+            imageName = "road.png";
+        } else if (eventId.contains("ruin") || eventId.contains("zaraza") || eventId.contains("wawel") || eventId.contains("kordon") || eventId.contains("burned")) {
+            imageName = "ruins.png";
+        } else if (eventId.contains("cave") || eventId.contains("kopalnia") || eventId.contains("burza")) {
+            imageName = "cave.png";
+        } else if (eventId.contains("krakow") || eventId.contains("city")) {
+            imageName = "city.png";
+        } else if (eventId.contains("rare") || eventId.contains("plague") || eventId.contains("ghost") || eventId.contains("grave") || eventId.contains("mad")) {
+            imageName = "spooky.png";
+        } else if (eventId.contains("bird")) {
+            imageName = "birds.png";
         }
 
         setEventImage(imageName);

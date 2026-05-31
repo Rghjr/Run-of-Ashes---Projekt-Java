@@ -8,13 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
 import org.kordamp.ikonli.javafx.FontIcon;
-
-import java.util.Objects;
 
 public class BiomePanel extends StackPane {
 
