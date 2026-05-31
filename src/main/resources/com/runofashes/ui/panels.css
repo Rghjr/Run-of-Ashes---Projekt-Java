@@ -1,0 +1,152 @@
+/* =========================================
+   GAME HUD
+   ========================================= */
+.game-hud {
+    -fx-background-color: #1a1a2e;
+    -fx-background-radius: 8;
+}
+
+.hud-time { -fx-text-fill: #aaaaaa; -fx-font-size: 15px; }
+.hud-distance { -fx-text-fill: #e67e22; -fx-font-size: 15px; }
+.hud-difficulty { -fx-text-fill: #888888; -fx-font-size: 12px; }
+.hud-traits { -fx-text-fill: #666666; -fx-font-size: 12px; }
+.hud-biome { -fx-text-fill: #2ecc71; -fx-font-size: 14px; }
+.hud-weather { -fx-text-fill: #3498db; -fx-font-size: 14px; }
+
+.hud-stat-name { -fx-text-fill: #cccccc; -fx-font-size: 15px; }
+.hud-stat-value { -fx-text-fill: #888888; -fx-font-size: 14px; }
+
+.hud-bar-health { -fx-accent: #e74c3c; }
+.hud-bar-hunger { -fx-accent: #e67e22; }
+.hud-bar-hydration { -fx-accent: #3498db; }
+.hud-bar-energy { -fx-accent: #f1c40f; }
+.hud-bar-morale { -fx-accent: #9b59b6; }
+
+/* =========================================
+   INVENTORY PANEL
+   ========================================= */
+.inventory-panel {
+    -fx-background-color: #111122;
+    -fx-background-radius: 8;
+}
+.inventory-title {
+    -fx-text-fill: #f0c040;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+.empty-label {
+    -fx-text-fill: #555555;
+    -fx-font-style: italic;
+    -fx-font-size: 13px;
+}
+.item-row {
+    -fx-background-color: #16213e;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+}
+.item-name {
+    -fx-text-fill: #dddddd;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.item-effect {
+    -fx-text-fill: #7ec8a0;
+    -fx-font-size: 11px;
+}
+.item-stack {
+    -fx-text-fill: #666666;
+    -fx-font-size: 12px;
+}
+
+/* =========================================
+   BIOME PANEL
+   ========================================= */
+.biome-panel {
+    -fx-background-color: #151522;
+    -fx-padding: 16;
+    -fx-background-radius: 8;
+    -fx-border-color: #2a2a3a;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 4);
+}
+.biome-title {
+    -fx-text-fill: #f0c040;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.biome-desc {
+    -fx-text-fill: #999999;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+.biome-effects {
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 5px;
+}
+.biome-status-title {
+    -fx-text-fill: #99aabb;
+    -fx-font-size: 14px;
+}
+.biome-status-empty {
+    -fx-text-fill: #555555;
+    -fx-font-style: italic;
+    -fx-font-size: 13px;
+}
+.biome-status-name {
+    -fx-text-fill: #f0c040;
+    -fx-font-size: 13px;
+}
+.biome-status-desc {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-size: 11px;
+}
+
+/* =========================================
+   QUEST PANEL
+   ========================================= */
+.quest-panel {
+    -fx-background-color: #111122;
+    -fx-background-radius: 8;
+}
+.quest-title {
+    -fx-text-fill: #f0c040;
+    -fx-font-size: 15px;
+}
+.quest-separator {
+    -fx-background-color: #2a2a3a;
+}
+.quest-empty {
+    -fx-text-fill: #555555;
+    -fx-font-style: italic;
+    -fx-font-size: 13px;
+}
+.quest-item-box {
+    -fx-background-color: #16213e;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+}
+.quest-item-name {
+    -fx-text-fill: #dddddd;
+    -fx-font-size: 13px;
+}
+.quest-status-ready { -fx-font-size: 12px; -fx-text-fill: #7ec8a0; }
+.quest-status-wait { -fx-font-size: 12px; -fx-text-fill: #f0c040; }
+.quest-status-locked { -fx-font-size: 12px; -fx-text-fill: #888888; }
+.quest-wait-hint {
+    -fx-text-fill: #f0c040;
+    -fx-font-size: 11px;
+    -fx-font-style: italic;
+}
+
+/* =========================================
+   GAME SCREEN MESSAGES
+   ========================================= */
+.message-label {
+    -fx-font-style: italic;
+    -fx-font-size: 15px;
+}
+.msg-success { -fx-text-fill: #7ec8a0; }
+.msg-partial { -fx-text-fill: #f0c040; }
+.msg-fail    { -fx-text-fill: #e74c3c; }

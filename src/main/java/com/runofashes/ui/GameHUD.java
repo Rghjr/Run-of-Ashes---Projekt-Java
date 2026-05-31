@@ -26,19 +26,19 @@ public class GameHUD extends VBox {
     public GameHUD(GameEngine engine) {
         this.engine = engine;
         buildUI();
-        setStyle("-fx-background-color: #1a1a2e; -fx-background-radius: 8;");
+        getStyleClass().add("game-hud");
         setPadding(new Insets(16));
         setSpacing(8);
     }
 
     private void buildUI() {
-        timeLabel     = styledLabel("Dzień 1,  00:00", "#aaa", 15);
-        distanceLabel = styledLabel("4000 km do Krakowa", "#e67e22", 15);
-        difficultyLabel = styledLabel("", "#888", 12);
-        traitsLabel     = styledLabel("", "#666", 12);
+        timeLabel       = styledLabel("Dzień 1,  00:00", "hud-time");
+        distanceLabel   = styledLabel("4000 km do Krakowa", "hud-distance");
+        difficultyLabel = styledLabel("", "hud-difficulty");
+        traitsLabel     = styledLabel("", "hud-traits");
 
-        biomeLabel   = styledLabel("", "#2ecc71", 14);
-        weatherLabel = styledLabel("", "#3498db", 14);
+        biomeLabel      = styledLabel("", "hud-biome");
+        weatherLabel    = styledLabel("", "hud-weather");
 
         HBox topRow = new HBox(24, timeLabel, distanceLabel);
         topRow.setAlignment(Pos.CENTER_LEFT);
@@ -49,11 +49,11 @@ public class GameHUD extends VBox {
         HBox metaRow = new HBox(16, difficultyLabel, traitsLabel);
         metaRow.setAlignment(Pos.CENTER_LEFT);
 
-        healthBar    = makeBar("#e74c3c");
-        hungerBar    = makeBar("#e67e22");
-        hydrationBar = makeBar("#3498db");
-        energyBar    = makeBar("#f1c40f");
-        moraleBar    = makeBar("#9b59b6");
+        healthBar    = makeBar("hud-bar-health");
+        hungerBar    = makeBar("hud-bar-hunger");
+        hydrationBar = makeBar("hud-bar-hydration");
+        energyBar    = makeBar("hud-bar-energy");
+        moraleBar    = makeBar("hud-bar-morale");
 
         healthVal    = valueLabel();
         hungerVal    = valueLabel();
@@ -103,17 +103,17 @@ public class GameHUD extends VBox {
     private HBox statRow(String name, ProgressBar bar, Label val) {
         Label n = new Label(name);
         n.setMinWidth(158);
-        n.setStyle("-fx-text-fill: #ccc; -fx-font-size: 15px;");
+        n.getStyleClass().add("hud-stat-name");
         bar.setPrefWidth(240);
         HBox row = new HBox(12, n, bar, val);
         row.setAlignment(Pos.CENTER_LEFT);
         return row;
     }
 
-    private ProgressBar makeBar(String hex) {
+    private ProgressBar makeBar(String cssClass) {
         ProgressBar bar = new ProgressBar(1.0);
         bar.setPrefHeight(18);
-        bar.setStyle("-fx-accent: " + hex + ";");
+        bar.getStyleClass().add(cssClass);
         return bar;
     }
 
@@ -125,13 +125,13 @@ public class GameHUD extends VBox {
     private Label valueLabel() {
         Label l = new Label();
         l.setMinWidth(64);
-        l.setStyle("-fx-text-fill: #888; -fx-font-size: 14px;");
+        l.getStyleClass().add("hud-stat-value");
         return l;
     }
 
-    private Label styledLabel(String text, String color, int size) {
+    private Label styledLabel(String text, String cssClass) {
         Label l = new Label(text);
-        l.setStyle("-fx-text-fill: " + color + "; -fx-font-size: " + size + "px;");
+        l.getStyleClass().add(cssClass);
         return l;
     }
 }

@@ -51,12 +51,14 @@ public class GameScreen {
         inventoryPanel.refresh();
         questPanel.refresh();
 
-        String msgColor = switch (engine.getLastResult()) {
-            case SUCCESS -> "#7ec8a0";
-            case PARTIAL -> "#f0c040";
-            case FAIL    -> "#e74c3c";
+        String msgClass = switch (engine.getLastResult()) {
+            case SUCCESS -> "msg-success";
+            case PARTIAL -> "msg-partial";
+            case FAIL    -> "msg-fail";
         };
-        messageLabel.setStyle("-fx-text-fill: " + msgColor + "; -fx-font-style: italic; -fx-font-size: 15px;");
+        messageLabel.getStyleClass().removeAll("msg-success", "msg-partial", "msg-fail");
+        messageLabel.getStyleClass().add(msgClass);
+
         if (!messageLabel.getText().equals(engine.getLastMessage())) {
             messageLabel.setText(engine.getLastMessage());
 
@@ -83,7 +85,7 @@ public class GameScreen {
         messageLabel.setMaxWidth(640);
         messageLabel.setMinHeight(70);
         messageLabel.setPrefHeight(70);
-        messageLabel.setStyle("-fx-text-fill: #f0c040; -fx-font-style: italic; -fx-font-size: 15px;");
+        messageLabel.getStyleClass().addAll("message-label", "msg-partial");
 
         GridPane grid = new GridPane();
         grid.setHgap(12);
@@ -109,12 +111,12 @@ public class GameScreen {
         ScrollPane invScroll = new ScrollPane(inventoryPanel);
         invScroll.setFitToWidth(true);
         invScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        invScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        invScroll.getStyleClass().add("transparent-scroll-pane");
 
         ScrollPane questScroll = new ScrollPane(questPanel);
         questScroll.setFitToWidth(true);
         questScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        questScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        questScroll.getStyleClass().add("transparent-scroll-pane");
 
         StackPane rightContent = new StackPane(questScroll, invScroll);
         VBox.setVgrow(rightContent, Priority.ALWAYS);

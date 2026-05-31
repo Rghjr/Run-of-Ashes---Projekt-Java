@@ -10,7 +10,7 @@ public enum Weather {
 
     CLEAR(
             "Pogodnie",
-            "☀",
+            "fas fa-sun",
             Map.of(),                                  // brak efektów per-tura
             Map.of("move", 10),                        // łatwiej się poruszać
             4, 8,                                      // minTurns, maxTurns zanim zmiana
@@ -18,7 +18,7 @@ public enum Weather {
     ),
     HOT(
             "Upał",
-            "🔥",
+            "fas fa-temperature-high",
             Map.of("hydration", -3, "energy", -2),    // szybka dehydratacja
             Map.of("hydration", 25),
             3, 6,
@@ -26,7 +26,7 @@ public enum Weather {
     ),
     RAIN(
             "Deszcz",
-            "🌧",
+            "fas fa-cloud-rain",
             Map.of("morale", -2, "energy", -1),
             Map.of("hydration", -15, "morale", 10),   // mniej eventów wody (i tak mokro), więcej morale (ulga)
             3, 7,
@@ -34,7 +34,7 @@ public enum Weather {
     ),
     STORM(
             "Burza",
-            "⛈",
+            "fas fa-bolt",
             Map.of("morale", -4, "energy", -3, "health", -1),
             Map.of("move", -20, "hydration", -10),    // trudno się poruszać
             2, 4,
@@ -42,7 +42,7 @@ public enum Weather {
     ),
     COLD(
             "Mróz",
-            "❄",
+            "fas fa-snowflake",
             Map.of("energy", -3, "health", -2),
             Map.of("food", 15, "energy", 10),          // więcej eventów jedzenia i ogrzewania
             3, 6,

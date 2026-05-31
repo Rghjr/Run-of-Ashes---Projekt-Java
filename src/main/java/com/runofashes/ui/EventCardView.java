@@ -31,10 +31,14 @@ public final class EventCardView {
 
         String badgeText = "";
         String badgeClass = "";
+        String titleClass = "card-title-normal";
+        String fxClass    = "card-fx-normal";
 
         if (isWait) {
             card.getStyleClass().add("event-card-wait");
             badgeText = "⏳ przeczekanie"; badgeClass = "badge-wait";
+            titleClass = "card-title-wait";
+            fxClass = "card-fx-wait";
         } else if (isMainQuest) {
             card.getStyleClass().add("event-card-main-quest");
             badgeText = event.getQuestStage() > 1 ? "🚩 kontynuacja wątku" : "🚩 główny wątek";
@@ -46,11 +50,10 @@ public final class EventCardView {
         } else if (rare) {
             card.getStyleClass().add("event-card-rare");
             badgeText = "✨ niezwykłe spotkanie"; badgeClass = "badge-rare";
+            titleClass = "card-title-rare";
         } else {
             card.getStyleClass().add("event-card-normal");
         }
-
-        String fg = isWait ? "#f0c040" : rare ? "#ffaa44" : "#eee";
 
         boolean isDepressed = engine.getPlayer().getMorale() < 30;
         String displayedLabel = (isDepressed && event.getLowMoraleLabel() != null)
@@ -59,18 +62,18 @@ public final class EventCardView {
 
         Label lbl = new Label(displayedLabel);
         lbl.setWrapText(true);
-        lbl.setStyle("-fx-text-fill: " + fg + "; -fx-font-size: 14px;");
+        lbl.getStyleClass().add(titleClass);
         lbl.setMaxWidth(Double.MAX_VALUE);
         VBox.setVgrow(lbl, Priority.ALWAYS);
 
         String fxStr = event.buildEffectsString();
         Label fxLabel = new Label(fxStr.isEmpty() ? "" : fxStr);
         fxLabel.setWrapText(true);
-        fxLabel.setStyle("-fx-text-fill: " + (isWait ? "#f0c040" : "#7ec8a0") + "; -fx-font-size: 13px;");
+        fxLabel.getStyleClass().add(fxClass);
 
         String distText = event.getDistanceCost() > 0 ? "   📍 -" + event.getDistanceCost() + " km" : "";
         Label metaLbl = new Label("⏱ " + event.getTimeCost() + "h" + distText);
-        metaLbl.setStyle("-fx-text-fill: #888; -fx-font-size: 12px;");
+        metaLbl.getStyleClass().add("card-meta");
 
         card.getChildren().addAll(lbl, fxLabel, metaLbl);
 
@@ -82,7 +85,7 @@ public final class EventCardView {
 
         if (event.getDistanceCost() > 0 && engine.hasActiveLocalQuests(event.getQuestId())) {
             Label warnLbl = new Label("Ruch anuluje lokalne zadania!");
-            warnLbl.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 11px;");
+            warnLbl.getStyleClass().add("card-warn");
             card.getChildren().add(warnLbl);
         }
 

@@ -13,6 +13,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.OverrunStyle;
 import javafx.scene.text.Font;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.Map;
 
@@ -32,12 +33,19 @@ public class InventoryPanel extends VBox {
     public InventoryPanel(GameEngine engine, Runnable onUseCallback) {
         this.engine = engine;
         this.onUseCallback = onUseCallback;
-        setStyle("-fx-background-color: #111122; -fx-background-radius: 8;");
+        getStyleClass().add("inventory-panel");
         setPadding(new Insets(14));
         setSpacing(14);
 
-        Label title = new Label("⚙  Ekwipunek");
-        title.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 15px;");
+        HBox titleBox = new HBox(8);
+        titleBox.setAlignment(Pos.CENTER_LEFT);
+
+        FontIcon titleIcon = new FontIcon("fas-cog");
+        titleIcon.setIconSize(16);
+        titleIcon.setIconColor(javafx.scene.paint.Color.web("#f0c040"));
+
+        Label title = new Label("Ekwipunek");
+        title.getStyleClass().add("inventory-title");
         title.setFont(Font.font("Georgia", 15));
 
         getChildren().addAll(title, itemList);
@@ -48,7 +56,6 @@ public class InventoryPanel extends VBox {
 
     public void refresh() {
         buildItemList();
-        // BUG FIX: buildStatusList() usunięte — patrz komentarz przy klasie
     }
 
     // ── Budowanie sekcji itemów ───────────────────────────────────────────────
@@ -61,7 +68,7 @@ public class InventoryPanel extends VBox {
 
         if (all.isEmpty()) {
             Label empty = new Label("Brak przedmiotów.");
-            empty.setStyle("-fx-text-fill: #555; -fx-font-style: italic; -fx-font-size: 13px;");
+            empty.getStyleClass().add("empty-label");
             itemList.getChildren().add(empty);
             return;
         }
@@ -74,44 +81,42 @@ public class InventoryPanel extends VBox {
     }
 
     private HBox buildItemRow(ItemType type, int count) {
+        FontIcon itemIcon = new FontIcon(type.getEmoji());
+        itemIcon.setIconSize(16);
+        itemIcon.setIconColor(javafx.scene.paint.Color.web("#ddd"));
+
         Label name = new Label(type.getEmoji() + "  " + type.getLabel());
-        name.setStyle("-fx-text-fill: #ddd; -fx-font-size: 13px;");
+        name.getStyleClass().add("item-name");
         name.setWrapText(false);
         name.setTextOverrun(OverrunStyle.ELLIPSIS);
 
+        HBox nameBox = new HBox(6, itemIcon, name);
+        nameBox.setAlignment(Pos.CENTER_LEFT);
+
         Label effect = new Label(type.buildEffectDescription());
-        effect.setStyle("-fx-text-fill: #7ec8a0; -fx-font-size: 11px;");
+        effect.getStyleClass().add("item-effect");
         effect.setWrapText(true);
 
         VBox textBlock = new VBox(2, name, effect);
-        textBlock.setMaxWidth(120);
-        textBlock.setMinWidth(120);
+        HBox.setHgrow(textBlock, Priority.ALWAYS);
 
         Label stack = new Label("×" + count + "/" + type.getMaxStack());
-        stack.setStyle("-fx-text-fill: #666; -fx-font-size: 12px;");
+        stack.getStyleClass().add("item-stack");
         stack.setMinWidth(35);
         stack.setAlignment(Pos.CENTER_RIGHT);
 
         Button use = new Button("Użyj");
-        use.setStyle("""
-            -fx-background-color: #1e3a1e; -fx-text-fill: #7ec8a0;
-            -fx-font-size: 12px; -fx-padding: 4 10;
-            -fx-background-radius: 4; -fx-cursor: hand;
-        """);
-        use.setOnMouseEntered(e -> use.setStyle(use.getStyle().replace("#1e3a1e", "#2a5a2a")));
-        use.setOnMouseExited(e  -> use.setStyle(use.getStyle().replace("#2a5a2a", "#1e3a1e")));
+        use.getStyleClass().add("use-button");
+        use.setMinWidth(Region.USE_PREF_SIZE);
         use.setOnAction(e -> {
             engine.useItem(type);
             onUseCallback.run();
         });
 
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
-        HBox row = new HBox(6, textBlock, spacer, stack, use);
+        HBox row = new HBox(12, textBlock, stack, use);
         row.setAlignment(Pos.CENTER_LEFT);
-        row.setPadding(new Insets(8));
-        row.setStyle("-fx-background-color: #16213e; -fx-background-radius: 6;");
+        row.getStyleClass().add("item-row");
+
         return row;
     }
 }

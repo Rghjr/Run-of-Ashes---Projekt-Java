@@ -42,7 +42,7 @@ public class TraitSelectionScreen extends VBox {
 
         Label title = new Label("Wybierz cechy postaci");
         title.setFont(Font.font("Georgia", FontWeight.BOLD, 28));
-        title.setStyle("-fx-text-fill: #f0c040;");
+        title.getStyleClass().addAll("screen-title", "screen-title-medium");
 
         HBox rulesBanner = new HBox(12);
         rulesBanner.setAlignment(Pos.CENTER);
@@ -51,7 +51,7 @@ public class TraitSelectionScreen extends VBox {
 
         FontIcon diffIcon = new FontIcon(difficulty.getEmoji());
         diffIcon.setIconSize(24);
-        diffIcon.setIconColor(javafx.scene.paint.Color.web("#f0c040"));
+        diffIcon.getStyleClass().add("color-normal");
 
         Label rulesLabel = new Label(difficulty.getLabel() + " — " + difficulty.getRulesText());
         rulesLabel.getStyleClass().add("info-banner-text");
@@ -63,7 +63,8 @@ public class TraitSelectionScreen extends VBox {
 
         // Na poziomie EASY i NORMAL pokazujemy pozytywne
         if (difficulty == Difficulty.EASY || difficulty == Difficulty.NORMAL ||  difficulty == Difficulty.HARD) {
-            Label posHeader = sectionHeader("✦  Cechy pozytywne", "#7ec8a0");
+            Label posHeader = new Label("✦  Cechy pozytywne");
+            posHeader.getStyleClass().addAll("section-header", "color-easy");
             TilePane posGrid = buildGrid(true);
             dynamicSections.add(posHeader);
             dynamicSections.add(posGrid);
@@ -71,7 +72,8 @@ public class TraitSelectionScreen extends VBox {
 
         // Na poziomie HARD i NORMAL pokazujemy negatywne
         if (difficulty == Difficulty.HARD || difficulty == Difficulty.NORMAL) {
-            Label negHeader = sectionHeader("✦  Cechy negatywne", "#e74c3c");
+            Label negHeader = new Label("✦  Cechy negatywne");
+            negHeader.getStyleClass().addAll("section-header", "color-hard");
             TilePane negGrid = buildGrid(false);
             dynamicSections.add(negHeader);
             dynamicSections.add(negGrid);
@@ -84,32 +86,20 @@ public class TraitSelectionScreen extends VBox {
 
         statusIcon = new FontIcon("fas-info-circle");
         statusIcon.setIconSize(18);
-        statusIcon.setIconColor(javafx.scene.paint.Color.web("#888"));
+        statusIcon.getStyleClass().add("status-icon");
 
         statusLabel = new Label("Wybierz cechy zgodnie z zasadami poziomu trudności.");
-        statusLabel.setStyle("-fx-text-fill: #aaa; -fx-font-size: 13px;");
+        statusLabel.getStyleClass().add("status-label-text");
 
         statusBox.getChildren().addAll(statusIcon, statusLabel);
 
         Button backBtn = new Button("◀  Cofnij");
-        backBtn.setStyle("""
-            -fx-background-color: transparent; -fx-text-fill: #aaa;
-            -fx-font-size: 16px; -fx-padding: 12 32;
-            -fx-border-color: #444; -fx-border-radius: 6; -fx-cursor: hand;
-        """);
-        backBtn.setOnMouseEntered(e -> backBtn.setStyle(backBtn.getStyle()
-                .replace("#444", "#888").replace("#aaa", "#fff")));
-        backBtn.setOnMouseExited(e -> backBtn.setStyle(backBtn.getStyle()
-                .replace("#888", "#444").replace("#fff", "#aaa")));
+        backBtn.getStyleClass().add("secondary-button");
         backBtn.setOnAction(e -> onBack.run());
 
         confirmBtn = new Button("Rozpocznij grę ▶");
         confirmBtn.setDisable(!difficulty.isValidSelection(0, 0));
-        confirmBtn.setStyle("""
-            -fx-background-color: #2a3a1e; -fx-text-fill: #7ec8a0;
-            -fx-font-size: 16px; -fx-padding: 12 40;
-            -fx-background-radius: 6; -fx-cursor: hand;
-        """);
+        confirmBtn.getStyleClass().add("primary-button");
         confirmBtn.setOnAction(e -> onConfirm.run());
 
         HBox buttonBox = new HBox(24, backBtn, confirmBtn);
@@ -144,8 +134,8 @@ public class TraitSelectionScreen extends VBox {
 
     private VBox buildTraitCard(Trait trait) {
         boolean isPos   = trait.isPositive();
-        String normalBg = isPos ? "#1a2e1a" : "#2e1a1a";
-        String accent   = isPos ? "#7ec8a0" : "#e74c3c";
+        String colorClass = isPos ? "color-easy" : "color-hard";
+        String cardBgClass = isPos ? "trait-card-pos" : "trait-card-neg";
 
         String selClass = isPos ? "selection-card-selected-green" : "selection-card-selected-red";
 
@@ -153,29 +143,26 @@ public class TraitSelectionScreen extends VBox {
         card.setPadding(new Insets(14));
         card.setPrefWidth(155);
         card.setAlignment(Pos.TOP_CENTER);
-
-        card.getStyleClass().add("selection-card");
-        card.setStyle("-fx-background-color: " + normalBg + ";");
+        card.getStyleClass().addAll("selection-card", cardBgClass);
 
         FontIcon icon = new FontIcon(trait.getEmoji());
         icon.setIconSize(28);
-        icon.setIconColor(javafx.scene.paint.Color.web(accent));
-        icon.getStyleClass().add("card-icon");
+        icon.getStyleClass().addAll("card-icon", colorClass);
 
         Label name = new Label(trait.getLabel());
         name.setFont(Font.font("Georgia", FontWeight.BOLD, 13));
-        name.setStyle("-fx-text-fill: " + accent + ";");
+        name.getStyleClass().addAll("trait-name", colorClass);
         name.setTextAlignment(TextAlignment.CENTER);
         name.setWrapText(true);
 
         Label desc = new Label(trait.getDescription());
-        desc.setStyle("-fx-text-fill: #aaa; -fx-font-size: 11px;");
+        desc.getStyleClass().add("trait-desc");
         desc.setWrapText(true);
         desc.setTextAlignment(TextAlignment.CENTER);
 
         // Efekty per-tura jeśli istnieją
         if (!trait.getPerTurnMods().isEmpty()) {
-            HBox modBox = buildModBox(trait.getPerTurnMods(), accent);
+            HBox modBox = buildModBox(trait.getPerTurnMods(), colorClass);
             card.getChildren().addAll(icon, name, desc, modBox);
         } else {
             card.getChildren().addAll(icon, name, desc);
@@ -186,22 +173,22 @@ public class TraitSelectionScreen extends VBox {
         return card;
     }
 
-    private HBox buildModBox(Map<String, Integer> mods, String accent) {
+    private HBox buildModBox(Map<String, Integer> mods, String colorClass) {
         HBox box = new HBox(6);
         box.setAlignment(Pos.CENTER);
 
         Label prefix = new Label("Per tura:");
-        prefix.setStyle("-fx-text-fill: #888; -fx-font-size: 10px;");
+        prefix.getStyleClass().add("trait-mod-prefix");
         box.getChildren().add(prefix);
 
         mods.forEach((stat, val) -> {
             String valStr = (val > 0 ? "+" : "") + val;
             Label valLbl = new Label(valStr);
-            valLbl.setStyle("-fx-text-fill: " + accent + "; -fx-font-size: 11px; -fx-font-weight: bold;");
+            valLbl.getStyleClass().addAll("trait-mod-val", colorClass);
 
             FontIcon statIcon = new FontIcon(getStatIconCode(stat));
             statIcon.setIconSize(11);
-            statIcon.setIconColor(javafx.scene.paint.Color.web(accent));
+            statIcon.getStyleClass().add(colorClass);
 
             HBox statGroup = new HBox(3, valLbl, statIcon);
             statGroup.setAlignment(Pos.CENTER);
@@ -258,15 +245,11 @@ public class TraitSelectionScreen extends VBox {
         if (valid) {
             statusBox.getStyleClass().add("status-banner-valid");
             statusIcon.setIconLiteral("fas-check-circle");
-            statusIcon.setIconColor(javafx.scene.paint.Color.web("#7ec8a0"));
             statusLabel.setText(pos + " poz. | " + neg + " neg. — Gotowe do gry!");
-            statusLabel.setStyle("-fx-text-fill: #7ec8a0; -fx-font-size: 13px; -fx-font-weight: bold;");
         } else {
             statusBox.getStyleClass().add("status-banner-default");
             statusIcon.setIconLiteral("fas-info-circle");
-            statusIcon.setIconColor(javafx.scene.paint.Color.web("#f0c040"));
             statusLabel.setText(pos + " poz. | " + neg + " neg. — Wybierz kolejne cechy, aby spełnić warunki.");
-            statusLabel.setStyle("-fx-text-fill: #aaa; -fx-font-size: 13px;");
         }
 
         // EASY i HARD: potwierdzamy od razu gdy warunki spełnione
@@ -279,10 +262,8 @@ public class TraitSelectionScreen extends VBox {
         statusBox.getStyleClass().add("status-banner-error");
 
         statusIcon.setIconLiteral("fas-exclamation-triangle");
-        statusIcon.setIconColor(javafx.scene.paint.Color.web("#e74c3c"));
 
         statusLabel.setText(msg);
-        statusLabel.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 13px; -fx-font-weight: bold;");
     }
 
     private int countPositive() {
@@ -291,14 +272,5 @@ public class TraitSelectionScreen extends VBox {
 
     private int countNegative() {
         return (int) selected.stream().filter(t -> !t.isPositive()).count();
-    }
-
-    // ─── Helpers ─────────────────────────────────────────────────────────────
-
-    private Label sectionHeader(String text, String color) {
-        Label l = new Label(text);
-        l.setFont(Font.font("Georgia", FontWeight.BOLD, 16));
-        l.setStyle("-fx-text-fill: " + color + ";");
-        return l;
     }
 }

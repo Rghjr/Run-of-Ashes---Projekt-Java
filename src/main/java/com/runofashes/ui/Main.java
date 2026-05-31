@@ -82,7 +82,7 @@ public class Main extends Application {
         gameScreen.refresh();
     }
 
-    public static void main() {
+    public static void main(String[] args) {
         launch();
     }
 }

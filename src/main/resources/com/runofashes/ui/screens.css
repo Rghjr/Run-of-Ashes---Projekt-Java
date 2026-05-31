@@ -1,0 +1,74 @@
+/* =========================================
+   DIFFICULTY SCREEN
+   ========================================= */
+.diff-card { -fx-background-color: #16213e; }
+.diff-name {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+.diff-desc {
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 13px;
+}
+.diff-rules {
+    -fx-text-fill: #888888;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+.diff-mod-label { -fx-font-size: 12px; }
+
+/* =========================================
+   TRAIT SELECTION SCREEN
+   ========================================= */
+.section-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+.trait-card-pos { -fx-background-color: #1a2e1a; }
+.trait-card-neg { -fx-background-color: #2e1a1a; }
+.trait-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.trait-desc {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-size: 11px;
+}
+.trait-mod-prefix {
+    -fx-text-fill: #888888;
+    -fx-font-size: 10px;
+}
+.trait-mod-val {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* =========================================
+   END SCREEN & WIN SCREEN
+   ========================================= */
+.end-screen {
+    -fx-background-color: #0d0d1a;
+}
+.end-title {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+}
+.end-text {
+    -fx-text-fill: #dddddd;
+    -fx-font-size: 17px;
+}
+.win-title {
+    -fx-text-fill: #f0c040;
+    -fx-font-size: 44px;
+    -fx-font-weight: bold;
+}
+.win-sub {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-size: 22px;
+    -fx-font-style: italic;
+}
+.win-detail {
+    -fx-text-fill: #666666;
+    -fx-font-size: 16px;
+}
