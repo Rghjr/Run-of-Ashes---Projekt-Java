@@ -10,7 +10,7 @@ public enum Biome {
 
     STEPPE(
             "Step",
-            "fas-wheat-alt",
+            "fas-wind",
             Map.of("hydration", 1.3, "hunger", 1.1, "energy", 1.0),
             Map.of("hydration", 20, "move", 10),
             "Bezkresny step. Słońce praży, woda rzadka jak obietnice."

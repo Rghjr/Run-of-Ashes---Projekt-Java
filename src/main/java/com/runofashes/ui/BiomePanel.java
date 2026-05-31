@@ -5,19 +5,23 @@ import com.runofashes.model.Biome;
 import com.runofashes.model.StatusEffect;
 import com.runofashes.model.Weather;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class BiomePanel extends VBox {
 
-    private final Label titleLabel   = new Label();
+    private final HBox  titleBox     = new HBox(8);
     private final Label descLabel    = new Label();
     private final Label effectsLabel = new Label();
     private final VBox  statusesBox  = new VBox(6);
 
     public BiomePanel() {
-        titleLabel.getStyleClass().add("biome-title");
+        titleBox.getStyleClass().add("biome-title");
+        titleBox.setAlignment(Pos.CENTER_LEFT);
         descLabel.setWrapText(true);
         descLabel.setMinHeight(Region.USE_PREF_SIZE);
         descLabel.getStyleClass().add("biome-desc");
@@ -30,7 +34,7 @@ public class BiomePanel extends VBox {
 
         setSpacing(8);
         getStyleClass().add("biome-panel");
-        getChildren().addAll(titleLabel, descLabel, effectsLabel);
+        getChildren().addAll(titleBox, descLabel, effectsLabel);
     }
 
     public VBox getStatusesBox() {
@@ -41,19 +45,28 @@ public class BiomePanel extends VBox {
         Biome currentBiome     = engine.getCurrentBiome();
         Weather currentWeather = engine.getCurrentWeather();
         String currentStage    = engine.getCurrentStageName();
+        titleBox.getChildren().clear();
 
-        titleLabel.setText(
-                "🚩 " + currentStage.toUpperCase()
-                        + "   |   " + currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase()
-                        + "   |   " + currentWeather.getEmoji() + " " + currentWeather.getLabel().toUpperCase()
-        );
+        Label stageLbl = new Label("🚩 " + currentStage.toUpperCase() + "   |   ");
+        stageLbl.getStyleClass().add("biome-title");
+
+        Label biomeLbl = new Label(currentBiome.getLabel().toUpperCase() + "   |   ");
+        biomeLbl.setGraphic(new FontIcon(currentBiome.getEmoji()));
+        biomeLbl.getStyleClass().add("biome-title");
+
+        Label weatherLbl = new Label(currentWeather.getLabel().toUpperCase());
+        weatherLbl.setGraphic(new FontIcon(currentWeather.getEmoji()));
+        weatherLbl.getStyleClass().add("biome-title");
+
+        titleBox.getChildren().addAll(stageLbl, biomeLbl, weatherLbl);
+
         descLabel.setText(currentBiome.getEntryMessage());
         effectsLabel.setText(engine.buildBiomeInfo(currentBiome));
 
         StatusEffect triggered = engine.getStatusManager().consumeLastTriggered();
         if (triggered != null) {
             messageLabel.setText(messageLabel.getText()
-                    + "\n" + triggered.getEmoji() + " Nowy status: " + triggered.getLabel()
+                    + "\n[!] Nowy status: " + triggered.getLabel()
                     + " — " + triggered.getDescription());
         }
 
@@ -71,12 +84,16 @@ public class BiomePanel extends VBox {
             statuses.forEach((status, turns) -> {
                 VBox statusBox = new VBox(2);
                 String t = turns == 1 ? "tura" : (turns < 5 ? "tury" : "tur");
-                Label nameLbl = new Label(status.getEmoji() + " " + status.getLabel() + " (" + turns + " " + t + ")");
+
+                Label nameLbl = new Label(status.getLabel() + " (" + turns + " " + t + ")");
+                nameLbl.setGraphic(new FontIcon(status.getEmoji()));
                 nameLbl.getStyleClass().add("biome-status-name");
+
                 Label descLbl = new Label(status.getDescription());
                 descLbl.getStyleClass().add("biome-status-desc");
                 descLbl.setWrapText(true);
                 descLbl.setMinHeight(Region.USE_PREF_SIZE);
+
                 statusBox.getChildren().addAll(nameLbl, descLbl);
                 statusesBox.getChildren().add(statusBox);
             });

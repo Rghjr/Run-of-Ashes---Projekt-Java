@@ -150,3 +150,20 @@
 .msg-success { -fx-text-fill: #7ec8a0; }
 .msg-partial { -fx-text-fill: #f0c040; }
 .msg-fail    { -fx-text-fill: #e74c3c; }
+
+/* =========================================
+   KOLORY IKON W PANELACH
+   ========================================= */
+
+/* Ikony w GameHUD */
+.hud-traits .ikonli-font-icon { -fx-icon-color: #666666; -fx-fill: #666666; }
+.hud-biome .ikonli-font-icon { -fx-icon-color: #2ecc71; -fx-fill: #2ecc71; }
+.hud-weather .ikonli-font-icon { -fx-icon-color: #3498db; -fx-fill: #3498db; }
+.hud-difficulty .ikonli-font-icon { -fx-icon-color: #888888; -fx-fill: #888888; }
+
+/* Ikony w BiomePanel */
+.biome-title .ikonli-font-icon { -fx-icon-color: #f0c040; -fx-fill: #f0c040; }
+.biome-status-name .ikonli-font-icon { -fx-icon-color: #f0c040; -fx-fill: #f0c040; }
+
+/* Opcjonalnie: ikona ekwipunku, by nie była czarna */
+.item-name .ikonli-font-icon { -fx-icon-color: #dddddd; -fx-fill: #dddddd; }

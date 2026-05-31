@@ -85,7 +85,7 @@ public class InventoryPanel extends VBox {
         itemIcon.setIconSize(16);
         itemIcon.setIconColor(javafx.scene.paint.Color.web("#ddd"));
 
-        Label name = new Label(type.getEmoji() + "  " + type.getLabel());
+        Label name = new Label(type.getLabel());
         name.getStyleClass().add("item-name");
         name.setWrapText(false);
         name.setTextOverrun(OverrunStyle.ELLIPSIS);

@@ -44,9 +44,9 @@
 }
 
 /* Dynamiczne kolory (używane w wielu miejscach) */
-.color-easy   { -fx-text-fill: #7ec8a0; -fx-icon-color: #7ec8a0; }
-.color-normal { -fx-text-fill: #f0c040; -fx-icon-color: #f0c040; }
-.color-hard   { -fx-text-fill: #e74c3c; -fx-icon-color: #e74c3c; }
+.color-easy   { -fx-text-fill: #7ec8a0; -fx-icon-color: #7ec8a0; -fx-fill: #7ec8a0; }
+.color-normal { -fx-text-fill: #f0c040; -fx-icon-color: #f0c040; -fx-fill: #f0c040; }
+.color-hard   { -fx-text-fill: #e74c3c; -fx-icon-color: #e74c3c; -fx-fill: #e74c3c; }
 
 /* =========================================
    PRZYCISKI I ZAKŁADKI

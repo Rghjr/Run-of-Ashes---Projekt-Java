@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class GameHUD extends VBox {
     private ProgressBar healthBar, hungerBar, hydrationBar, energyBar, moraleBar;
     private Label healthVal, hungerVal, hydrationVal, energyVal, moraleVal;
     private Label timeLabel, distanceLabel;
-    private Label difficultyLabel, traitsLabel;
+    private Label difficultyLabel;
+    private HBox  traitsBox;
     private Label biomeLabel, weatherLabel;
 
     public GameHUD(GameEngine engine) {
@@ -35,7 +37,8 @@ public class GameHUD extends VBox {
         timeLabel       = styledLabel("Dzień 1,  00:00", "hud-time");
         distanceLabel   = styledLabel("4000 km do Krakowa", "hud-distance");
         difficultyLabel = styledLabel("", "hud-difficulty");
-        traitsLabel     = styledLabel("", "hud-traits");
+        traitsBox       = new HBox(12);
+        traitsBox.setAlignment(Pos.CENTER_LEFT);
 
         biomeLabel      = styledLabel("", "hud-biome");
         weatherLabel    = styledLabel("", "hud-weather");
@@ -46,7 +49,7 @@ public class GameHUD extends VBox {
         HBox envRow = new HBox(24, biomeLabel, weatherLabel);
         envRow.setAlignment(Pos.CENTER_LEFT);
 
-        HBox metaRow = new HBox(16, difficultyLabel, traitsLabel);
+        HBox metaRow = new HBox(16, difficultyLabel, traitsBox);
         metaRow.setAlignment(Pos.CENTER_LEFT);
 
         healthBar    = makeBar("hud-bar-health");
@@ -83,19 +86,26 @@ public class GameHUD extends VBox {
         timeLabel.setText(p.getTimeFormatted());
         distanceLabel.setText(p.getDistance() + " km do Krakowa");
 
-        biomeLabel.setText("🚩 " + engine.getCurrentStageName() + "  |  "  + engine.getCurrentBiome().getEmoji() + " " + engine.getCurrentBiome().getLabel());
-        weatherLabel.setText(engine.getCurrentWeather().getEmoji() + " " + engine.getCurrentWeather().getLabel());
+        biomeLabel.setText("🚩 " + engine.getCurrentStageName() + "  |  " + engine.getCurrentBiome().getLabel());
+        biomeLabel.setGraphic(new FontIcon(engine.getCurrentBiome().getEmoji()));
+
+        weatherLabel.setText(engine.getCurrentWeather().getLabel());
+        weatherLabel.setGraphic(new FontIcon(engine.getCurrentWeather().getEmoji()));
 
         Difficulty diff = engine.getDifficulty();
-        difficultyLabel.setText(diff.getEmoji() + " " + diff.getLabel());
+        difficultyLabel.setText(diff.getLabel());
+        difficultyLabel.setGraphic(new FontIcon(diff.getEmoji()));
 
+        traitsBox.getChildren().clear();
         List<Trait> traits = engine.getTraitManager().getActiveTraits();
         if (traits.isEmpty()) {
-            traitsLabel.setText("Brak cech");
+            traitsBox.getChildren().add(styledLabel("Brak cech", "hud-traits"));
         } else {
-            StringBuilder sb = new StringBuilder();
-            traits.forEach(t -> sb.append(t.getEmoji()).append(" ").append(t.getLabel()).append("  "));
-            traitsLabel.setText(sb.toString().trim());
+            for (Trait t : traits) {
+                Label traitLbl = styledLabel(t.getLabel(), "hud-traits");
+                traitLbl.setGraphic(new FontIcon(t.getEmoji()));
+                traitsBox.getChildren().add(traitLbl);
+            }
         }
     }
 
