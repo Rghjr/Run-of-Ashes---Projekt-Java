@@ -131,9 +131,13 @@ public class GameScreen {
 
         Button btnInv   = new Button("Ekwipunek");
         btnInv.setGraphic(bagIcon);
+        btnInv.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(btnInv, Priority.ALWAYS);
 
         Button btnQuest = new Button("Questy");
         btnQuest.setGraphic(questIcon);
+        btnQuest.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(btnQuest, Priority.ALWAYS);
 
         btnInv.getStyleClass().add("tab-button-active");
         btnQuest.getStyleClass().add("tab-button-inactive");
