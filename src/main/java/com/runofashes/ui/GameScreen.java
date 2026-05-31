@@ -80,6 +80,10 @@ public class GameScreen {
         biomePanel.refresh(engine, messageLabel);
     }
 
+    public void setLastEvent(GameEvent event) {
+        hud.setEventImage(event);
+    }
+
     private void build() {
         messageLabel.setWrapText(true);
         messageLabel.setMaxWidth(640);

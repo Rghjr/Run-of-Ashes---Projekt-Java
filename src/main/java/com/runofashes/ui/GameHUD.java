@@ -2,6 +2,7 @@ package com.runofashes.ui;
 
 import com.runofashes.engine.GameEngine;
 import com.runofashes.model.Difficulty;
+import com.runofashes.model.GameEvent;
 import com.runofashes.model.Player;
 import com.runofashes.model.Trait;
 import javafx.animation.KeyFrame;
@@ -11,12 +12,21 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GameHUD extends VBox {
 
@@ -31,6 +41,8 @@ public class GameHUD extends VBox {
     private Label difficultyLabel;
     private HBox  traitsBox, distanceBox;
     private Label biomeLabel, weatherLabel;
+
+    private ImageView eventImageView;
 
     public GameHUD(GameEngine engine) {
         this.engine = engine;
@@ -79,14 +91,78 @@ public class GameHUD extends VBox {
         energyVal    = valueLabel();
         moraleVal    = valueLabel();
 
-        getChildren().addAll(
-                topRow, envRow, metaRow,
+        VBox statsBox = new VBox(8,
                 statRow("❤  Zdrowie",     healthBar,    healthVal),
                 statRow("🍗  Głód",        hungerBar,    hungerVal),
                 statRow("💧  Nawodnienie", hydrationBar, hydrationVal),
                 statRow("⚡  Energia",     energyBar,    energyVal),
                 statRow("😊  Nadzieja",    moraleBar,    moraleVal)
         );
+
+        StackPane imageContainer = createFadedImageWrapper(240, 180);
+
+        HBox bottomRow = new HBox(40, statsBox, imageContainer);
+        bottomRow.setAlignment(Pos.CENTER_LEFT);
+
+        getChildren().addAll(topRow, envRow, metaRow, bottomRow);
+    }
+
+    private StackPane createFadedImageWrapper(double width, double height) {
+        eventImageView = new ImageView();
+        eventImageView.setFitWidth(width);
+        eventImageView.setFitHeight(height);
+        eventImageView.setPreserveRatio(false);
+
+        Rectangle vignette = new Rectangle(width, height);
+
+        RadialGradient gradient = new RadialGradient(
+                0, 0, 0.5, 0.5, 0.45, true, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.TRANSPARENT),
+                new Stop(0.3, Color.TRANSPARENT),
+                new Stop(1, Color.web("#1a1a2e", 1.0))
+        );
+        vignette.setFill(gradient);
+
+        StackPane container = new StackPane(eventImageView, vignette);
+        container.setPrefSize(width, height);
+        return container;
+    }
+
+    public void setEventImage(String imageName) {
+        Image img = com.runofashes.utils.FileLoader.loadUiImage(imageName);
+        if (img != null) {
+            eventImageView.setImage(img);
+        } else {
+            eventImageView.setImage(com.runofashes.utils.FileLoader.loadUiImage("event_default.png"));
+        }
+    }
+
+    // --- NOWA METODA - SKANER KART ---
+    public void setEventImage(GameEvent event) {
+        if (event == null || event.getId() == null) return;
+
+        String eventId = event.getId().toLowerCase();
+        String imageName = "event_default.png";
+
+        if (eventId.contains("village") || eventId.contains("wies") || eventId.contains("chata") || eventId.contains("inn")) {
+            imageName = "village.png";
+        } else if (eventId.contains("water") || eventId.contains("river") || eventId.contains("stream") || eventId.contains("drink") || eventId.contains("rain") || eventId.contains("ford")) {
+            imageName = "river.png";
+        } else if (eventId.contains("fight") || eventId.contains("soldier") || eventId.contains("wilki") || eventId.contains("hunt") || eventId.contains("guard")) {
+            imageName = "soldier.png";
+        } else if (eventId.contains("merchant") || eventId.contains("trade") || eventId.contains("buy") || eventId.contains("karawana")) {
+            imageName = "merchant.png";
+        } else if (eventId.contains("rest") || eventId.contains("sleep") || eventId.contains("camp") || eventId.contains("nap") || eventId.contains("fire")) {
+            imageName = "camp.png";
+        } else if (eventId.contains("monastery") || eventId.contains("church") || eventId.contains("cross") || eventId.contains("pray") || eventId.contains("monk") || eventId.contains("bishop")) {
+            imageName = "religion.png";
+        } else if (eventId.contains("mountain") || eventId.contains("gory") || eventId.contains("lawina") || eventId.contains("szczelina")) {
+            imageName = "mountains.png";
+        } else if (eventId.contains("forest") || eventId.contains("las") || eventId.contains("tree") || eventId.contains("wood")) {
+            imageName = "forest.png";
+        }
+
+        setEventImage(imageName);
     }
 
     public void refresh() {

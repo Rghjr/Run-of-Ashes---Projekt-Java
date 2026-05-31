@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -40,11 +41,17 @@ public class EndScreen extends VBox {
         HBox btns = new HBox(24, restart, quit);
         btns.setAlignment(Pos.CENTER);
 
+        Image img = com.runofashes.utils.FileLoader.loadUiImage("end_bg.png");
+        if (img == null) {
+            img = com.runofashes.utils.FileLoader.loadUiImage("event_default.png");
+        }
+        this.setBackground(com.runofashes.utils.FileLoader.createFadedBackground(img, "#1a1a2e"));
+
         setAlignment(Pos.CENTER);
         setSpacing(32);
         setPadding(new Insets(90, 48, 48, 48));
         getStyleClass().add("end-screen");
-        getChildren().addAll(title, endTextLabel, btns);
+        getChildren().addAll(textBox, btns);
     }
 
     public void setEndingText(String text) {

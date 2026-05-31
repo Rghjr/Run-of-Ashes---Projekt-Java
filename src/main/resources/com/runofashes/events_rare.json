@@ -89,5 +89,20 @@
     "failEffects": { "health": -30, "morale": -45 },
     "failMessage": "Wioska nie była pusta. Zaraza była — i ty wszedłeś w sam jej środek.",
     "lowMoraleFailMessage": "Oszukali cię zza grobu. Wszedłeś w sam środek wylęgarni zarazy, definitywnie przypieczętowując swój żałosny los."
+  },
+  {
+    "id": "rare_mad_baker",
+    "label": "??? Spotkaj obłąkanego piekarza przy spalonym wozie",
+    "lowMoraleLabel": "Wysłuchaj bełkotu piekarza, który lepi z ciasta potwory",
+    "timeCost": 1,
+    "category": "rare",
+    "hiddenEffects": true,
+    "revealMessage": "Piekarz wręczył ci dziwny bochenek w kształcie konia. 'Pędź, pędź na zachód!' — krzyczał, tańcząc wokół wozu.",
+    "lowMoraleSuccessMessage": "Wziąłeś zdeformowany, twardy chleb w kształcie zwierzęcia. Idealnie pasuje do twojego obłędu.",
+    "effects": { "morale": 15 },
+    "itemEffects": { "WEIRD_BREAD": 1 },
+    "failEffects": { "morale": -15 },
+    "failMessage": "Piekarz zaczął rzucać w ciebie starym ciastem. Musiałeś uciekać.",
+    "lowMoraleFailMessage": "Nawet obłąkany wariat nie chciał podzielić się z tobą jedzeniem. Splunąłeś i odszedłeś."
   }
 ]

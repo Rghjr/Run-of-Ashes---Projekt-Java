@@ -109,6 +109,14 @@ public enum ItemType {
             Map.of("health", -5),
             2
     ),
+    WEIRD_BREAD(
+            "Chałko-koń",
+            "fas-bread-slice",
+            1,
+            Map.of("hunger", 30),
+            null,
+            0
+    ),
     MILITARY_STIMPACK(
             "Stymulant bojowy",
             "fas-syringe",

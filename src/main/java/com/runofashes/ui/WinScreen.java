@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -39,10 +40,16 @@ public class WinScreen extends VBox {
         HBox btns = new HBox(24, restart, quit);
         btns.setAlignment(Pos.CENTER);
 
+        Image img = com.runofashes.utils.FileLoader.loadUiImage("win_bg.png");
+        if (img == null) {
+            img = com.runofashes.utils.FileLoader.loadUiImage("event_default.png");
+        }
+        this.setBackground(com.runofashes.utils.FileLoader.createFadedBackground(img, "#1a1a2e"));
+
         setAlignment(Pos.CENTER);
-        setSpacing(28);
+        setSpacing(40);
         setPadding(new Insets(120, 48, 48, 48));
         getStyleClass().add("end-screen");
-        getChildren().addAll(title, sub, detail, btns);
+        getChildren().addAll(textBox, btns);
     }
 }

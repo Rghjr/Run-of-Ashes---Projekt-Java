@@ -6,17 +6,24 @@ import com.runofashes.model.StatusEffect;
 import com.runofashes.model.Weather;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Region;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class BiomePanel extends VBox {
+import java.util.Objects;
+
+public class BiomePanel extends StackPane {
 
     private final FlowPane titleFlow    = new FlowPane(12, 6);
     private final Label descLabel    = new Label();
     private final Label effectsLabel = new Label();
     private final VBox  statusesBox  = new VBox(6);
+
+    private final VBox contentBox = new VBox();
 
     public BiomePanel() {
         setMinHeight(Region.USE_PREF_SIZE);
@@ -24,6 +31,7 @@ public class BiomePanel extends VBox {
         descLabel.setWrapText(true);
         descLabel.setMinHeight(Region.USE_PREF_SIZE);
         descLabel.getStyleClass().add("biome-desc");
+
         effectsLabel.setWrapText(true);
         effectsLabel.setMinHeight(Region.USE_PREF_SIZE);
         effectsLabel.getStyleClass().add("biome-effects");
@@ -31,9 +39,22 @@ public class BiomePanel extends VBox {
         statusesBox.setPadding(new Insets(12, 0, 0, 0));
         statusesBox.setMinHeight(Region.USE_PREF_SIZE);
 
-        setSpacing(10);
+        contentBox.setSpacing(10);
+        contentBox.setPadding(new Insets(14));
+        contentBox.getChildren().addAll(titleFlow, descLabel, effectsLabel);
+
         getStyleClass().add("biome-panel");
-        getChildren().addAll(titleFlow, descLabel, effectsLabel);
+        getChildren().add(contentBox);
+
+        initInitialBackground();
+    }
+
+    private void initInitialBackground() {
+        Image img = com.runofashes.utils.FileLoader.loadUiImage("biome_steppe.png");
+        if (img == null) {
+            img = com.runofashes.utils.FileLoader.loadUiImage("event_default.png");
+        }
+        this.setBackground(com.runofashes.utils.FileLoader.createFadedBackground(img, "#1a1a2e"));
     }
 
     public VBox getStatusesBox() {
@@ -44,6 +65,12 @@ public class BiomePanel extends VBox {
         Biome currentBiome     = engine.getCurrentBiome();
         Weather currentWeather = engine.getCurrentWeather();
         String currentStage    = engine.getCurrentStageName();
+
+        String biomeName = currentBiome.name().toLowerCase();
+        Image img = com.runofashes.utils.FileLoader.loadUiImage("biome_" + biomeName + ".png");
+
+        this.setBackground(com.runofashes.utils.FileLoader.createFadedBackground(img, "#1a1a2e"));
+
         titleFlow.getChildren().clear();
 
         Label stageLbl = new Label("🚩 " + currentStage.toUpperCase() + " |");

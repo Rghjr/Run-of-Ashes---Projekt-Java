@@ -23,10 +23,8 @@ public class InventoryPanel extends VBox {
     private final Runnable onUseCallback;
     private final VBox itemList = new VBox(8);
 
-    // BUG FIX: usunięto pole statusList i metodę buildStatusList() — były martwym kodem.
-    // statusList był wypełniany w każdym refresh() ale nigdy nie był dodany do getChildren(),
-    // więc użytkownik nigdy go nie widział. Statusy są wyświetlane przez activeStatusesBox
-    // w Main.java. Wasted computation na każdy refresh ekwipunku.
+    private int chalkoClicks = 0;
+    private boolean isEggActive = false;
 
     // ── Konstruktor ───────────────────────────────────────────────────────────
 
@@ -100,6 +98,17 @@ public class InventoryPanel extends VBox {
         VBox textBlock = new VBox(2, name, effect);
         HBox.setHgrow(textBlock, Priority.ALWAYS);
 
+        textBlock.setOnMouseClicked(e -> {
+            if (type == ItemType.WEIRD_BREAD) {
+                chalkoClicks++;
+                System.out.println("Kliknięcia w Chałko-konia: " + chalkoClicks);
+                if (chalkoClicks >= 5) {
+                    chalkoClicks = 0;
+                    showBread();
+                }
+            }
+        });
+
         Label stack = new Label("×" + count + "/" + type.getMaxStack());
         stack.getStyleClass().add("item-stack");
         stack.setMinWidth(35);
@@ -118,5 +127,74 @@ public class InventoryPanel extends VBox {
         row.getStyleClass().add("item-row");
 
         return row;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private void showBread() {
+        if (isEggActive) return;
+
+        try {
+            isEggActive = true;
+
+            javafx.stage.Window window = this.getScene().getWindow();
+            if (window == null) {
+                isEggActive = false;
+                return;
+            }
+
+            javafx.scene.image.Image img = com.runofashes.utils.FileLoader.loadUiImage("chalkokon.jpg");
+            if (img == null) {
+                img = com.runofashes.utils.FileLoader.loadUiImage("event_default.png");
+            }
+
+            javafx.scene.image.ImageView imgView = new javafx.scene.image.ImageView(img);
+            imgView.setPreserveRatio(true);
+            imgView.setFitHeight(800);
+
+            javafx.scene.layout.StackPane pane = new javafx.scene.layout.StackPane(imgView);
+            pane.setStyle("-fx-background-color: transparent;");
+
+            javafx.stage.Stage eggStage = new javafx.stage.Stage();
+            javafx.scene.Scene eggScene = new javafx.scene.Scene(pane, javafx.scene.paint.Color.TRANSPARENT);
+
+            eggStage.initStyle(javafx.stage.StageStyle.TRANSPARENT);
+            eggStage.initOwner(window);
+            eggStage.setScene(eggScene);
+
+            eggStage.show();
+            eggStage.setX(window.getX() + (window.getWidth() - eggStage.getWidth()) / 2);
+            eggStage.setY(window.getY() + (window.getHeight() - eggStage.getHeight()) / 2);
+
+            javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1.5));
+            delay.setOnFinished(e -> {
+                eggStage.close();
+                isEggActive = false;
+            });
+            delay.play();
+
+        } catch (Exception e) {
+            System.out.println("Błąd Easter Ega: " + e.getMessage());
+            isEggActive = false;
+        }
     }
 }
