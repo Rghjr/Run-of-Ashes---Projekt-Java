@@ -18,7 +18,7 @@ public class QuestPanel extends VBox {
     public QuestPanel(GameEngine engine) {
         this.engine = engine;
 
-        setStyle("-fx-background-color: #111122; -fx-background-radius: 8;");
+        getStyleClass().add("quest-panel");
         setPadding(new Insets(14));
         setSpacing(14);
 
@@ -29,7 +29,7 @@ public class QuestPanel extends VBox {
         getChildren().clear();
 
         Label title = new Label("📜 Aktywne Zadania");
-        title.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 15px;");
+        title.getStyleClass().add("quest-title");
         title.setFont(Font.font("Georgia", 15));
 
         Region sep = new Region();
@@ -41,7 +41,7 @@ public class QuestPanel extends VBox {
         Map<String, QuestState> active = engine.getActiveQuests();
         if (active.isEmpty()) {
             Label empty = new Label("Brak aktywnych zadań.");
-            empty.setStyle("-fx-text-fill: #555; -fx-font-style: italic; -fx-font-size: 13px;");
+            empty.getStyleClass().add("quest-empty");
             getChildren().add(empty);
             return;
         }
@@ -51,30 +51,31 @@ public class QuestPanel extends VBox {
             String qName = nextEvent != null ? nextEvent.getLabel() : "Zadanie w toku...";
 
             Label nameLbl = new Label(qName);
-            nameLbl.setStyle("-fx-text-fill: #ddd; -fx-font-size: 13px;");
+            nameLbl.getStyleClass().add("quest-item-name");
             nameLbl.setWrapText(true);
 
-            String status;
-            String color;
+            Label statLbl = new Label();
+
             if (qs.isReady()) {
-                status = "✅ Kontynuacja dostępna w kartach!";
-                color  = "#7ec8a0";
+                statLbl.setText("✅ Kontynuacja dostępna w kartach!");
+                statLbl.getStyleClass().add("quest-status-ready");
             } else {
-                status = "⏳ " + qs.getTurnsLeft() + " tur(y) do następnego etapu";
-                color  = qs.isAllowWait() ? "#f0c040" : "#888";
-            }
+                statLbl.setText("⏳ " + qs.getTurnsLeft() + " tur(y) do następnego etapu");
+                if (qs.isAllowWait()) {
+                    statLbl.getStyleClass().add("quest-status-wait");
+                } else {
+                    statLbl.getStyleClass().add("quest-status-locked");
+                }
 
-            Label statLbl = new Label(status);
-            statLbl.setStyle("-fx-font-size: 12px; -fx-text-fill: " + color + ";");
-
-            VBox box = new VBox(4, nameLbl, statLbl);
-            if (qs.isAllowWait() && !qs.isReady()) {
-                Label waitHint = new Label("💡 Możesz przeczekać turę bez straty questa");
-                waitHint.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 11px; -fx-font-style: italic;");
-                box.getChildren().add(waitHint);
+                VBox box = new VBox(4, nameLbl, statLbl);
+                if (qs.isAllowWait() && !qs.isReady()) {
+                    Label waitHint = new Label("💡 Możesz przeczekać turę bez straty questa");
+                    waitHint.getStyleClass().add("quest-wait-hint");
+                    box.getChildren().add(waitHint);
+                }
+                box.getStyleClass().add("quest-item-box");
+                getChildren().add(box);
             }
-            box.setStyle("-fx-background-color: #16213e; -fx-background-radius: 6; -fx-padding: 8;");
-            getChildren().add(box);
         }
     }
 }

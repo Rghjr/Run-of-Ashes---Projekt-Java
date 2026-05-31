@@ -1,0 +1,200 @@
+/* =========================================
+   GLOBALNE TŁA I SCROLLBARY
+   ========================================= */
+.root-pane {
+    -fx-background-color: linear-gradient(to bottom, #1a1a24, #080812);
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.transparent-scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: #0d0d1a;
+    -fx-pref-width: 10px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #3a3a4c;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #5a5a75;
+}
+
+/* =========================================
+   GLOBALNA TYPOGRAFIA I ELEMENTY
+   ========================================= */
+.screen-title {
+    -fx-text-fill: #f0c040;
+    -fx-font-weight: bold;
+}
+.screen-title-large { -fx-font-size: 30px; }
+.screen-title-medium { -fx-font-size: 28px; }
+
+.screen-subtitle {
+    -fx-text-fill: #888888;
+    -fx-font-size: 14px;
+}
+
+/* Dynamiczne kolory (używane w wielu miejscach) */
+.color-easy   { -fx-text-fill: #7ec8a0; -fx-icon-color: #7ec8a0; -fx-fill: #7ec8a0; }
+.color-normal { -fx-text-fill: #f0c040; -fx-icon-color: #f0c040; -fx-fill: #f0c040; }
+.color-hard   { -fx-text-fill: #e74c3c; -fx-icon-color: #e74c3c; -fx-fill: #e74c3c; }
+
+/* =========================================
+   PRZYCISKI I ZAKŁADKI
+   ========================================= */
+.primary-button {
+    -fx-background-color: #2a3a1e;
+    -fx-text-fill: #7ec8a0;
+    -fx-font-size: 16px;
+    -fx-padding: 12 40;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.primary-button:hover { -fx-background-color: #364a27; }
+.primary-button:disabled {
+    -fx-background-color: #1a2214;
+    -fx-text-fill: #4a6b57;
+    -fx-cursor: default;
+}
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #aaaaaa;
+    -fx-font-size: 16px;
+    -fx-padding: 12 32;
+    -fx-border-color: #444444;
+    -fx-border-radius: 6;
+    -fx-cursor: hand;
+}
+.secondary-button:hover {
+    -fx-border-color: #888888;
+    -fx-text-fill: #ffffff;
+}
+
+.btn-success {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 12 32;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.btn-success:hover { -fx-background-color: #2ecc71; }
+
+.btn-danger {
+    -fx-background-color: #c0392b;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 12 32;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.btn-danger:hover { -fx-background-color: #e74c3c; }
+
+.btn-neutral {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 12 32;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.btn-neutral:hover { -fx-background-color: #666666; }
+
+.use-button {
+    -fx-background-color: #1e3a1e;
+    -fx-text-fill: #7ec8a0;
+    -fx-font-size: 12px;
+    -fx-padding: 4 10;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+.use-button:hover {
+    -fx-background-color: #2a5a2a;
+    -fx-border-color: #7ec8a0;
+    -fx-border-radius: 4;
+}
+
+.tab-button-active {
+    -fx-background-color: #2a2a3a;
+    -fx-text-fill: #f0c040;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-border-color: #f0c040;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+}
+.tab-button-active .ikonli-font-icon { -fx-fill: #f0c040; }
+
+.tab-button-inactive {
+    -fx-background-color: #111122;
+    -fx-text-fill: #888888;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6;
+    -fx-border-color: transparent;
+}
+.tab-button-inactive .ikonli-font-icon { -fx-fill: #888888; }
+
+/* =========================================
+   BANERY I STATUSY INFORMACYJNE
+   ========================================= */
+.status-label {
+    -fx-text-fill: #888;
+    -fx-font-size: 14px;
+    -fx-padding: 15;
+    -fx-background-color: #0d0d1a;
+    -fx-border-color: #2a2a3a;
+    -fx-border-radius: 5;
+}
+
+.info-banner {
+    -fx-background-color: #1e1e2c;
+    -fx-background-radius: 8;
+    -fx-border-color: #3a3a4c;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-padding: 12 24 12 24;
+}
+.info-banner-text {
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 14px;
+}
+
+.status-banner {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-padding: 10 24 10 24;
+}
+.status-banner-default { -fx-background-color: #1e1e2c; -fx-border-color: #3a3a4c; }
+.status-banner-default .status-label-text { -fx-text-fill: #aaaaaa; -fx-font-size: 13px; }
+.status-banner-default .status-icon       { -fx-icon-color: #888888; }
+
+.status-banner-valid {
+    -fx-background-color: #1a2e1a;
+    -fx-border-color: #7ec8a0;
+    -fx-effect: dropshadow(three-pass-box, rgba(126, 200, 160, 0.2), 10, 0, 0, 0);
+}
+.status-banner-valid .status-label-text { -fx-text-fill: #7ec8a0; -fx-font-size: 13px; -fx-font-weight: bold; }
+.status-banner-valid .status-icon       { -fx-icon-color: #7ec8a0; }
+
+.status-banner-error {
+    -fx-background-color: #2e1a1a;
+    -fx-border-color: #e74c3c;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.3), 10, 0, 0, 0);
+}
+.status-banner-error .status-label-text { -fx-text-fill: #e74c3c; -fx-font-size: 13px; -fx-font-weight: bold; }
+.status-banner-error .status-icon       { -fx-icon-color: #e74c3c; }

@@ -1,13 +1,18 @@
 package com.runofashes.ui;
 
-import com.runofashes.engine.EventResult;
 import com.runofashes.engine.GameEngine;
 import com.runofashes.model.GameEvent;
+import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
+
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignB;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,13 +51,22 @@ public class GameScreen {
         inventoryPanel.refresh();
         questPanel.refresh();
 
-        String msgColor = switch (engine.getLastResult()) {
-            case SUCCESS -> "#7ec8a0";
-            case PARTIAL -> "#f0c040";
-            case FAIL    -> "#e74c3c";
+        String msgClass = switch (engine.getLastResult()) {
+            case SUCCESS -> "msg-success";
+            case PARTIAL -> "msg-partial";
+            case FAIL    -> "msg-fail";
         };
-        messageLabel.setStyle("-fx-text-fill: " + msgColor + "; -fx-font-style: italic; -fx-font-size: 15px;");
-        messageLabel.setText(engine.getLastMessage());
+        messageLabel.getStyleClass().removeAll("msg-success", "msg-partial", "msg-fail");
+        messageLabel.getStyleClass().add(msgClass);
+
+        if (!messageLabel.getText().equals(engine.getLastMessage())) {
+            messageLabel.setText(engine.getLastMessage());
+
+            FadeTransition ft = new FadeTransition(Duration.millis(600), messageLabel);
+            ft.setFromValue(0.0);
+            ft.setToValue(1.0);
+            ft.play();
+        }
 
         List<GameEvent> cards = engine.getCurrentCards();
         for (int i = 0; i < 4; i++) {
@@ -66,12 +80,16 @@ public class GameScreen {
         biomePanel.refresh(engine, messageLabel);
     }
 
+    public void setLastEvent(GameEvent event) {
+        hud.setEventImage(event);
+    }
+
     private void build() {
         messageLabel.setWrapText(true);
         messageLabel.setMaxWidth(640);
         messageLabel.setMinHeight(70);
         messageLabel.setPrefHeight(70);
-        messageLabel.setStyle("-fx-text-fill: #f0c040; -fx-font-style: italic; -fx-font-size: 15px;");
+        messageLabel.getStyleClass().addAll("message-label", "msg-partial");
 
         GridPane grid = new GridPane();
         grid.setHgap(12);
@@ -97,41 +115,48 @@ public class GameScreen {
         ScrollPane invScroll = new ScrollPane(inventoryPanel);
         invScroll.setFitToWidth(true);
         invScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        invScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        invScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; -fx-viewport-background-color: transparent; -fx-border-color: transparent;");
+        invScroll.getStyleClass().add("transparent-scroll-pane");
 
         ScrollPane questScroll = new ScrollPane(questPanel);
         questScroll.setFitToWidth(true);
         questScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        questScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        questScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; -fx-viewport-background-color: transparent; -fx-border-color: transparent;");
+        questScroll.getStyleClass().add("transparent-scroll-pane");
 
         StackPane rightContent = new StackPane(questScroll, invScroll);
         VBox.setVgrow(rightContent, Priority.ALWAYS);
         invScroll.setVisible(true);
         questScroll.setVisible(false);
 
-        Button btnInv   = new Button("🎒 Ekwipunek");
-        Button btnQuest = new Button("📜 Questy");
-        btnInv.setPrefWidth(128);
-        btnQuest.setPrefWidth(128);
+        FontIcon bagIcon = new FontIcon(MaterialDesignB.BAG_PERSONAL);
+        bagIcon.setIconSize(18);
 
-        String btnActive   = "-fx-background-color: #2a2a3a; -fx-text-fill: #f0c040; -fx-cursor: hand; -fx-font-size: 13px; -fx-background-radius: 6;";
-        String btnInactive = "-fx-background-color: #111122; -fx-text-fill: #888; -fx-cursor: hand; -fx-font-size: 13px; -fx-background-radius: 6;";
-        btnInv.setStyle(btnActive);
-        btnQuest.setStyle(btnInactive);
+        FontIcon questIcon = new FontIcon(MaterialDesignS.SCRIPT_TEXT);
+        questIcon.setIconSize(18);
+
+        Button btnInv   = new Button("Ekwipunek");
+        btnInv.setGraphic(bagIcon);
+        btnInv.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(btnInv, Priority.ALWAYS);
+
+        Button btnQuest = new Button("Questy");
+        btnQuest.setGraphic(questIcon);
+        btnQuest.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(btnQuest, Priority.ALWAYS);
+
+        btnInv.getStyleClass().add("tab-button-active");
+        btnQuest.getStyleClass().add("tab-button-inactive");
 
         btnInv.setOnAction(e -> {
             invScroll.setVisible(true);
             questScroll.setVisible(false);
-            btnInv.setStyle(btnActive);
-            btnQuest.setStyle(btnInactive);
+            btnInv.getStyleClass().setAll("button", "tab-button-active");
+            btnQuest.getStyleClass().setAll("button", "tab-button-inactive");
         });
         btnQuest.setOnAction(e -> {
             questScroll.setVisible(true);
             invScroll.setVisible(false);
-            btnQuest.setStyle(btnActive);
-            btnInv.setStyle(btnInactive);
+            btnQuest.getStyleClass().setAll("button", "tab-button-active");
+            btnInv.getStyleClass().setAll("button", "tab-button-inactive");
         });
 
         HBox tabButtons = new HBox(4, btnInv, btnQuest);
@@ -139,7 +164,8 @@ public class GameScreen {
 
         root = new HBox(12, gameContentVBox, rightSide);
         root.setPadding(new Insets(18));
-        root.setStyle("-fx-background-color: #0d0d1a;");
+
+        root.getStyleClass().add("root-pane");
 
         gameContentVBox.prefWidthProperty().bind(root.widthProperty().multiply(0.7).subtract(24));
         rightSide.prefWidthProperty().bind(root.widthProperty().multiply(0.3).subtract(24));

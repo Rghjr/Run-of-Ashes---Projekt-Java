@@ -12,7 +12,7 @@ public class Inventory {
     // ── Dodawanie itemów ──────────────────────────────────────────────────────
 
     public int add(ItemType type, int amount) {
-        if (amount <= 0) return 0;   // BUG FIX: add() tylko dla dodatnich wartości
+        if (amount <= 0) return 0;
         int current = items.getOrDefault(type, 0);
         int canAdd  = type.getMaxStack() - current;
         if (canAdd <= 0) return 0;

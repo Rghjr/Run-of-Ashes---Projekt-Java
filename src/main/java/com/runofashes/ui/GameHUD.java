@@ -2,14 +2,28 @@ package com.runofashes.ui;
 
 import com.runofashes.engine.GameEngine;
 import com.runofashes.model.Difficulty;
+import com.runofashes.model.GameEvent;
 import com.runofashes.model.Player;
 import com.runofashes.model.Trait;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;
 
@@ -19,41 +33,56 @@ public class GameHUD extends VBox {
 
     private ProgressBar healthBar, hungerBar, hydrationBar, energyBar, moraleBar;
     private Label healthVal, hungerVal, hydrationVal, energyVal, moraleVal;
+
+    private ProgressBar distanceBar;
     private Label timeLabel, distanceLabel;
-    private Label difficultyLabel, traitsLabel;
+
+    private Label difficultyLabel;
+    private HBox  traitsBox, distanceBox;
     private Label biomeLabel, weatherLabel;
+
+    private ImageView eventImageView;
 
     public GameHUD(GameEngine engine) {
         this.engine = engine;
         buildUI();
-        setStyle("-fx-background-color: #1a1a2e; -fx-background-radius: 8;");
+        getStyleClass().add("game-hud");
         setPadding(new Insets(16));
         setSpacing(8);
     }
 
     private void buildUI() {
-        timeLabel     = styledLabel("Dzień 1,  00:00", "#aaa", 15);
-        distanceLabel = styledLabel("4000 km do Krakowa", "#e67e22", 15);
-        difficultyLabel = styledLabel("", "#888", 12);
-        traitsLabel     = styledLabel("", "#666", 12);
+        timeLabel       = styledLabel("Dzień 1,  00:00", "hud-time");
 
-        biomeLabel   = styledLabel("", "#2ecc71", 14);
-        weatherLabel = styledLabel("", "#3498db", 14);
+        distanceLabel   = styledLabel("4000 km do Krakowa", "hud-distance");
+        distanceBar     = makeBar("hud-bar-distance");
+        distanceBar.setProgress(0.0);
+        distanceBar.setPrefWidth(300);
 
-        HBox topRow = new HBox(24, timeLabel, distanceLabel);
+        distanceBox = new HBox(12, distanceBar, distanceLabel);
+        distanceBox.setAlignment(Pos.CENTER_LEFT);
+
+        difficultyLabel = styledLabel("", "hud-difficulty");
+        traitsBox       = new HBox(12);
+        traitsBox.setAlignment(Pos.CENTER_LEFT);
+
+        biomeLabel      = styledLabel("", "hud-biome");
+        weatherLabel    = styledLabel("", "hud-weather");
+
+        HBox topRow = new HBox(24, timeLabel, distanceBox);
         topRow.setAlignment(Pos.CENTER_LEFT);
 
         HBox envRow = new HBox(24, biomeLabel, weatherLabel);
         envRow.setAlignment(Pos.CENTER_LEFT);
 
-        HBox metaRow = new HBox(16, difficultyLabel, traitsLabel);
+        HBox metaRow = new HBox(16, difficultyLabel, traitsBox);
         metaRow.setAlignment(Pos.CENTER_LEFT);
 
-        healthBar    = makeBar("#e74c3c");
-        hungerBar    = makeBar("#e67e22");
-        hydrationBar = makeBar("#3498db");
-        energyBar    = makeBar("#f1c40f");
-        moraleBar    = makeBar("#9b59b6");
+        healthBar    = makeBar("hud-bar-health");
+        hungerBar    = makeBar("hud-bar-hunger");
+        hydrationBar = makeBar("hud-bar-hydration");
+        energyBar    = makeBar("hud-bar-energy");
+        moraleBar    = makeBar("hud-bar-morale");
 
         healthVal    = valueLabel();
         hungerVal    = valueLabel();
@@ -61,14 +90,107 @@ public class GameHUD extends VBox {
         energyVal    = valueLabel();
         moraleVal    = valueLabel();
 
-        getChildren().addAll(
-                topRow, envRow, metaRow,
+        VBox statsBox = new VBox(8,
                 statRow("❤  Zdrowie",     healthBar,    healthVal),
                 statRow("🍗  Głód",        hungerBar,    hungerVal),
                 statRow("💧  Nawodnienie", hydrationBar, hydrationVal),
                 statRow("⚡  Energia",     energyBar,    energyVal),
                 statRow("😊  Nadzieja",    moraleBar,    moraleVal)
         );
+
+        StackPane imageContainer = createFadedImageWrapper();
+
+        HBox bottomRow = new HBox(10, statsBox, imageContainer);
+        bottomRow.setAlignment(Pos.CENTER_LEFT);
+
+        getChildren().addAll(topRow, envRow, metaRow, bottomRow);
+    }
+
+    private StackPane createFadedImageWrapper() {
+        eventImageView = new ImageView();
+        eventImageView.setFitWidth(240);
+        eventImageView.setFitHeight(180);
+        eventImageView.setPreserveRatio(false);
+
+        Rectangle vignette = new Rectangle(240, 180);
+
+        RadialGradient gradient = new RadialGradient(
+                0, 0, 0.5, 0.5, 0.5, true, CycleMethod.NO_CYCLE,
+                new Stop(0.3, Color.TRANSPARENT),
+                new Stop(0.75, Color.web("#1a1a2e", 0.6)),
+                new Stop(1.0, Color.web("#1a1a2e", 1.0))
+        );
+        vignette.setFill(gradient);
+
+        StackPane container = new StackPane(eventImageView, vignette);
+        container.setMinSize(240, 180);
+        container.setMaxSize(240, 180);
+        container.setPrefSize(240, 180);
+
+        Rectangle clipRect = new Rectangle(240, 180);
+        clipRect.setArcWidth(16);
+        clipRect.setArcHeight(16);
+        container.setClip(clipRect);
+
+        return container;
+    }
+
+    public void setEventImage(String imageName) {
+        Image img = com.runofashes.utils.FileLoader.loadUiImage(imageName);
+        if (img != null) {
+            eventImageView.setImage(img);
+        } else {
+            eventImageView.setImage(com.runofashes.utils.FileLoader.loadUiImage("event_default.png"));
+        }
+    }
+
+    public void setEventImage(GameEvent event) {
+        if (event == null || event.getId() == null) return;
+
+        String eventId = event.getId().toLowerCase();
+        String imageName;
+
+        if (eventId.contains("ruin") || eventId.contains("zaraza") || eventId.contains("wawel") || eventId.contains("kordon") || eventId.contains("burned") || eventId.contains("wrak")) {
+            imageName = "ruins.png";
+        } else if (eventId.contains("rare") || eventId.contains("plague") || eventId.contains("ghost") || eventId.contains("grave") || eventId.contains("mad")) {
+            imageName = "spooky.png";
+        } else if (eventId.contains("monastery") || eventId.contains("church") || eventId.contains("cross") || eventId.contains("prayer") || eventId.contains("monk") || eventId.contains("bishop") || eventId.contains("breviary") || eventId.contains("altar") || eventId.contains("god") || eventId.contains("kultyci")) {
+            imageName = "religion.png";
+        } else if (eventId.contains("mountain") || eventId.contains("gory") || eventId.contains("lawina") || eventId.contains("szczelina")) {
+            imageName = "mountains.png";
+        } else if (eventId.contains("cave") || eventId.contains("kopalnia") || eventId.contains("burza")) {
+            imageName = "cave.png";
+        } else if (eventId.contains("krakow") || eventId.contains("city")) {
+            imageName = "city.png";
+        } else if (eventId.contains("village") || eventId.contains("wies") || eventId.contains("chata") || eventId.contains("inn") || eventId.contains("shelter") || eventId.contains("cellar")) {
+            imageName = "village.png";
+        } else if (eventId.contains("well")) {
+            imageName = "well.png";
+        } else if (eventId.contains("traveler") || eventId.contains("pilgrim") || eventId.contains("compatriot") || eventId.contains("przewodnik") || eventId.contains("sick") || eventId.contains("child") || eventId.contains("pustelnik") || eventId.contains("letter")) {
+            imageName = "npc.png";
+        } else if (eventId.contains("merchant") || eventId.contains("trade") || eventId.contains("buy") || eventId.contains("karawana") || eventId.contains("caravan") || eventId.contains("barter") || eventId.contains("handlarz")) {
+            imageName = "merchant.png";
+        } else if (eventId.contains("fight") || eventId.contains("soldier") || eventId.contains("guard")) {
+            imageName = "soldier.png";
+        } else if (eventId.contains("forest") || eventId.contains("las") || eventId.contains("tree") || eventId.contains("wood") || eventId.contains("hunt") || eventId.contains("berries") || eventId.contains("mushroom") || eventId.contains("trap") || eventId.contains("herbs") || eventId.contains("nest") || eventId.contains("orchard") || eventId.contains("wilki") || eventId.contains("field") || eventId.contains("fruit") || eventId.contains("melon") || eventId.contains("garlic")) {
+            imageName = "forest.png";
+        } else if (eventId.contains("water") || eventId.contains("river") || eventId.contains("stream") || eventId.contains("drink") || eventId.contains("rain") || eventId.contains("ford") || eventId.contains("wash") || eventId.contains("fish") || eventId.contains("dig") || eventId.contains("wild") || eventId.contains("woda") || eventId.contains("moss")) {
+            imageName = "river.png";
+        } else if (eventId.contains("morning") || eventId.contains("sunrise") || eventId.contains("sunset")) {
+            imageName = "morning.png";
+        } else if (eventId.contains("dawn") || eventId.contains("night") || eventId.contains("evening") || eventId.contains("dusk")) {
+            imageName = "night.png";
+        } else if (eventId.contains("rest") || eventId.contains("camp") || eventId.contains("nap") || eventId.contains("fire") || eventId.contains("massage") || eventId.contains("candle") || eventId.contains("tent") || eventId.contains("blisters") || eventId.contains("acorns") || eventId.contains("smoke") || eventId.contains("strip") || eventId.contains("stars") || eventId.contains("song") || eventId.contains("family") || eventId.contains("coin") || eventId.contains("warning") || eventId.contains("oddech") || eventId.contains("ostatni") || eventId.contains("map")) {
+            imageName = "camp.png";
+        } else if (eventId.contains("bird")) {
+            imageName = "birds.png";
+        } else if (eventId.contains("cart") || eventId.contains("road") || eventId.contains("move") || eventId.contains("route") || eventId.contains("wagon") || eventId.contains("horse") || eventId.contains("path") || eventId.contains("szlak")) {
+            imageName = "road.png";
+        } else {
+            imageName = "event_default.png";
+        }
+
+        setEventImage(imageName);
     }
 
     public void refresh() {
@@ -83,19 +205,31 @@ public class GameHUD extends VBox {
         timeLabel.setText(p.getTimeFormatted());
         distanceLabel.setText(p.getDistance() + " km do Krakowa");
 
-        biomeLabel.setText("🚩 " + engine.getCurrentStageName() + "  |  "  + engine.getCurrentBiome().getEmoji() + " " + engine.getCurrentBiome().getLabel());
-        weatherLabel.setText(engine.getCurrentWeather().getEmoji() + " " + engine.getCurrentWeather().getLabel());
+        double startDistance = 4000.0;
+        double actualProgress = Math.max(0, startDistance - p.getDistance()) / startDistance;
+
+        animateBar(distanceBar, actualProgress);
+
+        biomeLabel.setText("🚩 " + engine.getCurrentStageName() + "  |  " + engine.getCurrentBiome().getLabel());
+        biomeLabel.setGraphic(new FontIcon(engine.getCurrentBiome().getEmoji()));
+
+        weatherLabel.setText(engine.getCurrentWeather().getLabel());
+        weatherLabel.setGraphic(new FontIcon(engine.getCurrentWeather().getEmoji()));
 
         Difficulty diff = engine.getDifficulty();
-        difficultyLabel.setText(diff.getEmoji() + " " + diff.getLabel());
+        difficultyLabel.setText(diff.getLabel());
+        difficultyLabel.setGraphic(new FontIcon(diff.getEmoji()));
 
+        traitsBox.getChildren().clear();
         List<Trait> traits = engine.getTraitManager().getActiveTraits();
         if (traits.isEmpty()) {
-            traitsLabel.setText("Brak cech");
+            traitsBox.getChildren().add(styledLabel("Brak cech", "hud-traits"));
         } else {
-            StringBuilder sb = new StringBuilder();
-            traits.forEach(t -> sb.append(t.getEmoji()).append(" ").append(t.getLabel()).append("  "));
-            traitsLabel.setText(sb.toString().trim());
+            for (Trait t : traits) {
+                Label traitLbl = styledLabel(t.getLabel(), "hud-traits");
+                traitLbl.setGraphic(new FontIcon(t.getEmoji()));
+                traitsBox.getChildren().add(traitLbl);
+            }
         }
     }
 
@@ -103,35 +237,55 @@ public class GameHUD extends VBox {
     private HBox statRow(String name, ProgressBar bar, Label val) {
         Label n = new Label(name);
         n.setMinWidth(158);
-        n.setStyle("-fx-text-fill: #ccc; -fx-font-size: 15px;");
+        n.getStyleClass().add("hud-stat-name");
         bar.setPrefWidth(240);
         HBox row = new HBox(12, n, bar, val);
         row.setAlignment(Pos.CENTER_LEFT);
         return row;
     }
 
-    private ProgressBar makeBar(String hex) {
+    private ProgressBar makeBar(String cssClass) {
         ProgressBar bar = new ProgressBar(1.0);
         bar.setPrefHeight(18);
-        bar.setStyle("-fx-accent: " + hex + ";");
+        bar.getStyleClass().add(cssClass);
         return bar;
     }
 
     private void setBar(ProgressBar bar, Label lbl, int value, int maxValue) {
-        bar.setProgress(Math.min(value, maxValue) / (double) maxValue);
+        double targetProgress = Math.min(value, maxValue) / (double) maxValue;
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.millis(400), new KeyValue(bar.progressProperty(), targetProgress))
+        );
+        timeline.play();
+
         lbl.setText(value + "/" + maxValue);
+    }
+
+    private void animateBar(ProgressBar bar, double targetProgress) {
+        Timeline oldTimeline = (Timeline) bar.getProperties().get("timeline");
+        if (oldTimeline != null) {
+            oldTimeline.stop();
+        }
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.millis(400), new KeyValue(bar.progressProperty(), targetProgress))
+        );
+
+        bar.getProperties().put("timeline", timeline);
+        timeline.play();
     }
 
     private Label valueLabel() {
         Label l = new Label();
         l.setMinWidth(64);
-        l.setStyle("-fx-text-fill: #888; -fx-font-size: 14px;");
+        l.getStyleClass().add("hud-stat-value");
         return l;
     }
 
-    private Label styledLabel(String text, String color, int size) {
+    private Label styledLabel(String text, String cssClass) {
         Label l = new Label(text);
-        l.setStyle("-fx-text-fill: " + color + "; -fx-font-size: " + size + "px;");
+        l.getStyleClass().add(cssClass);
         return l;
     }
 }

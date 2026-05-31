@@ -2,7 +2,6 @@ package com.runofashes.ui;
 
 import com.runofashes.engine.GameEngine;
 import com.runofashes.model.GameEvent;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -16,6 +15,12 @@ public final class EventCardView {
     public static void fill(VBox card, GameEvent event, GameEngine engine, Consumer<GameEvent> onClick) {
         card.getChildren().clear();
 
+        card.getStyleClass().removeAll("event-card-wait", "event-card-main-quest", "event-card-quest",
+                "event-card-rare", "event-card-normal", "event-card-empty");
+        card.getStyleClass().add("event-card");
+        card.setOnMouseEntered(null);
+        card.setOnMouseExited(null);
+
         boolean isWait  = "WAIT_TURN".equals(event.getId());
         boolean rare    = event.isHiddenEffects();
         boolean isQuest = event.getQuestId() != null;
@@ -25,75 +30,74 @@ public final class EventCardView {
                 || event.getQuestId().startsWith("gory_")
                 || event.getQuestId().startsWith("eu_"));
 
-        String bg, bgHo, badgeText, badgeColor;
+        String badgeText = "";
+        String badgeClass = "";
+        String titleClass = "card-title-normal";
+        String fxClass    = "card-fx-normal";
 
         if (isWait) {
-            bg = "#1a1a0e"; bgHo = "#2a2a18";
-            badgeText = "⏳ przeczekanie"; badgeColor = "#f0c040";
+            card.getStyleClass().add("event-card-wait");
+            badgeText = "⏳ przeczekanie"; badgeClass = "badge-wait";
+            titleClass = "card-title-wait";
+            fxClass = "card-fx-wait";
         } else if (isMainQuest) {
-            bg = "#2a1515"; bgHo = "#3d1e1e";
+            card.getStyleClass().add("event-card-main-quest");
             badgeText = event.getQuestStage() > 1 ? "🚩 kontynuacja wątku" : "🚩 główny wątek";
-            badgeColor = "#e74c3c";
+            badgeClass = "badge-main-quest";
         } else if (isQuest) {
-            bg = "#1a2e1a"; bgHo = "#1f3d1f";
+            card.getStyleClass().add("event-card-quest");
             badgeText = event.getQuestStage() > 1 ? "📜 kontynuacja poboczna" : "📜 zadanie poboczne";
-            badgeColor = "#8bc48b";
+            badgeClass = "badge-quest";
         } else if (rare) {
-            bg = "#2c1a0e"; bgHo = "#4a2a10";
-            badgeText = "✨ niezwykłe spotkanie"; badgeColor = "#ffaa44";
+            card.getStyleClass().add("event-card-rare");
+            badgeText = "✨ niezwykłe spotkanie"; badgeClass = "badge-rare";
+            titleClass = "card-title-rare";
         } else {
-            bg = "#16213e"; bgHo = "#1a2a50";
-            badgeText = ""; badgeColor = "";
+            card.getStyleClass().add("event-card-normal");
         }
-
-        String fg = isWait ? "#f0c040" : rare ? "#ffaa44" : "#eee";
 
         boolean isDepressed = engine.getPlayer().getMorale() < 30;
         String displayedLabel = (isDepressed && event.getLowMoraleLabel() != null)
                 ? event.getLowMoraleLabel()
                 : event.getLabel();
 
-        card.setStyle("-fx-background-color: " + bg + "; -fx-background-radius: 8; -fx-cursor: hand;");
-
         Label lbl = new Label(displayedLabel);
         lbl.setWrapText(true);
-        lbl.setStyle("-fx-text-fill: " + fg + "; -fx-font-size: 14px;");
+        lbl.getStyleClass().add(titleClass);
         lbl.setMaxWidth(Double.MAX_VALUE);
         VBox.setVgrow(lbl, Priority.ALWAYS);
 
         String fxStr = event.buildEffectsString();
         Label fxLabel = new Label(fxStr.isEmpty() ? "" : fxStr);
         fxLabel.setWrapText(true);
-        fxLabel.setStyle("-fx-text-fill: " + (isWait ? "#f0c040" : "#7ec8a0") + "; -fx-font-size: 13px;");
+        fxLabel.getStyleClass().add(fxClass);
 
         String distText = event.getDistanceCost() > 0 ? "   📍 -" + event.getDistanceCost() + " km" : "";
         Label metaLbl = new Label("⏱ " + event.getTimeCost() + "h" + distText);
-        metaLbl.setStyle("-fx-text-fill: #666; -fx-font-size: 12px;");
+        metaLbl.getStyleClass().add("card-meta");
 
         card.getChildren().addAll(lbl, fxLabel, metaLbl);
 
         if (!badgeText.isEmpty()) {
             Label badge = new Label(badgeText);
-            badge.setStyle("-fx-text-fill: " + badgeColor + "; -fx-font-size: 12px;");
+            badge.getStyleClass().addAll("badge-label", badgeClass);
             card.getChildren().add(badge);
         }
 
         if (event.getDistanceCost() > 0 && engine.hasActiveLocalQuests(event.getQuestId())) {
             Label warnLbl = new Label("Ruch anuluje lokalne zadania!");
-            warnLbl.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 11px;");
+            warnLbl.getStyleClass().add("card-warn");
             card.getChildren().add(warnLbl);
         }
 
-        card.setOnMouseEntered(e -> card.setStyle(card.getStyle().replace(bg, bgHo)));
-        card.setOnMouseExited(e  -> card.setStyle(card.getStyle().replace(bgHo, bg)));
         card.setOnMouseClicked(e -> onClick.accept(event));
     }
 
     public static void fillEmpty(VBox card) {
         card.getChildren().clear();
+        card.getStyleClass().setAll("event-card-empty");
         card.setOnMouseClicked(null);
         card.setOnMouseEntered(null);
         card.setOnMouseExited(null);
-        card.setStyle("-fx-background-color: #0f0f1a; -fx-background-radius: 8;");
     }
 }

@@ -6,36 +6,49 @@ import com.runofashes.model.StatusEffect;
 import com.runofashes.model.Weather;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import org.kordamp.ikonli.javafx.FontIcon;
 
-public class BiomePanel extends VBox {
+public class BiomePanel extends StackPane {
 
-    private final Label titleLabel   = new Label();
+    private final FlowPane titleFlow    = new FlowPane(12, 6);
     private final Label descLabel    = new Label();
     private final Label effectsLabel = new Label();
     private final VBox  statusesBox  = new VBox(6);
 
+    private final VBox contentBox = new VBox();
+
     public BiomePanel() {
-        titleLabel.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 14px; -fx-font-weight: bold;");
+        setMinHeight(Region.USE_PREF_SIZE);
+
         descLabel.setWrapText(true);
-        descLabel.setStyle("-fx-text-fill: #999; -fx-font-size: 12px; -fx-font-style: italic;");
+        descLabel.setMinHeight(Region.USE_PREF_SIZE);
+        descLabel.getStyleClass().add("biome-desc");
+
         effectsLabel.setWrapText(true);
-        effectsLabel.setStyle("-fx-text-fill: #ccc; -fx-font-size: 13px; -fx-line-spacing: 5px;");
+        effectsLabel.setMinHeight(Region.USE_PREF_SIZE);
+        effectsLabel.getStyleClass().add("biome-effects");
 
         statusesBox.setPadding(new Insets(12, 0, 0, 0));
-        statusesBox.setMinHeight(80);
+        statusesBox.setMinHeight(Region.USE_PREF_SIZE);
 
-        setSpacing(8);
-        setStyle("""
-            -fx-background-color: #151522;
-            -fx-padding: 16;
-            -fx-background-radius: 8;
-            -fx-border-color: #2a2a3a;
-            -fx-border-radius: 8;
-            -fx-border-width: 1;
-            -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 4);
-        """);
-        getChildren().addAll(titleLabel, descLabel, effectsLabel);
+        contentBox.setSpacing(10);
+        contentBox.setPadding(new Insets(14));
+        contentBox.getChildren().addAll(titleFlow, descLabel, effectsLabel);
+
+        getStyleClass().add("biome-panel");
+        getChildren().add(contentBox);
+
+        initInitialBackground();
+    }
+
+    private void initInitialBackground() {
+        Image img = com.runofashes.utils.FileLoader.loadUiImage("biome_steppe.png");
+        if (img == null) {
+            img = com.runofashes.utils.FileLoader.loadUiImage("event_default.png");
+        }
+        this.setBackground(com.runofashes.utils.FileLoader.createPlainBackground(img));
     }
 
     public VBox getStatusesBox() {
@@ -47,40 +60,60 @@ public class BiomePanel extends VBox {
         Weather currentWeather = engine.getCurrentWeather();
         String currentStage    = engine.getCurrentStageName();
 
-        titleLabel.setText(
-                "🚩 " + currentStage.toUpperCase()
-                        + "   |   " + currentBiome.getEmoji() + " " + currentBiome.getLabel().toUpperCase()
-                        + "   |   " + currentWeather.getEmoji() + " " + currentWeather.getLabel().toUpperCase()
-        );
+        String biomeName = currentBiome.name().toLowerCase();
+        Image img = com.runofashes.utils.FileLoader.loadUiImage("biome_" + biomeName + ".png");
+
+        this.setBackground(com.runofashes.utils.FileLoader.createPlainBackground(img));
+
+        titleFlow.getChildren().clear();
+
+        Label stageLbl = new Label("🚩 " + currentStage.toUpperCase() + " |");
+        stageLbl.getStyleClass().add("biome-title");
+
+        Label biomeLbl = new Label(currentBiome.getLabel().toUpperCase() + " |");
+        biomeLbl.setGraphic(new FontIcon(currentBiome.getEmoji()));
+        biomeLbl.getStyleClass().add("biome-title");
+
+        Label weatherLbl = new Label(currentWeather.getLabel().toUpperCase());
+        weatherLbl.setGraphic(new FontIcon(currentWeather.getEmoji()));
+        weatherLbl.getStyleClass().add("biome-title");
+
+        titleFlow.getChildren().addAll(stageLbl, biomeLbl, weatherLbl);
+
         descLabel.setText(currentBiome.getEntryMessage());
         effectsLabel.setText(engine.buildBiomeInfo(currentBiome));
 
         StatusEffect triggered = engine.getStatusManager().consumeLastTriggered();
         if (triggered != null) {
             messageLabel.setText(messageLabel.getText()
-                    + "\n" + triggered.getEmoji() + " Nowy status: " + triggered.getLabel()
+                    + "\n[!] Nowy status: " + triggered.getLabel()
                     + " — " + triggered.getDescription());
         }
 
         statusesBox.getChildren().clear();
         Label statusTitle = new Label("✦ Aktywne statusy");
-        statusTitle.setStyle("-fx-text-fill: #9ab; -fx-font-size: 14px;");
+        statusTitle.getStyleClass().add("biome-status-title");
         statusesBox.getChildren().add(statusTitle);
 
         var statuses = engine.getStatusManager().getActiveStatuses();
         if (statuses.isEmpty()) {
             Label empty = new Label("Brak aktywnych statusów.");
-            empty.setStyle("-fx-text-fill: #555; -fx-font-style: italic; -fx-font-size: 13px;");
+            empty.getStyleClass().add("biome-status-empty");
             statusesBox.getChildren().add(empty);
         } else {
             statuses.forEach((status, turns) -> {
                 VBox statusBox = new VBox(2);
                 String t = turns == 1 ? "tura" : (turns < 5 ? "tury" : "tur");
-                Label nameLbl = new Label(status.getEmoji() + " " + status.getLabel() + " (" + turns + " " + t + ")");
-                nameLbl.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 13px;");
+
+                Label nameLbl = new Label(status.getLabel() + " (" + turns + " " + t + ")");
+                nameLbl.setGraphic(new FontIcon(status.getEmoji()));
+                nameLbl.getStyleClass().add("biome-status-name");
+
                 Label descLbl = new Label(status.getDescription());
-                descLbl.setStyle("-fx-text-fill: #aaa; -fx-font-size: 11px;");
+                descLbl.getStyleClass().add("biome-status-desc");
                 descLbl.setWrapText(true);
+                descLbl.setMinHeight(Region.USE_PREF_SIZE);
+
                 statusBox.getChildren().addAll(nameLbl, descLbl);
                 statusesBox.getChildren().add(statusBox);
             });

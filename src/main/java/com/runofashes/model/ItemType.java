@@ -6,7 +6,7 @@ public enum ItemType {
 
     WATER(
             "Woda",
-            "💧",
+            "fas-tint",
             1,
             Map.of("hydration", 22),
             null,
@@ -14,7 +14,7 @@ public enum ItemType {
     ),
     WINE(
             "Wino",
-            "🍷",
+            "fas-wine-glass",
             1,
             Map.of("hydration", 10, "morale", 12),
             Map.of("energy", -8),
@@ -22,7 +22,7 @@ public enum ItemType {
     ),
     OLIVES(
             "Oliwki",
-            "🫒",
+            "fas-lemon",
             1,
             Map.of("hunger", 16),
             Map.of("energy", -5),
@@ -30,7 +30,7 @@ public enum ItemType {
     ),
     GRAPES(
             "Winogrona",
-            "🍇",
+            "fas-apple-alt",
             1,
             Map.of("hunger", 10, "hydration", 5),
             null,
@@ -38,7 +38,7 @@ public enum ItemType {
     ),
     HERBS(
             "Zioła",
-            "🌿",
+            "fas-leaf",
             1,
             Map.of("health", 4),
             Map.of("health", 7),
@@ -46,7 +46,7 @@ public enum ItemType {
     ),
     BANDAGE(
             "Bandaże",
-            "🩹",
+            "fas-band-aid",
             1,
             Map.of("health", 18),
             null,
@@ -54,7 +54,7 @@ public enum ItemType {
     ),
     DRIED_MEAT(
             "Suszone mięso",
-            "🥩",
+            "fas-drumstick-bite",
             1,
             Map.of("hunger", 24, "hydration", -8),
             null,
@@ -62,7 +62,7 @@ public enum ItemType {
     ),
     TALLOW_CANDLE(
             "Łojowa świeca",
-            "🕯",
+            "fas-fire",
             1,
             Map.of("morale", 8, "energy", 4),
             null,
@@ -70,7 +70,7 @@ public enum ItemType {
     ),
     SALT(
             "Sól",
-            "🧂",
+            "fas-cube",
             1,
             Map.of("hunger", 6),
             Map.of("health", 4),
@@ -79,7 +79,7 @@ public enum ItemType {
     // --- UNIKALNE PRZEDMIOTY ---
     MYSTERIOUS_VIAL(
             "Tajemnicza fiolka",
-            "🧪",
+            "fas-flask",
             1,
             Map.of("health", 40, "morale", -15),
             null,
@@ -87,7 +87,7 @@ public enum ItemType {
     ),
     HERMIT_BREW(
             "Wywar pustelnika",
-            "🍵",
+            "fas-mug-hot",
             1,
             Map.of("energy", 35, "hydration", -20),
             null,
@@ -95,7 +95,7 @@ public enum ItemType {
     ),
     GLOWING_ORE(
             "Świecąca ruda",
-            "🔮",
+            "fas-gem",
             1,
             Map.of("energy", 25, "health", -10, "morale", -10),
             null,
@@ -103,15 +103,23 @@ public enum ItemType {
     ),
     STRANGE_FUNGUS(
             "Dziwny grzyb",
-            "🍄",
+            "fas-biohazard",
             1,
             Map.of("hunger", 30, "health", -15),
             Map.of("health", -5),
             2
     ),
+    WEIRD_BREAD(
+            "Chałko-koń",
+            "fas-bread-slice",
+            1,
+            Map.of("hunger", 30),
+            null,
+            0
+    ),
     MILITARY_STIMPACK(
             "Stymulant bojowy",
-            "💉",
+            "fas-syringe",
             1,
             Map.of("energy", 50, "morale", 30, "health", -20),
             null,

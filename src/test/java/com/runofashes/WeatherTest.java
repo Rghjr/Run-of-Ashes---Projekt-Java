@@ -33,8 +33,6 @@ public class WeatherTest {
         assertEquals(6, hot.getMaxTurns());
     }
 
-    // ── Nowe testy ────────────────────────────────────────────────────────────
-
     /**
      * Każda pogoda musi mieć wagę > 0.
      * Waga zerowa lub ujemna wykluczałaby daną pogodę z losowania całkowicie

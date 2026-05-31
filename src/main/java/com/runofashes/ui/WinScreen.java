@@ -4,50 +4,52 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class WinScreen extends VBox {
 
     public WinScreen(Runnable onRestart, Runnable onQuit) {
+        FontIcon winIcon = new FontIcon("fas-trophy");
+        winIcon.setIconSize(72);
+        winIcon.getStyleClass().add("win-icon");
+
         Label title = new Label("KRAKÓW");
-        title.setFont(Font.font("Georgia", FontWeight.BOLD, 44));
-        title.setTextFill(Color.web("#f0c040"));
+        title.getStyleClass().add("win-title");
 
         Label sub = new Label("Dotarłeś.");
-        sub.setFont(Font.font("Georgia", FontPosture.ITALIC, 22));
-        sub.setTextFill(Color.web("#aaa"));
+        sub.getStyleClass().add("win-sub");
 
         Label detail = new Label("4000 kilometrów. Koniec drogi.");
-        detail.setFont(Font.font("Georgia", 16));
-        detail.setTextFill(Color.web("#666"));
+        detail.getStyleClass().add("win-detail");
+
+        VBox textBox = new VBox(12, winIcon, title, sub, detail);
+        textBox.setAlignment(Pos.CENTER);
+        textBox.setMaxWidth(550);
+        textBox.getStyleClass().add("win-box");
 
         Button restart = new Button("▶  Zagraj ponownie");
         Button quit    = new Button("✕  Wyjdź");
-        styleBtn(restart, "#27ae60");
-        styleBtn(quit,    "#555");
+        restart.getStyleClass().add("btn-success");
+        quit.getStyleClass().add("btn-neutral");
         restart.setOnAction(e -> onRestart.run());
         quit.setOnAction(e    -> onQuit.run());
 
         HBox btns = new HBox(24, restart, quit);
         btns.setAlignment(Pos.CENTER);
 
-        setAlignment(Pos.CENTER);
-        setSpacing(28);
-        setPadding(new Insets(120, 48, 48, 48));
-        setStyle("-fx-background-color: #0d0d1a;");
-        getChildren().addAll(title, sub, detail, btns);
-    }
+        Image img = com.runofashes.utils.FileLoader.loadUiImage("win_bg.png");
+        if (img == null) {
+            img = com.runofashes.utils.FileLoader.loadUiImage("event_default.png");
+        }
+        this.setBackground(com.runofashes.utils.FileLoader.createFadedBackground(img, "#1a1a2e"));
 
-    private static void styleBtn(Button btn, String color) {
-        btn.setStyle("""
-            -fx-background-color: %s; -fx-text-fill: white;
-            -fx-font-size: 16px; -fx-padding: 12 32;
-            -fx-background-radius: 6; -fx-cursor: hand;
-        """.formatted(color));
+        setAlignment(Pos.CENTER);
+        setSpacing(40);
+        setPadding(new Insets(120, 48, 48, 48));
+        getStyleClass().add("end-screen");
+        getChildren().addAll(textBox, btns);
     }
 }

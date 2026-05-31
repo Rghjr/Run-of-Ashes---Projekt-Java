@@ -6,7 +6,7 @@ public enum StatusEffect {
 
     DEHYDRATION(
             "Odwodnienie",
-            "🏜️",
+            "fas-tint-slash",
             "Szybszy spadek wszystkich statów.",
             Map.of("hydration", -5, "energy", -3, "health", -2),
             3,
@@ -15,7 +15,7 @@ public enum StatusEffect {
     ),
     FEVER(
             "Gorączka",
-            "🤒",
+            "fas-thermometer-full",
             "Ciągły spadek zdrowia i energii.",
             Map.of("health", -8, "energy", -5, "morale", -3),
             4,
@@ -24,7 +24,7 @@ public enum StatusEffect {
     ),
     CRAMPS(
             "Skurcze",
-            "⚡",
+            "fas-bolt",
             "Akcje kosztują więcej energii.",
             Map.of("energy", -6, "hunger", -4),
             2,
@@ -33,7 +33,7 @@ public enum StatusEffect {
     ),
     ADRENALINE(
             "Adrenalina",
-            "💨",
+            "fas-tachometer-alt",
             "Lepsza skuteczność akcji przez 2 tury.",
             Map.of("energy", 3, "morale", 5),
             2,
@@ -42,7 +42,7 @@ public enum StatusEffect {
     ),
     HALLUCINATIONS(
             "Halucynacje",
-            "👁️",
+            "fas-eye",
             "Losowe efekty akcji przez kilka tur.",
             Map.of("morale", -6, "energy", -3),
             3,
@@ -51,7 +51,7 @@ public enum StatusEffect {
     ),
     SECOND_WIND(
             "Drugi oddech",
-            "🌬️",
+            "fas-wind",
             "Chwilowy boost energii i morale.",
             Map.of("energy", 8, "morale", 5),
             2,

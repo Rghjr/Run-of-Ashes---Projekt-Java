@@ -11,7 +11,7 @@ public enum Difficulty {
 
     EASY(
             "Łatwy",
-            "🕊",
+            "fas-dove",
             "Do 5 cech pozytywnych, żadnych negatywnych. Gra jest bardziej wyrozumiała.",
             5, 0,
             10,
@@ -21,7 +21,7 @@ public enum Difficulty {
 
     NORMAL(
             "Normalny",
-            "⚖",
+            "fas-balance-scale",
             "Tyle samo plusów co minusów — od 0+0 do 5+5.",
             5, 5,
             0,
@@ -31,7 +31,7 @@ public enum Difficulty {
 
     HARD(
             "Trudny",
-            "💀",
+            "fas-skull",
             "Więcej negatywnych niż pozytywnych. Każdy krok kosztuje więcej.",
             5, 5,
             -10,
