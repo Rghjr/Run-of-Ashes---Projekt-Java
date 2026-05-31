@@ -72,3 +72,36 @@
     -fx-text-fill: #666666;
     -fx-font-size: 16px;
 }
+
+/* =========================================
+   DEKORACJE EKRANÓW KOŃCOWYCH
+   ========================================= */
+.end-icon {
+    -fx-icon-color: #e74c3c;
+    -fx-fill: #e74c3c;
+}
+
+.end-box {
+    -fx-background-color: #151522;
+    -fx-padding: 40 50;
+    -fx-background-radius: 12;
+    -fx-border-color: #4a1c1c;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.15), 30, 0, 0, 0);
+}
+
+.win-icon {
+    -fx-icon-color: #f0c040;
+    -fx-fill: #f0c040;
+}
+
+.win-box {
+    -fx-background-color: #151522;
+    -fx-padding: 40 50;
+    -fx-background-radius: 12;
+    -fx-border-color: #4a3c1c;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(240, 192, 64, 0.15), 30, 0, 0, 0);
+}

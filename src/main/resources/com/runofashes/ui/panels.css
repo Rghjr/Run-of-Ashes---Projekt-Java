@@ -21,6 +21,17 @@
 .hud-bar-hydration { -fx-accent: #3498db; }
 .hud-bar-energy { -fx-accent: #f1c40f; }
 .hud-bar-morale { -fx-accent: #9b59b6; }
+.hud-bar-distance { -fx-accent: #e67e22; }
+
+.hud-bar-distance .track {
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+}
+
+.hud-bar-distance .bar {
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+}
 
 /* =========================================
    INVENTORY PANEL

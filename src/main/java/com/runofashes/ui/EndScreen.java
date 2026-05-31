@@ -6,25 +6,29 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class EndScreen extends VBox {
 
     private final Label endTextLabel = new Label();
 
     public EndScreen(Runnable onRestart, Runnable onQuit) {
+        FontIcon deathIcon = new FontIcon("fas-skull");
+        deathIcon.setIconSize(64);
+        deathIcon.getStyleClass().add("end-icon");
+
         Label title = new Label("KONIEC GRY");
-        title.setFont(Font.font("Georgia", FontWeight.BOLD, 36));
         title.getStyleClass().add("end-title");
 
-        endTextLabel.setFont(Font.font("Georgia", 17));
         endTextLabel.getStyleClass().add("end-text");
         endTextLabel.setWrapText(true);
-        endTextLabel.setMaxWidth(480);
         endTextLabel.setTextAlignment(TextAlignment.CENTER);
+
+        VBox textBox = new VBox(20, deathIcon, title, endTextLabel);
+        textBox.setAlignment(Pos.CENTER);
+        textBox.setMaxWidth(550);
+        textBox.getStyleClass().add("end-box");
 
         Button restart = new Button("▶  Zagraj ponownie");
         Button quit    = new Button("✕  Wyjdź");

@@ -5,7 +5,6 @@ import com.runofashes.model.Biome;
 import com.runofashes.model.StatusEffect;
 import com.runofashes.model.Weather;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;

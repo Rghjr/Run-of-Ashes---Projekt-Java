@@ -6,25 +6,28 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class WinScreen extends VBox {
 
     public WinScreen(Runnable onRestart, Runnable onQuit) {
+        FontIcon winIcon = new FontIcon("fas-trophy");
+        winIcon.setIconSize(72);
+        winIcon.getStyleClass().add("win-icon");
+
         Label title = new Label("KRAKÓW");
-        title.setFont(Font.font("Georgia", FontWeight.BOLD, 44));
         title.getStyleClass().add("win-title");
 
         Label sub = new Label("Dotarłeś.");
-        sub.setFont(Font.font("Georgia", FontPosture.ITALIC, 22));
         sub.getStyleClass().add("win-sub");
 
         Label detail = new Label("4000 kilometrów. Koniec drogi.");
-        detail.setFont(Font.font("Georgia", 16));
         detail.getStyleClass().add("win-detail");
+
+        VBox textBox = new VBox(12, winIcon, title, sub, detail);
+        textBox.setAlignment(Pos.CENTER);
+        textBox.setMaxWidth(550);
+        textBox.getStyleClass().add("win-box");
 
         Button restart = new Button("▶  Zagraj ponownie");
         Button quit    = new Button("✕  Wyjdź");

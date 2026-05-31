@@ -4,12 +4,16 @@ import com.runofashes.engine.GameEngine;
 import com.runofashes.model.Difficulty;
 import com.runofashes.model.Player;
 import com.runofashes.model.Trait;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;
@@ -20,9 +24,12 @@ public class GameHUD extends VBox {
 
     private ProgressBar healthBar, hungerBar, hydrationBar, energyBar, moraleBar;
     private Label healthVal, hungerVal, hydrationVal, energyVal, moraleVal;
+
+    private ProgressBar distanceBar;
     private Label timeLabel, distanceLabel;
+
     private Label difficultyLabel;
-    private HBox  traitsBox;
+    private HBox  traitsBox, distanceBox;
     private Label biomeLabel, weatherLabel;
 
     public GameHUD(GameEngine engine) {
@@ -35,7 +42,15 @@ public class GameHUD extends VBox {
 
     private void buildUI() {
         timeLabel       = styledLabel("Dzień 1,  00:00", "hud-time");
+
         distanceLabel   = styledLabel("4000 km do Krakowa", "hud-distance");
+        distanceBar     = makeBar("hud-bar-distance");
+        distanceBar.setProgress(0.0);
+        distanceBar.setPrefWidth(300);
+
+        distanceBox = new HBox(12, distanceBar, distanceLabel);
+        distanceBox.setAlignment(Pos.CENTER_LEFT);
+
         difficultyLabel = styledLabel("", "hud-difficulty");
         traitsBox       = new HBox(12);
         traitsBox.setAlignment(Pos.CENTER_LEFT);
@@ -43,7 +58,7 @@ public class GameHUD extends VBox {
         biomeLabel      = styledLabel("", "hud-biome");
         weatherLabel    = styledLabel("", "hud-weather");
 
-        HBox topRow = new HBox(24, timeLabel, distanceLabel);
+        HBox topRow = new HBox(24, timeLabel, distanceBox);
         topRow.setAlignment(Pos.CENTER_LEFT);
 
         HBox envRow = new HBox(24, biomeLabel, weatherLabel);
@@ -85,6 +100,11 @@ public class GameHUD extends VBox {
 
         timeLabel.setText(p.getTimeFormatted());
         distanceLabel.setText(p.getDistance() + " km do Krakowa");
+
+        double startDistance = 4000.0;
+        double actualProgress = Math.max(0, startDistance - p.getDistance()) / startDistance;
+
+        animateBar(distanceBar, actualProgress);
 
         biomeLabel.setText("🚩 " + engine.getCurrentStageName() + "  |  " + engine.getCurrentBiome().getLabel());
         biomeLabel.setGraphic(new FontIcon(engine.getCurrentBiome().getEmoji()));
@@ -128,8 +148,28 @@ public class GameHUD extends VBox {
     }
 
     private void setBar(ProgressBar bar, Label lbl, int value, int maxValue) {
-        bar.setProgress(Math.min(value, maxValue) / (double) maxValue);
+        double targetProgress = Math.min(value, maxValue) / (double) maxValue;
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.millis(400), new KeyValue(bar.progressProperty(), targetProgress))
+        );
+        timeline.play();
+
         lbl.setText(value + "/" + maxValue);
+    }
+
+    private void animateBar(ProgressBar bar, double targetProgress) {
+        Timeline oldTimeline = (Timeline) bar.getProperties().get("timeline");
+        if (oldTimeline != null) {
+            oldTimeline.stop();
+        }
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.millis(400), new KeyValue(bar.progressProperty(), targetProgress))
+        );
+
+        bar.getProperties().put("timeline", timeline);
+        timeline.play();
     }
 
     private Label valueLabel() {
