@@ -29,8 +29,11 @@ public class GameEngine {
     private StatusManager statusManager = new StatusManager();
     private Difficulty difficulty    = Difficulty.NORMAL;
 
+    private final AchievementManager     achievementManager = new AchievementManager();
+
     public void load() throws Exception {
         eventPools.load();
+        achievementManager.loadAchievements();
         questTracker.init(eventPools.getQuestEventMap(), eventPools.getQuestEvents());
         cardDrawer = new CardDrawer(RNG, eventPools, questTracker, environment, traitManager);
         applyDifficultyAndTraits();
@@ -192,6 +195,10 @@ public class GameEngine {
     public Inventory     getInventory()      { return inventory; }
     public StatusManager getStatusManager()  { return statusManager; }
     public List<GameEvent> getCurrentCards() { return Collections.unmodifiableList(currentCards); }
+
+    public AchievementManager getAchievementManager() {
+        return achievementManager;
+    }
 
     public String getEndingText() {
         String stat = player.getDeadStat();
