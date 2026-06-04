@@ -1,6 +1,7 @@
 package com.runofashes.ui;
 
 import com.runofashes.engine.AchievementTracker;
+import com.runofashes.engine.AudioManager;
 import com.runofashes.engine.GameEngine;
 import com.runofashes.model.*;
 import javafx.application.Application;
@@ -25,17 +26,27 @@ public class Main extends Application {
     private WinScreen winScreen;
     private String keyBuffer = "";
 
+    private boolean isTransitioning = false;
+
+    private final AudioManager audioManager = new AudioManager();
+
     @Override
     public void start(Stage stage) throws Exception {
         this.primaryStage = stage;
         engine.load();
 
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
+        audioManager.playTheme();
+
         gameScreen = new GameScreen(engine, this::refreshAll, this::onCardClicked);
         endScreen  = new EndScreen(this::showDifficultyScreen, () -> primaryStage.close());
         winScreen  = new WinScreen(this::showDifficultyScreen, () -> primaryStage.close());
 
-        difficultyScreen = new DifficultyScreen(this::onDifficultyConfirmed);
-        mainScene = new Scene(difficultyScreen, 980, 800);
+        IntroScreen introScreen = new IntroScreen(() -> {
+            showDifficultyScreen();
+        });
+        mainScene = new Scene(introScreen, 980, 800, javafx.scene.paint.Color.web("#05050a"));
 
         mainScene.addEventFilter(javafx.scene.input.KeyEvent.KEY_TYPED, event -> {
             if (mainScene.getRoot() == gameScreen.getRoot()) {
@@ -56,6 +67,14 @@ public class Main extends Application {
                 getResource("/com/runofashes/ui/style.css")).toExternalForm());
 
         stage.setTitle("Run of Ashes");
+        try {
+            javafx.scene.image.Image appIcon = new javafx.scene.image.Image(
+                    java.util.Objects.requireNonNull(getClass().getResourceAsStream("/com/runofashes/ui/images/icon.png"))
+            );
+            stage.getIcons().add(appIcon);
+        } catch (Exception e) {
+            System.out.println("Nie udało się załadować ikony gry: " + e.getMessage());
+        }
         stage.setMinWidth(980);
         stage.setMinHeight(800);
         stage.setScene(mainScene);
@@ -73,7 +92,6 @@ public class Main extends Application {
 
         traitScreen = new TraitSelectionScreen(diff, () -> onTraitsConfirmed(diff), this::showDifficultyScreen);
         mainScene.setRoot(traitScreen);
-        primaryStage.setWidth(980);
     }
 
     private void onTraitsConfirmed(Difficulty diff) {
@@ -85,14 +103,16 @@ public class Main extends Application {
     }
 
     private void onCardClicked(GameEvent event) {
+        if (engine.hasWon() || engine.isGameOver()) return;
+
         engine.executeEvent(event);
-        gameScreen.setLastEvent(event);
         refreshAll();
+
         if (engine.hasWon()) {
             AchievementTracker.checkEndGame(engine, true);
             mainScene.setRoot(winScreen);
         } else if (engine.isGameOver()) {
-            AchievementTracker.checkEndGame(engine, true);
+            AchievementTracker.checkEndGame(engine, false);
             endScreen.setEndingText(engine.getEndingText());
             mainScene.setRoot(endScreen);
         }
