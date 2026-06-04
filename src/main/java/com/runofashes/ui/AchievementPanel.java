@@ -130,7 +130,7 @@ public class AchievementPanel extends VBox {
                 row.setPadding(new Insets(8, 12, 8, 12));
 
                 VBox textBlock = new VBox(2);
-                Label titleLbl = new Label("Poz. " + a.getLevel() + ": " + a.getTitle());
+                Label titleLbl = new Label(a.getTitle());
                 titleLbl.setFont(Font.font("System", FontWeight.BOLD, 13));
 
                 Label descLbl = new Label(a.getDescription());

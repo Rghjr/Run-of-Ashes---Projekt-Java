@@ -123,7 +123,7 @@ public class GameEngine {
                     ? event.getRevealMessage()
                     : lastMessage + "\n\n" + event.getRevealMessage();
         }
-
+        AchievementTracker.checkEventAchievements(this, event, lastResult);
         advanceTurn(event.getTimeCost());
     }
 
@@ -137,6 +137,7 @@ public class GameEngine {
         mainQuestWeight += 0.5;
         questTracker.tick();
         environment.tick(player);
+        AchievementTracker.checkStateAchievements(this);
         drawCards();
     }
 
@@ -174,6 +175,7 @@ public class GameEngine {
     }
 
     public void useItem(ItemType type) {
+        AchievementTracker.checkItemUsed(this, type);
         inventory.useItem(type, player, statusManager, turnCount);
     }
 
@@ -219,4 +221,6 @@ public class GameEngine {
 
     public Biome   getCurrentBiome()   { return environment.getCurrentBiome(); }
     public Weather getCurrentWeather() { return environment.getCurrentWeather(); }
+
+    public int getTurnCount() { return turnCount; }
 }

@@ -47,7 +47,7 @@ public class AchievementManager {
         Achievement a = achievements.get(id);
         if (a != null && !a.isUnlocked()) {
             a.unlock();
-            System.out.println("🏆 ODBLOKOWANO OSIĄGNIĘCIE: " + a.getTitle() + " (" + a.getGroup() + " poz. " + a.getLevel() + ")");
+            System.out.println("🏆 ODBLOKOWANO OSIĄGNIĘCIE: " + a.getTitle() + " (" + a.getGroup() + ")");
             // TODO: Zapisz stan do pliku konfiguracyjnego gracza
             return true;
         }

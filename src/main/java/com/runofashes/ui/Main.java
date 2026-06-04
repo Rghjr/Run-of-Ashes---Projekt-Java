@@ -1,5 +1,6 @@
 package com.runofashes.ui;
 
+import com.runofashes.engine.AchievementTracker;
 import com.runofashes.engine.GameEngine;
 import com.runofashes.model.*;
 import javafx.application.Application;
@@ -88,8 +89,10 @@ public class Main extends Application {
         gameScreen.setLastEvent(event);
         refreshAll();
         if (engine.hasWon()) {
+            AchievementTracker.checkEndGame(engine, true);
             mainScene.setRoot(winScreen);
         } else if (engine.isGameOver()) {
+            AchievementTracker.checkEndGame(engine, true);
             endScreen.setEndingText(engine.getEndingText());
             mainScene.setRoot(endScreen);
         }
@@ -102,33 +105,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private void show() {
         try {
