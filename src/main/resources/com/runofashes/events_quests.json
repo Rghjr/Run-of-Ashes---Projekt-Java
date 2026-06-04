@@ -526,5 +526,976 @@
     "questId": "mystery_letter",
     "questStage": 2,
     "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_weaver_1",
+    "label": "Tkaczka potrzebuje materiału na całuny dla zmarłych",
+    "lowMoraleLabel": "Szukaj materiału dla kobiety, która nie nadąża z cerowaniem całunów",
+    "timeCost": 2,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "energy": -12,
+      "morale": 10
+    },
+    "successMessage": "Tkaczka płakała, prosząc o konopie. Obiecała, że jeśli wrócisz za 3 tury, podzieli się zapasami z pogrzebu. Dobroczyńcy zawsze mają co jeść.",
+    "lowMoraleSuccessMessage": "Przyjąłeś to zlecenie z wstrętem. Szycie całunów w świecie, gdzie brakuje ziemi na groby, to jedyny pewny interes.",
+    "failEffects": {
+      "morale": -20
+    },
+    "failMessage": "Nie znalazłeś żadnych tkanin. Tkaczka splunęła ci pod nogi.",
+    "lowMoraleFailMessage": "Brak materiału to brak zapłaty. Zostawiłeś ją w płaczu, czując, że ta wioska jest już tylko wielką trumną.",
+    "questId": "weaver_plea",
+    "questStage": 1,
+    "turnsUntilNext": 3,
+    "localQuest": true,
+    "allowWait": true
+  },
+  {
+    "id": "quest_weaver_2",
+    "label": "Wróć do tkaczki po zapłatę (FINAŁ)",
+    "lowMoraleLabel": "Odbierz zapłatę od kobiety, która straciła wszystko",
+    "timeCost": 1,
+    "category": "quest",
+    "effects": {
+      "morale": 30,
+      "energy": 5
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 2,
+      "WINE": 1
+    },
+    "successMessage": "Tkaczka przeżyła kolejny dzień. Dała ci wino i mięso. 'Niech cię prowadzi nadzieja' — powiedziała.",
+    "lowMoraleSuccessMessage": "Wino smakuje jak gorycz. Wziąłeś to, co miała, patrząc w jej zmęczone oczy, które widziały już zbyt wiele.",
+    "failEffects": {
+      "morale": -35
+    },
+    "failMessage": "Chaty już nie ma. Ogień strawił wszystko w nocy.",
+    "lowMoraleFailMessage": "Zgliszcza. Kolejny raz spóźniłeś się na ratunek. W tym świecie dobro to tylko spóźniony żart.",
+    "questId": "weaver_plea",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_hermit_1",
+    "label": "Pustelnik prosi o drwa na opał",
+    "lowMoraleLabel": "Rąb drzewo dla szaleńca, który uważa się za proroka",
+    "timeCost": 3,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "energy": -25,
+      "morale": 15
+    },
+    "successMessage": "Narąbałeś drewna na całą noc. Pustelnik w zamian obiecał przyrządzić dla ciebie miksturę. Wróć za 2 tury.",
+    "lowMoraleSuccessMessage": "Starałeś się z całych sił, byle tylko mieć powód do zatrzymania się w cieple. Pustelnik patrzył na ciebie jak na błąd natury.",
+    "failEffects": {
+      "energy": -20,
+      "morale": -15
+    },
+    "failMessage": "Znalazłeś tylko mokre chrusty. Pustelnik nie chciał z tobą gadać.",
+    "lowMoraleFailMessage": "Twoja niezdarność rozwścieczyła starca. Wyrzucił cię, a ty zostałeś w chłodzie, jeszcze bardziej samotny.",
+    "questId": "hermit_remedy",
+    "questStage": 1,
+    "turnsUntilNext": 2,
+    "localQuest": true,
+    "allowWait": true
+  },
+  {
+    "id": "quest_hermit_2",
+    "label": "Odbierz miksturę od pustelnika (FINAŁ)",
+    "lowMoraleLabel": "Weź podejrzany wywar od szaleńca, byle tylko przetrwać",
+    "timeCost": 1,
+    "category": "quest",
+    "effects": {
+      "health": 25,
+      "morale": 25,
+      "energy": 10
+    },
+    "itemEffects": {
+      "HERMIT_BREW": 1
+    },
+    "successMessage": "Mikstura była gorzka, ale natychmiast poczułeś przypływ życia. Pustelnik milczał, patrząc w ogień.",
+    "lowMoraleSuccessMessage": "Wypij to świństwo. Jeśli cię zabije — trudno. Jeśli uzdrowi — też trudno.",
+    "failEffects": {
+      "health": -30,
+      "morale": -20
+    },
+    "failMessage": "Chatka pusta. Pustelnik odszedł w noc, nie zostawiając nic.",
+    "lowMoraleFailMessage": "Pusty dom. Twoje nadzieje na ratunek okazały się tak samo płonne jak cały ten marsz.",
+    "questId": "hermit_remedy",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_starving_family_1",
+    "label": "Rodzina w lesie nie jadła od dni. Podziel się zapasami.",
+    "lowMoraleLabel": "Patrz jak rodzina głoduje, podczas gdy ty masz jeszcze cokolwiek",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "hunger": -10,
+      "morale": 30
+    },
+    "itemEffects": {
+      "DRIED_MEAT": -1
+    },
+    "successMessage": "Oddałeś mięso. Matka płakała z wdzięczności. Obiecali podzielić się skarbami z ukrytej dziupli, jeśli wrócisz za 3 tury.",
+    "lowMoraleSuccessMessage": "Oddałeś jedzenie, czując wyłącznie gniew, że sam stajesz się słabszy. Jesteś idiotą, ale przynajmniej nie jesteś mordercą.",
+    "failEffects": {
+      "morale": -20
+    },
+    "failMessage": "Nie miałeś czym się podzielić. Patrzyłeś, jak dzieci patrzą na ciebie z pretensją.",
+    "lowMoraleFailMessage": "Odmówiłeś. Ich wzrok był jak nóż, który jeszcze głębiej przeciął twoje resztki sumienia.",
+    "questId": "starving_family",
+    "questStage": 1,
+    "turnsUntilNext": 3,
+    "localQuest": true,
+    "allowWait": true
+  },
+  {
+    "id": "quest_starving_family_2",
+    "label": "Wróć do rodziny po obiecany skarb (FINAŁ)",
+    "lowMoraleLabel": "Wróć do głodującej rodziny, by zabrać ich 'skarb'",
+    "timeCost": 1,
+    "distanceCost": 1,
+    "category": "quest",
+    "effects": {
+      "morale": 40,
+      "energy": 5
+    },
+    "itemEffects": {
+      "WINE": 1,
+      "GRAPES": 2
+    },
+    "successMessage": "Rodzina przeżyła. Dali ci wino i owoce. To jedna z niewielu dobrych rzeczy, które spotkały cię na tym szlaku.",
+    "lowMoraleSuccessMessage": "Zabrałeś im ostatnie zapasy. Jesteś hieną, która żeruje na cudzym przeżyciu. Pij to wino, by zapomnieć o twarzach dzieci.",
+    "failEffects": {
+      "morale": -50
+    },
+    "failMessage": "Miejsce było puste. Ślady świadczyły o tym, że ktoś ich tu dopadł.",
+    "lowMoraleFailMessage": "Krew na ziemi. Oczywiście. W tym świecie nie ma miejsca na szczęśliwe zakończenia dla nikogo.",
+    "questId": "starving_family",
+    "questStage": 2,
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_alchemist_1",
+    "questId": "alchemist_trial",
+    "questStage": 1,
+    "requiredStage": "Góry",
+    "label": "Alchemik w jaskini potrzebuje rzadkiego grzyba na antidotum",
+    "lowMoraleLabel": "Szukaj składników dla szaleńca, który bawi się życiem i śmiercią",
+    "timeCost": 2,
+    "itemEffects": {
+      "STRANGE_FUNGUS": -1
+    },
+    "successMessage": "Przyniosłeś grzyba. 'Wróć za 2 tury, mikstura musi się przegryźć' — mruknął.",
+    "lowMoraleSuccessMessage": "Oddałeś mu składnik, nie wierząc, że ten wywar cokolwiek zmieni w twoim marnym życiu.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_alchemist_2",
+    "questId": "alchemist_trial",
+    "questStage": 2,
+    "label": "Odbierz miksturę od alchemika (FINAŁ)",
+    "lowMoraleLabel": "Wypij podejrzany wywar, nie dbając o konsekwencje",
+    "timeCost": 1,
+    "itemEffects": {
+      "HERMIT_BREW": 1,
+      "IRON_INGOT": 1
+    },
+    "effects": {
+      "health": 20,
+      "morale": 20
+    },
+    "successMessage": "Mikstura zadziałała. Czujesz się silniejszy. Dostałeś też sztabkę żelaza — może przyda się u kowala.",
+    "lowMoraleSuccessMessage": "Wypiłeś to. Jeśli to trucizna, przynajmniej przestaniesz cierpieć. Jeśli lekarstwo — będziesz cierpiał dłużej.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_knight_1",
+    "questId": "fallen_knight",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Ranny rycerz leży przy drodze. Jego zbroja lśni w słońcu, ale on sam krwawi.",
+    "lowMoraleLabel": "Zignoruj konającego rycerza, bo jego honor nie nakarmi cię dzisiaj",
+    "itemEffects": {
+      "BANDAGE": -1
+    },
+    "successMessage": "Opatrzyłeś go. 'Nie zapomnę tego' — wykrztusił. 'Znajdź mnie w wiosce za 3 tury'.",
+    "lowMoraleSuccessMessage": "Założyłeś bandaże na jego rany. Jesteś tak samo głupi jak on, wierząc w jakąś tam wdzięczność.",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_knight_2",
+    "questId": "fallen_knight",
+    "questStage": 2,
+    "label": "Rycerz czeka w wiosce. Chce ci się odwdzięczyć (FINAŁ)",
+    "lowMoraleLabel": "Odbierz zapłatę od rycerza, gardząc jego ideami",
+    "itemEffects": {
+      "SHARPENED_BLADE": 1,
+      "DRIED_MEAT": 2
+    },
+    "effects": {
+      "morale": 40
+    },
+    "successMessage": "Dał ci naostrzoną klingę i prowiant. 'Prawdziwy wojownik nie zostawia długów' — powiedział.",
+    "lowMoraleSuccessMessage": "Wziąłeś miecz i jedzenie. Honor rycerza jest równie przestarzały, co twoje nadzieje na lepsze jutro.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_bard_1",
+    "questId": "wandering_bard",
+    "questStage": 1,
+    "label": "Wędrowny bard gra na lutni przy ognisku.",
+    "lowMoraleLabel": "Wysłuchaj rzewnej pieśni, która tylko przypomina o stracie",
+    "effects": {
+      "morale": 35,
+      "energy": -5
+    },
+    "successMessage": "Pieśń o starym świecie wycisnęła z ciebie łzy. Było warto.",
+    "lowMoraleSuccessMessage": "Muzyka była piękna. Dlatego tak bardzo cię bolała. Wszystko w tym świecie boli.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_bard_2",
+    "questId": "wandering_bard",
+    "questStage": 2,
+    "label": "Bard potrzebuje ochrony przed bandytami (FINAŁ)",
+    "lowMoraleLabel": "Broń barda, byle tylko nie stracić jedynego źródła muzyki",
+    "failChance": 0.5,
+    "itemEffects": {
+      "SACRED_AMULET": 1
+    },
+    "effects": {
+      "morale": 50
+    },
+    "successMessage": "Pokonaliście bandytów! Bard w podzięce dał ci swój rodzinny amulet.",
+    "lowMoraleSuccessMessage": "Zabiłeś tych ludzi dla barda. Jesteś tak samo zły jak oni. Amulet w dłoni nie czyści twojej duszy.",
+    "failEffects": {
+      "health": -30,
+      "morale": -20
+    },
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_bridge_toll_1",
+    "questId": "bridge_toll",
+    "questStage": 1,
+    "label": "Chłop pobiera haracz za przejście przez most.",
+    "lowMoraleLabel": "Zapłać haracz, bo nie masz siły na walkę",
+    "itemEffects": {
+      "WATER": -1
+    },
+    "successMessage": "Oddałeś wodę. Przepuścił cię.",
+    "lowMoraleSuccessMessage": "Twoja słabość kosztuje cię wszystko. Oddałeś wodę i poszedłeś dalej jak potulna owca.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_bridge_toll_2",
+    "questId": "bridge_toll",
+    "questStage": 2,
+    "label": "Most się zawalił, chłop potrzebuje pomocy by wydostać towary (FINAŁ)",
+    "lowMoraleLabel": "Wydobądź towary z rzeki, licząc na łup",
+    "effects": {
+      "energy": -20,
+      "morale": 20
+    },
+    "itemEffects": {
+      "DRIED_MEAT": 2,
+      "WINE": 1
+    },
+    "successMessage": "Pomogłeś mu. Podzielił się uratowanym ładunkiem.",
+    "lowMoraleSuccessMessage": "Wyciągnąłeś towary z błota. Brudny i zmęczony, wziąłeś swoją działkę z czystą zawiścią.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_relic_1",
+    "questId": "holy_relic",
+    "questStage": 1,
+    "label": "Znajdujesz zniszczony kościół, wewnątrz leży stara relikwia.",
+    "lowMoraleLabel": "Zbezcześcisz ołtarz, by szukać błyskotek",
+    "itemEffects": {
+      "SACRED_AMULET": 1
+    },
+    "effects": {
+      "morale": -15
+    },
+    "successMessage": "Relikwia jest piękna. Ale czy powinna być w twoich rękach?",
+    "lowMoraleSuccessMessage": "Zebrałeś to z ołtarza jak zwykły złodziej. Nic świętego nie istnieje.",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_relic_2",
+    "questId": "holy_relic",
+    "questStage": 2,
+    "label": "Wioska błaga o zwrot relikwii, by powstrzymać zarazę (FINAŁ)",
+    "lowMoraleLabel": "Żądaj zapłaty za zwrot relikwii",
+    "itemEffects": {
+      "SACRED_AMULET": -1,
+      "HERBS": 3
+    },
+    "effects": {
+      "morale": 40
+    },
+    "successMessage": "Oddałeś ją. Wioska odetchnęła. Czułeś, że zrobiłeś coś dobrego.",
+    "lowMoraleSuccessMessage": "Oddałeś to, bo miałeś dość noszenia cudzej nadziei. Przynajmniej dali ci zioła na drogę.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_leper_lute_1",
+    "questId": "leper_lute",
+    "questStage": 1,
+    "label": "Trędowaty grajek prosi o przeniesienie jego lutni przez rzekę.",
+    "lowMoraleLabel": "Dotknij brudnego grajka, by wziąć jego nędzny instrument",
+    "timeCost": 2,
+    "effects": {
+      "energy": -10,
+      "morale": 10
+    },
+    "successMessage": "Grajek nie może zamoczyć rąk. Przeniosłeś go i instrument. 'Czekaj w karczmie za 3 tury' — powiedział.",
+    "lowMoraleSuccessMessage": "Wziąłeś lutnię z niechęcią. Czujesz na skórze jego chorobę, ale nadzieja na zapłatę zagłusza strach.",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_leper_lute_2",
+    "questId": "leper_lute",
+    "questStage": 2,
+    "label": "Grajek czeka w karczmie, by oddać ci dług (FINAŁ)",
+    "lowMoraleLabel": "Odbierz zapłatę od trędowatego, czując obrzydzenie",
+    "itemEffects": {
+      "WINE": 1,
+      "DRIED_MEAT": 1
+    },
+    "effects": {
+      "morale": 30
+    },
+    "successMessage": "Zagrał dla ciebie pieśń, która sprawiła, że na chwilę zapomniałeś o głodzie. Dostałeś wino i mięso.",
+    "lowMoraleSuccessMessage": "Zagrał coś, co brzmiało jak lament. Wziąłeś żarcie i wyszedłeś, nie chcąc dłużej patrzeć na jego rozpadającą się twarz.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_haunted_well_1",
+    "questId": "haunted_well",
+    "questStage": 1,
+    "label": "Wieśniacy boją się studni — słyszą z niej płacz dzieci.",
+    "lowMoraleLabel": "Zbadaj studnię, licząc na to, że znajdziesz tam chociaż cokolwiek",
+    "failChance": 0.3,
+    "effects": {
+      "energy": -15,
+      "morale": -10
+    },
+    "successMessage": "Znalazłeś tam tylko utopione rzeczy. Ale na dnie błyszczy coś cennego. Wróć za 2 tury, gdy woda opadnie.",
+    "lowMoraleSuccessMessage": "Zajrzałeś w otchłań. Płacz to tylko wiatr. Ale na dnie jest coś, co warto wyciągnąć.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_haunted_well_2",
+    "questId": "haunted_well",
+    "questStage": 2,
+    "label": "Wyciągnij znalezisko ze studni (FINAŁ)",
+    "lowMoraleLabel": "Wyciągnij przedmiot z trupiej wody, nie dbając o klątwę",
+    "itemEffects": {
+      "SACRED_AMULET": 1
+    },
+    "effects": {
+      "morale": 45
+    },
+    "successMessage": "To stary święty amulet. Czujesz się lżej, jakby klątwa została przełamana.",
+    "lowMoraleSuccessMessage": "Wyłowiłeś to z błota. Śmierdzi trupem, ale da ci boosta, którego potrzebujesz, by nie zdechnąć.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_archivist_1",
+    "questId": "old_archivist",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Stary archiwista błaga o uratowanie ksiąg z palącego się klasztoru.",
+    "lowMoraleLabel": "Wbiegnij w ogień, by ukraść książki dla marnego zysku",
+    "effects": {
+      "health": -15,
+      "energy": -20
+    },
+    "successMessage": "Uratowałeś stos pergaminów. 'Wróć do mnie do pobliskiej wioski za 4 tury' — prosił.",
+    "lowMoraleSuccessMessage": "Wpadłeś w ogień, kaszląc dymem. Twoja skóra pali, ale książki są bezpieczne. Kolejny bezsensowny trud.",
+    "turnsUntilNext": 4,
+    "allowWait": true
+  },
+  {
+    "id": "quest_archivist_2",
+    "questId": "old_archivist",
+    "questStage": 2,
+    "label": "Dostarcz ocalone księgi archiviście (FINAŁ)",
+    "lowMoraleLabel": "Wymuś zapłatę od archiwisty za ocalone śmieci",
+    "itemEffects": {
+      "HERBS": 2,
+      "WATER": 1
+    },
+    "effects": {
+      "morale": 40
+    },
+    "successMessage": "Płakał nad nimi. Dał ci zioła na drogę. Historia jest uratowana.",
+    "lowMoraleSuccessMessage": "Wcisnąłeś mu to w ręce. Dał ci w zamian zioła. W tym świecie wiedza nie karmi, ale przynajmniej masz co pić.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_smith_1",
+    "questId": "lonely_smith",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Kowal potrzebuje żelaza, by dokończyć broń dla obrońców Krakowa.",
+    "lowMoraleLabel": "Oddaj sztabkę żelaza kowalowi, choć mógłbyś ją sprzedać",
+    "itemEffects": {
+      "IRON_INGOT": -1
+    },
+    "successMessage": "Podziękował ci. 'Wróć jutro, ostrze będzie gotowe'.",
+    "lowMoraleSuccessMessage": "Oddałeś żelazo. Czujesz się jak idiota, pomagając światu, który chce cię zabić.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_smith_2",
+    "questId": "lonely_smith",
+    "questStage": 2,
+    "label": "Odbierz naostrzoną broń od kowala (FINAŁ)",
+    "lowMoraleLabel": "Zabierz broń, by zwiększyć swoje szanse na przetrwanie",
+    "itemEffects": {
+      "SHARPENED_BLADE": 1
+    },
+    "effects": {
+      "morale": 20
+    },
+    "successMessage": "Klinga jest ostra jak brzytwa. Kowal skinął głową: 'Przeżyj to'.",
+    "lowMoraleSuccessMessage": "Masz broń. Teraz przynajmniej masz szansę wyrąbać sobie drogę przez ten syf.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_shrine_clean_1",
+    "questId": "shrine_clean",
+    "questStage": 1,
+    "label": "Kapliczka na wzgórzu jest pełna śmieci i błota.",
+    "lowMoraleLabel": "Wyczyść kapliczkę, bo nie masz nic lepszego do roboty",
+    "effects": {
+      "energy": -15,
+      "morale": 10
+    },
+    "successMessage": "Oczyściłeś miejsce. Czujesz dziwny spokój. Wróć tu za 2 tury, może coś się zmieniło.",
+    "lowMoraleSuccessMessage": "Szorujesz kamień, czując jedynie wstręt do własnych dłoni. Modlitwa nie naprawi tego zepsutego świata.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_shrine_clean_2",
+    "questId": "shrine_clean",
+    "questStage": 2,
+    "label": "Wróć do oczyszczonej kapliczki (FINAŁ)",
+    "lowMoraleLabel": "Sprawdź, czy twoja 'ofiara' przyniosła jakikolwiek zysk",
+    "itemEffects": {
+      "SACRED_AMULET": 1
+    },
+    "effects": {
+      "morale": 30
+    },
+    "successMessage": "Ktoś zostawił tu amulet w podzięce za porządek. Nie jesteś sam.",
+    "lowMoraleSuccessMessage": "Amulet. Kolejna błyskotka. Może przyda się w walce o przeżycie. Przynajmniej nie jest bezużyteczna.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_merchant_wine_1",
+    "questId": "merchant_wine",
+    "questStage": 1,
+    "label": "Handlarz oferuje wyborne wino, twierdząc że leczy smutki.",
+    "lowMoraleLabel": "Kup wino od nieznajomego, by choć na chwilę utopić swoje lęki",
+    "itemEffects": {
+      "DRIED_MEAT": -1
+    },
+    "effects": {
+      "morale": 10
+    },
+    "successMessage": "Dał ci butelkę wina. 'Na zdrowie' — mruknął. Czuć w nim dziwny, słodkawy posmak.",
+    "lowMoraleSuccessMessage": "Wziąłeś to wino, nie dbając o cenę. Chcesz tylko zapomnieć, jak bardzo ten świat cuchnie śmiercią.",
+    "itemEffects": {
+      "POISONED_WINE": 1
+    },
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_merchant_wine_2",
+    "questId": "merchant_wine",
+    "questStage": 2,
+    "label": "Wracasz do handlarza — odkrywasz prawdę o winie (FINAŁ)",
+    "lowMoraleLabel": "Pomszcz swoje otrucie, zabijając handlarza",
+    "effects": {
+      "morale": -30,
+      "health": -20
+    },
+    "successMessage": "To było zatrute wino! Handlarz to łotr, który oczyszcza drogę z 'niechcianych' wędrowców.",
+    "lowMoraleSuccessMessage": "Wiedziałeś, że to pułapka. Teraz masz gorączkę i nienawiść, która pali cię bardziej niż trucizna w żyłach.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_apprentice_1",
+    "questId": "smith_apprentice",
+    "questStage": 1,
+    "label": "Uczeń kowala nie ma surowca, by dokończyć bramę dla uchodźców.",
+    "lowMoraleLabel": "Oddaj sztabkę żelaza, byle tylko mieć spokój od błagań chłopca",
+    "itemEffects": {
+      "IRON_INGOT": -1
+    },
+    "effects": {
+      "morale": 15
+    },
+    "successMessage": "Uczeń wziął sztabkę żelaza. 'Wróć za 3 tury, brama będzie gotowa'.",
+    "lowMoraleSuccessMessage": "Oddałeś żelazo. W tym świecie nie ma miejsca na obronę innych, a ty i tak zaraz stąd uciekniesz.",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_apprentice_2",
+    "questId": "smith_apprentice",
+    "questStage": 2,
+    "label": "Wracasz do kuźni zobaczyć efekt pracy (FINAŁ)",
+    "lowMoraleLabel": "Sprawdź, czy twoje żelazo na coś się przydało",
+    "itemEffects": {
+      "SHARPENED_BLADE": 1
+    },
+    "effects": {
+      "morale": 25
+    },
+    "successMessage": "Brama stoi! Kowal w podzięce podarował ci naostrzoną klingę.",
+    "lowMoraleSuccessMessage": "Brama może zatrzymać bandytów, ale nie zatrzyma zarazy. Wziąłeś broń i ruszyłeś dalej bez słowa.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_tomb_1",
+    "questId": "plague_tomb",
+    "questStage": 1,
+    "label": "Słyszysz o grobowcu, w którym spoczywa święty amulet.",
+    "lowMoraleLabel": "Wkrocz do zarażonej krypty, nie wierząc w żadne bóstwo",
+    "effects": {
+      "energy": -15,
+      "health": -10
+    },
+    "successMessage": "Grobowiec jest pełen zarodników. Ale znalazłeś coś w sarkofagu. Wróć za 2 tury, gdy powietrze oczyści się z pyłu.",
+    "lowMoraleSuccessMessage": "Grzebałeś w zwłokach jak szczur. To miejsce to po prostu kolejna sypialnia dla zmarłych.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_tomb_2",
+    "questId": "plague_tomb",
+    "questStage": 2,
+    "label": "Wróć do grobowca po przedmiot (FINAŁ)",
+    "lowMoraleLabel": "Zabierz amulet, byle tylko sprzedać go za grosze",
+    "itemEffects": {
+      "SACRED_AMULET": 1
+    },
+    "effects": {
+      "morale": 40
+    },
+    "successMessage": "Amulet jest w twoich rękach. Czujesz się dziwnie spokojnie.",
+    "lowMoraleSuccessMessage": "Amulet w dłoni. Jeśli to ma być świętość, to świat musiał zwariować. Przynajmniej podnosi na duchu.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_dying_courier_1",
+    "questId": "dying_courier",
+    "questStage": 1,
+    "label": "Posłaniec dogorywa przy drodze, trzymając list do Krakowa.",
+    "lowMoraleLabel": "Przeszukaj konającego posłańca, może ma coś wartościowego",
+    "effects": {
+      "energy": -10,
+      "morale": -5
+    },
+    "successMessage": "Obiecałeś mu dostarczyć list do adresata. 'To ważne dla przetrwania miasta' — wyszeptał.",
+    "lowMoraleSuccessMessage": "Oglądałeś jego agonię z zimną obojętnością. List może być wart kilka miedziaków u kogoś, kto potrafi czytać.",
+    "turnsUntilNext": 4,
+    "allowWait": false
+  },
+  {
+    "id": "quest_dying_courier_2",
+    "questId": "dying_courier",
+    "questStage": 2,
+    "label": "Dotrzyj do adresata w mieście (FINAŁ)",
+    "lowMoraleLabel": "Wymuś nagrodę od adresata, nie dbając o treść listu",
+    "itemEffects": {
+      "WINE": 1,
+      "HERBS": 2
+    },
+    "effects": {
+      "morale": 30
+    },
+    "successMessage": "Adresat przeczytał list i pobladł. 'Dziękuję. To zmienia wszystko'.",
+    "lowMoraleSuccessMessage": "Wcisnąłeś mu papier i wyciągnąłeś rękę po swoje. Ta wiadomość niczego nie naprawi.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_painter_1",
+    "questId": "doomsday_painter",
+    "questStage": 1,
+    "label": "Artysta maluje zgliszcza wioski na płótnie.",
+    "lowMoraleLabel": "Śmiej się z artysty, który maluje koniec świata",
+    "effects": {
+      "morale": 10
+    },
+    "successMessage": "Jest całkowicie pochłonięty pracą. Obiecał portret, jeśli wrócisz z farbami.",
+    "lowMoraleSuccessMessage": "Siedzi i maluje śmierć. Obłęd. Może jak wrócisz, to namaluje twój nagrobek.",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_painter_2",
+    "questId": "doomsday_painter",
+    "questStage": 2,
+    "label": "Wróć do artysty z farbami (FINAŁ)",
+    "lowMoraleLabel": "Zabierz obraz, bo może go ktoś kupi",
+    "itemEffects": {
+      "HERBS": 1,
+      "GRAPES": 1
+    },
+    "effects": {
+      "morale": 50
+    },
+    "successMessage": "Obraz jest gotowy. Przedstawia człowieka, który biegnie w stronę słońca. Twoja twarz.",
+    "lowMoraleSuccessMessage": "Dał ci obraz. Patrzysz na to i czujesz jedynie obrzydzenie do własnego wizerunku.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_merchant_wine_1",
+    "questId": "merchant_wine",
+    "questStage": 1,
+    "label": "Handlarz oferuje wyborne wino, twierdząc że leczy smutki.",
+    "lowMoraleLabel": "Kup wino od nieznajomego, by choć na chwilę utopić swoje lęki",
+    "itemEffects": {
+      "DRIED_MEAT": -1
+    },
+    "effects": {
+      "morale": 10
+    },
+    "successMessage": "Dał ci butelkę wina. 'Na zdrowie' — mruknął. Czuć w nim dziwny, słodkawy posmak.",
+    "lowMoraleSuccessMessage": "Wziąłeś to wino, nie dbając o cenę. Chcesz tylko zapomnieć, jak bardzo ten świat cuchnie śmiercią.",
+    "itemEffects": {
+      "POISONED_WINE": 1
+    },
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_merchant_wine_2",
+    "questId": "merchant_wine",
+    "questStage": 2,
+    "label": "Wracasz do handlarza — odkrywasz prawdę o winie (FINAŁ)",
+    "lowMoraleLabel": "Pomszcz swoje otrucie, zabijając handlarza",
+    "effects": {
+      "morale": -30,
+      "health": -20
+    },
+    "successMessage": "To było zatrute wino! Handlarz to łotr, który oczyszcza drogę z 'niechcianych' wędrowców.",
+    "lowMoraleSuccessMessage": "Wiedziałeś, że to pułapka. Teraz masz gorączkę i nienawiść, która pali cię bardziej niż trucizna w żyłach.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_apprentice_1",
+    "questId": "smith_apprentice",
+    "questStage": 1,
+    "label": "Uczeń kowala nie ma surowca, by dokończyć bramę dla uchodźców.",
+    "lowMoraleLabel": "Oddaj sztabkę żelaza, byle tylko mieć spokój od błagań chłopca",
+    "itemEffects": {
+      "IRON_INGOT": -1
+    },
+    "effects": {
+      "morale": 15
+    },
+    "successMessage": "Uczeń wziął sztabkę żelaza. 'Wróć za 3 tury, brama będzie gotowa'.",
+    "lowMoraleSuccessMessage": "Oddałeś żelazo. W tym świecie nie ma miejsca na obronę innych, a ty i tak zaraz stąd uciekniesz.",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_apprentice_2",
+    "questId": "smith_apprentice",
+    "questStage": 2,
+    "label": "Wracasz do kuźni zobaczyć efekt pracy (FINAŁ)",
+    "lowMoraleLabel": "Sprawdź, czy twoje żelazo na coś się przydało",
+    "itemEffects": {
+      "SHARPENED_BLADE": 1
+    },
+    "effects": {
+      "morale": 25
+    },
+    "successMessage": "Brama stoi! Kowal w podzięce podarował ci naostrzoną klingę.",
+    "lowMoraleSuccessMessage": "Brama może zatrzymać bandytów, ale nie zatrzyma zarazy. Wziąłeś broń i ruszyłeś dalej bez słowa.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_tomb_1",
+    "questId": "plague_tomb",
+    "questStage": 1,
+    "label": "Słyszysz o grobowcu, w którym spoczywa święty amulet.",
+    "lowMoraleLabel": "Wkrocz do zarażonej krypty, nie wierząc w żadne bóstwo",
+    "effects": {
+      "energy": -15,
+      "health": -10
+    },
+    "successMessage": "Grobowiec jest pełen zarodników. Ale znalazłeś coś w sarkofagu. Wróć za 2 tury, gdy powietrze oczyści się z pyłu.",
+    "lowMoraleSuccessMessage": "Grzebałeś w zwłokach jak szczur. To miejsce to po prostu kolejna sypialnia dla zmarłych.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_tomb_2",
+    "questId": "plague_tomb",
+    "questStage": 2,
+    "label": "Wróć do grobowca po przedmiot (FINAŁ)",
+    "lowMoraleLabel": "Zabierz amulet, byle tylko sprzedać go za grosze",
+    "itemEffects": {
+      "SACRED_AMULET": 1
+    },
+    "effects": {
+      "morale": 40
+    },
+    "successMessage": "Amulet jest w twoich rękach. Czujesz się dziwnie spokojnie.",
+    "lowMoraleSuccessMessage": "Amulet w dłoni. Jeśli to ma być świętość, to świat musiał zwariować. Przynajmniej podnosi na duchu.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_dying_courier_1",
+    "questId": "dying_courier",
+    "questStage": 1,
+    "label": "Posłaniec dogorywa przy drodze, trzymając list do Krakowa.",
+    "lowMoraleLabel": "Przeszukaj konającego posłańca, może ma coś wartościowego",
+    "effects": {
+      "energy": -10,
+      "morale": -5
+    },
+    "successMessage": "Obiecałeś mu dostarczyć list do adresata. 'To ważne dla przetrwania miasta' — wyszeptał.",
+    "lowMoraleSuccessMessage": "Oglądałeś jego agonię z zimną obojętnością. List może być wart kilka miedziaków u kogoś, kto potrafi czytać.",
+    "turnsUntilNext": 4,
+    "allowWait": false
+  },
+  {
+    "id": "quest_dying_courier_2",
+    "questId": "dying_courier",
+    "questStage": 2,
+    "label": "Dotrzyj do adresata w mieście (FINAŁ)",
+    "lowMoraleLabel": "Wymuś nagrodę od adresata, nie dbając o treść listu",
+    "itemEffects": {
+      "WINE": 1,
+      "HERBS": 2
+    },
+    "effects": {
+      "morale": 30
+    },
+    "successMessage": "Adresat przeczytał list i pobladł. 'Dziękuję. To zmienia wszystko'.",
+    "lowMoraleSuccessMessage": "Wcisnąłeś mu papier i wyciągnąłeś rękę po swoje. Ta wiadomość niczego nie naprawi.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_painter_1",
+    "questId": "doomsday_painter",
+    "questStage": 1,
+    "label": "Artysta maluje zgliszcza wioski na płótnie.",
+    "lowMoraleLabel": "Śmiej się z artysty, który maluje koniec świata",
+    "effects": {
+      "morale": 10
+    },
+    "successMessage": "Jest całkowicie pochłonięty pracą. Obiecał portret, jeśli wrócisz z farbami.",
+    "lowMoraleSuccessMessage": "Siedzi i maluje śmierć. Obłęd. Może jak wrócisz, to namaluje twój nagrobek.",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_painter_2",
+    "questId": "doomsday_painter",
+    "questStage": 2,
+    "label": "Wróć do artysty z farbami (FINAŁ)",
+    "lowMoraleLabel": "Zabierz obraz, bo może go ktoś kupi",
+    "itemEffects": {
+      "HERBS": 1,
+      "GRAPES": 1
+    },
+    "effects": {
+      "morale": 50
+    },
+    "successMessage": "Obraz jest gotowy. Przedstawia człowieka, który biegnie w stronę słońca. Twoja twarz.",
+    "lowMoraleSuccessMessage": "Dał ci obraz. Patrzysz na to i czujesz jedynie obrzydzenie do własnego wizerunku.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_plague_mask_1",
+    "questId": "plague_doctor_mask",
+    "questStage": 1,
+    "label": "Widzisz porzuconą maskę lekarza dżumy przy stosie ciał.",
+    "lowMoraleLabel": "Podnieś maskę lekarza, myśląc, że może uchroni cię przed śmiercią",
+    "timeCost": 2,
+    "effects": {
+      "energy": -10,
+      "morale": 10
+    },
+    "successMessage": "Maska jest dziwna, ciężka. Może to talizman? Wróć do miasta za 3 tury, może ktoś powie ci, co to znaczy.",
+    "lowMoraleSuccessMessage": "Wkładasz to na twarz. Wyglądasz jak potwór z koszmaru. Może inni trupy zaczną cię traktować jak swojego?",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_plague_mask_2",
+    "questId": "plague_doctor_mask",
+    "questStage": 2,
+    "label": "W mieście spotykasz starego medyka, który rozpoznaje maskę (FINAŁ).",
+    "lowMoraleLabel": "Żądaj od medyka wyjaśnień, nie dbając o jego autorytet",
+    "itemEffects": {
+      "HERBS": 2,
+      "BANDAGE": 1
+    },
+    "effects": {
+      "morale": 40
+    },
+    "successMessage": "Medyk mówi, że to maska 'Ostatniego Uzdrowiciela'. Daje ci leki w zamian za jej oddanie.",
+    "lowMoraleSuccessMessage": "Medyk drży ze strachu. Oddałeś mu maskę, bo śmierdzi śmiercią bardziej niż ty sam.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_corrupt_abbot_1",
+    "questId": "abbot_letter",
+    "questStage": 1,
+    "requiredStage": "Europa",
+    "label": "Opat kościoła prosi o dostarczenie tajnego listu do możnowładcy.",
+    "lowMoraleLabel": "Wąchasz list, zastanawiając się, jak dużo możesz na tym zarobić",
+    "timeCost": 2,
+    "effects": {
+      "energy": -5
+    },
+    "successMessage": "List jest zapieczętowany. Opat obiecuje sowitą nagrodę w Krakowie. Wróć za 4 tury.",
+    "lowMoraleSuccessMessage": "Przyjąłeś list, myśląc tylko o tym, czy w środku jest złoto. W tym świecie nie ma miejsca na lojalność.",
+    "turnsUntilNext": 4,
+    "allowWait": false
+  },
+  {
+    "id": "quest_corrupt_abbot_2",
+    "questId": "abbot_letter",
+    "questStage": 2,
+    "label": "Dostarcz list do rąk własnych możnowładcy (FINAŁ).",
+    "lowMoraleLabel": "Sprzedaj treść listu przeciwnikowi opata",
+    "itemEffects": {
+      "IRON_INGOT": 1,
+      "WINE": 1
+    },
+    "effects": {
+      "morale": 30
+    },
+    "successMessage": "Możnowładca przeczytał list i westchnął. 'Dziękuję, posłańcu. Żelazo i wino dla ciebie'.",
+    "lowMoraleSuccessMessage": "Wziąłeś zapłatę, nie interesując się losem opata. Przetrwanie wymaga bycia egoistą.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_refugee_1",
+    "questId": "refugee_camp",
+    "questStage": 1,
+    "label": "Rodzina uchodźców buduje szałas przy drodze, potrzebują narzędzi.",
+    "lowMoraleLabel": "Zlekceważ ich prośby, bo sam ledwo dajesz radę",
+    "itemEffects": {
+      "IRON_INGOT": -1
+    },
+    "effects": {
+      "morale": 25
+    },
+    "successMessage": "Oddałeś im żelazo. Dzieci przestały płakać. Wróć za 3 tury.",
+    "lowMoraleSuccessMessage": "Oddałeś sztabkę, przeklinając pod nosem swoją litość. Teraz będziesz miał gorzej przez najbliższe dni.",
+    "turnsUntilNext": 3,
+    "allowWait": true
+  },
+  {
+    "id": "quest_refugee_2",
+    "questId": "refugee_camp",
+    "questStage": 2,
+    "label": "Odwiedź zbudowany przez nich obóz (FINAŁ).",
+    "lowMoraleLabel": "Zabierz im resztki zapasów, bo życie jest brutalne",
+    "itemEffects": {
+      "DRIED_MEAT": 2,
+      "WATER": 1
+    },
+    "effects": {
+      "morale": 45
+    },
+    "successMessage": "Zbudowali solidny schron. Podzielili się z tobą jedzeniem. To nie jest koniec świata, póki mamy siebie.",
+    "lowMoraleSuccessMessage": "Zabierasz, co dają. Oni żyją, ty żyjesz. Reszta się nie liczy.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_bandit_toll_1",
+    "questId": "bandit_extortion",
+    "questStage": 1,
+    "label": "Bandyci zagradzają drogę. Chcą 'opłaty' za przejazd.",
+    "lowMoraleLabel": "Oddaj im wszystko, byle tylko nie dostać w twarz",
+    "failChance": 0.4,
+    "itemEffects": {
+      "DRIED_MEAT": -1
+    },
+    "effects": {
+      "energy": -10
+    },
+    "successMessage": "Oddałeś mięso. Przepuścili cię ze śmiechem.",
+    "lowMoraleSuccessMessage": "Jesteś nędzarzem i tchórzem, ale przynajmniej żyjesz. Poszedłeś dalej, czując na plecach ich szyderstwa.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_bandit_toll_2",
+    "questId": "bandit_extortion",
+    "questStage": 2,
+    "label": "Znajdujesz ich obóz, gdy śpią (FINAŁ).",
+    "lowMoraleLabel": "Obrabuj śpiących bandytów",
+    "itemEffects": {
+      "SHARPENED_BLADE": 1,
+      "WINE": 1
+    },
+    "effects": {
+      "morale": 35
+    },
+    "successMessage": "Odzyskałeś swoje i zabrałeś ich broń. Teraz oni będą się bać.",
+    "lowMoraleSuccessMessage": "Zabierasz ich rzeczy. Teraz ty jesteś drapieżnikiem. Świat się nie zmienił, zmieniłeś się tylko ty.",
+    "turnsUntilNext": 0
+  },
+  {
+    "id": "quest_strange_idol_1",
+    "questId": "strange_idol",
+    "questStage": 1,
+    "label": "Znajdujesz dziwny, kamienny bożek w zaroślach.",
+    "lowMoraleLabel": "Podnieś bożka, bo może jest coś wart",
+    "itemEffects": {
+      "SACRED_AMULET": 1
+    },
+    "effects": {
+      "morale": 5
+    },
+    "successMessage": "Bożek jest zimny i przerażający. Masz wrażenie, że coś na ciebie patrzy.",
+    "lowMoraleSuccessMessage": "Kolejny bezużyteczny kamień. Ale może jakiś głupiec w mieście zapłaci za to jedzeniem.",
+    "turnsUntilNext": 2,
+    "allowWait": true
+  },
+  {
+    "id": "quest_strange_idol_2",
+    "questId": "strange_idol",
+    "questStage": 2,
+    "label": "Wieśniak twierdzi, że to bożek jego przodków (FINAŁ).",
+    "lowMoraleLabel": "Sprzedaj bożka drożej, wykorzystując desperację wieśniaka",
+    "itemEffects": {
+      "SACRED_AMULET": -1
+    },
+    "effects": {
+      "hunger": 20,
+      "morale": 20
+    },
+    "successMessage": "Oddałeś go. Wieśniak płakał ze szczęścia. To mała rzecz, ale daje nadzieję.",
+    "lowMoraleSuccessMessage": "Sprzedałeś to. Zarobiłeś na cudzej wierze. Jesteś tak samo zły jak plaga, która nas zabija.",
+    "turnsUntilNext": 0
   }
 ]
