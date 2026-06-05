@@ -30,6 +30,7 @@ public class GameEngine {
     private Difficulty difficulty    = Difficulty.NORMAL;
 
     private final AchievementManager     achievementManager = new AchievementManager();
+    private final StatisticsManager statsManager = new StatisticsManager();
 
     public void load() throws Exception {
         eventPools.load();
@@ -51,6 +52,7 @@ public class GameEngine {
         lastMessage = "";
         lastResult  = EventResult.SUCCESS;
         mainQuestWeight = 1;
+        statsManager.startNewRun(difficulty);
         applyDifficultyAndTraits();
         addStarterItems();
         drawCards();
@@ -94,6 +96,10 @@ public class GameEngine {
                 if (event.getDistanceCost() != 0) {
                     player.addDistance(event.getDistanceCost());
                     appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
+                }
+                if ("quest".equals(event.getCategory()) && event.getQuestStage() == 2) {
+                    if (event.isLocalQuest()) statsManager.getCurrentRun().addLocalQuest();
+                    else statsManager.getCurrentRun().addGeneralQuest();
                 }
             }
             case PARTIAL -> {
@@ -177,6 +183,9 @@ public class GameEngine {
     public void useItem(ItemType type) {
         AchievementTracker.checkItemUsed(this, type);
         inventory.useItem(type, player, statusManager, turnCount);
+        if (statsManager.getCurrentRun() != null) {
+            statsManager.getCurrentRun().addItemUsed();
+        }
     }
 
     public String buildBiomeInfo(Biome biome) {
@@ -201,6 +210,7 @@ public class GameEngine {
     public AchievementManager getAchievementManager() {
         return achievementManager;
     }
+    public StatisticsManager getStatsManager() { return statsManager; }
 
     public String getEndingText() {
         String stat = player.getDeadStat();

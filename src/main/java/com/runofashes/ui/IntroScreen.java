@@ -23,6 +23,7 @@ public class IntroScreen extends StackPane {
 
     private int currentSlide = 0;
     private boolean isSkipped = false;
+    private boolean isEnding = false;
 
     private final String[] storyTexts = {
             "Świat, który znaliśmy, obrócił się w popiół.\nZaraza przyszła ze wschodu, pożerając imperia.",
@@ -134,6 +135,9 @@ public class IntroScreen extends StackPane {
     }
 
     private void endIntro() {
+        if (isEnding) return;
+        isEnding = true;
+
         Region whiteFlash = new Region();
         whiteFlash.setStyle("-fx-background-color: white;");
         whiteFlash.setOpacity(0.0);

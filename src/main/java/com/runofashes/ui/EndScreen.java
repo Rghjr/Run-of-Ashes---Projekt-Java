@@ -14,7 +14,7 @@ public class EndScreen extends VBox {
 
     private final Label endTextLabel = new Label();
 
-    public EndScreen(Runnable onRestart, Runnable onQuit) {
+    public EndScreen(Runnable onRestart, Runnable onShowStats, Runnable onQuit) {
         FontIcon deathIcon = new FontIcon("fas-skull");
         deathIcon.setIconSize(64);
         deathIcon.getStyleClass().add("end-icon");
@@ -32,13 +32,18 @@ public class EndScreen extends VBox {
         textBox.getStyleClass().add("end-box");
 
         Button restart = new Button("▶  Zagraj ponownie");
+        Button stats   = new Button("📊  Statystyki");
         Button quit    = new Button("✕  Wyjdź");
+
         restart.getStyleClass().add("btn-success");
+        stats.getStyleClass().add("btn-stats");
         quit.getStyleClass().add("btn-danger");
+
         restart.setOnAction(e -> onRestart.run());
+        stats.setOnAction(e -> onShowStats.run());
         quit.setOnAction(e    -> onQuit.run());
 
-        HBox btns = new HBox(24, restart, quit);
+        HBox btns = new HBox(24, restart, stats, quit);
         btns.setAlignment(Pos.CENTER);
 
         Image img = com.runofashes.utils.FileLoader.loadUiImage("end_bg.png");

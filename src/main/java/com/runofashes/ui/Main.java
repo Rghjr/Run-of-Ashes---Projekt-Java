@@ -40,8 +40,8 @@ public class Main extends Application {
         audioManager.playTheme();
 
         gameScreen = new GameScreen(engine, this::refreshAll, this::onCardClicked);
-        endScreen  = new EndScreen(this::showDifficultyScreen, () -> primaryStage.close());
-        winScreen  = new WinScreen(this::showDifficultyScreen, () -> primaryStage.close());
+        endScreen  = new EndScreen(this::showDifficultyScreen, this::showCurrentStatsScreen, () -> primaryStage.close());
+        winScreen  = new WinScreen(this::showDifficultyScreen, this::showCurrentStatsScreen, () -> primaryStage.close());
 
         IntroScreen introScreen = new IntroScreen(() -> {
             showDifficultyScreen();
@@ -86,6 +86,28 @@ public class Main extends Application {
         mainScene.setRoot(difficultyScreen);
     }
 
+    private void showStatsScreen() {
+        StatsScreen statsScreen = new StatsScreen(engine.getStatsManager().getAllRuns(), this::showDifficultyScreen);
+        mainScene.setRoot(statsScreen);
+    }
+
+    private void showAchievements(Runnable onBack) {
+        AchievementsScreen achievementsScreen = new AchievementsScreen(engine.getAchievementManager(), onBack);
+        mainScene.setRoot(achievementsScreen);
+    }
+
+    private void showCurrentStatsScreen() {
+        RunStatistics currentStats = engine.getStatsManager().getCurrentRun();
+
+        CurrentRunStatsScreen statsScreen = new CurrentRunStatsScreen(
+                currentStats,
+                () -> showAchievements(this::showCurrentStatsScreen),
+                this::showDifficultyScreen,
+                () -> primaryStage.close()
+        );
+        mainScene.setRoot(statsScreen);
+    }
+
     private void onDifficultyConfirmed() {
         Difficulty diff = difficultyScreen.getSelected();
         if (diff == null) return;
@@ -110,9 +132,12 @@ public class Main extends Application {
 
         if (engine.hasWon()) {
             AchievementTracker.checkEndGame(engine, true);
+
+            engine.getStatsManager().finalizeAndSaveRun(true, "Przeżycie", engine.getPlayer());
             mainScene.setRoot(winScreen);
         } else if (engine.isGameOver()) {
             AchievementTracker.checkEndGame(engine, false);
+            engine.getStatsManager().finalizeAndSaveRun(false, engine.getPlayer().getDeadStat(), engine.getPlayer());
             endScreen.setEndingText(engine.getEndingText());
             mainScene.setRoot(endScreen);
         }
