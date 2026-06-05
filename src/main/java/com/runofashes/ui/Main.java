@@ -132,14 +132,27 @@ public class Main extends Application {
 
         if (engine.hasWon()) {
             AchievementTracker.checkEndGame(engine, true);
-
             engine.getStatsManager().finalizeAndSaveRun(true, "Przeżycie", engine.getPlayer());
-            mainScene.setRoot(winScreen);
+
+            audioManager.changeMusic("/com/runofashes/ui/sounds/Pufino-ThereBeDragons.mp3");
+
+            OutroScreen outro = new OutroScreen(true, null, null, () -> mainScene.setRoot(winScreen));
+            mainScene.setRoot(outro);
+
         } else if (engine.isGameOver()) {
             AchievementTracker.checkEndGame(engine, false);
-            engine.getStatsManager().finalizeAndSaveRun(false, engine.getPlayer().getDeadStat(), engine.getPlayer());
-            endScreen.setEndingText(engine.getEndingText());
-            mainScene.setRoot(endScreen);
+
+            String deadStat = engine.getPlayer().getDeadStat();
+            String deathReason = engine.getEndingText();
+
+            engine.getStatsManager().finalizeAndSaveRun(false, deadStat, engine.getPlayer());
+            endScreen.setEndingText(deathReason);
+
+            //inna muzyka
+            //audioManager.changeMusic("/com/runofashes/ui/sounds/Pufino-ThereBeDragons.mp3");
+
+            OutroScreen outro = new OutroScreen(false, deadStat, deathReason, () -> mainScene.setRoot(endScreen));
+            mainScene.setRoot(outro);
         }
     }
 
