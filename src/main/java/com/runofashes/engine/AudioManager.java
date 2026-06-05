@@ -11,7 +11,18 @@ import java.net.URL;
 
 public class AudioManager {
     private MediaPlayer mediaPlayer;
-    private static final double TARGET_VOLUME = 0.4;
+    private double targetVolume = 0.4;
+
+    public void setVolume(double volume) {
+        this.targetVolume = volume;
+        if (mediaPlayer != null) {
+            mediaPlayer.setVolume(volume);
+        }
+    }
+
+    public double getVolume() {
+        return targetVolume;
+    }
 
     public void playTheme() {
         try {
@@ -19,7 +30,7 @@ public class AudioManager {
             Media sound = new Media(path);
             mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.setVolume(TARGET_VOLUME);
+            mediaPlayer.setVolume(targetVolume);
             mediaPlayer.play();
         } catch (Exception e) {
             System.err.println("Nie udało się załadować muzyki: " + e.getMessage());
@@ -66,7 +77,7 @@ public class AudioManager {
             mediaPlayer.play();
 
             Timeline fadeIn = new Timeline(
-                    new KeyFrame(Duration.seconds(3), new KeyValue(mediaPlayer.volumeProperty(), TARGET_VOLUME))
+                    new KeyFrame(Duration.seconds(3), new KeyValue(mediaPlayer.volumeProperty(), targetVolume))
             );
             fadeIn.play();
 

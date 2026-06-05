@@ -136,6 +136,10 @@ public class GameHUD extends VBox {
     }
 
     public void setEventImage(String imageName) {
+        if (imageName == null) {
+            eventImageView.setImage(null);
+            return;
+        }
         Image img = com.runofashes.utils.FileLoader.loadUiImage(imageName);
         if (img != null) {
             eventImageView.setImage(img);
@@ -145,7 +149,10 @@ public class GameHUD extends VBox {
     }
 
     public void setEventImage(GameEvent event) {
-        if (event == null || event.getId() == null) return;
+        if (event == null || event.getId() == null) {
+            eventImageView.setImage(null);
+            return;
+        }
 
         String eventId = event.getId().toLowerCase();
         String imageName;
@@ -187,7 +194,7 @@ public class GameHUD extends VBox {
         } else if (eventId.contains("cart") || eventId.contains("road") || eventId.contains("move") || eventId.contains("route") || eventId.contains("wagon") || eventId.contains("horse") || eventId.contains("path") || eventId.contains("szlak")) {
             imageName = "road.png";
         } else {
-            imageName = "event_default.png";
+            imageName = "forest.png";
         }
 
         setEventImage(imageName);

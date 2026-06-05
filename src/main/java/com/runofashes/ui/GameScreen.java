@@ -32,14 +32,16 @@ public class GameScreen {
     private final BiomePanel biomePanel;
     private final Runnable onMainMenu;
     private final Runnable onQuit;
+    private final Runnable onSettings;
 
     private StackPane root;
 
-    public GameScreen(GameEngine engine, Runnable refreshCallback, Consumer<GameEvent> onCardClick, Runnable onMainMenu, Runnable onQuit) {
+    public GameScreen(GameEngine engine, Runnable refreshCallback, Consumer<GameEvent> onCardClick, Runnable onMainMenu,Runnable onSettings, Runnable onQuit) {
         this.engine      = engine;
         this.onCardClick = onCardClick;
         this.onMainMenu  = onMainMenu;
         this.onQuit      = onQuit;
+        this.onSettings  = onSettings;
 
         this.hud             = new GameHUD(engine);
         this.inventoryPanel  = new InventoryPanel(engine, refreshCallback);
@@ -214,6 +216,7 @@ public class GameScreen {
 
         Button btnMainMenu = new Button("Menu główne");
         Button btnSave = new Button("Zapisz grę");
+        Button btnSettings = new Button("Ustawienia");
         Button btnAchievements = new Button("Osiągnięcia");
         Button btnQuit = new Button("Wyjdź z gry");
 
@@ -221,9 +224,10 @@ public class GameScreen {
         btnMainMenu.setStyle(menuBtnStyle);
         btnSave.setStyle(menuBtnStyle);
         btnAchievements.setStyle(menuBtnStyle);
+        btnSettings.setStyle(menuBtnStyle);
         btnQuit.setStyle(menuBtnStyle);
 
-        dropdownMenu.getChildren().addAll(btnMainMenu, btnSave, btnAchievements, btnQuit);
+        dropdownMenu.getChildren().addAll(btnMainMenu, btnSave, btnSettings, btnAchievements, btnQuit);
 
         StackPane.setAlignment(dropdownMenu, Pos.TOP_LEFT);
         StackPane.setMargin(dropdownMenu, new Insets(38, 0, 0, 12));
@@ -241,6 +245,11 @@ public class GameScreen {
         btnMainMenu.setOnAction(e -> {
             dropdownMenu.setVisible(false);
             onMainMenu.run();
+        });
+
+        btnSettings.setOnAction(e -> {
+            dropdownMenu.setVisible(false);
+            onSettings.run();
         });
 
         btnQuit.setOnAction(e -> {

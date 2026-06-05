@@ -44,6 +44,7 @@ public class Main extends Application {
                 this::refreshAll,
                 this::onCardClicked,
                 this::showMainMenu,
+                this::showSettingsFromGame,
                 () -> primaryStage.close()
         );
         endScreen  = new EndScreen(this::returnToMenuFromEnd, this::showCurrentStatsScreen, this::quitFromEnd);
@@ -125,6 +126,7 @@ public class Main extends Application {
         MainMenuScreen mainMenu = new MainMenuScreen(
                 this::showSaveNameScreen,
                 this::showLoadGameScreen,
+                this::showSettingsFromMenu,
                 () -> primaryStage.close()
         );
         mainScene.setRoot(mainMenu);
@@ -156,6 +158,20 @@ public class Main extends Application {
         mainScene.setRoot(saveNameScreen);
     }
 
+    private void showSettingsFromMenu() {
+        mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
+        SettingsScreen settings = new SettingsScreen(audioManager, this::showMainMenu);
+        mainScene.setRoot(settings);
+    }
+
+    private void showSettingsFromGame() {
+        mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
+        SettingsScreen settings = new SettingsScreen(audioManager, () -> {
+            mainScene.setRoot(gameScreen.getRoot());
+        });
+        mainScene.setRoot(settings);
+    }
+
     private void onDifficultyConfirmed() {
         Difficulty diff = difficultyScreen.getSelected();
         if (diff == null) return;
@@ -168,12 +184,15 @@ public class Main extends Application {
         Set<Trait> traits = traitScreen.getSelected();
         engine.configure(diff, traits);
         engine.reset();
+        gameScreen.setLastEvent(null);
         mainScene.setRoot(gameScreen.getRoot());
         javafx.application.Platform.runLater(this::refreshAll);
     }
 
     private void onCardClicked(GameEvent event) {
         if (engine.hasWon() || engine.isGameOver()) return;
+
+        gameScreen.setLastEvent(event);
 
         engine.executeEvent(event);
         refreshAll();
@@ -250,6 +269,7 @@ public class Main extends Application {
     private void loadGame(String filename) {
         try {
             engine.loadGame(filename);
+            gameScreen.setLastEvent(null);
             mainScene.setRoot(gameScreen.getRoot());
             javafx.application.Platform.runLater(this::refreshAll);
         } catch (Exception e) {
