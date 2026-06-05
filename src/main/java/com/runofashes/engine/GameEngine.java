@@ -270,15 +270,26 @@ public class GameEngine {
         state.unlockedAchievementIds = achievementManager.getUnlockedIds();
 
         try {
-            MAPPER.writerWithDefaultPrettyPrinter().writeValue(new File(currentSaveFilename), state);
-        } catch (Exception e) { e.printStackTrace(); }
+            File savesDir = new File("saves");
+            if (!savesDir.exists()) {
+                savesDir.mkdirs();
+            }
+
+            File saveFile = new File(savesDir, currentSaveFilename);
+            MAPPER.writerWithDefaultPrettyPrinter().writeValue(saveFile, state);
+
+            System.out.println("Gra zapisana pomyślnie w: " + saveFile.getPath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadGame(String filename) throws Exception {
         this.currentSaveFilename = filename;
-        File saveFile = new File(filename);
+
+        File saveFile = new File("saves", filename);
         if (!saveFile.exists()) {
-            throw new Exception("Brak pliku zapisu!");
+            throw new Exception("Brak pliku zapisu: " + saveFile.getPath());
         }
 
         GameState state = MAPPER.readValue(saveFile, GameState.class);
@@ -298,7 +309,7 @@ public class GameEngine {
 
     public void deleteSaveFile() {
         if (currentSaveFilename != null) {
-            File saveFile = new File(currentSaveFilename);
+            File saveFile = new File("saves", currentSaveFilename);
             if (saveFile.exists()) {
                 saveFile.delete();
                 System.out.println("Zakończono bieg. Usunięto plik zapisu: " + currentSaveFilename);

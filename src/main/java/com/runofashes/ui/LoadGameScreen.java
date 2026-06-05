@@ -26,8 +26,11 @@ public class LoadGameScreen extends VBox {
         VBox listContainer = new VBox(10);
         listContainer.setAlignment(Pos.CENTER);
 
-        File currentDir = new File(".");
-        File[] files = currentDir.listFiles((dir, name) -> name.startsWith("save") && name.endsWith(".json"));
+        File savesDir = new File("saves");
+        File[] files = null;
+        if (savesDir.exists() && savesDir.isDirectory()) {
+            files = savesDir.listFiles((dir, name) -> name.startsWith("save") && name.endsWith(".json"));
+        }
 
         if (files != null && files.length > 0) {
             for (File file : files) {
