@@ -125,7 +125,6 @@ public class Main extends Application {
         MainMenuScreen mainMenu = new MainMenuScreen(
                 this::showSaveNameScreen,
                 this::showLoadGameScreen,
-                this::showSettings,
                 () -> primaryStage.close()
         );
         mainScene.setRoot(mainMenu);
@@ -256,11 +255,6 @@ public class Main extends Application {
         } catch (Exception e) {
             System.err.println("Błąd wczytywania: " + e.getMessage());
         }
-    }
-
-    private void showSettings() {
-
-        System.out.println("Ekran ustawień w budowie...");
     }
 
     private void returnToMenuFromEnd() {

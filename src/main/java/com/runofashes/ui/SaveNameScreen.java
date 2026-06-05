@@ -42,7 +42,7 @@ public class SaveNameScreen extends VBox {
             }
 
             String safeName = input.replaceAll("[^a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ _-]", "").replace(" ", "_");
-            String filename = "save_" + safeName + ".json";
+            String filename = safeName + ".json";
 
             onNext.accept(filename);
         });

@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 
 public class MainMenuScreen extends VBox {
 
-    public MainMenuScreen(Runnable onNewGame, Runnable onLoadGame, Runnable onSettings, Runnable onQuit) {
+    public MainMenuScreen(Runnable onNewGame, Runnable onLoadGame, Runnable onQuit) {
         setStyle("-fx-background-color: #05050a;");
         setAlignment(Pos.CENTER);
         setSpacing(20);
@@ -19,10 +19,9 @@ public class MainMenuScreen extends VBox {
 
         Button newGameBtn = createMenuButton("Nowa gra", onNewGame);
         Button loadGameBtn = createMenuButton("Wczytaj grę", onLoadGame);
-        Button settingsBtn = createMenuButton("Ustawienia", onSettings);
         Button quitBtn = createMenuButton("Wyjdź z gry", onQuit);
 
-        getChildren().addAll(title, newGameBtn, loadGameBtn, settingsBtn, quitBtn);
+        getChildren().addAll(title, newGameBtn, loadGameBtn, quitBtn);
     }
 
     private Button createMenuButton(String text, Runnable action) {
