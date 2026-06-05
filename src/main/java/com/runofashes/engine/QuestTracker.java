@@ -9,9 +9,10 @@ import java.util.*;
 public class QuestTracker {
 
     private final Map<String, QuestState> activeQuests    = new LinkedHashMap<>();
-    private final Set<String>             completedQuests = new HashSet<>();
+    private final Set<String> completedQuests = new HashSet<>();
     private Map<String, GameEvent> questEventMap = Map.of();
     private List<GameEvent> questEvents = List.of();
+
 
     public void init(Map<String, GameEvent> questEventMap, List<GameEvent> questEvents) {
         this.questEventMap = questEventMap;
@@ -101,9 +102,11 @@ public class QuestTracker {
     public Map<String, QuestState> getActiveQuests() {
         return Collections.unmodifiableMap(activeQuests);
     }
-
     public GameEvent getQuestEvent(String questId, int stage) {
         return questEventMap.get(questId + "_" + stage);
+    }
+    public Set<String> getCompletedQuests() {
+        return completedQuests;
     }
 
     public boolean hasActiveLocalQuests(String currentQuestId) {

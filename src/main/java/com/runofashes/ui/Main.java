@@ -39,14 +39,18 @@ public class Main extends Application {
         stage.setFullScreenExitHint("");
         audioManager.playTheme();
 
-        gameScreen = new GameScreen(engine, this::refreshAll, this::onCardClicked);
-        endScreen  = new EndScreen(this::showDifficultyScreen, this::showCurrentStatsScreen, () -> primaryStage.close());
-        winScreen  = new WinScreen(this::showDifficultyScreen, this::showCurrentStatsScreen, () -> primaryStage.close());
+        gameScreen = new GameScreen(
+                engine,
+                this::refreshAll,
+                this::onCardClicked,
+                this::showMainMenu,
+                () -> primaryStage.close()
+        );
+        endScreen  = new EndScreen(this::returnToMenuFromEnd, this::showCurrentStatsScreen, this::quitFromEnd);
+        winScreen  = new WinScreen(this::returnToMenuFromEnd, this::showCurrentStatsScreen, this::quitFromEnd);
 
-        IntroScreen introScreen = new IntroScreen(() -> {
-            showDifficultyScreen();
-        });
-        mainScene = new Scene(introScreen, 980, 800, javafx.scene.paint.Color.web("#05050a"));
+        mainScene = new Scene(new javafx.scene.layout.StackPane(), 980, 800, javafx.scene.paint.Color.web("#05050a"));
+        showIntro();
 
         mainScene.addEventFilter(javafx.scene.input.KeyEvent.KEY_TYPED, event -> {
             if (mainScene.getRoot() == gameScreen.getRoot()) {
@@ -82,11 +86,13 @@ public class Main extends Application {
     }
 
     private void showDifficultyScreen() {
+        mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
         difficultyScreen = new DifficultyScreen(this::onDifficultyConfirmed);
         mainScene.setRoot(difficultyScreen);
     }
 
     private void showStatsScreen() {
+        mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
         StatsScreen statsScreen = new StatsScreen(engine.getStatsManager().getAllRuns(), this::showDifficultyScreen);
         mainScene.setRoot(statsScreen);
     }
@@ -99,13 +105,56 @@ public class Main extends Application {
     private void showCurrentStatsScreen() {
         RunStatistics currentStats = engine.getStatsManager().getCurrentRun();
 
+        if (currentStats == null) {
+            var allRuns = engine.getStatsManager().getAllRuns();
+            if (!allRuns.isEmpty()) {
+                currentStats = allRuns.get(allRuns.size() - 1);
+            }
+        }
+
         CurrentRunStatsScreen statsScreen = new CurrentRunStatsScreen(
                 currentStats,
                 () -> showAchievements(this::showCurrentStatsScreen),
-                this::showDifficultyScreen,
-                () -> primaryStage.close()
+                this::returnToMenuFromEnd,
+                this::quitFromEnd
         );
         mainScene.setRoot(statsScreen);
+    }
+
+    private void showMainMenu() {
+        MainMenuScreen mainMenu = new MainMenuScreen(
+                this::showSaveNameScreen,
+                this::showLoadGameScreen,
+                this::showSettings,
+                () -> primaryStage.close()
+        );
+        mainScene.setRoot(mainMenu);
+    }
+
+    private void showIntro() {
+        IntroScreen intro = new IntroScreen(this::showMainMenu);
+        mainScene.setRoot(intro);
+    }
+
+    private void showLoadGameScreen() {
+        mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
+        LoadGameScreen loadScreen = new LoadGameScreen(
+                this::loadGame,
+                this::showMainMenu
+        );
+        mainScene.setRoot(loadScreen);
+    }
+
+    private void showSaveNameScreen() {
+        mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
+        SaveNameScreen saveNameScreen = new SaveNameScreen(
+                filename -> {
+                    engine.setSaveFilename(filename);
+                    showDifficultyScreen();
+                },
+                this::showMainMenu
+        );
+        mainScene.setRoot(saveNameScreen);
     }
 
     private void onDifficultyConfirmed() {
@@ -131,6 +180,7 @@ public class Main extends Application {
         refreshAll();
 
         if (engine.hasWon()) {
+            engine.deleteSaveFile();
             AchievementTracker.checkEndGame(engine, true);
             engine.getStatsManager().finalizeAndSaveRun(true, "Przeżycie", engine.getPlayer());
 
@@ -140,6 +190,7 @@ public class Main extends Application {
             mainScene.setRoot(outro);
 
         } else if (engine.isGameOver()) {
+            engine.deleteSaveFile();
             AchievementTracker.checkEndGame(engine, false);
 
             String deadStat = engine.getPlayer().getDeadStat();
@@ -195,5 +246,29 @@ public class Main extends Application {
         } catch (Exception e) {
             System.out.println("Błąd Easter Ega: " + e.getMessage());
         }
+    }
+
+    private void loadGame(String filename) {
+        try {
+            engine.loadGame(filename);
+            mainScene.setRoot(gameScreen.getRoot());
+            javafx.application.Platform.runLater(this::refreshAll);
+        } catch (Exception e) {
+            System.err.println("Błąd wczytywania: " + e.getMessage());
+        }
+    }
+
+    private void showSettings() {
+
+        System.out.println("Ekran ustawień w budowie...");
+    }
+
+    private void returnToMenuFromEnd() {
+        audioManager.changeMusic("/com/runofashes/ui/sounds/magic-forest-kevin-macleod.mp3");
+        showMainMenu();
+    }
+
+    private void quitFromEnd() {
+        primaryStage.close();
     }
 }

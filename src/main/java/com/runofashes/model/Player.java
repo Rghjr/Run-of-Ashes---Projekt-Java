@@ -82,6 +82,9 @@ public class Player {
     public int getMorale()           { return morale; }
     public void setMorale(int v)     { morale    = clamp(v, maxMorale); }
 
+    public void setTime(int time) { this.time = time; }
+    public void setDistance(int distance) { this.distance = distance; }
+
     // ── Czas i dystans ────────────────────────────────────────────────────────
 
     public int getTime()             { return time; }
@@ -128,5 +131,15 @@ public class Player {
             case "morale"    -> getMorale();
             default          -> 100;
         };
+    }
+
+    public void loadFromState(GameState state) {
+        this.health = state.health;
+        this.hunger = state.hunger;
+        this.hydration = state.hydration;
+        this.energy = state.energy;
+        this.morale = state.morale;
+        this.time = state.time;
+        this.distance = state.distance;
     }
 }

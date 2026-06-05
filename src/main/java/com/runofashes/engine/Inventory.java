@@ -84,6 +84,11 @@ public class Inventory {
         return items.isEmpty();
     }
 
+    public void loadFromMap(Map<ItemType, Integer> itemsMap) {
+        this.items.clear();
+        this.items.putAll(itemsMap);
+    }
+
     // ── Prywatne helpers ──────────────────────────────────────────────────────
 
     private void applyEffects(Player player, Map<String, Integer> effects) {

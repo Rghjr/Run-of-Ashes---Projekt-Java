@@ -3,7 +3,11 @@ package com.runofashes.engine;
 import com.runofashes.model.*;
 import com.runofashes.utils.EventLoader;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.io.File;
+import java.util.Set;
 
 public class GameEngine {
 
@@ -16,6 +20,7 @@ public class GameEngine {
     private final EventResolver          eventResolver   = new EventResolver(RNG);
     private final EffectApplicator       effectApplicator = new EffectApplicator(RNG);
     private CardDrawer cardDrawer;
+    private static final com.fasterxml.jackson.databind.ObjectMapper MAPPER = new com.fasterxml.jackson.databind.ObjectMapper().configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     private Player player = new Player();
     private int turnCount = 0;
@@ -31,6 +36,11 @@ public class GameEngine {
 
     private final AchievementManager     achievementManager = new AchievementManager();
     private final StatisticsManager statsManager = new StatisticsManager();
+
+    private String currentSaveFilename = "savegame.json";
+    public void setSaveFilename(String filename) {
+        this.currentSaveFilename = filename;
+    }
 
     public void load() throws Exception {
         eventPools.load();
@@ -206,6 +216,8 @@ public class GameEngine {
     public Inventory     getInventory()      { return inventory; }
     public StatusManager getStatusManager()  { return statusManager; }
     public List<GameEvent> getCurrentCards() { return Collections.unmodifiableList(currentCards); }
+    public Set<String> getCompletedQuests() { return questTracker.getCompletedQuests(); }
+    public Set<String> getUnlockedIds() { return achievementManager.getUnlockedIds(); }
 
     public AchievementManager getAchievementManager() {
         return achievementManager;
@@ -233,4 +245,64 @@ public class GameEngine {
     public Weather getCurrentWeather() { return environment.getCurrentWeather(); }
 
     public int getTurnCount() { return turnCount; }
+
+    public void saveGame() {
+        GameState state = new GameState();
+        state.stats = statsManager.getCurrentRun();
+
+        // Dane gracza
+        state.health = player.getHealth();
+        state.hunger = player.getHunger();
+        state.hydration = player.getHydration();
+        state.energy = player.getEnergy();
+        state.morale = player.getMorale();
+        state.time = player.getTime();
+        state.distance = player.getDistance();
+
+        // Cechy
+        state.activeTraitNames = traitManager.getActiveTraits().stream()
+                .map(Enum::name).collect(Collectors.toList());
+
+        // Ekwipunek i Questy
+        state.inventoryItems = inventory.getAllItems();
+        state.activeQuests = questTracker.getActiveQuests();
+        state.completedQuestIds = questTracker.getCompletedQuests();
+        state.unlockedAchievementIds = achievementManager.getUnlockedIds();
+
+        try {
+            MAPPER.writerWithDefaultPrettyPrinter().writeValue(new File(currentSaveFilename), state);
+        } catch (Exception e) { e.printStackTrace(); }
+    }
+
+    public void loadGame(String filename) throws Exception {
+        this.currentSaveFilename = filename;
+        File saveFile = new File(filename);
+        if (!saveFile.exists()) {
+            throw new Exception("Brak pliku zapisu!");
+        }
+
+        GameState state = MAPPER.readValue(saveFile, GameState.class);
+
+        player.loadFromState(state);
+
+        inventory.loadFromMap(state.inventoryItems);
+
+        if (state.unlockedAchievementIds != null) {
+            for (String id : state.unlockedAchievementIds) {
+                achievementManager.unlockAchievement(id);
+            }
+        }
+
+        drawCards();
+    }
+
+    public void deleteSaveFile() {
+        if (currentSaveFilename != null) {
+            File saveFile = new File(currentSaveFilename);
+            if (saveFile.exists()) {
+                saveFile.delete();
+                System.out.println("Zakończono bieg. Usunięto plik zapisu: " + currentSaveFilename);
+            }
+        }
+    }
 }

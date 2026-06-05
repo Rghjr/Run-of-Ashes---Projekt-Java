@@ -30,12 +30,17 @@ public class GameScreen {
     private final InventoryPanel inventoryPanel;
     private final QuestPanel questPanel;
     private final BiomePanel biomePanel;
+    private final Runnable onMainMenu;
+    private final Runnable onQuit;
 
     private StackPane root;
 
-    public GameScreen(GameEngine engine, Runnable refreshCallback, Consumer<GameEvent> onCardClick) {
+    public GameScreen(GameEngine engine, Runnable refreshCallback, Consumer<GameEvent> onCardClick, Runnable onMainMenu, Runnable onQuit) {
         this.engine      = engine;
         this.onCardClick = onCardClick;
+        this.onMainMenu  = onMainMenu;
+        this.onQuit      = onQuit;
+
         this.hud             = new GameHUD(engine);
         this.inventoryPanel  = new InventoryPanel(engine, refreshCallback);
         this.questPanel      = new QuestPanel(engine);
@@ -160,6 +165,8 @@ public class GameScreen {
             btnInv.getStyleClass().setAll("button", "tab-button-inactive");
         });
 
+
+
         HBox tabButtons = new HBox(4, btnInv, btnQuest);
         VBox rightSide = new VBox(8, biomePanel, tabButtons, rightContent, biomePanel.getStatusesBox());
 
@@ -220,6 +227,25 @@ public class GameScreen {
 
         StackPane.setAlignment(dropdownMenu, Pos.TOP_LEFT);
         StackPane.setMargin(dropdownMenu, new Insets(38, 0, 0, 12));
+
+        btnSave.setOnAction(e -> {
+            engine.saveGame();
+            dropdownMenu.setVisible(false);
+
+            btnSave.setText("Zapisano!");
+            javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(Duration.seconds(2));
+            pause.setOnFinished(ev -> btnSave.setText("Zapisz grę"));
+            pause.play();
+        });
+
+        btnMainMenu.setOnAction(e -> {
+            dropdownMenu.setVisible(false);
+            onMainMenu.run();
+        });
+
+        btnQuit.setOnAction(e -> {
+            onQuit.run();
+        });
 
         // Panel osiągnięć
         AchievementPanel achievementPanel = new AchievementPanel(engine);

@@ -54,6 +54,13 @@ public class AchievementManager {
         return false;
     }
 
+    public Set<String> getUnlockedIds() {
+        return achievements.values().stream()
+                .filter(Achievement::isUnlocked)
+                .map(Achievement::getId)
+                .collect(Collectors.toSet());
+    }
+
     /**
      * Zwraca wszystkie osiągnięcia w formie płaskiej listy.
      */
