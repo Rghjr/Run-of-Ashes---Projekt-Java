@@ -3,11 +3,9 @@ package com.runofashes.engine;
 import com.runofashes.model.*;
 import com.runofashes.utils.EventLoader;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.File;
-import java.util.Set;
 
 public class GameEngine {
 
@@ -146,6 +144,54 @@ public class GameEngine {
                     ? event.getRevealMessage()
                     : lastMessage + "\n\n" + event.getRevealMessage();
         }
+        AchievementTracker.checkEventAchievements(this, event, lastResult);
+        advanceTurn(event.getTimeCost());
+    }
+
+    /** Szansa powodzenia opcji wyboru (0.0–1.0) dla aktualnego stanu gracza — do UI. */
+    public double getChoiceChance(EventChoice choice) {
+        return eventResolver.choiceChance(choice, player, traitManager, difficulty);
+    }
+
+    /**
+     * Rozstrzyga wybraną przez gracza opcję w wydarzeniu typu "wybór".
+     * Wynik to wyłącznie SUKCES albo PORAŻKA (brak efektu pośredniego).
+     */
+    public void executeChoice(GameEvent event, EventChoice choice) {
+        hasUnsavedProgress = true;
+
+        if (event.getQuestId() != null && event.getQuestStage() == 1 && event.getRequiredStage() != null) {
+            mainQuestWeight = 5;
+        }
+
+        boolean success = eventResolver.resolveChoice(choice, player, traitManager, difficulty);
+        lastResult = success ? EventResult.SUCCESS : EventResult.FAIL;
+        Biome biome = environment.getCurrentBiome();
+
+        if (success) {
+            effectApplicator.applyEffects(
+                    effectApplicator.applyHallucinations(choice.getEffects(), statusManager),
+                    player, biome, difficulty);
+            effectApplicator.processItemEffects(choice.getItemEffects(), false,
+                    inventory, player, biome, difficulty);
+            lastMessage = choice.getSuccessMessage() != null ? choice.getSuccessMessage() : "";
+            questTracker.handleProgress(event);
+            if (event.getDistanceCost() != 0) {
+                player.addDistance(event.getDistanceCost());
+                appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
+            }
+            if ("quest".equals(event.getCategory()) && event.getQuestStage() == 2) {
+                if (event.isLocalQuest()) statsManager.getCurrentRun().addLocalQuest();
+                else statsManager.getCurrentRun().addGeneralQuest();
+            }
+        } else {
+            effectApplicator.applyEffects(choice.getFailEffects(), player, biome, difficulty);
+            effectApplicator.processItemEffects(choice.getFailItemEffects(), false,
+                    inventory, player, biome, difficulty);
+            lastMessage = choice.getFailMessage() != null ? choice.getFailMessage() : "";
+            questTracker.onQuestFail(event);
+        }
+
         AchievementTracker.checkEventAchievements(this, event, lastResult);
         advanceTurn(event.getTimeCost());
     }

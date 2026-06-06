@@ -1,6 +1,7 @@
 package com.runofashes.engine;
 
 import com.runofashes.model.Difficulty;
+import com.runofashes.model.EventChoice;
 import com.runofashes.model.GameEvent;
 import com.runofashes.model.Player;
 
@@ -43,5 +44,26 @@ public class EventResolver {
     private static double statPenalty(int statValue) {
         if (statValue >= 30) return 0.0;
         return 1.0 - statValue / 30.0;
+    }
+
+    /**
+     * Szansa powodzenia danej opcji wyboru (0.0–1.0), zależna od statystyki gracza,
+     * cech oraz poziomu trudności. Deterministyczna — można jej użyć do wyświetlenia
+     * graczowi procentu szansy.
+     */
+    public double choiceChance(EventChoice choice, Player player,
+                               TraitManager traitManager, Difficulty difficulty) {
+        double chance = choice.getBaseChance();
+        if (choice.getStat() != null) {
+            chance += choice.getStatInfluence() * (player.getStat(choice.getStat()) / 100.0);
+        }
+        chance += traitManager.getSuccessMod() + difficulty.getSuccessBonus();
+        return Math.max(0.02, Math.min(0.98, chance));
+    }
+
+    /** Rozstrzyga opcję wyboru: true = sukces, false = porażka (brak stanu pośredniego). */
+    public boolean resolveChoice(EventChoice choice, Player player,
+                                 TraitManager traitManager, Difficulty difficulty) {
+        return rng.nextDouble() < choiceChance(choice, player, traitManager, difficulty);
     }
 }

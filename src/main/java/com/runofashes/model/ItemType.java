@@ -117,9 +117,9 @@ public enum ItemType {
             null,
             0
     ),
-    MILITARY_STIMPACK(
-            "Stymulant bojowy",
-            "fas-syringe",
+    BATTLE_ELIXIR(
+            "Bojowy eliksir",
+            "fas-flask",
             1,
             Map.of("energy", 50, "morale", 30, "health", -20),
             null,

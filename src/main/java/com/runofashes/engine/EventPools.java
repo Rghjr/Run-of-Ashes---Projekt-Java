@@ -31,6 +31,7 @@ public class EventPools {
 
         questEvents = new ArrayList<>(EventLoader.loadEvents("events_quests.json"));
         questEvents.addAll(EventLoader.loadEvents("events_stages_quests.json"));
+        questEvents.addAll(EventLoader.loadEvents("events_choice_quests.json"));
 
         questEventMap = new HashMap<>();
         for (GameEvent e : questEvents) {

@@ -1,0 +1,385 @@
+[
+  {
+    "id": "quest_village_bandits_1",
+    "label": "Wejście do wioski — banda rozbójników zagradza ci drogę",
+    "lowMoraleLabel": "Jacyś zbóje stoją na drodze. Może po prostu pozwolić im skończyć robotę?",
+    "timeCost": 2,
+    "distanceCost": 0,
+    "category": "quest",
+    "questId": "village_bandits",
+    "questStage": 1,
+    "turnsUntilNext": 0,
+    "localQuest": true,
+    "choices": [
+      {
+        "label": "Przekradnij się bokiem, w cieniu zabudowań",
+        "stat": "energy",
+        "baseChance": 0.30,
+        "statInfluence": 0.45,
+        "effects": { "morale": 12 },
+        "successMessage": "Przemknąłeś niezauważony. Słyszałeś jeszcze ich śmiech, gdy znikałeś w uliczce.",
+        "failEffects": { "health": -12, "energy": -15 },
+        "failMessage": "Trzasnęła gałąź pod butem. Dopadli cię, zanim zdążyłeś uciec — oberwałeś, ale wyrwałeś się."
+      },
+      {
+        "label": "Przegadaj ich — udawaj, że nie masz nic wartościowego",
+        "stat": "morale",
+        "baseChance": 0.25,
+        "statInfluence": 0.50,
+        "effects": { "morale": 20 },
+        "itemEffects": { "DRIED_MEAT": 1 },
+        "successMessage": "Gadałeś jak najęty. W końcu machnęli ręką, a jeden nawet rzucił ci kawałek mięsa „na drogę”.",
+        "failEffects": { "morale": -18, "health": -8 },
+        "failMessage": "Nie uwierzyli w ani jedno słowo. Przeszukali cię brutalnie i przegonili kopniakami."
+      },
+      {
+        "label": "Rzuć się do ucieczki przez pola",
+        "stat": "energy",
+        "baseChance": 0.45,
+        "statInfluence": 0.35,
+        "effects": { "energy": -12, "morale": 6 },
+        "successMessage": "Biegłeś, aż płuca paliły. Zostali daleko w tyle, klnąc na próżno.",
+        "failEffects": { "health": -22, "energy": -18 },
+        "failItemEffects": { "WATER": -1 },
+        "failMessage": "Dogonili cię na otwartym polu. Wyrwałeś się, ale zgubiłeś bukłak i ledwo trzymasz się na nogach."
+      },
+      {
+        "label": "Oddaj część zapasów bez słowa, byle przeżyć",
+        "baseChance": 0.88,
+        "effects": { "morale": -10 },
+        "itemEffects": { "DRIED_MEAT": -1, "WATER": -1 },
+        "successMessage": "Rzuciłeś im prowiant pod nogi. Zabrali, co chcieli, i pozwolili ci przejść. Upokarzające — ale żyjesz.",
+        "failEffects": { "health": -25, "morale": -15 },
+        "failItemEffects": { "DRIED_MEAT": -1, "WATER": -1 },
+        "failMessage": "Wzięli zapasy i tak cię pobili dla zabawy. Brak honoru wśród szczurów."
+      }
+    ]
+  },
+  {
+    "id": "quest_plague_pit_1",
+    "label": "Grabarze kopią masowy grób za wsią — wołają cię na pomoc",
+    "lowMoraleLabel": "Ludzie wrzucają trupy do dołu. Pewnie i tak niedługo dołączysz.",
+    "timeCost": 2,
+    "distanceCost": 0,
+    "category": "quest",
+    "questId": "plague_pit",
+    "questStage": 1,
+    "turnsUntilNext": 0,
+    "localQuest": true,
+    "choices": [
+      {
+        "label": "Pomóż grzebać zmarłych, zasłaniając twarz octem",
+        "stat": "health",
+        "baseChance": 0.40,
+        "statInfluence": 0.40,
+        "effects": { "morale": 18 },
+        "itemEffects": { "SALT": 1 },
+        "successMessage": "Pracowałeś do zmroku, krztusząc się smrodem. Starszy grabarz pobłogosławił cię i wcisnął ci woreczek soli.",
+        "failEffects": { "health": -22, "morale": -6 },
+        "failMessage": "Zaczerpnąłeś zbyt głęboko zatrutego powietrza. Wieczorem trzęsie tobą gorączka."
+      },
+      {
+        "label": "Przeszukaj ciała po kryjomu, gdy nikt nie patrzy",
+        "stat": "energy",
+        "baseChance": 0.35,
+        "statInfluence": 0.40,
+        "effects": { "morale": -8 },
+        "itemEffects": { "SACRED_AMULET": 1 },
+        "successMessage": "Z szyi jednego z trupów zsunąłeś srebrny amulet. Sumienie milczy, gdy w brzuchu pusto.",
+        "failEffects": { "health": -15, "morale": -15 },
+        "failMessage": "Przyłapali cię z ręką w cudzej kieszeni. Obili cię łopatami jak hienę cmentarną."
+      },
+      {
+        "label": "Stań z nimi i odmów modlitwę nad dołem",
+        "stat": "morale",
+        "baseChance": 0.50,
+        "statInfluence": 0.30,
+        "effects": { "morale": 22 },
+        "successMessage": "Twój głos niósł się nad grobem. Na chwilę ludzie poczuli, że umarli nie odeszli bez słowa.",
+        "failEffects": { "morale": -10 },
+        "failMessage": "Słowa uwięzły ci w gardle. Ktoś syknął, że lepiej milczeć, niż kłamać o łasce."
+      },
+      {
+        "label": "Odmów i idź dalej, byle szybciej minąć cuchnący dół",
+        "baseChance": 0.95,
+        "effects": { "morale": -5 },
+        "successMessage": "Minąłeś dół spiesznym krokiem. Ich spojrzenia paliły cię w plecy jeszcze długo.",
+        "failEffects": { "morale": -12 },
+        "failMessage": "Pośliznąłeś się na rozmokłej ziemi tuż przy krawędzi dołu. Otrzepałeś się z mdłościami w gardle."
+      }
+    ]
+  },
+  {
+    "id": "quest_flagellants_1",
+    "label": "Procesja biczowników przechodzi przez rozstaje, smagając się do krwi",
+    "lowMoraleLabel": "Banda fanatyków leje się rzemieniami i wyje o końcu świata. Pasujesz tu aż za dobrze.",
+    "timeCost": 2,
+    "distanceCost": 0,
+    "category": "quest",
+    "questId": "flagellants",
+    "questStage": 1,
+    "turnsUntilNext": 0,
+    "localQuest": true,
+    "choices": [
+      {
+        "label": "Przyłącz się do pokuty i nieś krzyż z nimi",
+        "stat": "morale",
+        "baseChance": 0.40,
+        "statInfluence": 0.40,
+        "effects": { "morale": 25, "health": -8 },
+        "successMessage": "Szedłeś w ich rzędzie, plecy w pręgach, ale w sercu dziwny spokój. Może Bóg jednak patrzy.",
+        "failEffects": { "health": -18, "morale": -10 },
+        "failMessage": "Rytm bicza okazał się ponad twoje siły. Padłeś w błoto, wyśmiany przez własnych „braci”."
+      },
+      {
+        "label": "Poproś ich przywódcę o strawę i błogosławieństwo",
+        "stat": "morale",
+        "baseChance": 0.30,
+        "statInfluence": 0.50,
+        "effects": { "morale": 8 },
+        "itemEffects": { "DRIED_MEAT": 1, "WINE": 1 },
+        "successMessage": "Mnich w łachmanach przeżegnał cię i kazał podzielić się z tobą resztką prowiantu.",
+        "failEffects": { "morale": -12 },
+        "failMessage": "Nazwali cię pasożytem, który chce zbawienia bez bólu. Odpędzili cię okrzykami."
+      },
+      {
+        "label": "Wykorzystaj zamieszanie i zwędź coś z ich tobołów",
+        "stat": "energy",
+        "baseChance": 0.30,
+        "statInfluence": 0.45,
+        "effects": { "morale": -10 },
+        "itemEffects": { "SALT": 1, "DRIED_MEAT": 1 },
+        "successMessage": "Gdy zawodzili w ekstazie, twoje palce były szybsze niż ich modlitwy.",
+        "failEffects": { "health": -20, "morale": -15 },
+        "failMessage": "Krzyknęli „złodziej i bluźnierca!”. Tłum spuścił ci łomot w imię Pańskie."
+      },
+      {
+        "label": "Przeczekaj w ukryciu, aż procesja przejdzie",
+        "baseChance": 0.90,
+        "effects": { "morale": -3 },
+        "successMessage": "Skuliłeś się za płotem. Zawodzenie ucichło dopiero po zmierzchu — ruszyłeś dalej.",
+        "failEffects": { "energy": -12 },
+        "failMessage": "Procesja wlokła się w nieskończoność. Zmarzłeś i zesztywniałeś w kucki."
+      }
+    ]
+  },
+  {
+    "id": "quest_burning_cottage_1",
+    "label": "Z płonącej chaty dobiega krzyk — w środku ktoś został",
+    "lowMoraleLabel": "Chata płonie, ktoś wrzeszczy. Jedna dusza mniej na tym przeklętym świecie.",
+    "timeCost": 1,
+    "distanceCost": 0,
+    "category": "quest",
+    "questId": "burning_cottage",
+    "questStage": 1,
+    "turnsUntilNext": 0,
+    "localQuest": true,
+    "choices": [
+      {
+        "label": "Wpadnij w ogień po uwięzionego",
+        "stat": "health",
+        "baseChance": 0.30,
+        "statInfluence": 0.45,
+        "effects": { "morale": 30 },
+        "itemEffects": { "HERBS": 1 },
+        "successMessage": "Wyciągnąłeś z dymu zakaszlane dziecko. Matka, łkając, wcisnęła ci pęk ziół na rany.",
+        "failEffects": { "health": -30, "morale": -10 },
+        "failMessage": "Belka runęła tuż przed tobą. Wypełzłeś z poparzonymi rękami — i z ciszą tam, gdzie był krzyk."
+      },
+      {
+        "label": "Wyważ okiennice i wyciągnij go z zewnątrz",
+        "stat": "energy",
+        "baseChance": 0.40,
+        "statInfluence": 0.40,
+        "effects": { "morale": 22, "health": -8 },
+        "successMessage": "Wyłamałeś deski i chwyciłeś wyciągniętą rękę. Razem padliście na ziemię, żywi.",
+        "failEffects": { "health": -18, "morale": -12 },
+        "failMessage": "Okiennice nie puściły. Ogień buchnął ci w twarz, a krzyk zamilkł zanim zdołałeś je rozbić."
+      },
+      {
+        "label": "Zwołuj ludzi i czekaj na pomoc",
+        "stat": "morale",
+        "baseChance": 0.40,
+        "statInfluence": 0.30,
+        "effects": { "morale": 10 },
+        "successMessage": "Twoje wołanie ściągnęło sąsiadów z wiadrami. Wyciągnęli go w ostatniej chwili.",
+        "failEffects": { "morale": -20 },
+        "failMessage": "Nikt nie przyszedł. We wsi zostały już tylko trupy i ty — bezsilny świadek."
+      },
+      {
+        "label": "Wykorzystaj pożogę i przeszukaj sąsiednie obejście",
+        "stat": "energy",
+        "baseChance": 0.50,
+        "statInfluence": 0.30,
+        "effects": { "morale": -15 },
+        "itemEffects": { "DRIED_MEAT": 1, "SALT": 1 },
+        "successMessage": "Gdy chata płonęła, opróżniłeś cudzą spiżarnię. Żywi nie będą jej już potrzebować.",
+        "failEffects": { "health": -12, "morale": -18 },
+        "failMessage": "Iskra przeskoczyła na strzechę nad tobą. Uciekłeś z pustymi rękami i osmaloną brodą."
+      }
+    ]
+  },
+  {
+    "id": "quest_tainted_well_1",
+    "label": "W wymarłej wiosce stoi studnia — a twoje gardło jest jak pergamin",
+    "lowMoraleLabel": "Studnia w wsi pełnej trupów. Może łyk zatrutej wody to litościwy koniec.",
+    "timeCost": 1,
+    "distanceCost": 0,
+    "category": "quest",
+    "questId": "tainted_well",
+    "questStage": 1,
+    "turnsUntilNext": 0,
+    "localQuest": true,
+    "choices": [
+      {
+        "label": "Pij łapczywie wprost ze studni",
+        "stat": "health",
+        "baseChance": 0.45,
+        "statInfluence": 0.35,
+        "effects": { "hydration": 25, "morale": 5 },
+        "successMessage": "Woda była zimna i czysta. Tym razem los się do ciebie uśmiechnął.",
+        "failEffects": { "health": -25, "hydration": -5 },
+        "failMessage": "Już po pierwszym łyku poczułeś trupi posmak. Do rana skręca cię w trzewiach."
+      },
+      {
+        "label": "Przelej przez płótno i przegotuj nad ogniem",
+        "stat": "energy",
+        "baseChance": 0.55,
+        "statInfluence": 0.30,
+        "effects": { "hydration": 20, "energy": -8 },
+        "itemEffects": { "WATER": 1 },
+        "successMessage": "Czekanie się opłaciło. Napełniłeś bukłak wodą, która już ci nie zagrozi.",
+        "failEffects": { "energy": -14, "hydration": -5 },
+        "failMessage": "Ogień ledwo się tlił, płótno przeciekło. Straciłeś czas i siły, a wciąż masz sucho w ustach."
+      },
+      {
+        "label": "Poszukaj zapieczętowanego dzbana w chatach",
+        "stat": "energy",
+        "baseChance": 0.35,
+        "statInfluence": 0.40,
+        "itemEffects": { "WATER": 1, "WINE": 1 },
+        "effects": { "morale": -6 },
+        "successMessage": "W chłodnej piwnicy znalazłeś nietknięty dzban wody i zalakowane wino. Skarb wart zachodu.",
+        "failEffects": { "health": -10, "morale": -12 },
+        "failMessage": "Zamiast dzbana znalazłeś wzdętego trupa pod stołem. Wybiegłeś z dławiącymi mdłościami."
+      },
+      {
+        "label": "Zrezygnuj i wlecz się dalej, byle z dala od śmierci",
+        "baseChance": 0.95,
+        "effects": { "hydration": -8, "morale": -5 },
+        "successMessage": "Odszedłeś o suchym pysku. Lepiej spragniony niż martwy w rynsztoku obcej wsi.",
+        "failEffects": { "hydration": -12 },
+        "failMessage": "Słońce praży, a ty oddalasz się od jedynej wody w okolicy. Język masz spuchnięty."
+      }
+    ]
+  },
+  {
+    "id": "quest_night_wolves_1",
+    "label": "Zapada noc, a z ciemności błyskają ślepia wygłodniałych wilków",
+    "lowMoraleLabel": "Wilki. Przynajmniej kły są szybsze niż zaraza.",
+    "timeCost": 1,
+    "distanceCost": 0,
+    "category": "quest",
+    "questId": "night_wolves",
+    "questStage": 1,
+    "turnsUntilNext": 0,
+    "localQuest": true,
+    "choices": [
+      {
+        "label": "Rozpal wielkie ognisko, by je odstraszyć",
+        "stat": "energy",
+        "baseChance": 0.50,
+        "statInfluence": 0.30,
+        "effects": { "morale": 12, "energy": -10 },
+        "successMessage": "Płomień strzelił w noc. Wilki skowytnęły i rozpłynęły się w mroku.",
+        "failEffects": { "health": -15, "energy": -12 },
+        "failItemEffects": { "DRIED_MEAT": -1 },
+        "failMessage": "Mokre drewno ledwo dymiło. Jeden z wilków capnął twój tobół i znikł z połciem mięsa."
+      },
+      {
+        "label": "Stań do walki z naostrzoną klingą",
+        "stat": "health",
+        "baseChance": 0.35,
+        "statInfluence": 0.45,
+        "effects": { "morale": 15, "health": -8 },
+        "itemEffects": { "DRIED_MEAT": 1 },
+        "successMessage": "Padł wódz watahy, reszta uciekła. Z jego cielska wykroiłeś trochę mięsa na drogę.",
+        "failEffects": { "health": -30, "morale": -10 },
+        "failMessage": "Było ich zbyt wiele. Odgoniłeś je w końcu, ale uda masz poszarpane kłami."
+      },
+      {
+        "label": "Rzuć im połeć mięsa i wycofaj się w ciemność",
+        "baseChance": 0.80,
+        "itemEffects": { "DRIED_MEAT": -1 },
+        "effects": { "morale": -5 },
+        "successMessage": "Rzucone mięso zajęło je na tyle długo, byś zniknął między drzewami.",
+        "failEffects": { "health": -18 },
+        "failItemEffects": { "DRIED_MEAT": -1 },
+        "failMessage": "Pożarły mięso i ruszyły za tobą. Wyrwałeś się, zostawiając strzęp nogawki w pysku jednego z nich."
+      },
+      {
+        "label": "Wespnij się na drzewo i przeczekaj do świtu",
+        "stat": "energy",
+        "baseChance": 0.45,
+        "statInfluence": 0.35,
+        "effects": { "energy": -12, "morale": -8 },
+        "successMessage": "Spędziłeś noc skulony w konarach. Wilki w końcu odeszły, a ty zszedłeś sztywny z zimna.",
+        "failEffects": { "health": -12, "energy": -18 },
+        "failMessage": "Gałąź trzasnęła pod tobą o brzasku. Spadłeś prosto między ostatnie wilki — ledwo uszedłeś."
+      }
+    ]
+  },
+  {
+    "id": "quest_plague_gate_1",
+    "label": "Strażnicy u bram miasta nie wpuszczają obcych — boją się zarazy",
+    "lowMoraleLabel": "Zamknęli bramy przed takimi jak ty. Słusznie — niesiesz tylko śmierć.",
+    "timeCost": 2,
+    "distanceCost": 0,
+    "category": "quest",
+    "questId": "plague_gate",
+    "questStage": 1,
+    "turnsUntilNext": 0,
+    "localQuest": true,
+    "choices": [
+      {
+        "label": "Przekup straż bukłakiem wina i resztką grosza",
+        "baseChance": 0.70,
+        "itemEffects": { "WINE": -1 },
+        "effects": { "morale": 8 },
+        "successMessage": "Strażnik schował wino pod płaszcz i uchylił furtę. Złoto i trunek otwierają każdą bramę.",
+        "failEffects": { "morale": -12 },
+        "failItemEffects": { "WINE": -1 },
+        "failMessage": "Wzięli wino, splunęli pod nogi i zatrzasnęli bramę. Okpiony przy własnej naiwności."
+      },
+      {
+        "label": "Podaj się za wędrownego zielarza, który leczy zarazę",
+        "stat": "morale",
+        "baseChance": 0.30,
+        "statInfluence": 0.50,
+        "effects": { "morale": 15 },
+        "itemEffects": { "HERBS": 1 },
+        "successMessage": "Twoja pewna mowa o ziołach i miazmatach zrobiła wrażenie. Wpuścili cię, a rajca dał ci wiązkę ziół.",
+        "failEffects": { "health": -10, "morale": -15 },
+        "failMessage": "Kazali ci wymienić zioła z koszyka. Zająknąłeś się — i poznali oszusta. Przepędzili kijami."
+      },
+      {
+        "label": "Zakradnij się nocą przez mur od strony rzeki",
+        "stat": "energy",
+        "baseChance": 0.30,
+        "statInfluence": 0.45,
+        "effects": { "morale": 10, "energy": -10 },
+        "successMessage": "Po omacku, w błocie i ciemności, przelazłeś przez wyłom w murze. Jesteś w mieście.",
+        "failEffects": { "health": -20, "energy": -15 },
+        "failMessage": "Straż przyłapała cię na murze. Spadłeś, oberwałeś drzewcami i ledwo uszedłeś z życiem."
+      },
+      {
+        "label": "Odpuść sobie miasto i obejdź je bokiem",
+        "baseChance": 0.95,
+        "effects": { "energy": -10, "morale": -5 },
+        "successMessage": "Obszedłeś mury z daleka. Dłuższa droga, ale wrota tego miasta nie były dla ciebie.",
+        "failEffects": { "energy": -15 },
+        "failMessage": "Obejście zajęło pół dnia po grząskich łąkach. Nogi masz ciężkie jak ołów."
+      }
+    ]
+  }
+]

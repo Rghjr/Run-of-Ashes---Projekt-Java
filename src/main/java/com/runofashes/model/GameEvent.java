@@ -1,5 +1,6 @@
 package com.runofashes.model;
 
+import java.util.List;
 import java.util.Map;
 
 public class GameEvent {
@@ -12,6 +13,13 @@ public class GameEvent {
 
     private Map<String, Integer> effects;
     private Map<String, Integer> itemEffects;
+
+    /**
+     * Opcje decyzyjne. Jeśli niepuste, wydarzenie jest typu "wybór":
+     * po kliknięciu karty gracz wybiera jedną z opcji zamiast natychmiastowego
+     * rozstrzygnięcia. Każda opcja ma własną szansę sukces/porażka.
+     */
+    private List<EventChoice> choices;
 
     private double failChance = 0.0;
     private Map<String, Integer> failEffects;
@@ -53,6 +61,9 @@ public class GameEvent {
     public Map<String, Integer> getEffects()     { return effects; }
     public String getSuccessMessage()            { return successMessage; }
     public Map<String, Integer> getItemEffects() { return itemEffects; }
+
+    public List<EventChoice> getChoices()        { return choices; }
+    public boolean hasChoices()                  { return choices != null && !choices.isEmpty(); }
 
     public double getFailChance()                { return failChance; }
     public Map<String, Integer> getFailEffects() { return failEffects; }

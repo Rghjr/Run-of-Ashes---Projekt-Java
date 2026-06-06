@@ -223,7 +223,7 @@
     },
     "itemEffects": {},
     "successMessage": "Żołnierz żył — ledwo. Opatrzyłeś ranę czym miałeś. 'Wróć za 3 dni' — powiedział. 'Będę miał coś dla ciebie.'",
-    "lowMoraleSuccessMessage": "Prowizorycznie załatałeś trupa w mundurze. Jeśli przeżyje, odda ci zapasy. Jeśli nie — weźmiesz je z jego martwych rąk.",
+    "lowMoraleSuccessMessage": "Prowizorycznie załatałeś trupa w zbroi. Jeśli przeżyje, odda ci zapasy. Jeśli nie — weźmiesz je z jego martwych rąk.",
     "failEffects": {
       "health": -15,
       "morale": -20
@@ -685,7 +685,7 @@
     "questId": "alchemist_trial",
     "questStage": 1,
     "requiredStage": "Góry",
-    "label": "Alchemik w jaskini potrzebuje rzadkiego grzyba na antidotum",
+    "label": "Alchemik w jaskini potrzebuje rzadkiego grzyba na miksturę przeciw zarazie",
     "lowMoraleLabel": "Szukaj składników dla szaleńca, który bawi się życiem i śmiercią",
     "timeCost": 2,
     "itemEffects": {
@@ -910,7 +910,7 @@
       "morale": 45
     },
     "successMessage": "To stary święty amulet. Czujesz się lżej, jakby klątwa została przełamana.",
-    "lowMoraleSuccessMessage": "Wyłowiłeś to z błota. Śmierdzi trupem, ale da ci boosta, którego potrzebujesz, by nie zdechnąć.",
+    "lowMoraleSuccessMessage": "Wyłowiłeś to z błota. Śmierdzi trupem, ale doda ci sił, których potrzebujesz, by nie zdechnąć.",
     "turnsUntilNext": 0
   },
   {
@@ -919,13 +919,13 @@
     "questStage": 1,
     "requiredStage": "Europa",
     "label": "Stary archiwista błaga o uratowanie ksiąg z palącego się klasztoru.",
-    "lowMoraleLabel": "Wbiegnij w ogień, by ukraść książki dla marnego zysku",
+    "lowMoraleLabel": "Wbiegnij w ogień, by ukraść księgi dla marnego zysku",
     "effects": {
       "health": -15,
       "energy": -20
     },
     "successMessage": "Uratowałeś stos pergaminów. 'Wróć do mnie do pobliskiej wioski za 4 tury' — prosił.",
-    "lowMoraleSuccessMessage": "Wpadłeś w ogień, kaszląc dymem. Twoja skóra pali, ale książki są bezpieczne. Kolejny bezsensowny trud.",
+    "lowMoraleSuccessMessage": "Wpadłeś w ogień, kaszląc dymem. Twoja skóra pali, ale księgi są bezpieczne. Kolejny bezsensowny trud.",
     "turnsUntilNext": 4,
     "allowWait": true
   },
@@ -1020,7 +1020,7 @@
     "effects": {
       "morale": 10
     },
-    "successMessage": "Dał ci butelkę wina. 'Na zdrowie' — mruknął. Czuć w nim dziwny, słodkawy posmak.",
+    "successMessage": "Dał ci bukłak wina. 'Na zdrowie' — mruknął. Czuć w nim dziwny, słodkawy posmak.",
     "lowMoraleSuccessMessage": "Wziąłeś to wino, nie dbając o cenę. Chcesz tylko zapomnieć, jak bardzo ten świat cuchnie śmiercią.",
     "itemEffects": {
       "POISONED_WINE": 1
@@ -1085,7 +1085,7 @@
       "energy": -15,
       "health": -10
     },
-    "successMessage": "Grobowiec jest pełen zarodników. Ale znalazłeś coś w sarkofagu. Wróć za 2 tury, gdy powietrze oczyści się z pyłu.",
+    "successMessage": "Grobowiec jest pełen pleśni i trupiej wilgoci. Ale znalazłeś coś w sarkofagu. Wróć za 2 tury, gdy opadnie kurz.",
     "lowMoraleSuccessMessage": "Grzebałeś w zwłokach jak szczur. To miejsce to po prostu kolejna sypialnia dla zmarłych.",
     "turnsUntilNext": 2,
     "allowWait": true
@@ -1142,12 +1142,12 @@
     "id": "quest_painter_1",
     "questId": "doomsday_painter",
     "questStage": 1,
-    "label": "Artysta maluje zgliszcza wioski na płótnie.",
-    "lowMoraleLabel": "Śmiej się z artysty, który maluje koniec świata",
+    "label": "Malarz maluje zgliszcza wioski na desce.",
+    "lowMoraleLabel": "Śmiej się z malarza, który maluje koniec świata",
     "effects": {
       "morale": 10
     },
-    "successMessage": "Jest całkowicie pochłonięty pracą. Obiecał portret, jeśli wrócisz z farbami.",
+    "successMessage": "Jest całkowicie pochłonięty pracą. Obiecał namalować twój wizerunek, jeśli wrócisz z farbami.",
     "lowMoraleSuccessMessage": "Siedzi i maluje śmierć. Obłęd. Może jak wrócisz, to namaluje twój nagrobek.",
     "turnsUntilNext": 3,
     "allowWait": true
@@ -1156,168 +1156,7 @@
     "id": "quest_painter_2",
     "questId": "doomsday_painter",
     "questStage": 2,
-    "label": "Wróć do artysty z farbami (FINAŁ)",
-    "lowMoraleLabel": "Zabierz obraz, bo może go ktoś kupi",
-    "itemEffects": {
-      "HERBS": 1,
-      "GRAPES": 1
-    },
-    "effects": {
-      "morale": 50
-    },
-    "successMessage": "Obraz jest gotowy. Przedstawia człowieka, który biegnie w stronę słońca. Twoja twarz.",
-    "lowMoraleSuccessMessage": "Dał ci obraz. Patrzysz na to i czujesz jedynie obrzydzenie do własnego wizerunku.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_merchant_wine_1",
-    "questId": "merchant_wine",
-    "questStage": 1,
-    "label": "Handlarz oferuje wyborne wino, twierdząc że leczy smutki.",
-    "lowMoraleLabel": "Kup wino od nieznajomego, by choć na chwilę utopić swoje lęki",
-    "itemEffects": {
-      "DRIED_MEAT": -1
-    },
-    "effects": {
-      "morale": 10
-    },
-    "successMessage": "Dał ci butelkę wina. 'Na zdrowie' — mruknął. Czuć w nim dziwny, słodkawy posmak.",
-    "lowMoraleSuccessMessage": "Wziąłeś to wino, nie dbając o cenę. Chcesz tylko zapomnieć, jak bardzo ten świat cuchnie śmiercią.",
-    "itemEffects": {
-      "POISONED_WINE": 1
-    },
-    "turnsUntilNext": 2,
-    "allowWait": true
-  },
-  {
-    "id": "quest_merchant_wine_2",
-    "questId": "merchant_wine",
-    "questStage": 2,
-    "label": "Wracasz do handlarza — odkrywasz prawdę o winie (FINAŁ)",
-    "lowMoraleLabel": "Pomszcz swoje otrucie, zabijając handlarza",
-    "effects": {
-      "morale": -30,
-      "health": -20
-    },
-    "successMessage": "To było zatrute wino! Handlarz to łotr, który oczyszcza drogę z 'niechcianych' wędrowców.",
-    "lowMoraleSuccessMessage": "Wiedziałeś, że to pułapka. Teraz masz gorączkę i nienawiść, która pali cię bardziej niż trucizna w żyłach.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_apprentice_1",
-    "questId": "smith_apprentice",
-    "questStage": 1,
-    "label": "Uczeń kowala nie ma surowca, by dokończyć bramę dla uchodźców.",
-    "lowMoraleLabel": "Oddaj sztabkę żelaza, byle tylko mieć spokój od błagań chłopca",
-    "itemEffects": {
-      "IRON_INGOT": -1
-    },
-    "effects": {
-      "morale": 15
-    },
-    "successMessage": "Uczeń wziął sztabkę żelaza. 'Wróć za 3 tury, brama będzie gotowa'.",
-    "lowMoraleSuccessMessage": "Oddałeś żelazo. W tym świecie nie ma miejsca na obronę innych, a ty i tak zaraz stąd uciekniesz.",
-    "turnsUntilNext": 3,
-    "allowWait": true
-  },
-  {
-    "id": "quest_apprentice_2",
-    "questId": "smith_apprentice",
-    "questStage": 2,
-    "label": "Wracasz do kuźni zobaczyć efekt pracy (FINAŁ)",
-    "lowMoraleLabel": "Sprawdź, czy twoje żelazo na coś się przydało",
-    "itemEffects": {
-      "SHARPENED_BLADE": 1
-    },
-    "effects": {
-      "morale": 25
-    },
-    "successMessage": "Brama stoi! Kowal w podzięce podarował ci naostrzoną klingę.",
-    "lowMoraleSuccessMessage": "Brama może zatrzymać bandytów, ale nie zatrzyma zarazy. Wziąłeś broń i ruszyłeś dalej bez słowa.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_tomb_1",
-    "questId": "plague_tomb",
-    "questStage": 1,
-    "label": "Słyszysz o grobowcu, w którym spoczywa święty amulet.",
-    "lowMoraleLabel": "Wkrocz do zarażonej krypty, nie wierząc w żadne bóstwo",
-    "effects": {
-      "energy": -15,
-      "health": -10
-    },
-    "successMessage": "Grobowiec jest pełen zarodników. Ale znalazłeś coś w sarkofagu. Wróć za 2 tury, gdy powietrze oczyści się z pyłu.",
-    "lowMoraleSuccessMessage": "Grzebałeś w zwłokach jak szczur. To miejsce to po prostu kolejna sypialnia dla zmarłych.",
-    "turnsUntilNext": 2,
-    "allowWait": true
-  },
-  {
-    "id": "quest_tomb_2",
-    "questId": "plague_tomb",
-    "questStage": 2,
-    "label": "Wróć do grobowca po przedmiot (FINAŁ)",
-    "lowMoraleLabel": "Zabierz amulet, byle tylko sprzedać go za grosze",
-    "itemEffects": {
-      "SACRED_AMULET": 1
-    },
-    "effects": {
-      "morale": 40
-    },
-    "successMessage": "Amulet jest w twoich rękach. Czujesz się dziwnie spokojnie.",
-    "lowMoraleSuccessMessage": "Amulet w dłoni. Jeśli to ma być świętość, to świat musiał zwariować. Przynajmniej podnosi na duchu.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_dying_courier_1",
-    "questId": "dying_courier",
-    "questStage": 1,
-    "label": "Posłaniec dogorywa przy drodze, trzymając list do Krakowa.",
-    "lowMoraleLabel": "Przeszukaj konającego posłańca, może ma coś wartościowego",
-    "effects": {
-      "energy": -10,
-      "morale": -5
-    },
-    "successMessage": "Obiecałeś mu dostarczyć list do adresata. 'To ważne dla przetrwania miasta' — wyszeptał.",
-    "lowMoraleSuccessMessage": "Oglądałeś jego agonię z zimną obojętnością. List może być wart kilka miedziaków u kogoś, kto potrafi czytać.",
-    "turnsUntilNext": 4,
-    "allowWait": false
-  },
-  {
-    "id": "quest_dying_courier_2",
-    "questId": "dying_courier",
-    "questStage": 2,
-    "label": "Dotrzyj do adresata w mieście (FINAŁ)",
-    "lowMoraleLabel": "Wymuś nagrodę od adresata, nie dbając o treść listu",
-    "itemEffects": {
-      "WINE": 1,
-      "HERBS": 2
-    },
-    "effects": {
-      "morale": 30
-    },
-    "successMessage": "Adresat przeczytał list i pobladł. 'Dziękuję. To zmienia wszystko'.",
-    "lowMoraleSuccessMessage": "Wcisnąłeś mu papier i wyciągnąłeś rękę po swoje. Ta wiadomość niczego nie naprawi.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_painter_1",
-    "questId": "doomsday_painter",
-    "questStage": 1,
-    "label": "Artysta maluje zgliszcza wioski na płótnie.",
-    "lowMoraleLabel": "Śmiej się z artysty, który maluje koniec świata",
-    "effects": {
-      "morale": 10
-    },
-    "successMessage": "Jest całkowicie pochłonięty pracą. Obiecał portret, jeśli wrócisz z farbami.",
-    "lowMoraleSuccessMessage": "Siedzi i maluje śmierć. Obłęd. Może jak wrócisz, to namaluje twój nagrobek.",
-    "turnsUntilNext": 3,
-    "allowWait": true
-  },
-  {
-    "id": "quest_painter_2",
-    "questId": "doomsday_painter",
-    "questStage": 2,
-    "label": "Wróć do artysty z farbami (FINAŁ)",
+    "label": "Wróć do malarza z farbami (FINAŁ)",
     "lowMoraleLabel": "Zabierz obraz, bo może go ktoś kupi",
     "itemEffects": {
       "HERBS": 1,
@@ -1334,8 +1173,8 @@
     "id": "quest_plague_mask_1",
     "questId": "plague_doctor_mask",
     "questStage": 1,
-    "label": "Widzisz porzuconą maskę lekarza dżumy przy stosie ciał.",
-    "lowMoraleLabel": "Podnieś maskę lekarza, myśląc, że może uchroni cię przed śmiercią",
+    "label": "Widzisz porzuconą skórzaną maskę wypełnioną wonnymi ziołami przy stosie ciał.",
+    "lowMoraleLabel": "Podnieś maskę zielarza, myśląc, że może uchroni cię przed śmiercią",
     "timeCost": 2,
     "effects": {
       "energy": -10,
@@ -1350,8 +1189,8 @@
     "id": "quest_plague_mask_2",
     "questId": "plague_doctor_mask",
     "questStage": 2,
-    "label": "W mieście spotykasz starego medyka, który rozpoznaje maskę (FINAŁ).",
-    "lowMoraleLabel": "Żądaj od medyka wyjaśnień, nie dbając o jego autorytet",
+    "label": "W mieście spotykasz starego zielarza, który rozpoznaje maskę (FINAŁ).",
+    "lowMoraleLabel": "Żądaj od zielarza wyjaśnień, nie dbając o jego autorytet",
     "itemEffects": {
       "HERBS": 2,
       "BANDAGE": 1
@@ -1359,8 +1198,8 @@
     "effects": {
       "morale": 40
     },
-    "successMessage": "Medyk mówi, że to maska 'Ostatniego Uzdrowiciela'. Daje ci leki w zamian za jej oddanie.",
-    "lowMoraleSuccessMessage": "Medyk drży ze strachu. Oddałeś mu maskę, bo śmierdzi śmiercią bardziej niż ty sam.",
+    "successMessage": "Zielarz mówi, że to maska 'Ostatniego Uzdrowiciela'. Daje ci zioła i maści w zamian za jej oddanie.",
+    "lowMoraleSuccessMessage": "Zielarz drży ze strachu. Oddałeś mu maskę, bo śmierdzi śmiercią bardziej niż ty sam.",
     "turnsUntilNext": 0
   },
   {

@@ -36,8 +36,6 @@ public class RunStatistics {
         this.causeOfDeath = "Nieznany";
     }
 
-    public void addDistance(int dist) { this.distanceTraveled += dist; }
-    public void addTurn() { this.turnsSurvived++; }
     public void addGeneralQuest() { this.generalQuestsCompleted++; }
     public void addLocalQuest() { this.localQuestsCompleted++; }
     public void addItemUsed() { this.itemsUsed++; }
@@ -66,7 +64,6 @@ public class RunStatistics {
         if (isWin) score += 1000;
 
         if (difficulty.equals("HARD")) score = (int)(score * 1.5);
-        if (difficulty.equals("NIGHTMARE")) score = (int)(score * 2.0);
 
         return score;
     }

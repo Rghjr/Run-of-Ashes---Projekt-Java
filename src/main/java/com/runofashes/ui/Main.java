@@ -26,8 +26,6 @@ public class Main extends Application {
     private WinScreen winScreen;
     private String keyBuffer = "";
 
-    private boolean isTransitioning = false;
-
     private final AudioManager audioManager = new AudioManager();
 
     @Override
@@ -203,7 +201,19 @@ public class Main extends Application {
 
         gameScreen.setLastEvent(event);
 
+        if (event.hasChoices()) {
+            gameScreen.showChoiceOverlay(event, choice -> {
+                engine.executeChoice(event, choice);
+                afterTurn();
+            });
+            return;
+        }
+
         engine.executeEvent(event);
+        afterTurn();
+    }
+
+    private void afterTurn() {
         refreshAll();
 
         if (engine.hasWon()) {
@@ -225,9 +235,6 @@ public class Main extends Application {
 
             engine.getStatsManager().finalizeAndSaveRun(false, deadStat, engine.getPlayer());
             endScreen.setEndingText(deathReason);
-
-            //inna muzyka
-            //audioManager.changeMusic("/com/runofashes/ui/sounds/Pufino-ThereBeDragons.mp3");
 
             OutroScreen outro = new OutroScreen(false, deadStat, deathReason, () -> mainScene.setRoot(endScreen));
             mainScene.setRoot(outro);

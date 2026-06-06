@@ -164,14 +164,11 @@ public class AchievementTracker {
             am.unlockAchievement("wet_3");
 
             String diffName = engine.getDifficulty().name();
-            if (diffName.equals("NORMAL") || diffName.equals("HARD") || diffName.equals("NIGHTMARE")) {
+            if (diffName.equals("NORMAL") || diffName.equals("HARD")) {
                 am.unlockAchievement("wet_4");
             }
-            if (diffName.equals("HARD") || diffName.equals("NIGHTMARE")) {
+            if (diffName.equals("HARD")) {
                 am.unlockAchievement("wet_7");
-            }
-            if (diffName.equals("NIGHTMARE")) {
-                am.unlockAchievement("wet_9");
             }
 
             if (engine.getTurnCount() < 100) {
