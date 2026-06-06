@@ -119,8 +119,9 @@ public class OutroScreen extends StackPane {
         });
         hideCursorTimer.play();
 
+        //jasność tła
         Region overlay = new Region();
-        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.4);");
+        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
 
         textLabel = new Label();
         textLabel.setTextAlignment(TextAlignment.CENTER);
@@ -173,6 +174,8 @@ public class OutroScreen extends StackPane {
             textLabel.setFont(Font.font("Palatino Linotype", FontWeight.NORMAL, 32));
         }
 
+        textLabel.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.95), 12, 0, 0, 3);");
+
         textLabel.setText(storyTexts[currentSlide]);
 
         Image bgImg = com.runofashes.utils.FileLoader.loadUiImage(backgroundImages[currentSlide]);
@@ -185,7 +188,9 @@ public class OutroScreen extends StackPane {
         FadeTransition fadeInText = new FadeTransition(Duration.seconds(2), textLabel);
         fadeInText.setToValue(1.0);
 
-        double waitTime = (!isWin && currentSlide == 0) ? 3.0 : 4.0;
+        double calculatedWait = Math.max(4.0, storyTexts[currentSlide].length() / 20.0);
+
+        double waitTime = (!isWin && currentSlide == 0) ? 3.5 : calculatedWait;
         PauseTransition wait = new PauseTransition(Duration.seconds(waitTime));
 
         FadeTransition fadeOutText = new FadeTransition(Duration.seconds(2), textLabel);

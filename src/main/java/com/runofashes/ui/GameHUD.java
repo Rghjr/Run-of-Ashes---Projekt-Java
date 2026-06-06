@@ -100,19 +100,26 @@ public class GameHUD extends VBox {
 
         StackPane imageContainer = createFadedImageWrapper();
 
-        HBox bottomRow = new HBox(10, statsBox, imageContainer);
+        HBox bottomRow = new HBox(20, statsBox, imageContainer);
         bottomRow.setAlignment(Pos.CENTER_LEFT);
+
+        javafx.scene.layout.HBox.setHgrow(imageContainer, javafx.scene.layout.Priority.ALWAYS);
 
         getChildren().addAll(topRow, envRow, metaRow, bottomRow);
     }
 
     private StackPane createFadedImageWrapper() {
-        eventImageView = new ImageView();
-        eventImageView.setFitWidth(240);
-        eventImageView.setFitHeight(180);
-        eventImageView.setPreserveRatio(false);
+        StackPane container = new StackPane();
 
-        Rectangle vignette = new Rectangle(240, 180);
+        eventImageView = new ImageView();
+        eventImageView.setPreserveRatio(true);
+
+        eventImageView.fitWidthProperty().bind(container.widthProperty());
+        eventImageView.fitHeightProperty().bind(container.heightProperty());
+
+        Rectangle vignette = new Rectangle();
+        vignette.widthProperty().bind(container.widthProperty());
+        vignette.heightProperty().bind(container.heightProperty());
 
         RadialGradient gradient = new RadialGradient(
                 0, 0, 0.5, 0.5, 0.5, true, CycleMethod.NO_CYCLE,
@@ -122,15 +129,17 @@ public class GameHUD extends VBox {
         );
         vignette.setFill(gradient);
 
-        StackPane container = new StackPane(eventImageView, vignette);
-        container.setMinSize(240, 180);
-        container.setMaxSize(240, 180);
-        container.setPrefSize(240, 180);
+        container.getChildren().addAll(eventImageView, vignette);
 
-        Rectangle clipRect = new Rectangle(240, 180);
+        Rectangle clipRect = new Rectangle();
+        clipRect.widthProperty().bind(container.widthProperty());
+        clipRect.heightProperty().bind(container.heightProperty());
         clipRect.setArcWidth(16);
         clipRect.setArcHeight(16);
         container.setClip(clipRect);
+
+        container.setMinSize(360, 240);
+        container.setPrefSize(500, 320);
 
         return container;
     }

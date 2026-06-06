@@ -41,6 +41,11 @@ public class GameEngine {
     public void setSaveFilename(String filename) {
         this.currentSaveFilename = filename;
     }
+    private boolean hasUnsavedProgress = false;
+
+    public boolean hasUnsavedProgress() {
+        return hasUnsavedProgress;
+    }
 
     public void load() throws Exception {
         eventPools.load();
@@ -66,6 +71,7 @@ public class GameEngine {
         applyDifficultyAndTraits();
         addStarterItems();
         drawCards();
+        hasUnsavedProgress = false;
     }
 
     public void configure(Difficulty diff, Collection<Trait> traits) {
@@ -74,6 +80,7 @@ public class GameEngine {
     }
 
     public void executeEvent(GameEvent event) {
+        hasUnsavedProgress = true;
         if ("WAIT_TURN".equals(event.getId())) {
             lastResult  = EventResult.SUCCESS;
             lastMessage = event.getSuccessMessage() != null
@@ -191,6 +198,7 @@ public class GameEngine {
     }
 
     public void useItem(ItemType type) {
+        hasUnsavedProgress = true;
         AchievementTracker.checkItemUsed(this, type);
         inventory.useItem(type, player, statusManager, turnCount);
         if (statsManager.getCurrentRun() != null) {
@@ -278,8 +286,9 @@ public class GameEngine {
             File saveFile = new File(savesDir, currentSaveFilename);
             MAPPER.writerWithDefaultPrettyPrinter().writeValue(saveFile, state);
 
-            System.out.println("Gra zapisana pomyślnie w: " + saveFile.getPath());
+            hasUnsavedProgress = false;
         } catch (Exception e) {
+            hasUnsavedProgress = false;
             e.printStackTrace();
         }
     }
@@ -305,6 +314,7 @@ public class GameEngine {
         }
 
         drawCards();
+        hasUnsavedProgress = false;
     }
 
     public void deleteSaveFile() {

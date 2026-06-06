@@ -43,9 +43,9 @@ public class Main extends Application {
                 engine,
                 this::refreshAll,
                 this::onCardClicked,
-                this::showMainMenu,
+                this::handleMainMenuRequest,
                 this::showSettingsFromGame,
-                () -> primaryStage.close()
+                this::handleQuitRequest
         );
         endScreen  = new EndScreen(this::returnToMenuFromEnd, this::showCurrentStatsScreen, this::quitFromEnd);
         winScreen  = new WinScreen(this::returnToMenuFromEnd, this::showCurrentStatsScreen, this::quitFromEnd);
@@ -80,8 +80,16 @@ public class Main extends Application {
         } catch (Exception e) {
             System.out.println("Nie udało się załadować ikony gry: " + e.getMessage());
         }
-        stage.setMinWidth(980);
-        stage.setMinHeight(800);
+
+        stage.setOnCloseRequest(e -> {
+            if (mainScene.getRoot() == gameScreen.getRoot() && engine.hasUnsavedProgress()) {
+                e.consume();
+                handleQuitRequest();
+            }
+        });
+
+        stage.setMinWidth(1030);
+        stage.setMinHeight(880);
         stage.setScene(mainScene);
         stage.show();
     }
@@ -184,6 +192,7 @@ public class Main extends Application {
         Set<Trait> traits = traitScreen.getSelected();
         engine.configure(diff, traits);
         engine.reset();
+        engine.saveGame();
         gameScreen.setLastEvent(null);
         mainScene.setRoot(gameScreen.getRoot());
         javafx.application.Platform.runLater(this::refreshAll);
@@ -280,6 +289,90 @@ public class Main extends Application {
     private void returnToMenuFromEnd() {
         audioManager.changeMusic("/com/runofashes/ui/sounds/magic-forest-kevin-macleod.mp3");
         showMainMenu();
+    }
+
+    private void handleQuitRequest() {
+        if (engine.hasUnsavedProgress()) {
+            javafx.scene.layout.VBox overlay = new javafx.scene.layout.VBox(25);
+            overlay.setAlignment(javafx.geometry.Pos.CENTER);
+            overlay.setStyle("-fx-background-color: rgba(5, 5, 10, 0.9);");
+
+            javafx.scene.control.Label warningLabel = new javafx.scene.control.Label("NIEZAPISANE POSTĘPY");
+            warningLabel.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 36px; -fx-font-family: 'Palatino Linotype'; -fx-font-weight: bold;");
+
+            javafx.scene.control.Label descLabel = new javafx.scene.control.Label("Masz niezapisane zmiany. Wyjście z gry spowoduje ich utratę.");
+            descLabel.setStyle("-fx-text-fill: #cccccc; -fx-font-size: 18px;");
+
+            javafx.scene.control.Button saveAndQuitBtn = new javafx.scene.control.Button("Zapisz i wyjdź");
+            saveAndQuitBtn.getStyleClass().add("btn-success");
+            saveAndQuitBtn.setOnAction(e -> {
+                engine.saveGame();
+                primaryStage.close();
+            });
+
+            javafx.scene.control.Button quitBtn = new javafx.scene.control.Button("Wyjdź bez zapisywania");
+            quitBtn.getStyleClass().add("btn-danger");
+            quitBtn.setOnAction(e -> primaryStage.close());
+
+            javafx.scene.control.Button cancelBtn = new javafx.scene.control.Button("Anuluj");
+            cancelBtn.getStyleClass().add("btn-stats");
+            cancelBtn.setOnAction(e -> {
+                ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().remove(overlay);
+            });
+
+            javafx.scene.layout.HBox buttons = new javafx.scene.layout.HBox(20, saveAndQuitBtn, quitBtn, cancelBtn);
+            buttons.setAlignment(javafx.geometry.Pos.CENTER);
+
+            overlay.getChildren().addAll(warningLabel, descLabel, buttons);
+
+            ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().add(overlay);
+        } else {
+            primaryStage.close();
+        }
+    }
+
+    private void handleMainMenuRequest() {
+        if (engine.hasUnsavedProgress()) {
+            javafx.scene.layout.VBox overlay = new javafx.scene.layout.VBox(25);
+            overlay.setAlignment(javafx.geometry.Pos.CENTER);
+            overlay.setStyle("-fx-background-color: rgba(5, 5, 10, 0.9);");
+
+            javafx.scene.control.Label warningLabel = new javafx.scene.control.Label("NIEZAPISANE POSTĘPY");
+            warningLabel.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 36px; -fx-font-family: 'Palatino Linotype'; -fx-font-weight: bold;");
+
+            javafx.scene.control.Label descLabel = new javafx.scene.control.Label("Masz niezapisane zmiany. Powrót do menu spowoduje ich utratę.");
+            descLabel.setStyle("-fx-text-fill: #cccccc; -fx-font-size: 18px;");
+
+            javafx.scene.control.Button saveAndExitBtn = new javafx.scene.control.Button("Zapisz i wyjdź do menu");
+            saveAndExitBtn.getStyleClass().add("btn-success");
+            saveAndExitBtn.setOnAction(e -> {
+                ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().remove(overlay);
+                engine.saveGame();
+                showMainMenu();
+            });
+
+            javafx.scene.control.Button exitBtn = new javafx.scene.control.Button("Wyjdź bez zapisywania");
+            exitBtn.getStyleClass().add("btn-danger");
+            exitBtn.setOnAction(e -> {
+                ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().remove(overlay);
+                showMainMenu();
+            });
+
+            javafx.scene.control.Button cancelBtn = new javafx.scene.control.Button("Anuluj");
+            cancelBtn.getStyleClass().add("btn-stats");
+            cancelBtn.setOnAction(e -> {
+                ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().remove(overlay);
+            });
+
+            javafx.scene.layout.HBox buttons = new javafx.scene.layout.HBox(20, saveAndExitBtn, exitBtn, cancelBtn);
+            buttons.setAlignment(javafx.geometry.Pos.CENTER);
+
+            overlay.getChildren().addAll(warningLabel, descLabel, buttons);
+
+            ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().add(overlay);
+        } else {
+            showMainMenu();
+        }
     }
 
     private void quitFromEnd() {
