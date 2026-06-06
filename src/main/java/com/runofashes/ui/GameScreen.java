@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
+import javafx.geometry.Pos;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignB;
@@ -29,12 +30,19 @@ public class GameScreen {
     private final InventoryPanel inventoryPanel;
     private final QuestPanel questPanel;
     private final BiomePanel biomePanel;
+    private final Runnable onMainMenu;
+    private final Runnable onQuit;
+    private final Runnable onSettings;
 
-    private HBox root;
+    private StackPane root;
 
-    public GameScreen(GameEngine engine, Runnable refreshCallback, Consumer<GameEvent> onCardClick) {
+    public GameScreen(GameEngine engine, Runnable refreshCallback, Consumer<GameEvent> onCardClick, Runnable onMainMenu,Runnable onSettings, Runnable onQuit) {
         this.engine      = engine;
         this.onCardClick = onCardClick;
+        this.onMainMenu  = onMainMenu;
+        this.onQuit      = onQuit;
+        this.onSettings  = onSettings;
+
         this.hud             = new GameHUD(engine);
         this.inventoryPanel  = new InventoryPanel(engine, refreshCallback);
         this.questPanel      = new QuestPanel(engine);
@@ -159,15 +167,118 @@ public class GameScreen {
             btnInv.getStyleClass().setAll("button", "tab-button-inactive");
         });
 
+
+
         HBox tabButtons = new HBox(4, btnInv, btnQuest);
         VBox rightSide = new VBox(8, biomePanel, tabButtons, rightContent, biomePanel.getStatusesBox());
 
-        root = new HBox(12, gameContentVBox, rightSide);
-        root.setPadding(new Insets(18));
+        GridPane mainLayout = new GridPane();
+        mainLayout.setHgap(12);
+        mainLayout.setPadding(new Insets(18));
+        mainLayout.getStyleClass().add("root-pane");
 
-        root.getStyleClass().add("root-pane");
+        GridPane.setHgrow(gameContentVBox, Priority.ALWAYS);
+        GridPane.setVgrow(gameContentVBox, Priority.ALWAYS);
+        GridPane.setHgrow(rightSide, Priority.ALWAYS);
+        GridPane.setVgrow(rightSide, Priority.ALWAYS);
 
-        gameContentVBox.prefWidthProperty().bind(root.widthProperty().multiply(0.7).subtract(24));
-        rightSide.prefWidthProperty().bind(root.widthProperty().multiply(0.3).subtract(24));
+        mainLayout.add(gameContentVBox, 0, 0);
+        mainLayout.add(rightSide, 1, 0);
+
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(70);
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setPercentWidth(30);
+        mainLayout.getColumnConstraints().addAll(col1, col2);
+
+        RowConstraints row = new RowConstraints();
+        row.setVgrow(Priority.ALWAYS);
+        mainLayout.getRowConstraints().add(row);
+
+        Button menuBtn = new Button("☰");
+        menuBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #f0c040; -fx-font-size: 20px; -fx-cursor: hand; -fx-padding: 2 12 2 16;");
+
+        HBox topMenuBar = new HBox(menuBtn);
+        topMenuBar.setAlignment(Pos.CENTER_LEFT);
+        topMenuBar.setStyle("-fx-background-color: #111122; -fx-border-color: #2a2a3e; -fx-border-width: 0 0 1 0;");
+
+        VBox windowContent = new VBox(topMenuBar, mainLayout);
+        VBox.setVgrow(mainLayout, Priority.ALWAYS);
+
+        root = new StackPane();
+        root.getChildren().add(windowContent);
+
+        VBox dropdownMenu = new VBox(8);
+        dropdownMenu.setStyle("-fx-background-color: #1a1a2e; -fx-border-color: #444; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 5);");
+        dropdownMenu.setMaxWidth(200);
+        dropdownMenu.setMaxHeight(VBox.USE_PREF_SIZE);
+        dropdownMenu.setVisible(false);
+
+        Button btnMainMenu = new Button("Menu główne");
+        Button btnSave = new Button("Zapisz grę");
+        Button btnSettings = new Button("Ustawienia");
+        Button btnAchievements = new Button("Osiągnięcia");
+        Button btnQuit = new Button("Wyjdź z gry");
+
+        String menuBtnStyle = "-fx-background-color: #2a2a3e; -fx-text-fill: white; -fx-font-size: 14px; -fx-min-width: 160px; -fx-cursor: hand; -fx-background-radius: 4; -fx-padding: 10;";
+        btnMainMenu.setStyle(menuBtnStyle);
+        btnSave.setStyle(menuBtnStyle);
+        btnAchievements.setStyle(menuBtnStyle);
+        btnSettings.setStyle(menuBtnStyle);
+        btnQuit.setStyle(menuBtnStyle);
+
+        dropdownMenu.getChildren().addAll(btnMainMenu, btnSave, btnSettings, btnAchievements, btnQuit);
+
+        StackPane.setAlignment(dropdownMenu, Pos.TOP_LEFT);
+        StackPane.setMargin(dropdownMenu, new Insets(38, 0, 0, 12));
+
+        btnSave.setOnAction(e -> {
+            engine.saveGame();
+            dropdownMenu.setVisible(false);
+
+            btnSave.setText("Zapisano!");
+            javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(Duration.seconds(2));
+            pause.setOnFinished(ev -> btnSave.setText("Zapisz grę"));
+            pause.play();
+        });
+
+        btnMainMenu.setOnAction(e -> {
+            dropdownMenu.setVisible(false);
+            onMainMenu.run();
+        });
+
+        btnSettings.setOnAction(e -> {
+            dropdownMenu.setVisible(false);
+            onSettings.run();
+        });
+
+        btnQuit.setOnAction(e -> {
+            onQuit.run();
+        });
+
+        // Panel osiągnięć
+        AchievementPanel achievementPanel = new AchievementPanel(engine);
+        achievementPanel.setMaxWidth(650);
+        achievementPanel.setMaxHeight(600);
+        achievementPanel.setVisible(false);
+        StackPane.setAlignment(achievementPanel, Pos.CENTER);
+
+        achievementPanel.setOnClose(() -> achievementPanel.setVisible(false));
+
+        btnAchievements.setOnAction(e -> {
+            dropdownMenu.setVisible(false);
+            achievementPanel.setVisible(true);
+            achievementPanel.refresh();
+            achievementPanel.toFront();
+        });
+
+        menuBtn.setOnAction(e -> {
+            dropdownMenu.setVisible(!dropdownMenu.isVisible());
+            if (dropdownMenu.isVisible()) {
+                dropdownMenu.toFront();
+            }
+        });
+
+        root.getChildren().addAll(dropdownMenu, achievementPanel);
     }
 }

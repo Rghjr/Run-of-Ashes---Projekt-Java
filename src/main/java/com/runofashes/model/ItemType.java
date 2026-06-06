@@ -124,6 +124,38 @@ public enum ItemType {
             Map.of("energy", 50, "morale", 30, "health", -20),
             null,
             0
+    ),
+    IRON_INGOT(
+            "Sztabka żelaza",
+            "fas-cubes",
+            5,
+            null,
+            null,
+            0
+    ),
+    SACRED_AMULET(
+            "Święty amulet",
+            "fas-cross",
+            1,
+            Map.of("morale", 20),
+            null,
+            0
+    ),
+    SHARPENED_BLADE(
+            "Naostrzona klinga",
+            "fas-slash",
+            1,
+            Map.of("energy", 10, "morale", 10),
+            null,
+            0
+    ),
+    POISONED_WINE(
+            "Zatrute wino",
+            "fas-skull",
+            1,
+            Map.of("morale", 40),
+            Map.of("health", -40),
+            2
     );
 
     // ── Pola ──────────────────────────────────────────────────────────────────

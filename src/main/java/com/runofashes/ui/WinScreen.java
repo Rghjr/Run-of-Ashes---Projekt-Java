@@ -11,7 +11,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class WinScreen extends VBox {
 
-    public WinScreen(Runnable onRestart, Runnable onQuit) {
+    public WinScreen(Runnable onRestart, Runnable onShowStats, Runnable onQuit) {
         FontIcon winIcon = new FontIcon("fas-trophy");
         winIcon.setIconSize(72);
         winIcon.getStyleClass().add("win-icon");
@@ -31,13 +31,18 @@ public class WinScreen extends VBox {
         textBox.getStyleClass().add("win-box");
 
         Button restart = new Button("▶  Zagraj ponownie");
+        Button stats   = new Button("📊  Statystyki");
         Button quit    = new Button("✕  Wyjdź");
+
         restart.getStyleClass().add("btn-success");
-        quit.getStyleClass().add("btn-neutral");
+        stats.getStyleClass().add("btn-stats");
+        quit.getStyleClass().add("btn-danger");
+
         restart.setOnAction(e -> onRestart.run());
+        stats.setOnAction(e -> onShowStats.run());
         quit.setOnAction(e    -> onQuit.run());
 
-        HBox btns = new HBox(24, restart, quit);
+        HBox btns = new HBox(24, restart, stats, quit);
         btns.setAlignment(Pos.CENTER);
 
         Image img = com.runofashes.utils.FileLoader.loadUiImage("win_bg.png");

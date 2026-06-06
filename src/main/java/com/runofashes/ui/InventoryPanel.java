@@ -151,6 +151,7 @@ public class InventoryPanel extends VBox {
 
 
     private void showBread() {
+        engine.getAchievementManager().unlockAchievement("szc_10");
         if (isEggActive) return;
 
         try {

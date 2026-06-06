@@ -3,7 +3,11 @@ package com.runofashes.engine;
 import com.runofashes.model.*;
 import com.runofashes.utils.EventLoader;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.io.File;
+import java.util.Set;
 
 public class GameEngine {
 
@@ -16,6 +20,7 @@ public class GameEngine {
     private final EventResolver          eventResolver   = new EventResolver(RNG);
     private final EffectApplicator       effectApplicator = new EffectApplicator(RNG);
     private CardDrawer cardDrawer;
+    private static final com.fasterxml.jackson.databind.ObjectMapper MAPPER = new com.fasterxml.jackson.databind.ObjectMapper().configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     private Player player = new Player();
     private int turnCount = 0;
@@ -29,8 +34,22 @@ public class GameEngine {
     private StatusManager statusManager = new StatusManager();
     private Difficulty difficulty    = Difficulty.NORMAL;
 
+    private final AchievementManager     achievementManager = new AchievementManager();
+    private final StatisticsManager statsManager = new StatisticsManager();
+
+    private String currentSaveFilename = "savegame.json";
+    public void setSaveFilename(String filename) {
+        this.currentSaveFilename = filename;
+    }
+    private boolean hasUnsavedProgress = false;
+
+    public boolean hasUnsavedProgress() {
+        return hasUnsavedProgress;
+    }
+
     public void load() throws Exception {
         eventPools.load();
+        achievementManager.loadAchievements();
         questTracker.init(eventPools.getQuestEventMap(), eventPools.getQuestEvents());
         cardDrawer = new CardDrawer(RNG, eventPools, questTracker, environment, traitManager);
         applyDifficultyAndTraits();
@@ -48,9 +67,11 @@ public class GameEngine {
         lastMessage = "";
         lastResult  = EventResult.SUCCESS;
         mainQuestWeight = 1;
+        statsManager.startNewRun(difficulty);
         applyDifficultyAndTraits();
         addStarterItems();
         drawCards();
+        hasUnsavedProgress = false;
     }
 
     public void configure(Difficulty diff, Collection<Trait> traits) {
@@ -59,6 +80,7 @@ public class GameEngine {
     }
 
     public void executeEvent(GameEvent event) {
+        hasUnsavedProgress = true;
         if ("WAIT_TURN".equals(event.getId())) {
             lastResult  = EventResult.SUCCESS;
             lastMessage = event.getSuccessMessage() != null
@@ -92,6 +114,10 @@ public class GameEngine {
                     player.addDistance(event.getDistanceCost());
                     appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
                 }
+                if ("quest".equals(event.getCategory()) && event.getQuestStage() == 2) {
+                    if (event.isLocalQuest()) statsManager.getCurrentRun().addLocalQuest();
+                    else statsManager.getCurrentRun().addGeneralQuest();
+                }
             }
             case PARTIAL -> {
                 effectApplicator.applyEffectsPartial(
@@ -120,7 +146,7 @@ public class GameEngine {
                     ? event.getRevealMessage()
                     : lastMessage + "\n\n" + event.getRevealMessage();
         }
-
+        AchievementTracker.checkEventAchievements(this, event, lastResult);
         advanceTurn(event.getTimeCost());
     }
 
@@ -134,6 +160,7 @@ public class GameEngine {
         mainQuestWeight += 0.5;
         questTracker.tick();
         environment.tick(player);
+        AchievementTracker.checkStateAchievements(this);
         drawCards();
     }
 
@@ -171,7 +198,12 @@ public class GameEngine {
     }
 
     public void useItem(ItemType type) {
+        hasUnsavedProgress = true;
+        AchievementTracker.checkItemUsed(this, type);
         inventory.useItem(type, player, statusManager, turnCount);
+        if (statsManager.getCurrentRun() != null) {
+            statsManager.getCurrentRun().addItemUsed();
+        }
     }
 
     public String buildBiomeInfo(Biome biome) {
@@ -192,6 +224,13 @@ public class GameEngine {
     public Inventory     getInventory()      { return inventory; }
     public StatusManager getStatusManager()  { return statusManager; }
     public List<GameEvent> getCurrentCards() { return Collections.unmodifiableList(currentCards); }
+    public Set<String> getCompletedQuests() { return questTracker.getCompletedQuests(); }
+    public Set<String> getUnlockedIds() { return achievementManager.getUnlockedIds(); }
+
+    public AchievementManager getAchievementManager() {
+        return achievementManager;
+    }
+    public StatisticsManager getStatsManager() { return statsManager; }
 
     public String getEndingText() {
         String stat = player.getDeadStat();
@@ -212,4 +251,79 @@ public class GameEngine {
 
     public Biome   getCurrentBiome()   { return environment.getCurrentBiome(); }
     public Weather getCurrentWeather() { return environment.getCurrentWeather(); }
+
+    public int getTurnCount() { return turnCount; }
+
+    public void saveGame() {
+        GameState state = new GameState();
+        state.stats = statsManager.getCurrentRun();
+
+        // Dane gracza
+        state.health = player.getHealth();
+        state.hunger = player.getHunger();
+        state.hydration = player.getHydration();
+        state.energy = player.getEnergy();
+        state.morale = player.getMorale();
+        state.time = player.getTime();
+        state.distance = player.getDistance();
+
+        // Cechy
+        state.activeTraitNames = traitManager.getActiveTraits().stream()
+                .map(Enum::name).collect(Collectors.toList());
+
+        // Ekwipunek i Questy
+        state.inventoryItems = inventory.getAllItems();
+        state.activeQuests = questTracker.getActiveQuests();
+        state.completedQuestIds = questTracker.getCompletedQuests();
+        state.unlockedAchievementIds = achievementManager.getUnlockedIds();
+
+        try {
+            File savesDir = new File("saves");
+            if (!savesDir.exists()) {
+                savesDir.mkdirs();
+            }
+
+            File saveFile = new File(savesDir, currentSaveFilename);
+            MAPPER.writerWithDefaultPrettyPrinter().writeValue(saveFile, state);
+
+            hasUnsavedProgress = false;
+        } catch (Exception e) {
+            hasUnsavedProgress = false;
+            e.printStackTrace();
+        }
+    }
+
+    public void loadGame(String filename) throws Exception {
+        this.currentSaveFilename = filename;
+
+        File saveFile = new File("saves", filename);
+        if (!saveFile.exists()) {
+            throw new Exception("Brak pliku zapisu: " + saveFile.getPath());
+        }
+
+        GameState state = MAPPER.readValue(saveFile, GameState.class);
+
+        player.loadFromState(state);
+
+        inventory.loadFromMap(state.inventoryItems);
+
+        if (state.unlockedAchievementIds != null) {
+            for (String id : state.unlockedAchievementIds) {
+                achievementManager.unlockAchievement(id);
+            }
+        }
+
+        drawCards();
+        hasUnsavedProgress = false;
+    }
+
+    public void deleteSaveFile() {
+        if (currentSaveFilename != null) {
+            File saveFile = new File("saves", currentSaveFilename);
+            if (saveFile.exists()) {
+                saveFile.delete();
+                System.out.println("Zakończono bieg. Usunięto plik zapisu: " + currentSaveFilename);
+            }
+        }
+    }
 }

@@ -100,19 +100,26 @@ public class GameHUD extends VBox {
 
         StackPane imageContainer = createFadedImageWrapper();
 
-        HBox bottomRow = new HBox(10, statsBox, imageContainer);
+        HBox bottomRow = new HBox(20, statsBox, imageContainer);
         bottomRow.setAlignment(Pos.CENTER_LEFT);
+
+        javafx.scene.layout.HBox.setHgrow(imageContainer, javafx.scene.layout.Priority.ALWAYS);
 
         getChildren().addAll(topRow, envRow, metaRow, bottomRow);
     }
 
     private StackPane createFadedImageWrapper() {
-        eventImageView = new ImageView();
-        eventImageView.setFitWidth(240);
-        eventImageView.setFitHeight(180);
-        eventImageView.setPreserveRatio(false);
+        StackPane container = new StackPane();
 
-        Rectangle vignette = new Rectangle(240, 180);
+        eventImageView = new ImageView();
+        eventImageView.setPreserveRatio(true);
+
+        eventImageView.fitWidthProperty().bind(container.widthProperty());
+        eventImageView.fitHeightProperty().bind(container.heightProperty());
+
+        Rectangle vignette = new Rectangle();
+        vignette.widthProperty().bind(container.widthProperty());
+        vignette.heightProperty().bind(container.heightProperty());
 
         RadialGradient gradient = new RadialGradient(
                 0, 0, 0.5, 0.5, 0.5, true, CycleMethod.NO_CYCLE,
@@ -122,20 +129,26 @@ public class GameHUD extends VBox {
         );
         vignette.setFill(gradient);
 
-        StackPane container = new StackPane(eventImageView, vignette);
-        container.setMinSize(240, 180);
-        container.setMaxSize(240, 180);
-        container.setPrefSize(240, 180);
+        container.getChildren().addAll(eventImageView, vignette);
 
-        Rectangle clipRect = new Rectangle(240, 180);
+        Rectangle clipRect = new Rectangle();
+        clipRect.widthProperty().bind(container.widthProperty());
+        clipRect.heightProperty().bind(container.heightProperty());
         clipRect.setArcWidth(16);
         clipRect.setArcHeight(16);
         container.setClip(clipRect);
+
+        container.setMinSize(360, 240);
+        container.setPrefSize(500, 320);
 
         return container;
     }
 
     public void setEventImage(String imageName) {
+        if (imageName == null) {
+            eventImageView.setImage(null);
+            return;
+        }
         Image img = com.runofashes.utils.FileLoader.loadUiImage(imageName);
         if (img != null) {
             eventImageView.setImage(img);
@@ -145,7 +158,10 @@ public class GameHUD extends VBox {
     }
 
     public void setEventImage(GameEvent event) {
-        if (event == null || event.getId() == null) return;
+        if (event == null || event.getId() == null) {
+            eventImageView.setImage(null);
+            return;
+        }
 
         String eventId = event.getId().toLowerCase();
         String imageName;
@@ -187,7 +203,7 @@ public class GameHUD extends VBox {
         } else if (eventId.contains("cart") || eventId.contains("road") || eventId.contains("move") || eventId.contains("route") || eventId.contains("wagon") || eventId.contains("horse") || eventId.contains("path") || eventId.contains("szlak")) {
             imageName = "road.png";
         } else {
-            imageName = "event_default.png";
+            imageName = "forest.png";
         }
 
         setEventImage(imageName);

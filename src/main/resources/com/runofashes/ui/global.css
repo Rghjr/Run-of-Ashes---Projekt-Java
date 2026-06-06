@@ -148,6 +148,34 @@
 }
 .tab-button-inactive .ikonli-font-icon { -fx-fill: #888888; }
 
+/*Przycisk Statystyk*/
+.btn-stats {
+    -fx-background-color: linear-gradient(to bottom, #2b2b36, #1a1a24);
+    -fx-text-fill: #d1c8bd;
+    -fx-font-family: "System";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 28px;
+    -fx-border-color: #5a4d41;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 2);
+    -fx-transition: -fx-background-color 0.2s, -fx-border-color 0.2s;
+}
+
+.btn-stats:hover {
+    -fx-background-color: linear-gradient(to bottom, #3a3a48, #252530);
+    -fx-border-color: #8c7a65;
+    -fx-text-fill: #ffffff;
+}
+
+.btn-stats:pressed {
+    -fx-background-color: #1a1a24;
+    -fx-translate-y: 2px;
+}
+
 /* =========================================
    BANERY I STATUSY INFORMACYJNE
    ========================================= */

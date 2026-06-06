@@ -1,6 +1,7 @@
 module RunOfAshes {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
     requires com.fasterxml.jackson.databind;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
