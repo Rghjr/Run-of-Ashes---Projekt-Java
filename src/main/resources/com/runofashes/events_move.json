@@ -13,6 +13,8 @@
     },
     "successMessage": "Kurz i kamień pod nogami. Droga prowadziła prosto na zachód. Ty szłeś za nią.",
     "lowMoraleSuccessMessage": "Nogi same niosły cię przed siebie. Byłeś tylko tępym automatem zaprogramowanym na marsz w stronę zachodu.",
+    "partialMessage": "Droga wiła się dłużej niż się spodziewałeś. Posunąłeś się naprzód, choć wolniej.",
+    "lowMoralePartialMessage": "Wlokłeś się szlakiem jak automat. Pokonałeś tylko część drogi, nim siły wysiadły.",
     "failEffects": {
       "energy": -15,
       "hunger": -10,
@@ -36,6 +38,8 @@
     },
     "successMessage": "Wiatr siekł twarz jak nóż. Po drugiej stronie widziałeś dolinę — i dalszą drogę.",
     "lowMoraleSuccessMessage": "Wiatr wył w uszach jak potępieniec. Przeżyłeś górę, ale widok kolejnych kilometrów na horyzoncie zabił resztki nadziei.",
+    "partialMessage": "Przeszedłeś przełęcz okrężną, łatwiejszą ścieżką. Mniej drogi, ale po drugiej stronie.",
+    "lowMoralePartialMessage": "Z trudem przegramoliłeś się przez grań. Posunąłeś się ledwie kawałek, wycieńczony.",
     "failEffects": {
       "energy": -35,
       "health": -20,
@@ -58,6 +62,8 @@
     },
     "successMessage": "Rzeka prowadziła pewniej niż mapa. Piłeś w marszu. Woda była zimna i czysta.",
     "lowMoraleSuccessMessage": "Szedłeś jak w transie, hipnotyzowany płynącą wodą. Nurt uciekał na zachód, a ty wlokłeś się za nim niczym cień.",
+    "partialMessage": "Brzeg miejscami był grząski i spowalniał marsz. Posunąłeś się, lecz mniej.",
+    "lowMoralePartialMessage": "Wlokłeś się brzegiem w transie. Nurt uciekał szybciej niż twoje nogi.",
     "failEffects": {
       "energy": -25,
       "health": -20,
@@ -81,6 +87,8 @@
     },
     "successMessage": "Kupcy zabrali cię ze sobą. Nakarmili. Pytali skąd przychodzisz. Nie powiedziałeś wszystkiego.",
     "lowMoraleSuccessMessage": "Zabrali cię. Siedziałeś w wozie, nie odzywając się słowem. Byłeś tylko dodatkowym balastem, pustym ładunkiem.",
+    "partialMessage": "Kupcy podwieźli cię tylko kawałek, nim skręcili. Lepsze to niż marsz pieszo.",
+    "lowMoralePartialMessage": "Zabrali cię na krótko, traktując jak balast. Wysiadłeś w pół drogi.",
     "failEffects": {
       "energy": -15,
       "morale": -25,
@@ -104,6 +112,8 @@
     },
     "successMessage": "Step był bezlitosny i piękny. Żadnych drzew, żadnych zasadzek. Tylko ty i horyzont.",
     "lowMoraleSuccessMessage": "Pustka stepu idealnie rezonowała z twoim wnętrzem. Przetrwałeś ten marsz tylko dlatego, że zapomniałeś, iż żyjesz.",
+    "partialMessage": "Step ciągnął się bez końca, zwolniłeś przed żarem. Pokonałeś tylko część.",
+    "lowMoralePartialMessage": "Wlokłeś się przez pustkę stepu, zapominając, że żyjesz. Daleko nie zaszedłeś.",
     "failEffects": {
       "energy": -28,
       "hydration": -25,
@@ -127,6 +137,8 @@
     },
     "successMessage": "Woda sięgała do pasa, prąd szarpał. Dotarłeś. Mokry, ale po właściwej stronie.",
     "lowMoraleSuccessMessage": "Przewaliłeś się na drugi brzeg. Mokry, żałosny i tak samo pusty w środku, jak przed wejściem do wody.",
+    "partialMessage": "Prąd był silniejszy, niż sądziłeś — przeprawa zajęła więcej. Dotarłeś, ledwie.",
+    "lowMoralePartialMessage": "Przewaliłeś się na drugi brzeg, mokry i pusty. Posunięcie marne.",
     "failEffects": {
       "health": -25,
       "energy": -20,
@@ -149,6 +161,8 @@
     },
     "successMessage": "Kamienne krzyże przy drodze prowadziły na zachód. Pielgrzymi patrzyli ze zrozumieniem — też uciekają.",
     "lowMoraleSuccessMessage": "Krzyże przy drodze przypominały ci tylko o masowych grobach. Szedłeś w milczeniu, gardząc świętościami.",
+    "partialMessage": "Szlak był miejscami zatłoczony, marsz zwolnił. Posunąłeś się, choć mniej.",
+    "lowMoralePartialMessage": "Szurałeś butami między krzyżami, gardząc nimi. Daleko nie zaszedłeś.",
     "failEffects": {
       "energy": -15,
       "morale": -20
@@ -170,6 +184,8 @@
     },
     "successMessage": "Las chronił przed wzrokiem rozbójników. Po drugiej stronie czułeś się bezpieczniej.",
     "lowMoraleSuccessMessage": "Cień drzew pasował do twoich myśli. Przedarłeś się przez chaszcze z tępym, mechanicznym uporem.",
+    "partialMessage": "Gęstwina spowalniała każdy krok. Przedarłeś się tylko częściowo.",
+    "lowMoralePartialMessage": "Tłukłeś się przez chaszcze z tępym uporem. Las nie chciał cię puścić.",
     "failEffects": {
       "energy": -28,
       "health": -12,
@@ -194,6 +210,8 @@
     },
     "successMessage": "Gwiazdy prowadziły ku zachodowi. Ciemność kryła cię lepiej niż zbroja.",
     "lowMoraleSuccessMessage": "Nocna wędrówka przyniosła ci ulgę - w ciemności nie widziałeś zniszczeń, a świat nie widział ciebie.",
+    "partialMessage": "Ciemność spowalniała każdy krok. Posunąłeś się, lecz ostrożnie i mało.",
+    "lowMoralePartialMessage": "Błąkałeś się w mroku, niepewny drogi. Zaszedłeś ledwie kawałek.",
     "failEffects": {
       "energy": -30,
       "health": -15,
@@ -215,6 +233,8 @@
     },
     "successMessage": "Stodoła, jaskinia, ruina kościoła — cokolwiek to było, nie padało w środku.",
     "lowMoraleSuccessMessage": "Zwinąłeś się w kącie brudnej rudery. Schronienie przed deszczem, ale nie przed własnymi demonami.",
+    "partialMessage": "Znalazłeś tylko marne zacisze pod drzewem. Odpocząłeś połowicznie.",
+    "lowMoralePartialMessage": "Wcisnąłeś się w byle jaką norę. Ledwie osłona przed wiatrem, nie przed demonami.",
     "failEffects": {
       "morale": -20,
       "energy": -12,
@@ -236,6 +256,8 @@
     },
     "successMessage": "Z wzniesienia widziałeś dymy wiosek, drogi, rzekę. Wybrałeś kierunek pewniej.",
     "lowMoraleSuccessMessage": "Widziałeś spalone wsie i czarne dymy. Patrzyłeś na ten upadek i czułeś jedynie miażdżącą obojętność.",
+    "partialMessage": "Z połowy wzniesienia widziałeś niewiele przez mgłę. Kierunek niepewny.",
+    "lowMoralePartialMessage": "Wszedłeś kawałek i spojrzałeś na ruinę z obojętnością. Niewiele to dało.",
     "failEffects": {
       "energy": -22,
       "health": -12,
@@ -258,6 +280,8 @@
     },
     "successMessage": "Czułeś swąd z wiatrem. Obchodziłeś z daleka. Mądrzej niż odważniej.",
     "lowMoraleSuccessMessage": "Smród śmierci ciągnął się za tobą godzinami. Szedłeś okrężną drogą jak tchorz, bojąc się podzielić ich los.",
+    "partialMessage": "Obejście było dłuższe, niż liczyłeś. Ominąłeś zarazę, lecz straciłeś czas.",
+    "lowMoralePartialMessage": "Wlokłeś się okrężną drogą jak tchórz. Smród śmierci i tak cię gonił.",
     "failEffects": {
       "energy": -18,
       "morale": -15,
@@ -281,6 +305,8 @@
     },
     "successMessage": "Przez chwilę byłeś tylko biegiem. Szybkim, żywym, wolnym.",
     "lowMoraleSuccessMessage": "Biegłeś, dopóki płuca nie zaczęły krwawić z wysiłku. Bieg donikąd, byle uciec od myśli.",
+    "partialMessage": "Zabrakło tchu w pół biegu. Przebiegłeś tylko część pola.",
+    "lowMoralePartialMessage": "Biegłeś, aż płuca odmówiły. Bieg donikąd, urwany w pół.",
     "failEffects": {
       "energy": -35,
       "health": -20,
@@ -304,6 +330,8 @@
     },
     "successMessage": "Chłop nic nie mówił. Ty też nic. Ale wóz toczył się ku zachodowi.",
     "lowMoraleSuccessMessage": "Turkot kół zagłuszał nieco krzyki w twojej głowie. Jechałeś nie jako człowiek, lecz jako kolejny zepsuty ładunek.",
+    "partialMessage": "Chłop podwiózł cię tylko do rozstaju. Kawałek drogi za darmo, reszta pieszo.",
+    "lowMoralePartialMessage": "Trząsłeś się na wozie jak ładunek, nim cię wysadzono. Niewielki kawałek bliżej.",
     "failEffects": {
       "morale": -20,
       "energy": -10
@@ -324,6 +352,8 @@
     },
     "successMessage": "Koń wiedział co robi. Ty tylko trzymałeś się grzbietu. Kilometrów ubyło szybciej niż się spodziewałeś.",
     "lowMoraleSuccessMessage": "Zwierzę niosło twój ciężar z łaską, na którą nie zasługiwałeś. Przebrnąłeś te kilometry w zupełnym otępieniu.",
+    "partialMessage": "Koń był narowisty i zmęczony — ujechałeś tylko część drogi.",
+    "lowMoralePartialMessage": "Zwierzę niosło cię niechętnie, póki nie stanęło. Resztę przeszedłeś w otępieniu.",
     "failEffects": {
       "health": -15,
       "energy": -12,
@@ -346,6 +376,8 @@
     },
     "successMessage": "Skrót się opłacił. Ziemia twarda, widoczność dobra. Droga zaoszczędzona.",
     "lowMoraleSuccessMessage": "Skrót przez martwe pole był ponury jak twoje życie. Zrobiłeś to szybciej, nie odczuwając cienia satysfakcji.",
+    "partialMessage": "Skrót okazał się trudniejszy, niż wyglądał. Zaoszczędziłeś tylko trochę.",
+    "lowMoralePartialMessage": "Przebrnąłeś przez martwe pole bez satysfakcji. Skrót zaoszczędził niewiele.",
     "failEffects": {
       "energy": -20,
       "health": -10,
@@ -368,6 +400,8 @@
     },
     "successMessage": "Prąd niósł za darmo. Siedziałeś i patrzyłeś jak brzeg ucieka. Rzadka chwila spokoju.",
     "lowMoraleSuccessMessage": "Rzeka niosła cię jak trupa do morza. Gapiłeś się w czarną wodę, zastanawiając się czy po prostu do niej nie zeskoczyć.",
+    "partialMessage": "Tratwa ledwie się trzymała, płynąłeś wolno i ostrożnie. Kawałek drogi z prądem.",
+    "lowMoralePartialMessage": "Spływałeś jak kłoda, gapiąc się w czarną wodę. Nurt poniósł cię niedaleko.",
     "failEffects": {
       "health": -25,
       "energy": -20,
@@ -390,6 +424,8 @@
     },
     "successMessage": "Kupiec znał skróty. Szedłeś cicho za nim — on nie pytał, ty nie mówiłeś. Idealna umowa.",
     "lowMoraleSuccessMessage": "Szedłeś krok w krok za jego cieniem, niezdolny do samodzielnego myślenia. Pasożyt prowadzący się za gospodarzem.",
+    "partialMessage": "Kupiec znikał ci z oczu na zakrętach. Nadążyłeś tylko częściowo.",
+    "lowMoralePartialMessage": "Wlokłeś się za jego cieniem jak pasożyt. Zgubiłeś go w pół drogi.",
     "failEffects": {
       "energy": -18,
       "morale": -20
@@ -414,6 +450,8 @@
     },
     "successMessage": "Droga między klasztorami była strzeżona i bezpieczna. Przy jednej furcie mnich dał ci wodę bez pytania.",
     "lowMoraleSuccessMessage": "Dostałeś wodę, ale nie spojrzałeś dawcy w oczy. Święta ścieżka wydawała się tylko dłuższą drogą na szafot.",
+    "partialMessage": "Droga miejscami była zamknięta, musiałeś nadkładać. Posunąłeś się mniej.",
+    "lowMoralePartialMessage": "Szedłeś świętą ścieżką jak na szafot. Niewielki kawałek bliżej, bez wdzięczności.",
     "failEffects": {
       "energy": -15,
       "morale": -18
@@ -436,6 +474,8 @@
     },
     "successMessage": "Drogi puste, powietrze chłodne. Nikt nie pytał skąd idziesz. Najlepszy czas na marsz.",
     "lowMoraleSuccessMessage": "Ziąb poranka mroził duszę. Szedłeś przez szary, wymarły krajobraz, który idealnie pasował do twojej psychiki.",
+    "partialMessage": "Mrok spowalniał każdy krok przed świtem. Posunąłeś się ostrożnie i mało.",
+    "lowMoralePartialMessage": "Wlokłeś się przez szary świt, mrożąc duszę. Zaszedłeś ledwie kawałek.",
     "failEffects": {
       "energy": -20,
       "health": -10,
@@ -458,6 +498,8 @@
     },
     "successMessage": "Widok z góry rekompensował trud wejścia. Widziałeś dolinę, drogę, i dalej — mniej wyraźne ale tam — zachód.",
     "lowMoraleSuccessMessage": "Z góry widziałeś jak wielka jest ta katastrofa. Przez chwilę chciałeś skoczyć, ale poszedłeś dalej z pustką w głowie.",
+    "partialMessage": "Grań była trudniejsza, niż wyglądała. Posunąłeś się wolno, lecz widok był.",
+    "lowMoralePartialMessage": "Wdrapałeś się z trudem i spojrzałeś na katastrofę. Poszedłeś dalej z pustką w głowie.",
     "failEffects": {
       "energy": -28,
       "health": -15,
@@ -480,6 +522,8 @@
     },
     "successMessage": "Szlak handlowy — zadbany, oznaczony, pełen śladów kół. Szedłeś szybko i pewnie.",
     "lowMoraleSuccessMessage": "Zwykły szlak, po którym szły tysiące umarłych przed tobą. Byłeś po prostu kolejnym duchem na tej drodze.",
+    "partialMessage": "Szlak miejscami był rozkopany i zwalniał marsz. Posunąłeś się, choć mniej.",
+    "lowMoralePartialMessage": "Szurałeś stopami jak duch wśród tysięcy umarłych. Daleko nie zaszedłeś.",
     "failEffects": {
       "energy": -18,
       "morale": -15,

@@ -12,6 +12,8 @@
     },
     "successMessage": "Zdjąłeś buty. Stopy podziękowały. Po godzinie byłeś gotowy znów.",
     "lowMoraleSuccessMessage": "Nogi drżały. Kamień był zimny. Przymusiłeś się do wstania, byle tylko umrzeć trochę dalej.",
+    "partialMessage": "Odpocząłeś krótko, nim niepokój kazał ci ruszyć. Nogi ledwie odzyskały trochę sił.",
+    "lowMoralePartialMessage": "Przysiadłeś na chwilę na zimnym kamieniu, nim zmusiłeś się dalej. Ulga była mizerna i krótka.",
     "failEffects": {
       "energy": 8,
       "morale": -12
@@ -35,6 +37,8 @@
     },
     "successMessage": "Słoma była twarda i cuchnęła psem. Spałeś jak nieboszczyk — i obudziłeś się żywy.",
     "lowMoraleSuccessMessage": "Smród stajni pasował do tego, kim się stałeś. Zyskałeś siły na kolejny dzień bezcelowego marszu.",
+    "partialMessage": "Sen rwał się co chwilę przez hałas i smród. Wstałeś tylko częściowo wypoczęty.",
+    "lowMoralePartialMessage": "Drzemałeś niespokojnie na cuchnącej słomie. Rano czułeś się ledwie odrobinę mniej martwy.",
     "failEffects": {
       "energy": 18,
       "morale": -20,
@@ -63,6 +67,8 @@
     },
     "successMessage": "Mnisi dali ci celę, świecę i ciszę. Obudziłeś się o jutrzni — prawie człowiek.",
     "lowMoraleSuccessMessage": "Cisza celi przypominała grobowiec. Zabrakło ci nawet sił na wdzięczność, gdy dali ci świecę.",
+    "partialMessage": "Dali ci kąt na korytarzu zamiast celi. Sen był płytki, ale dach nad głową pomógł.",
+    "lowMoralePartialMessage": "Pozwolili ci przysiąść w sieni z litości. Zdrzemnąłeś się chwilę, nie czując nawet wdzięczności za świecę.",
     "failEffects": {
       "energy": 20,
       "morale": -15
@@ -82,6 +88,8 @@
     },
     "successMessage": "Krótko, ale głęboko. Obudziłeś się gdy słońce się przesunęło.",
     "lowMoraleSuccessMessage": "Krótki sen przyniósł jedynie ucieczkę od jawy. Otwarcie oczu było prawdziwym cierpieniem.",
+    "partialMessage": "Zdrzemnąłeś się tylko na moment, nim coś cię ocuciło. Trochę sił, niewiele więcej.",
+    "lowMoralePartialMessage": "Sen przerwał się szybko. Otworzyłeś oczy zmęczony, jakbyś w ogóle nie zmrużył powiek.",
     "failEffects": {
       "energy": 4,
       "morale": -8
@@ -106,6 +114,8 @@
     },
     "successMessage": "Ogień trzaskał i dawał ciepło. Przy świetle znalazłeś starą świecę w torbie.",
     "lowMoraleSuccessMessage": "Płomienie były słabe i wkrótce zgasną. Jak wszystko. Światło obnażyło tylko brud na twoich dłoniach.",
+    "partialMessage": "Ogień ledwie się tlił, ale dawał odrobinę ciepła. Odpocząłeś połowicznie, wciąż drżąc.",
+    "lowMoralePartialMessage": "Słaby płomień gasł raz po raz. Grzałeś dłonie nad żarem, czerpiąc z tego marną pociechę.",
     "failEffects": {
       "energy": 8,
       "morale": -15
@@ -125,6 +135,8 @@
     },
     "successMessage": "Słowa modlitwy znałeś na pamięć. Tym razem poczułeś że ktoś słucha.",
     "lowMoraleSuccessMessage": "Szeptałeś znane z dzieciństwa słowa. Pustka była ogromna, ale dała ci upartą chęć robienia jej na złość.",
+    "partialMessage": "Słowa modlitwy przyniosły niejasną ulgę. Nie wiesz, czy ktoś słuchał — ale ruszyłeś dalej.",
+    "lowMoralePartialMessage": "Wyszeptałeś połowę modlitwy, nim głos uwiązł. Pustka odpowiedziała, ale dźwignęła cię z kolan.",
     "failEffects": {
       "morale": -15
     },
@@ -145,6 +157,8 @@
     },
     "successMessage": "Zimna woda wybudziła każdą kość. Boleśnie żywy — ale żywy.",
     "lowMoraleSuccessMessage": "Szok termiczny wyrwał cię na chwilę z letargu. Jesteś przeraźliwie zmarznięty i wciąż sam.",
+    "partialMessage": "Zimna woda otrzeźwiła cię tylko na chwilę. Wyszedłeś rozdygotany, ale nieco bardziej żywy.",
+    "lowMoralePartialMessage": "Chlapnąłeś wodą na twarz, drżąc. Szok minął szybko, zostawiając cię zmarzniętego i samotnego.",
     "failEffects": {
       "health": -20,
       "energy": -8,
@@ -169,6 +183,8 @@
     },
     "successMessage": "Gwiazdy kręciły się powoli nad tobą. Obudziłeś się gdy zrobiło się szaro.",
     "lowMoraleSuccessMessage": "Przetrwałeś noc, ale brzask zwiastował jedynie przedłużenie twojego wyroku.",
+    "partialMessage": "Sen pod gołym niebem rwał się od chłodu. Wstałeś o świcie tylko częściowo wypoczęty.",
+    "lowMoralePartialMessage": "Przedrzemałeś noc na twardej ziemi. Brzask przyniósł ledwie trochę sił i więcej rozpaczy.",
     "failEffects": {
       "energy": 22,
       "morale": -22,
@@ -192,6 +208,8 @@
     },
     "successMessage": "Nogi poskarżyły się przez chwilę. Potem podziękowały.",
     "lowMoraleSuccessMessage": "Mięśnie paliły, ścięgna rwały. Poruszyłeś się wbrew własnej woli.",
+    "partialMessage": "Rozruszałeś zesztywniałe ciało tylko trochę. Mięśnie wciąż protestowały przy każdym kroku.",
+    "lowMoralePartialMessage": "Z trudem rozprostowałeś drętwe członki. Ból zelżał odrobinę, reszta została z tobą.",
     "failEffects": {
       "health": -8,
       "energy": -5,
@@ -219,6 +237,8 @@
     },
     "successMessage": "Dach był połowiczny, ale wystarczał. Przy ołtarzu leżała łojowa świeca. Wziąłeś ją.",
     "lowMoraleSuccessMessage": "Mury nie dawały poczucia bezpieczeństwa. W zrujnowanym świętym miejscu nawet sen był bluźnierczy.",
+    "partialMessage": "Połowiczny dach przeciekał, sen był urywany. Świecę jednak zabrałeś, choć odpoczynek marny.",
+    "lowMoralePartialMessage": "Drzemałeś wśród gruzu, wzdrygając się od wiatru. Świętokradczy sen dał ci niewiele sił.",
     "failEffects": {
       "energy": 15,
       "morale": -18,
@@ -241,6 +261,8 @@
     },
     "successMessage": "Płomień był mały. Wystarczał. Jutro będzie jak jutro — dziś przeżyłeś.",
     "lowMoraleSuccessMessage": "Wosk spłynął powoli. Tak, powinieneś wstać. Zmusiłeś się do tego dla zasady, nie z woli.",
+    "partialMessage": "Płomień uspokoił myśli tylko na wpół. Zebrałeś strzępy sił i odrobinę spokoju.",
+    "lowMoralePartialMessage": "Wpatrywałeś się w wosk, nim świeca przygasła. Spokój był pozorny, ale zmusił cię do trwania.",
     "failEffects": {
       "morale": -10
     },
@@ -259,6 +281,8 @@
     },
     "successMessage": "Nogi wyglądały okropnie. Teraz tylko źle. Wystarczy.",
     "lowMoraleSuccessMessage": "Brud i krew pokrywały bandaże. Załatałeś usterki, choć wiedziałeś, że jutro będzie to samo.",
+    "partialMessage": "Opatrzyłeś tylko najgorsze rany. Stopy wciąż bolały, lecz dało się iść dalej.",
+    "lowMoralePartialMessage": "Zakleiłeś parę odcisków byle jak. Krew przesiąkła przez bandaż, ale ruszyłeś dalej.",
     "failEffects": {
       "health": -10,
       "energy": -5,
@@ -284,6 +308,8 @@
     },
     "successMessage": "Zupa była tłusta i gorąca. Wzięłeś też manierkę na drogę.",
     "lowMoraleSuccessMessage": "Misak rozlała ciepło w brzuchu, ale wydała się bez smaku. Przełknąłeś dla samego trwania.",
+    "partialMessage": "Zupa była letnia i rzadka. Najadłeś się tylko częściowo, lecz manierkę wziąłeś.",
+    "lowMoralePartialMessage": "Przełknąłeś pół miski zimnej brei. Smaku nie było, sytości też niewiele.",
     "failEffects": {
       "morale": -15,
       "energy": 5
@@ -306,6 +332,8 @@
     },
     "successMessage": "Ból odpuścił po chwili. Ciepło ognia robiło swoje.",
     "lowMoraleSuccessMessage": "Rytmiczny ucisk działał mechanicznie, lecz ulga w mięśniach nie sięgnęła duszy.",
+    "partialMessage": "Rozmasowałeś tylko część napięcia. Ból zelżał, choć ciepła ognia ledwie starczało.",
+    "lowMoralePartialMessage": "Ugniatałeś łydki mechanicznie. Ulga ledwie sięgnęła mięśni, duszy wcale.",
     "failEffects": {
       "energy": -5,
       "morale": -8
@@ -332,6 +360,8 @@
     },
     "successMessage": "Chłop nie pytał skąd idziesz. Słoma ciepła, woły spokojne. Rano znalazłeś garść winogron przy drzwiach.",
     "lowMoraleSuccessMessage": "Zapach obory zdawał się być twoim domem. Przypomniałeś sobie, kim byłeś, a jedzenie traktowałeś jak żałosną jałmużnę.",
+    "partialMessage": "Sen w stodole rwał się od parskania wołów. Wypocząłeś tylko częściowo, ale dach był nad głową.",
+    "lowMoralePartialMessage": "Drzemałeś w kącie obory, czując się jak zwierzę. Trochę sił wróciło, godność nie.",
     "failEffects": {
       "energy": 15,
       "morale": -18,
@@ -353,6 +383,8 @@
     },
     "successMessage": "Dziesięć minut zimnej wody i czułeś się jak nowy człowiek. Prawie.",
     "lowMoraleSuccessMessage": "Przenikliwy chłód stępił na moment odczucie cierpienia, przynosząc dziwną, odrętwiałą satysfakcję.",
+    "partialMessage": "Chłód ukoił stopy tylko na chwilę. Ulga była niepełna, lecz realna.",
+    "lowMoralePartialMessage": "Moczyłeś obolałe stopy w mętnej wodzie. Odrętwienie przyniosło dziwną, połowiczną ulgę.",
     "failEffects": {
       "health": -8,
       "morale": -12
@@ -372,6 +404,8 @@
     },
     "successMessage": "Las był cichy. Przez chwilę zarazy nie było. Był tylko wiatr i drzewa.",
     "lowMoraleSuccessMessage": "Drzewa trwały niewzruszenie, w przeciwieństwie do ciebie. Czerpałeś ich spokój w akcie desperacji.",
+    "partialMessage": "Cisza lasu uspokoiła cię tylko częściowo. Oddech zwolnił, niepokój został.",
+    "lowMoralePartialMessage": "Wciągnąłeś chłodne powietrze wśród drzew. Spokój był kruchy i szybko pierzchnął.",
     "failEffects": {
       "morale": -10
     },
@@ -393,6 +427,8 @@
     },
     "successMessage": "Godzina snu w południe warta jest dwóch w nocy. Stare powiedzenie — i prawdziwe.",
     "lowMoraleSuccessMessage": "Chwila letargu była zbawienna. Gdy sen odszedł, świat znów wydał się obrzydliwy i wypalony.",
+    "partialMessage": "Drzemka w cieniu była płytka i krótka. Sił przybyło tylko trochę.",
+    "lowMoralePartialMessage": "Zapadłeś w letarg na moment, nim upał cię ocucił. Świat wrócił równie obrzydliwy.",
     "failEffects": {
       "energy": 6,
       "morale": -10
@@ -415,6 +451,8 @@
     },
     "successMessage": "Pierwsza kąpiel od tygodnia. Czułeś się jak człowiek, nie jak kurz.",
     "lowMoraleSuccessMessage": "Woda zmyła błoto, ale zostawiła lepki osad świadomości wszystkich popełnionych czynów.",
+    "partialMessage": "Obmyłeś tylko twarz i ręce — woda była zimna. Poczułeś się odrobinę czystszy.",
+    "lowMoralePartialMessage": "Starłeś z siebie część błota w zamulonym nurcie. Osad winy został pod skórą.",
     "failEffects": {
       "health": -12,
       "energy": -5,

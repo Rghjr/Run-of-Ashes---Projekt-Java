@@ -149,9 +149,16 @@ public class GameScreen {
     private void build() {
         messageLabel.setWrapText(true);
         messageLabel.setMaxWidth(640);
-        messageLabel.setMinHeight(70);
-        messageLabel.setPrefHeight(70);
+        messageLabel.setMinHeight(Region.USE_PREF_SIZE);
         messageLabel.getStyleClass().addAll("message-label", "msg-partial");
+
+        ScrollPane messageScroll = new ScrollPane(messageLabel);
+        messageScroll.setFitToWidth(true);
+        messageScroll.setMinHeight(70);
+        messageScroll.setPrefHeight(90);
+        messageScroll.setMaxHeight(170);
+        messageScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        messageScroll.getStyleClass().add("transparent-scroll-pane");
 
         GridPane grid = new GridPane();
         grid.setHgap(12);
@@ -171,7 +178,7 @@ public class GameScreen {
             grid.getColumnConstraints().add(cc);
         }
 
-        VBox gameContentVBox = new VBox(16, hud, messageLabel, grid);
+        VBox gameContentVBox = new VBox(16, hud, messageScroll, grid);
         HBox.setHgrow(gameContentVBox, Priority.ALWAYS);
 
         ScrollPane invScroll = new ScrollPane(inventoryPanel);

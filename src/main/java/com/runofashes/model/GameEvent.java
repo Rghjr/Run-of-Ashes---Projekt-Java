@@ -30,10 +30,12 @@ public class GameEvent {
     private boolean localQuest;
 
     private String successMessage;
+    private String partialMessage;
     private String failMessage;
 
     private String lowMoraleLabel;
     private String lowMoraleSuccessMessage;
+    private String lowMoralePartialMessage;
     private String lowMoraleFailMessage;
 
     /**
@@ -60,6 +62,7 @@ public class GameEvent {
 
     public Map<String, Integer> getEffects()     { return effects; }
     public String getSuccessMessage()            { return successMessage; }
+    public String getPartialMessage()            { return partialMessage; }
     public Map<String, Integer> getItemEffects() { return itemEffects; }
 
     public List<EventChoice> getChoices()        { return choices; }
@@ -80,6 +83,7 @@ public class GameEvent {
 
     public String getLowMoraleLabel()           { return lowMoraleLabel; }
     public String getLowMoraleSuccessMessage()  { return lowMoraleSuccessMessage; }
+    public String getLowMoralePartialMessage()  { return lowMoralePartialMessage; }
     public String getLowMoraleFailMessage()     { return lowMoraleFailMessage; }
 
     public boolean isAvailableAt(int hour) {

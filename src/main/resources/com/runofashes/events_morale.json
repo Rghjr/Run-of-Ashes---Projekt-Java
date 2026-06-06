@@ -11,6 +11,8 @@
     },
     "successMessage": "Drewniany krzyż stał sam na rozstaju. Uklęknąłeś. Przez chwilę nie byłeś sam.",
     "lowMoraleSuccessMessage": "Rzucałeś słowa w pustkę, nie wierząc, że cokolwiek tam jest. Zostałeś ty, martwe drewno i rozpaczliwa potrzeba ulgi.",
+    "partialMessage": "Modlitwa przyniosła tylko cień ukojenia. Klęczałeś chwilę, nim wstałeś niepewny.",
+    "lowMoralePartialMessage": "Wyszeptałeś parę słów w pustkę. Ulga była nikła, jak echo martwego drewna.",
     "failEffects": {
       "morale": -18
     },
@@ -33,6 +35,8 @@
     },
     "successMessage": "Szedł z Konstantynopola. Podzielił się chlebem, świecą i słowem. Wystarczy.",
     "lowMoraleSuccessMessage": "Wysłuchałeś jego bełkotu dla okruchów. Świeca oświetliła tylko mrok w twojej duszy.",
+    "partialMessage": "Pielgrzym podzielił się tylko paroma słowami, nim ruszył dalej. Niewiele, lecz nie byłeś sam.",
+    "lowMoralePartialMessage": "Wysłuchałeś urywka jego bełkotu. Świeca rozjaśniła mrok tylko na moment.",
     "failEffects": {
       "morale": -25
     },
@@ -51,6 +55,8 @@
     },
     "successMessage": "Rynek, Wawel, zapach piekarni na Grodzkiej. Żyją — jeśli zdążysz.",
     "lowMoraleSuccessMessage": "Wizja miasta była blada, obca, niemal szydercza. Uczepiłeś się jej tylko dlatego, że nie miałeś już nic innego.",
+    "partialMessage": "Obrazy miasta przyszły mgliście i urwanie. Ledwie strzęp pociechy.",
+    "lowMoralePartialMessage": "Wizja Krakowa była blada i obca. Uchwyciłeś ledwie jej cień.",
     "failEffects": {
       "morale": -22
     },
@@ -68,6 +74,8 @@
     },
     "successMessage": "'Zaraza idzie ze wschodu. Uciekajcie lub módlcie się.' Ktoś to przeczyta. Może przeżyje.",
     "lowMoraleSuccessMessage": "Skrobałeś kamieniem po murze z brutalną zaciekłością. Wiedziałeś, że nikt tego nie przeczyta. Zrobiłeś to z czystej złośliwości.",
+    "partialMessage": "Napis wyszedł niewyraźny i krótki. Może ktoś go odczyta, może nie.",
+    "lowMoralePartialMessage": "Wyskrobałeś parę liter na murze z goryczą. Wiedziałeś, że nikt tego nie przeczyta.",
     "failEffects": {
       "morale": -12
     },
@@ -88,6 +96,8 @@
     },
     "successMessage": "Świt nad stepem. Złoto i czerwień. Bóg jeszcze nie porzucił tego świata.",
     "lowMoraleSuccessMessage": "Słońce znów bezwstydnie zaświeciło nad trupami i zgliszczami. Promienie nie dały ciepła, jedynie wyostrzyły obraz tej ruiny.",
+    "partialMessage": "Słońce przebiło się tylko na chwilę przez chmury. Cień otuchy, nim zgasł.",
+    "lowMoralePartialMessage": "Świt ledwie przeświecił przez szarość. Promień nie dał ciepła, tylko obnażył ruinę.",
     "failEffects": {
       "morale": 5
     },
@@ -108,6 +118,8 @@
     },
     "successMessage": "Purpura za lasem. Tam za horyzontem jest Kraków. Jeszcze jeden dzień bliżej.",
     "lowMoraleSuccessMessage": "Zachód był krwisty jak rana otwartego świata. Czekasz na ostateczną ciemność, która pożre wszystko wokół ciebie.",
+    "partialMessage": "Zachód przygasł szybko za chmurami. Złapałeś tylko strzęp jego barw.",
+    "lowMoralePartialMessage": "Krwawa łuna mignęła i znikła w dymie. Czekałeś dalej na ciemność.",
     "failEffects": {
       "morale": 6
     },
@@ -128,6 +140,8 @@
     },
     "successMessage": "Droga Mleczna wskazywała kierunek lepiej niż każda mapa. Byłeś mały — ale szedłeś.",
     "lowMoraleSuccessMessage": "Zrozumiałeś z miażdżącą jasnością, jak bardzo nic nie znaczysz. Twoja męka jest mniejsza niż ziarenko piasku.",
+    "partialMessage": "Kilka gwiazd przebiło chmury, nim niebo się zasnuło. Krótki kierunek, nikła otucha.",
+    "lowMoralePartialMessage": "Zerknąłeś w bezmiar nieba i poczułeś tylko własną małość. Punkt odniesienia szybko zniknął.",
     "failEffects": {
       "morale": -10
     },
@@ -145,6 +159,8 @@
     },
     "successMessage": "Nie wiedziałeś co robić. Dałeś wodę i słowo. Może to wystarczyło — dla ciebie na pewno.",
     "lowMoraleSuccessMessage": "Siedziałeś przy nim, patrząc na jego agonię i odliczając czas do swojej. Pusty rytuał dwóch trupów.",
+    "partialMessage": "Podałeś wodę i odszedłeś szybko, niepewny. Pomogłeś tylko trochę — sobie bardziej niż jemu.",
+    "lowMoralePartialMessage": "Posiedziałeś chwilę przy konającym, odliczając czas do swojej agonii. Pusty gest dwóch trupów.",
     "failEffects": {
       "health": -25,
       "morale": -15
@@ -165,6 +181,8 @@
     },
     "successMessage": "Mówił po polsku. Krzyczałeś ze zdumienia. On też. Szliście razem przez godzinę — to wystarczyło.",
     "lowMoraleSuccessMessage": "Rozmawialiście mechanicznymi, pustymi zdaniami, udając, że to spotkanie ma jakiekolwiek znaczenie w świetle końca świata.",
+    "partialMessage": "Zamieniliście kilka słów po polsku, nim rozeszły się wasze drogi. Krótko, lecz swojsko.",
+    "lowMoralePartialMessage": "Wymieniliście parę pustych zdań, udając, że to coś znaczy. Potem znów cisza.",
     "failEffects": {
       "morale": -20
     },
@@ -183,6 +201,8 @@
     },
     "successMessage": "Słowa psalmu znałeś na pamięć. Tym razem brzmiały inaczej. Lepiej.",
     "lowMoraleSuccessMessage": "Litery to tylko atrament, księga to tylko zbutwiały papier. Szukałeś magii, znalazłeś chłodny absurd ludzkich rojeń.",
+    "partialMessage": "Przeczytałeś tylko parę wersów, nim oczy odmówiły. Słaba, lecz pociecha.",
+    "lowMoralePartialMessage": "Wymamrotałeś urywek psalmu. Litery to tylko atrament, ulga to tylko złudzenie.",
     "failEffects": {
       "morale": -10
     },
@@ -200,6 +220,8 @@
     },
     "successMessage": "Trzy kamienie ułożone w krzyż. Mały znak że tu byłeś i wciąż wierzysz.",
     "lowMoraleSuccessMessage": "Patrzyłeś na swoją konstrukcję z obrzydzeniem. Żałosny, wulgarny fetysz człowieka przerażonego losem.",
+    "partialMessage": "Ołtarzyk wyszedł krzywy i ledwie się trzymał. Mały, niepewny znak.",
+    "lowMoralePartialMessage": "Ułożyłeś parę kamieni byle jak. Żałosny fetysz człowieka przerażonego losem.",
     "failEffects": {
       "morale": -5
     },
@@ -218,6 +240,8 @@
     },
     "successMessage": "Dym z kominów. Psy szczekały. Dzieci krzyczały. Życie — prawdziwe i niezarażone.",
     "lowMoraleSuccessMessage": "Skręt kiszek z chorej zazdrości był silniejszy niż ulga. Zastanawiałeś się, po ilu dniach ich trupy zasłają te ścieżki.",
+    "partialMessage": "Z daleka dobiegły tylko strzępy życia — szczekanie, dym. Ledwie cień otuchy.",
+    "lowMoralePartialMessage": "Patrzyłeś na obcą wioskę z chorą zazdrością. Ulga ledwie przebiła zawiść.",
     "failEffects": {
       "morale": -30
     },
@@ -236,6 +260,8 @@
     },
     "successMessage": "Nie znałeś tego człowieka. Ale płomień był dla niego i dla ciebie. Przez chwilę obaj byliście mniej sami.",
     "lowMoraleSuccessMessage": "Zazdrościłeś zmarłemu. Zazdrościłeś, że jego podróż już się skończyła. Płomień świecy to była czysta kapitulacja.",
+    "partialMessage": "Płomień zatlił się słabo i chwiał na wietrze. Krótka chwila wspólnoty ze zmarłym.",
+    "lowMoralePartialMessage": "Świeca ledwie się zatliła. Zazdrościłeś zmarłemu, że jego droga już się skończyła.",
     "failEffects": {
       "morale": -8
     },
@@ -253,6 +279,8 @@
     },
     "successMessage": "Twoje imię zostanie tu długo po tobie. Coś małego — ale prawdziwego.",
     "lowMoraleSuccessMessage": "Drapanie kory bolało palce, ale pozwalało poczuć gniewną chęć zaznaczenia swojej nędznej obecności.",
+    "partialMessage": "Imię wyszło tylko do połowy, nim nóż się ześlizgnął. Ślad nikły, lecz twój.",
+    "lowMoralePartialMessage": "Wydrapałeś parę liter w korze z gniewem. Mizerny ślad nędznej obecności.",
     "failEffects": {
       "morale": -8
     },
@@ -271,6 +299,8 @@
     },
     "successMessage": "Słowa wracały same. Głos łamał się co kilka taktów — ale śpiewałeś. I to wystarczyło.",
     "lowMoraleSuccessMessage": "Zachrypnięty, fałszywy jęk w żaden sposób nie przypominał dzieciństwa. Był po prostu rzężeniem umierającego człowieka.",
+    "partialMessage": "Przypomniałeś sobie tylko fragment pieśni. Głos łamał się, lecz śpiewałeś.",
+    "lowMoralePartialMessage": "Wycharczałeś urywek melodii. Fałszywy jęk, nie pieśń z dzieciństwa.",
     "failEffects": {
       "morale": -15
     },
@@ -289,6 +319,8 @@
     },
     "successMessage": "Koń słuchał cierpliwie. Nie oceniał. To rzadka cecha — nawet u ludzi.",
     "lowMoraleSuccessMessage": "Mówiłeś, bo milczenie stało się zbyt mroczne. Zwierzę patrzyło tępym wzrokiem na twoje majaki.",
+    "partialMessage": "Koń słuchał tylko chwilę, nim spuścił łeb. Krótka, milcząca kompania.",
+    "lowMoralePartialMessage": "Bełkotałeś do bydlęcia, które patrzyło tępo. Milczenie i tak wróciło zbyt szybko.",
     "failEffects": {
       "morale": -10
     },
@@ -307,6 +339,8 @@
     },
     "successMessage": "Twarze wróciły wyraźnie — po raz pierwszy od tygodnia. To wystarczy na kolejny dzień.",
     "lowMoraleSuccessMessage": "Pamięć o nich zadawała teraz tylko ból, przypominając okrutnie, jak bardzo cię od nich odcięto i czym się stałeś.",
+    "partialMessage": "Twarze bliskich mignęły niewyraźnie i zgasły. Strzęp ciepła na chwilę.",
+    "lowMoralePartialMessage": "Pamięć o nich błysnęła bólem. Ledwie strzęp twarzy, zaraz zgaszony.",
     "failEffects": {
       "morale": -25
     },
@@ -324,6 +358,8 @@
     },
     "successMessage": "Mała rzecz. Głupia, może. Ale znalazłeś ją — i to był twój moment szczęścia na dziś.",
     "lowMoraleSuccessMessage": "Włożyłeś ją do kieszeni dla czystego mechanicznego odruchu. Przecież za rogiem nie ma już dla ciebie żadnego handlu.",
+    "partialMessage": "Moneta była starta i bezwartościowa, ale ją podniosłeś. Drobny, kruchy uśmiech.",
+    "lowMoralePartialMessage": "Wsunąłeś miedziak do kieszeni z czystego odruchu. Nie ma już dla ciebie żadnego handlu.",
     "failEffects": {
       "morale": -6
     },
@@ -342,6 +378,8 @@
     },
     "successMessage": "Wizualizacja pomogła. Kraków nie był już abstrakcją — był punktem na twojej mapie.",
     "lowMoraleSuccessMessage": "Ucieczka od potępionej, chaotycznej drogi w gmatwaninę twoich własnych kresek i kłamstw przyniosła ułudę sensu.",
+    "partialMessage": "Mapa wyszła niepełna i krzywa. Kraków zarysował się ledwie mgliście.",
+    "lowMoralePartialMessage": "Wyryłeś w błocie plątaninę kresek. Ułuda sensu, nic więcej.",
     "failEffects": {
       "morale": -12
     },
@@ -364,6 +402,8 @@
     },
     "successMessage": "Wskazałeś kierunek. Uśmiechnął się i podzielił owocami. Drobne dobro — realne.",
     "lowMoraleSuccessMessage": "Pozbyłeś się go jak najszybciej, wrzeszcząc błędne kierunki. Było ci obojętne, czy ucieknie by zginąć czy by przeżyć.",
+    "partialMessage": "Wskazałeś z grubsza kierunek i ruszyłeś dalej. Drobne dobro, niepewne.",
+    "lowMoralePartialMessage": "Wymamrotałeś byle jaki kierunek, byle się go pozbyć. Obojętne, czy przeżyje.",
     "failEffects": {
       "morale": -15
     },
@@ -382,6 +422,8 @@
     },
     "successMessage": "Leciały w tym samym kierunku co ty. Też do domu, może. Albo po prostu dalej.",
     "lowMoraleSuccessMessage": "Zazdrościłeś, że potrafią zostawić ten brud i zepsucie z tyłu. One odlecą, ty najprawdopodobniej doczekasz tu zimy pod ziemią.",
+    "partialMessage": "Ptaki mignęły na niebie i znikły za chmurą. Krótki kierunek, nikła otucha.",
+    "lowMoralePartialMessage": "Patrzyłeś, jak odlatują, zostawiając cię w brudzie. Zazdrość przebiła ulgę.",
     "failEffects": {
       "morale": -8
     },
@@ -400,6 +442,8 @@
     },
     "successMessage": "Słowa wyszły same. Nie wiesz czy ktoś słuchał — ale ty słyszałeś siebie. I to pomogło.",
     "lowMoraleSuccessMessage": "Plułeś słowami pełnymi pogardy. Żądałeś umowy z uporem człowieka na szafocie, wiedząc, że umowa ta nigdy nie istniała.",
+    "partialMessage": "Ślubowanie wyszło niepewne, słowa rwały się. Usłyszałeś jednak siebie.",
+    "lowMoralePartialMessage": "Wyrzuciłeś z siebie parę słów pełnych pogardy. Umowa, której nigdy nie było.",
     "failEffects": {
       "morale": -20
     },
@@ -418,6 +462,8 @@
     },
     "successMessage": "Liczby były przerażające. Ale konkretne. Wolisz wiedzieć niż nie wiedzieć.",
     "lowMoraleSuccessMessage": "Liczby przytłaczały swym ciężarem. Były to cyfry więźnia kreślącego mury skazania, dające pusty dowód nieuniknionego zgonu.",
+    "partialMessage": "Doliczyłeś tylko do połowy, nim liczby cię przytłoczyły. Pół-wiedza, pół-ulga.",
+    "lowMoralePartialMessage": "Liczby przytłoczyły cię w pół drogi. Cyfry więźnia kreślącego mury skazania.",
     "failEffects": {
       "morale": -18
     },

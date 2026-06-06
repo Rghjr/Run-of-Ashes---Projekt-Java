@@ -15,6 +15,8 @@
     },
     "successMessage": "Zając. Niezbyt duży — ale twój. Mięso upieczone, resztę zawinąłeś na drogę.",
     "lowMoraleSuccessMessage": "Zabiłeś go, choć zając pewnie miał więcej woli życia niż ty. Żujesz twarde mięso bez smaku.",
+    "partialMessage": "Trafiłeś, ale zwierzę uciekło w zarośla. Po krwawym śladzie znalazłeś tylko resztki — lepsze to niż nic.",
+    "lowMoralePartialMessage": "Postrzeliłeś je i zgubiłeś trop. Wyssałeś szpik z paru kości, które zostawiło, klnąc na swoją niemoc.",
     "failEffects": {
       "energy": -20,
       "hunger": -8,
@@ -39,6 +41,8 @@
     },
     "successMessage": "Mnich dał ci bochenek i manierkę wody. Nie pytał o imię. Boże mu zapłać.",
     "lowMoraleSuccessMessage": "Dali ci chleb z litości. Przeżuwasz tę jałmużnę, czując na sobie ich puste spojrzenia.",
+    "partialMessage": "Mnich podał ci tylko skórkę chleba i odprawił gestem. Niewiele, ale żołądek na chwilę zamilkł.",
+    "lowMoralePartialMessage": "Rzucili ci czerstwą piętkę jak psu. Przeżułeś ją w kącie, nie czując nic poza upokorzeniem.",
     "failEffects": {
       "morale": -20,
       "hunger": -5
@@ -62,6 +66,8 @@
     },
     "successMessage": "Chleb, kawałek sera, garść winogron. Wystarczy na jutro.",
     "lowMoraleSuccessMessage": "Kupiłeś jedzenie, ale w smaku przypominało popiół. Jeszcze jeden dzień nędzy zaspokojony.",
+    "partialMessage": "Targ poszedł kiepsko — dostałeś tylko trochę chleba za swoje grosze. Starczy na pół dnia.",
+    "lowMoralePartialMessage": "Oszukali cię na wadze. Wziąłeś tę resztkę bez słowa, zbyt wypalony, by się kłócić.",
     "failEffects": {
       "morale": -25,
       "hunger": -5
@@ -82,6 +88,8 @@
     },
     "successMessage": "Dwie ryby na zaimprowizowanym haczyku. Surowe, ale ciało przyjęło je z wdzięcznością.",
     "lowMoraleSuccessMessage": "Wyciągnąłeś je z zimnej wody i ubiłeś. Zjadłeś surowe oślizgłe mięso z całkowitą obojętnością.",
+    "partialMessage": "Jedna chuda rybka po długim staniu w nurcie. Marna, lecz coś trafiło do żołądka.",
+    "lowMoralePartialMessage": "Po godzinach w lodowatej wodzie złapałeś ledwie płotkę. Połknąłeś ją surową, drżąc z zimna i obojętności.",
     "failEffects": {
       "energy": -15,
       "morale": -10
@@ -104,6 +112,8 @@
     },
     "successMessage": "Garść tarniny i kilka dzikich śliwek. Cierpkie — ale żołądek się uspokoił.",
     "lowMoraleSuccessMessage": "Skwaśniałe i małe. Wpychałeś je do ust, w ogóle nie dbając o zadrapania od cierni.",
+    "partialMessage": "Garść niedojrzałych jagód — kwaśne i nieliczne. Reszta krzaków była już ogołocona.",
+    "lowMoralePartialMessage": "Kilka skwaśniałych owoców z dna krzaka. Wpychałeś je do ust, drąc skórę o ciernie i nie dbając o to.",
     "failEffects": {
       "hunger": -5,
       "morale": -12
@@ -124,6 +134,8 @@
     },
     "successMessage": "Jadalne. Upieczone na kamieniu smakowały jak nic innego na tej drodze.",
     "lowMoraleSuccessMessage": "Zjadłeś to, co wyrosło na śmierci drzewa. Ironia losu, że trzyma cię to przy życiu.",
+    "partialMessage": "Tylko parę grzybów nadawało się do jedzenia. Reszta poszła w ogień. Mało, ale bezpiecznie.",
+    "lowMoralePartialMessage": "Zjadłeś te kilka, które nie wyglądały na zabójcze. Mizerny łup z drzewa, które zgniło jak wszystko wokół.",
     "failEffects": {
       "health": -40,
       "hunger": -15,
@@ -147,6 +159,8 @@
     },
     "successMessage": "Pasek skórzany za suszone mięso i sucharki. Dobry interes.",
     "lowMoraleSuccessMessage": "Zrobiłeś interes, ale świadomość, że obdzieracie się nawzajem z resztek, dobijała.",
+    "partialMessage": "Podróżny oddał tylko część zapasów i to po długim targu. Lepiej to niż pusty plecak.",
+    "lowMoralePartialMessage": "Wymiana wyszła nędznie — dał ci ochłapy. Rozeszliście się, wzajemnie sobą gardząc.",
     "failEffects": {
       "morale": -20,
       "hunger": -5
@@ -169,6 +183,8 @@
     },
     "successMessage": "Kuropatwa. Mała, ale całkowicie twoja. Pióra zostawiłeś wiatrowi.",
     "lowMoraleSuccessMessage": "Ukręciłeś kark ptakowi mrugając zaledwie. Tyle zachodu dla garstki nędznego mięsa.",
+    "partialMessage": "W sidłach utknęło coś małego, na wpół oskubanego przez padlinożercę. Reszta została dla ciebie.",
+    "lowMoralePartialMessage": "Pętla złapała tylko obgryziony ścierw. Zjadłeś, co zostało, nie czując już różnicy.",
     "failEffects": {
       "energy": -8,
       "morale": -10
@@ -188,6 +204,8 @@
     },
     "successMessage": "Korzenie chrzanu i jakiś bulwiasty korzeń. Nie smakowały niczym — ale trzymały przy życiu.",
     "lowMoraleSuccessMessage": "Ziemia chrzęściła w zębach. Przełykałeś twardą miazgę, zastanawiając się, czy upadłeś już na samo dno.",
+    "partialMessage": "Wykopałeś kilka cienkich korzeni z na wpół zmarzniętej ziemi. Niewiele, lecz coś dla ciała.",
+    "lowMoralePartialMessage": "Parę twardych korzonków po godzinie ryć w błocie. Żułeś ziemię razem z nimi, jak zwierzę bez nadziei.",
     "failEffects": {
       "energy": -10,
       "morale": -12
@@ -212,6 +230,8 @@
     },
     "successMessage": "Znalazłeś suszone mięso i butelkę wina. Właściciel nie wróci po to.",
     "lowMoraleSuccessMessage": "Wziąłeś zapasy kogoś, kto już zginął. Zastanawiałeś się, kto wkrótce obszuka twoje kieszenie.",
+    "partialMessage": "Wóz był prawie pusty — zostały okruchy i nadpsuta resztka. Zgarnąłeś, co się dało.",
+    "lowMoralePartialMessage": "Wygrzebałeś z wraku ochłapy po zmarłym. Wystarczy, by przeżyć i dalej brzydzić się sobą.",
     "failEffects": {
       "health": -15,
       "morale": -25
@@ -236,6 +256,8 @@
     },
     "successMessage": "Mnisi podali zupę i ziółka na drogę. 'Niech Bóg strzeże' — powiedzieli.",
     "lowMoraleSuccessMessage": "Ciepła zupa smakowała czystą litością. Ich modlitwy wydawały ci się puste, ale zjadłeś wszystko.",
+    "partialMessage": "Zupa była rozwodniona, a misa ledwie do połowy. Mnisi sami głodowali. Ale ciepło zostało.",
+    "lowMoralePartialMessage": "Dali ci pół miski wodnistej brei z litości. Przełknąłeś ją w milczeniu, bez sytości i bez wdzięczności.",
     "failEffects": {
       "morale": -20
     },
@@ -257,6 +279,8 @@
     },
     "successMessage": "Szczaw, pokrzywa, dziki czosnek. Garść ziół do kieszeni na potem.",
     "lowMoraleSuccessMessage": "Zjadłeś zielsko, krztusząc się jego goryczą. To nie posiłek, to ponura farsa życia.",
+    "partialMessage": "Garść ziół, połowę odrzuciłeś z obawy. Niewiele, ale żołądek nie protestuje.",
+    "lowMoralePartialMessage": "Pożułeś trochę trawy, resztę wyplułeś z obrzydzeniem. Posiłek bydlęcia, nie człowieka.",
     "failEffects": {
       "health": -15,
       "hunger": -8,
@@ -282,6 +306,8 @@
     },
     "successMessage": "Sól i kawał mięsa. Kupiec powiedział że na zachodzie jest spokojniej. Oby.",
     "lowMoraleSuccessMessage": "Kupiłeś słone, wysuszone mięso. Przynajmniej pragnienie zabije cię szybciej niż głód.",
+    "partialMessage": "Handlarz odsprzedał tylko szczyptę soli i kawałek mięsa. Bał się i spieszył. Lepsze to niż nic.",
+    "lowMoralePartialMessage": "Dostałeś okruch soli jak jałmużnę dla trędowatego. Wziąłeś bez słowa, ze spuszczoną głową.",
     "failEffects": {
       "morale": -12
     },
@@ -304,6 +330,8 @@
     },
     "successMessage": "Przyszedł chłop z dzbankiem i owocami. Nie wchodził blisko — zostawił pod drzewem i odszedł.",
     "lowMoraleSuccessMessage": "Dostałeś jedzenie, ale potraktowano cię jak wygnańca z trądem. Jadłeś w ciemności i samotności.",
+    "partialMessage": "Po długim czekaniu ktoś zostawił trochę owoców i pół dzbanka. Niewiele, ale jednak przyszli.",
+    "lowMoralePartialMessage": "Zostawili pod drzewem nędzne resztki i uciekli. Jadłeś w ciemności, jak zaszczute zwierzę.",
     "failEffects": {
       "energy": -12,
       "morale": -15
@@ -320,6 +348,8 @@
     "category": "food",
     "hiddenEffects": true,
     "revealMessage": "Piwnica pełna — solone mięso, suszone owoce, beczka wody. Ktoś się tu szykował. Ale nie wrócił.",
+    "partialMessage": "Zszedłeś w mrok, ale coś cię spłoszyło — zdążyłeś chwycić tylko część zapasów, nim wybiegłeś.",
+    "lowMoralePartialMessage": "Wygrzebałeś w ciemności ledwie garść z tego, co tam leżało. Strach wygnał cię, nim wziąłeś więcej.",
     "effects": {
       "hunger": 35,
       "hydration": 20,
@@ -350,6 +380,8 @@
     },
     "successMessage": "Chleb był czerstwy i twardy. Łamałeś go zębami. Najlepszy posiłek od trzech dni.",
     "lowMoraleSuccessMessage": "Oddałeś nóż za kamienny chleb. Zyskałeś dzień życia kosztem ochrony. Żałosny, pozbawiony przyszłości wybór.",
+    "partialMessage": "Targ wyszedł połowicznie — dostałeś tylko kawałek czerstwego bochna za nóż. Lepsze to niż głód.",
+    "lowMoralePartialMessage": "Oddałeś ostrze za skórkę chleba. Łamałeś ją w zębach, żałując każdej sekundy tej nędznej zamiany.",
     "failEffects": {
       "morale": -18
     },
@@ -371,6 +403,8 @@
     },
     "successMessage": "Ostry i surowy — ale czosnek leczy. Resztę wysuszyłeś i schowałeś do kieszeni.",
     "lowMoraleSuccessMessage": "Ostrość wycisnęła łzy, na które nawet nie miałeś ochoty. Każdy kęs przypominał o trwaniu za wszelką cenę.",
+    "partialMessage": "Parę ząbków dzikiego czosnku, reszta zwiędła. Ostry i skąpy, lecz coś dla ciała.",
+    "lowMoralePartialMessage": "Wyszarpałeś z ziemi kilka palących ząbków. Łzy stanęły ci w oczach — nie z żalu, z samej goryczy.",
     "failEffects": {
       "health": -10,
       "morale": -12
@@ -391,6 +425,8 @@
     },
     "successMessage": "Trzy jaja. Surowe, ale świeże. Zjadłeś je szybko zanim zdążyłeś o tym myśleć.",
     "lowMoraleSuccessMessage": "Rozbiłeś nienarodzone życie, by przedłużyć własne nędzne. Wessałeś je chciwie, nie plując nawet skorupkami.",
+    "partialMessage": "W gnieździe zostało tylko jedno jajo. Reszta rozbita albo pusta. Zjadłeś je w pośpiechu.",
+    "lowMoralePartialMessage": "Jedno ocalałe jajo wśród skorup. Wyssałeś je chciwie, brzydząc się sobą bardziej niż głodem.",
     "failEffects": {
       "energy": -8,
       "morale": -14
@@ -416,6 +452,8 @@
     },
     "successMessage": "Mnisi rozdawali chleb i wodę przy jutrzni. Nie pytali — po prostu dawali. To wystarczyło.",
     "lowMoraleSuccessMessage": "Brałeś z opuszczoną w dół głową. Nie czułeś nawet wstydu. Przeżuwasz tę papkę bez namysłu, jak pusta maszyna.",
+    "partialMessage": "Mnisi rozdali resztki, nim zabrakło. Dostałeś tylko skórkę i łyk wody. Niewiele, ale na czas.",
+    "lowMoralePartialMessage": "Wcisnęli ci ostatni kawałek, nim zatrzasnęli bramę. Brałeś z opuszczoną głową, bez śladu wdzięczności.",
     "failEffects": {
       "morale": -20
     },
@@ -435,6 +473,8 @@
     },
     "successMessage": "Małe szczupaczki w mule. Surowe i zimne — ale białko to białko.",
     "lowMoraleSuccessMessage": "Połknąłeś je bez żucia, pełne mułu i rybiej krwi. Idealne danie dla kogoś, kto już dawno stracił ludzką godność.",
+    "partialMessage": "Po długim brodzeniu złapałeś jedną małą rybę. Surowa i zimna, ale trafiła do żołądka.",
+    "lowMoralePartialMessage": "Jedna oślizgła płotka po godzinie w mule. Połknąłeś ją z błotem, nie czując już wstrętu.",
     "failEffects": {
       "energy": -12,
       "morale": -14
@@ -459,6 +499,8 @@
     },
     "successMessage": "Jabłonie, śliwki, dzikie gruszki. Folwark opuszczony — drzewa nie. Jadłeś stojąc i zabrałeś tyle ile uniosłeś.",
     "lowMoraleSuccessMessage": "Owoce były cierpkie, ale wokół panowała martwa cisza. Trupi zapach mieszał się w twoich ustach ze smakiem śliwek.",
+    "partialMessage": "Większość drzew była ogołocona albo zgniła. Uzbierałeś tylko garść owoców z gałęzi.",
+    "lowMoralePartialMessage": "Z całego sadu zostało parę cierpkich owoców. Jadłeś je w martwej ciszy, czując trupi zapach w ustach.",
     "failEffects": {
       "morale": -15
     },
@@ -478,6 +520,8 @@
     },
     "successMessage": "Gorący, prosty, dobry. Kobieta nie wzięła za dużo. Świat ma jeszcze dobre miejsca.",
     "lowMoraleSuccessMessage": "Żułeś ciepły kęs, ale widok jej wielkich, przerażonych oczu skutecznie odebrał mu jakikolwiek smak.",
+    "partialMessage": "Kobieta podała tylko pół podpłomyka i cofnęła się szybko. Ciepły kęs, choć skąpy.",
+    "lowMoralePartialMessage": "Wcisnęła ci okruch ciasta drżącą ręką i odsunęła się. Jadłeś, czując na sobie jej przerażony wzrok.",
     "failEffects": {
       "morale": -16
     },
@@ -496,6 +540,8 @@
     },
     "successMessage": "Gorzkie i twarde — ale gotowane dawały jakiś pożytek. Nie po raz pierwszy ludzkie ciało jadło to co jadły świnie.",
     "lowMoraleSuccessMessage": "Zjadałeś świński pokarm, by przeżyć ludzkie piekło. Z każdym marnym kęsem nienawidziłeś tego świata coraz mocniej.",
+    "partialMessage": "Żołędzie wyszły na wpół gorzkie — część dało się przełknąć. Marny, lecz pożytek.",
+    "lowMoralePartialMessage": "Przełknąłeś kilka gorzkich, paszowych kul. Świński pokarm na ludzką nędzę — i tak smakował klęską.",
     "failEffects": {
       "health": -8,
       "morale": -14
@@ -520,6 +566,8 @@
     },
     "successMessage": "Wolne i cierpliwe. Mięso wyszło twarde jak podeszwa — i trwałe. Schowałeś je na gorsze dni.",
     "lowMoraleSuccessMessage": "Mięso wyschło na kamienny wiór, zupełnie tak, jak twoja dusza. Upchałeś je do wora, nie czując żadnej pociechy.",
+    "partialMessage": "Ogień przygasał, mięso wyszło tylko częściowo uwędzone. Część schowałeś, resztę zjadłeś od razu.",
+    "lowMoralePartialMessage": "Połowa mięsa nadawała się do schowania, reszta na nic. Czuwałeś nad tym całą noc dla tak marnego łupu.",
     "failEffects": {
       "energy": -10,
       "morale": -14
@@ -543,6 +591,8 @@
     },
     "successMessage": "Sól jest wszędzie ceniona. Chłop dał ci chleb, owoce i uśmiech. Rzadka kombinacja.",
     "lowMoraleSuccessMessage": "Dostałeś jedzenie, on pokazał udawany uśmiech. Oboje kłamaliście przed sobą, że świat wciąż jakoś funkcjonuje.",
+    "partialMessage": "Chłop wymienił tylko część — dał chleb, owoce zatrzymał. Targ skromny, lecz uczciwy.",
+    "lowMoralePartialMessage": "Dostałeś okruch za sól, obaj udawaliście zadowolenie. Pusty rytuał dwóch wypalonych ludzi.",
     "failEffects": {
       "morale": -15
     },
@@ -563,6 +613,8 @@
     },
     "successMessage": "Użądliło cię pięć razy. Miód był tego wart.",
     "lowMoraleSuccessMessage": "Jad palący ciało przypomniał, że wciąż jakoś żyjesz. Gęsty miód zalepił na moment świadomość bolesnej egzystencji.",
+    "partialMessage": "Wziąłeś tylko trochę miodu, nim pszczoły cię przegnały. Słodki łup okupiony żądłami.",
+    "lowMoralePartialMessage": "Zlizałeś resztki miodu z palców, uciekając przed rojem. Opuchnięty i drżący — żałosny złodziej drzewa.",
     "failEffects": {
       "health": -15,
       "morale": -16
@@ -582,6 +634,8 @@
     },
     "successMessage": "Łykowaty i gorzki. Ciało wzięło co mogło. Na stepie jada się to czego step nie odmówi.",
     "lowMoraleSuccessMessage": "Przełykałeś tępą, ohydną wodę drzewną, patrząc w przepaść nicości. Granica między ludzkim a zwierzęcym trwaniem zniknęła.",
+    "partialMessage": "Wywar wyszedł mętny i gorzki — wypiłeś połowę, resztę wylałeś. Ciało wzięło, co mogło.",
+    "lowMoralePartialMessage": "Przełknąłeś parę łyków drzewnej brei, nim żołądek się zbuntował. Granica człowieka i zwierzęcia dawno zniknęła.",
     "failEffects": {
       "energy": -8,
       "morale": -12
