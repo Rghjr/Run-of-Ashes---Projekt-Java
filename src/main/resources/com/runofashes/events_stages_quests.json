@@ -4,10 +4,12 @@
     "questId": "am_przewodnik",
     "questStage": 1,
     "requiredStage": "Azja Mniejsza",
-    "label": "Tajemniczy tubylec oferuje, że przeprowadzi cię przez zrujnowane pustkowia.",
-    "lowMoraleLabel": "Tubylec patrzy na ciebie z pogardą, oferując pomoc, której ledwo jesteś godzien",
+    "label": "Tajemniczy miejscowy przewodnik oferuje, że przeprowadzi cię przez zrujnowane pustkowia.",
+    "lowMoraleLabel": "Obcy przewodnik patrzy na ciebie z pogardą, oferując pomoc, której ledwo jesteś godzien",
     "successMessage": "Zgodził się pomóc, ale musi najpierw zgubić pościg. Każe ci czekać w ukryciu.",
     "lowMoraleSuccessMessage": "Czekasz w dziurze jak szczur, modląc się, by chociaż ten jeden raz ci się udało.",
+    "partialMessage": "Przewodnik zgodził się niechętnie, lecz kazał ci czekać dłużej w ukryciu. Wróć później.",
+    "lowMoralePartialMessage": "Czekasz w dziurze jak szczur, modląc się o choć jeden udany dzień.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -19,8 +21,10 @@
     "lowMoraleLabel": "Wleczesz się za przewodnikiem, który nie czeka na twoje wycieńczone ciało",
     "effects": {"energy": -10, "hydration": -15},
     "distanceCost": 120,
-    "successMessage": "Nadrobiliście mnóstwo kilometrów! Zapłaciłeś za to skrajnym wyczerpaniem.",
+    "successMessage": "Pokonaliście kawał drogi! Zapłaciłeś za to skrajnym wyczerpaniem.",
     "lowMoraleSuccessMessage": "Przeżyłeś ten marsz tylko dzięki wściekłej zawiści do przewodnika, że on jest silniejszy od ciebie.",
+    "partialMessage": "Marsz był wolniejszy, niż liczył przewodnik. Pokonaliście tylko część drogi.",
+    "lowMoralePartialMessage": "Wlokłeś się za przewodnikiem na resztkach sił. Zaszliście niedaleko.",
     "lowMoraleFailMessage": "Upadłeś w piach. Przewodnik nawet się nie obejrzał, zostawiając cię na pewną śmierć."
   },
   {
@@ -31,11 +35,13 @@
     "label": "W oddali widzisz zapomnianą oazę. Kręcą się tam zbrojni.",
     "lowMoraleLabel": "Wypatrujesz oazy, wiedząc, że to pewnie kolejna pułapka na takiego nieszczęśnika jak ty",
     "failChance": 0.3,
-    "successMessage": "Udało ci się przemknąć i napełnić manierki. Znalazłeś też trochę jedzenia.",
+    "successMessage": "Udało ci się przemknąć i napełnić bukłaki. Znalazłeś też suszone mięso i garść oliwek.",
     "lowMoraleSuccessMessage": "Woda smakuje jak zgnilizna, ale przynajmniej będziesz zdychać z pełnym brzuchem.",
+    "partialMessage": "Przemknąłeś tylko częściowo — napełniłeś jeden bukłak, nim zbrojni drgnęli.",
+    "lowMoralePartialMessage": "Woda smakuje zgnilizną, ale złapałeś parę łyków. Przynajmniej tyle.",
     "failMessage": "Zostałeś zauważony! Musiałeś uciekać, gubiąc cenne zapasy.",
     "lowMoraleFailMessage": "Oczywiście, że cię widzieli. Twoja niezdarność jest tak oczywista, jak twój zbliżający się koniec.",
-    "itemEffects": {"WATER": 2, "DRIED_MEAT": 1},
+    "itemEffects": {"WATER": 2, "DRIED_MEAT": 1, "OLIVES": 1},
     "failEffects": {"health": -15, "energy": -20},
     "turnsUntilNext": 1,
     "allowWait": false
@@ -50,6 +56,8 @@
     "failChance": 0.4,
     "successMessage": "Zgubiłeś ich w labiryncie skał.",
     "lowMoraleSuccessMessage": "Zgubiłeś ich, ale tylko po to, by samotnie gnić w tych skałach.",
+    "partialMessage": "Zgubiłeś pościg tylko na chwilę, kryjąc się w skałach. Niepewnie, lecz uszedłeś.",
+    "lowMoralePartialMessage": "Zmyliłeś ich ledwie, by samotnie gnić w tych skałach.",
     "failMessage": "Dopadli cię z daleka. Strzała drasnęła ramię, ale ostatecznie uciekłeś.",
     "lowMoraleFailMessage": "Strzała cię dopadła. Krew na piasku to jedyny ślad, jaki po tobie zostanie.",
     "failEffects": {"health": -25, "morale": -15}
@@ -59,11 +67,13 @@
     "questId": "am_karawana",
     "questStage": 1,
     "requiredStage": "Azja Mniejsza",
-    "label": "Natrafiasz na rozbitą karawanę uchodźców. Potrzebują medykamentów.",
+    "label": "Natrafiasz na rozbitą karawanę uchodźców. Potrzebują lekarstw i opatrunków.",
     "lowMoraleLabel": "Patrz na umierających uchodźców, czując tylko ciężar ich próśb",
     "itemEffects": {"BANDAGE": -1},
     "successMessage": "Oddałeś im bandaże. Wdzięczni uchodźcy proponują, że w nocy wskażą ci tajny skrót.",
     "lowMoraleSuccessMessage": "Oddałeś im bandaże, choć sam byłeś bliski zgonu. To był akt czystego, autodestrukcyjnego szaleństwa.",
+    "partialMessage": "Oddałeś tylko część opatrunków. Uchodźcy mgliście obiecali wskazać skrót. Wróć później.",
+    "lowMoralePartialMessage": "Oddałeś trochę bandaży, sam bliski zgonu. Akt autodestrukcyjnego szaleństwa.",
     "failChance": 0.5,
     "failMessage": "Nie miałeś czym im pomóc. Odchodzisz z ciężkim sercem.",
     "lowMoraleFailMessage": "Nie miałeś nic. Ich błagalne oczy będą cię prześladować do ostatniego tchnienia.",
@@ -78,8 +88,10 @@
     "label": "Uchodźcy prowadzą cię nocą przez ukryty szlak przemytników.",
     "lowMoraleLabel": "Wlecz się za uchodźcami przez mroczny szlak, bo nie masz własnego celu",
     "distanceCost": 80,
-    "successMessage": "Bezpiecznie pominęliście najbardziej niebezpieczny sektor.",
-    "lowMoraleSuccessMessage": "Przemknęliśmy przez szlak. Noc była ciemna, zupełnie jak twoje widoki na przyszłość."
+    "successMessage": "Bezpiecznie pominęliście najgorszy odcinek szlaku.",
+    "lowMoraleSuccessMessage": "Przemknęliśmy przez szlak. Noc była ciemna, zupełnie jak twoje widoki na przyszłość.",
+    "partialMessage": "Szlak był trudniejszy, niż mówili. Pominęliście tylko część najgorszego odcinka.",
+    "lowMoralePartialMessage": "Przemknęliście kawałek szlaku. Noc była ciemna jak twoje widoki na przyszłość."
   },
   {
     "id": "am_burza_1",
@@ -90,6 +102,8 @@
     "lowMoraleLabel": "Padnij w piach, modląc się by burza cię wreszcie pochłonęła",
     "successMessage": "Schroniłeś się na czas. Przeczekujesz najgorsze uderzenie wiatru.",
     "lowMoraleSuccessMessage": "Jaskinia nie chroni przed życiem. Przeczekujesz burzę, wiedząc, że to tylko odroczenie wyroku.",
+    "partialMessage": "Ledwie wcisnąłeś się do jaskini, nim uderzył wiatr. Przeczekujesz najgorsze.",
+    "lowMoralePartialMessage": "Jaskinia nie chroni przed życiem. Przeczekujesz burzę — odroczenie wyroku.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -102,20 +116,24 @@
     "itemEffects": {"WATER": 1, "DRIED_MEAT": 1, "MYSTERIOUS_VIAL": 1},
     "effects": {"morale": -10},
     "successMessage": "Zabierasz zapasy oraz dziwną, zapieczętowaną fiolkę z jego płaszcza. Trupi odór psuje ci humor.",
-    "lowMoraleSuccessMessage": "Zabrałeś jego zapasy. Trupi odór to jedyne, co dziś czujesz. Jesteś tak samo martwy jak on."
+    "lowMoraleSuccessMessage": "Zabrałeś jego zapasy. Trupi odór to jedyne, co dziś czujesz. Jesteś tak samo martwy jak on.",
+    "partialMessage": "Zdążyłeś zabrać tylko część zapasów z trupa, nim odór cię wygnał.",
+    "lowMoralePartialMessage": "Zabrałeś trochę jego zapasów. Trupi odór to jedyne, co dziś czujesz."
   },
   {
     "id": "am_wrak_1",
     "questId": "am_wrak",
     "questStage": 1,
     "requiredStage": "Azja Mniejsza",
-    "label": "Przeszukujesz wrak wojskowego pojazdu na środku wyschniętego jeziora.",
-    "lowMoraleLabel": "Grzeb w zardzewiałym wraku, spodziewając się jedynie kolejnego rozczarowania",
+    "label": "Przeszukujesz strzaskany wóz wojenny na środku wyschniętego jeziora.",
+    "lowMoraleLabel": "Grzeb w zmurszałym wraku wozu, spodziewając się jedynie kolejnego rozczarowania",
     "failChance": 0.4,
-    "successMessage": "Znalazłeś nietkniętą apteczkę i sole trzeźwiące!",
-    "lowMoraleSuccessMessage": "Apteczka. Bandaże. Wszystko to tylko po to, byś mógł dłużej krwawić na tym przeklętym szlaku.",
-    "failMessage": "Podczas przeszukiwania zardzewiała blacha rozcięła ci dłoń. Nic nie znalazłeś.",
-    "lowMoraleFailMessage": "Krew na metalu. To jedyne co zyskałeś. Twoja bezużyteczność jest zdumiewająca.",
+    "successMessage": "Znalazłeś nietkniętą skrzynię z opatrunkami i gorzkie zioła na mdłości!",
+    "lowMoraleSuccessMessage": "Opatrunki. Płótno. Wszystko to tylko po to, byś mógł dłużej krwawić na tym przeklętym szlaku.",
+    "partialMessage": "Wóz był w połowie rozszabrowany. Znalazłeś tylko trochę opatrunków.",
+    "lowMoralePartialMessage": "Opatrunki. Płótno. Tylko po to, byś dłużej krwawił na tym szlaku.",
+    "failMessage": "Podczas przeszukiwania okute deski rozcięły ci dłoń. Nic nie znalazłeś.",
+    "lowMoraleFailMessage": "Krew na okuciu. To jedyne co zyskałeś. Twoja bezużyteczność jest zdumiewająca.",
     "itemEffects": {"BANDAGE": 2},
     "failEffects": {"health": -20, "energy": -10}
   },
@@ -129,7 +147,9 @@
     "effects": {"energy": -15, "hunger": -10},
     "distanceCost": -20,
     "successMessage": "Straciłeś mnóstwo czasu i sił, ale uniknąłeś walki.",
-    "lowMoraleSuccessMessage": "Ominąłeś ich. Nawet ich ogień wydaje się teraz zimny i obcy."
+    "lowMoraleSuccessMessage": "Ominąłeś ich. Nawet ich ogień wydaje się teraz zimny i obcy.",
+    "partialMessage": "Obejście było dłuższe, niż liczyłeś. Straciłeś sporo sił, lecz uniknąłeś walki.",
+    "lowMoralePartialMessage": "Ominąłeś ich ledwie. Nawet ich ogień wydaje się teraz zimny i obcy."
   },
 
   {
@@ -143,6 +163,8 @@
     "effects": {"energy": -25},
     "successMessage": "W ostatniej chwili wskakujesz na bezpieczną półkę skalną.",
     "lowMoraleSuccessMessage": "Przeżyłeś. Lawina przetoczyła się obok, zabierając wszystko, co mogło jeszcze sprawić, że będziesz chciał żyć.",
+    "partialMessage": "Ledwie zdążyłeś wskoczyć na półkę. Lawina przetoczyła się tuż obok.",
+    "lowMoralePartialMessage": "Przeżyłeś. Lawina zabrała wszystko, co mogło sprawić, że chciałbyś żyć.",
     "failMessage": "Biały pył cię dogonił. Jesteś poobijany i przemarznięty.",
     "lowMoraleFailMessage": "Śnieg cię zasypał. Jesteś tylko kawałkiem mięsa pod tonami lodu. Dlaczego wciąż oddychasz?",
     "failEffects": {"health": -30, "morale": -15},
@@ -158,7 +180,9 @@
     "timeCost": 6,
     "distanceCost": 20,
     "successMessage": "Zejście zajęło pół dnia, ale żyjesz.",
-    "lowMoraleSuccessMessage": "Zejście było katorgą. Żyjesz, choć to jedyna rzecz, która cię w tej chwili brzydzi."
+    "lowMoraleSuccessMessage": "Zejście było katorgą. Żyjesz, choć to jedyna rzecz, która cię w tej chwili brzydzi.",
+    "partialMessage": "Zejście było wolniejsze i trudniejsze, niż sądziłeś. Ledwie wróciłeś na trasę.",
+    "lowMoralePartialMessage": "Zejście było katorgą. Żyjesz, choć to jedyne, co cię teraz brzydzi."
   },
   {
     "id": "gory_pustelnik_1",
@@ -171,6 +195,8 @@
     "itemEffects": {"HERMIT_BREW": 1},
     "successMessage": "Ciepło i rozmowa stawiają cię na nogi. Pustelnik mówi, że zna bezpieczny szlak przez przełęcz.",
     "lowMoraleSuccessMessage": "Pustelnik wywarł na tobie wrażenie, ale ciepło ognia wydaje się czymś z innego, dawno zapomnianego życia.",
+    "partialMessage": "Pustelnik przyjął cię chłodno i dał ci tylko trochę ciepła. Wróć później.",
+    "lowMoralePartialMessage": "Pustelnik wywarł na tobie wrażenie, lecz ciepło ognia to coś z innego życia.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -182,7 +208,9 @@
     "lowMoraleLabel": "Idź za pustelnikiem jak wygłodniały pies",
     "distanceCost": 70,
     "successMessage": "Jego wiedza pozwoliła zaoszczędzić dni wędrówki. Żegnacie się na szczycie.",
-    "lowMoraleSuccessMessage": "Pustelnik odszedł. Zostałeś sam na szczycie, z jeszcze dłuższą drogą do przebycia."
+    "lowMoraleSuccessMessage": "Pustelnik odszedł. Zostałeś sam na szczycie, z jeszcze dłuższą drogą do przebycia.",
+    "partialMessage": "Pustelnik prowadził wolniej, niż liczyłeś. Zaoszczędziliście tylko część drogi.",
+    "lowMoralePartialMessage": "Pustelnik odszedł. Zostałeś sam na szczycie, z dłuższą drogą przed sobą."
   },
   {
     "id": "gory_wilki_1",
@@ -194,6 +222,8 @@
     "failChance": 0.4,
     "successMessage": "Udało ci się je odstraszyć pochodnią.",
     "lowMoraleSuccessMessage": "Uciekły. Nawet one wyczuły, że jesteś zbyt gorzki, by je nakarmić.",
+    "partialMessage": "Odstraszyłeś wilki ledwie, machając pochodnią. Cofnęły się, lecz krążą w mroku.",
+    "lowMoralePartialMessage": "Uciekły. Nawet one wyczuły, że jesteś zbyt gorzki, by je nakarmić — i tyle.",
     "failMessage": "Jeden z wilków rzucił się na ciebie. Jesteś ranny, ale przetrwałeś.",
     "lowMoraleFailMessage": "Wilki poraniły cię dotkliwie. Twoja krew na śniegu to jedyny ślad, który zostawisz.",
     "failEffects": {"health": -35, "energy": -20, "morale": -10},
@@ -208,7 +238,9 @@
     "lowMoraleLabel": "Zbieraj z ziemi to, co po tobie rzuciły wilki",
     "effects": {"hunger": -20},
     "successMessage": "Straciłeś część prowiantu w walce. Musisz ruszać dalej.",
-    "lowMoraleSuccessMessage": "Zbierasz resztki. Prowiant śmierdzi psią śliną, zupełnie jak ten cały parszywy świat."
+    "lowMoraleSuccessMessage": "Zbierasz resztki. Prowiant śmierdzi psią śliną, zupełnie jak ten cały parszywy świat.",
+    "partialMessage": "Uratowałeś tylko część prowiantu z tego, co rozszarpały wilki.",
+    "lowMoralePartialMessage": "Zbierasz resztki. Prowiant śmierdzi psią śliną, jak ten parszywy świat."
   },
   {
     "id": "gory_kopalnia_1",
@@ -222,7 +254,9 @@
     "effects": {"morale": -15},
     "itemEffects": {"GLOWING_ORE": 1},
     "successMessage": "Przejście w ciemności było przerażające, ale wyszedłeś po drugiej stronie szczytu!",
-    "lowMoraleSuccessMessage": "Kopalnia cię nie zabiła, choć bardzo na to liczyłeś. Świecąca skała w ręce wygląda jak wyrzut sumienia."
+    "lowMoraleSuccessMessage": "Kopalnia cię nie zabiła, choć bardzo na to liczyłeś. Świecąca skała w ręce wygląda jak wyrzut sumienia.",
+    "partialMessage": "Przejście w ciemności było koszmarem — wyszedłeś, lecz zbłądziłeś po drodze.",
+    "lowMoralePartialMessage": "Kopalnia cię nie zabiła, choć na to liczyłeś. Świecąca skała jak wyrzut sumienia."
   },
   {
     "id": "gory_szczelina_1",
@@ -234,6 +268,8 @@
     "failChance": 0.25,
     "successMessage": "Skok życia! Wylądowałeś bezpiecznie po drugiej stronie.",
     "lowMoraleSuccessMessage": "Przeżyłeś. Prawdopodobnie najgorsza rzecz, jaka mogła ci się dziś zdarzyć.",
+    "partialMessage": "Skok ledwie się udał — wylądowałeś na krawędzi i wgramoliłeś się na drugą stronę.",
+    "lowMoralePartialMessage": "Przeżyłeś. Pewnie najgorsza rzecz, jaka mogła cię dziś spotkać.",
     "failMessage": "Poślizgnąłeś się przy lądowaniu i uderzyłeś o krawędź lodu.",
     "lowMoraleFailMessage": "Upadłeś i uderzyłeś o lód. Ból jest jedynym dowodem, że ta bezsensowna droga wciąż trwa.",
     "failEffects": {"health": -25, "energy": -15}
@@ -248,20 +284,24 @@
     "effects": {"hydration": -10, "energy": -20},
     "distanceCost": 15,
     "successMessage": "Każdy krok był walką o życie. Ledwo idziesz naprzód.",
-    "lowMoraleSuccessMessage": "Przebrnąłeś. Ale śnieg już dawno wdarł się pod twoją skórę i tam zamarzł."
+    "lowMoraleSuccessMessage": "Przebrnąłeś. Ale śnieg już dawno wdarł się pod twoją skórę i tam zamarzł.",
+    "partialMessage": "Zamieć spowalniała każdy krok. Przebrnąłeś tylko kawałek po omacku.",
+    "lowMoralePartialMessage": "Przebrnąłeś. Ale śnieg dawno wdarł się pod skórę i tam zamarzł."
   },
   {
     "id": "gory_namiot_1",
     "questId": "gory_namiot",
     "questStage": 1,
     "requiredStage": "Góry",
-    "label": "Zamarznięty namiot wspinaczkowy sprzed dekad. Może są tam leki.",
-    "lowMoraleLabel": "Grzeb w truchle namiotu, szukając ulgi w bólu",
+    "label": "Zamarznięty obóz dawnego wędrowca sprzed lat. Może zostały tam zioła i opatrunki.",
+    "lowMoraleLabel": "Grzeb w resztkach obozu, szukając ulgi w bólu",
     "failChance": 0.3,
     "itemEffects": {"BANDAGE": 1},
-    "successMessage": "Znalazłeś sterylne bandaże w zmarzniętym plecaku.",
-    "lowMoraleSuccessMessage": "Bandaże. Kolejne narzędzie do łatania zwłok, które uparcie odmawiają położenia się w ziemi.",
-    "failMessage": "Podczas prób otwarcia zardzewiałego suwaka odmroziłeś palce.",
+    "successMessage": "Znalazłeś czyste lniane opatrunki w zamarzniętym tobołku.",
+    "lowMoraleSuccessMessage": "Płótna na rany. Kolejne narzędzie do łatania zwłok, które uparcie odmawiają położenia się w ziemi.",
+    "partialMessage": "Obóz był w większości rozgrabiony. Znalazłeś tylko strzęp opatrunków.",
+    "lowMoralePartialMessage": "Płótna na rany. Kolejne narzędzie do łatania zwłok, które nie chcą umrzeć.",
+    "failMessage": "Przy szarpaniu zamarzniętej, zardzewiałej sprzączki odmroziłeś palce.",
     "lowMoraleFailMessage": "Odmrożone palce czernieją. Kolejny kawałek ciebie, który umiera, zanim zrobisz to w całości.",
     "failEffects": {"health": -10, "energy": -10}
   },
@@ -271,10 +311,12 @@
     "questId": "eu_kordon",
     "questStage": 1,
     "requiredStage": "Europa",
-    "label": "Docierasz do granic zrujnowanej strefy kordonu sanitarnego. Strzegą go zdesperowani zwiadowcy.",
-    "lowMoraleLabel": "Podejdź do strażników kordonu, wiedząc, że i tak cię nie wpuszczą",
+    "label": "Docierasz do zrujnowanej granicy odgrodzonej palisadą przed zarazą. Strzegą jej zdesperowani strażnicy.",
+    "lowMoraleLabel": "Podejdź do strażników granicy, wiedząc, że i tak cię nie wpuszczą",
     "successMessage": "Udało ci się z nimi porozumieć. Każili ci poczekać na dowódcę.",
     "lowMoraleSuccessMessage": "Czekasz. Oni patrzą na ciebie z lękiem. Jesteś dla nich tylko kolejnym trupem, który nie wie, że już umarł.",
+    "partialMessage": "Strażnicy nieufnie wysłuchali tylko części twoich słów. Każą czekać. Wróć później.",
+    "lowMoralePartialMessage": "Czekasz. Patrzą z lękiem. Jesteś dla nich trupem, który nie wie, że już umarł.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -282,23 +324,27 @@
     "id": "eu_kordon_2",
     "questId": "eu_kordon",
     "questStage": 2,
-    "label": "Dowódca pozwala ci przejść starym szlakiem zaopatrzeniowym w zamian za informacje.",
+    "label": "Dowódca pozwala ci przejść starym szlakiem kupieckim w zamian za informacje.",
     "lowMoraleLabel": "Kup sobie przejście kłamstwami, byle tylko mieć spokój",
     "distanceCost": 50,
     "successMessage": "Bezpieczne drogi w Europie to rzadkość. Szybko posuwasz się naprzód.",
-    "lowMoraleSuccessMessage": "Przeszedłeś. Nie czujesz ulgi, tylko jeszcze większą pustkę."
+    "lowMoraleSuccessMessage": "Przeszedłeś. Nie czujesz ulgi, tylko jeszcze większą pustkę.",
+    "partialMessage": "Dowódca przepuścił cię tylko częścią szlaku. Posunąłeś się, lecz mniej.",
+    "lowMoralePartialMessage": "Przeszedłeś. Nie czujesz ulgi, tylko jeszcze większą pustkę — i nic poza tym."
   },
   {
     "id": "eu_zaraza_1",
     "questId": "eu_zaraza",
     "questStage": 1,
     "requiredStage": "Europa",
-    "label": "Wchodzisz do opuszczonej, gnijącej wioski. Powietrze jest gęste od zarodników.",
+    "label": "Wchodzisz do opuszczonej, gnijącej wioski. Powietrze jest gęste od morowego smrodu.",
     "lowMoraleLabel": "Wkrocz w sam środek zarazy, bo i tak wszystko jedno",
     "failChance": 0.5,
     "itemEffects": {"STRANGE_FUNGUS": 1},
     "successMessage": "Udało ci się przemknąć na wdechu. Przy wyjściu zrywasz przedziwnego, pękatego grzyba.",
     "lowMoraleSuccessMessage": "Oddychasz tą trucizną, zrywając grzyby. Niech zaraza cię zabierze, cokolwiek to znaczy.",
+    "partialMessage": "Przemknąłeś na wdechu tylko częściowo. Zerwałeś grzyba, ledwie łapiąc powietrze.",
+    "lowMoralePartialMessage": "Oddychasz tą trucizną, zrywając grzyby. Niech zaraza cię zabierze.",
     "failMessage": "Zakrztusiłeś się trującym oparem. Zaczynasz kaszleć krwią.",
     "lowMoraleFailMessage": "Krew w ustach smakuje jak rdza. Zaraza cię powitała, teraz tylko czekać na rozkład.",
     "failEffects": {"health": -30, "morale": -20, "energy": -25},
@@ -309,12 +355,14 @@
     "id": "eu_zaraza_2",
     "questId": "eu_zaraza",
     "questStage": 2,
-    "label": "Uciekasz z terenu zarazy, byle dalej od toksycznego oparu.",
+    "label": "Uciekasz z terenu zarazy, byle dalej od morowego oparu.",
     "lowMoraleLabel": "Wlecz się przez mgłę zarazy, z każdą chwilą tracąc siły",
     "distanceCost": 40,
     "effects": {"energy": -20},
     "successMessage": "Uciekałeś nie patrząc pod nogi. Jesteś bezpieczny, ale wyczerpany.",
-    "lowMoraleSuccessMessage": "Uciekłeś, ale zaraza już jest w twoich płucach. Twoje życie to teraz tylko odliczanie do końca."
+    "lowMoraleSuccessMessage": "Uciekłeś, ale czujesz, że zaraza już sączy się w twoją krew. Twoje życie to teraz tylko odliczanie do końca.",
+    "partialMessage": "Uciekałeś wolno, krztusząc się oparem. Jesteś dalej, lecz wyczerpany.",
+    "lowMoralePartialMessage": "Uciekłeś, lecz czujesz zarazę sączącą się w krew. Życie to teraz odliczanie."
   },
   {
     "id": "eu_krakow_patrol_1",
@@ -326,6 +374,8 @@
     "itemEffects": {"DRIED_MEAT": -1},
     "successMessage": "Oddałeś mięso. Objęli cię ochroną, idziesz pod ich osłoną.",
     "lowMoraleSuccessMessage": "Oddałeś ostatnie jedzenie za kilka godzin ochrony. Jesteś tylko bydlęciem w ich obozie.",
+    "partialMessage": "Wzięli daninę, lecz objęli cię ochroną tylko na część szlaku. Wróć po więcej.",
+    "lowMoralePartialMessage": "Oddałeś ostatnie jedzenie za parę godzin ochrony. Bydlę w ich obozie.",
     "failChance": 0.4,
     "failMessage": "Nie miałeś czym zapłacić. Pobili cię i przegonili ze szlaku.",
     "lowMoraleFailMessage": "Złamali ci żebra, bo nie miałeś mięsa. Ich but na twojej twarzy to sprawiedliwość tego świata.",
@@ -342,7 +392,9 @@
     "distanceCost": 60,
     "effects": {"morale": 10},
     "successMessage": "Pierwszy raz od miesięcy mogłeś iść nie oglądając się za siebie.",
-    "lowMoraleSuccessMessage": "Bezpieczeństwo nic nie zmieniło. Nadal czujesz na plecach oddech śmierci."
+    "lowMoraleSuccessMessage": "Bezpieczeństwo nic nie zmieniło. Nadal czujesz na plecach oddech śmierci.",
+    "partialMessage": "Patrol skręcił wcześniej, niż myślałeś. Pod ich osłoną przeszedłeś tylko część drogi.",
+    "lowMoralePartialMessage": "Bezpieczeństwo nic nie zmieniło. Wciąż czujesz na plecach oddech śmierci."
   },
   {
     "id": "eu_las_1",
@@ -355,18 +407,22 @@
     "distanceCost": 35,
     "effects": {"hydration": -10, "morale": -10},
     "successMessage": "Las wydawał się nie mieć końca. Mroczne cienie grały na twoich nerwach.",
-    "lowMoraleSuccessMessage": "Przeszedłeś przez las. Mrok został z tobą. Teraz każda ścieżka wydaje się drogą do nikąd."
+    "lowMoraleSuccessMessage": "Przeszedłeś przez las. Mrok został z tobą. Teraz każda ścieżka wydaje się drogą do nikąd.",
+    "partialMessage": "Las był gęstszy, niż się spodziewałeś. Zbłądziłeś i przeszedłeś tylko kawałek.",
+    "lowMoralePartialMessage": "Przeszedłeś kawałek lasu. Mrok został z tobą. Każda ścieżka to droga do nikąd."
   },
   {
     "id": "eu_ruiny_wawel_1",
     "questId": "eu_ruiny_wawel",
     "questStage": 1,
     "requiredStage": "Europa",
-    "label": "W zgliszczach starego schroniska znajdujesz czystą wodę w zapieczętowanych beczkach.",
+    "label": "W zgliszczach dawnej strażnicy znajdujesz czystą wodę w zapieczętowanych beczkach.",
     "lowMoraleLabel": "Przeszukuj zgliszcza dawnej chwały, nie wierząc w ratunek",
-    "itemEffects": {"WATER": 2, "MILITARY_STIMPACK": 1},
-    "successMessage": "Prawdziwy skarb! Woda i nietknięta wojskowa strzykawka ze stymulantem.",
-    "lowMoraleSuccessMessage": "Woda. Strzykawka. Wszystko to jest za późno, za mało i absolutnie bezużyteczne wobec tego, co nadejdzie."
+    "itemEffects": {"WATER": 2, "BATTLE_ELIXIR": 1},
+    "successMessage": "Prawdziwy skarb! Woda i nietknięta, zapieczętowana fiolka z mocnym eliksirem.",
+    "lowMoraleSuccessMessage": "Woda. Eliksir. Wszystko to jest za późno, za mało i absolutnie bezużyteczne wobec tego, co nadejdzie.",
+    "partialMessage": "Większość beczek była rozbita. Uratowałeś tylko część zapasów.",
+    "lowMoralePartialMessage": "Woda. Eliksir. Za późno, za mało, bezużyteczne wobec tego, co nadejdzie."
   },
   {
     "id": "eu_ostatni_oddech_1",
@@ -377,20 +433,24 @@
     "lowMoraleLabel": "Wlecz się ku celowi, którego i tak nie masz sił osiągnąć",
     "effects": {"energy": -30, "morale": 20},
     "distanceCost": 50,
-    "successMessage": "Biegniesz siłą woli. Meta jest o krok.",
-    "lowMoraleSuccessMessage": "Wleczesz się na ostatnich oparach. Kraków jest tuż-tuż, ale czy ktokolwiek tam na ciebie czeka?"
+    "successMessage": "Biegniesz siłą woli. Bramy Krakowa są o krok.",
+    "lowMoraleSuccessMessage": "Wleczesz się na ostatnich oparach. Kraków jest tuż-tuż, ale czy ktokolwiek tam na ciebie czeka?",
+    "partialMessage": "Siły wysiadły szybciej, niż sądziłeś. Posunąłeś się ku bramom tylko trochę.",
+    "lowMoralePartialMessage": "Wleczesz się na ostatnich oparach. Kraków blisko, lecz czy ktoś tam czeka?"
   },
   {
     "id": "eu_handlarz_1",
     "questId": "eu_handlarz",
     "questStage": 1,
     "requiredStage": "Europa",
-    "label": "Czarnorynkowy handlarz pod Krakowem. Wymienia wszystko na leki.",
+    "label": "Pokątny handlarz spod Krakowa. Wymienia wszystko na zioła i maści.",
     "lowMoraleLabel": "Handluj z ostatnim łotrem przed końcem świata",
     "itemEffects": {"WATER": 1, "DRIED_MEAT": 1},
     "failChance": 0.2,
     "successMessage": "Ubiłeś targ. Zyskałeś cenne zapasy na sam koniec drogi.",
     "lowMoraleSuccessMessage": "Wymieniłeś co miałeś. Handlarz się śmiał, a ty wiedziałeś, że to on wygrał ten targ.",
+    "partialMessage": "Handlarz wycisnął z ciebie wszystko, oddając ledwie część obiecanych zapasów.",
+    "lowMoralePartialMessage": "Wymieniłeś co miałeś za grosze. Handlarz się śmiał — to on wygrał ten targ.",
     "failMessage": "Próbował cię oszukać i okradł z resztek.",
     "lowMoraleFailMessage": "Okradł cię do zera. Zostałeś z niczym, z wyciągniętymi rękami, czekając na litościwy koniec.",
     "failEffects": {"morale": -15}

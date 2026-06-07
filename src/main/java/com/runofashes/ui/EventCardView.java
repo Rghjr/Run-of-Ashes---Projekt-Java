@@ -84,6 +84,12 @@ public final class EventCardView {
             card.getChildren().add(badge);
         }
 
+        if (event.hasChoices()) {
+            Label choiceHint = new Label("⚔ wymaga decyzji");
+            choiceHint.getStyleClass().add("card-warn");
+            card.getChildren().add(choiceHint);
+        }
+
         if (event.getDistanceCost() > 0 && engine.hasActiveLocalQuests(event.getQuestId())) {
             Label warnLbl = new Label("Ruch anuluje lokalne zadania!");
             warnLbl.getStyleClass().add("card-warn");

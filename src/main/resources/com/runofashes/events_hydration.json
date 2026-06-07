@@ -15,6 +15,8 @@
     },
     "successMessage": "Zimna i głęboka. Napiłeś się i napełniłeś manierkę.",
     "lowMoraleSuccessMessage": "Woda smakowała żelazem i błotem, ale powstrzymała śmierć na jeszcze jedną godzinę.",
+    "partialMessage": "Wyciągnąłeś tylko trochę wody, nim wiadro przeciekło. Ugasiłeś pragnienie połowicznie.",
+    "lowMoralePartialMessage": "Wychłeptałeś parę łyków metalicznej wody. Tyle, by przeżyć kolejną godzinę, nie więcej.",
     "failEffects": {
       "health": -20,
       "hydration": 8,
@@ -37,6 +39,8 @@
     },
     "successMessage": "Woda tak zimna że bolały zęby. Napełniłeś manierkę.",
     "lowMoraleSuccessMessage": "Lodowata woda paliła w gardle jak szkło. Żłopałeś ją bez opamiętania, odczuwając jedynie fizyczny ból.",
+    "partialMessage": "Napiłeś się trochę, nim chłód odebrał ochotę. Manierkę napełniłeś ledwie do połowy.",
+    "lowMoralePartialMessage": "Łyknąłeś lodowatej wody, krztusząc się. Gardło paliło, pragnienie ledwie zelżało.",
     "failEffects": {
       "hydration": 8,
       "morale": -12
@@ -61,6 +65,8 @@
     },
     "successMessage": "Piwo mdłe i ciepłe. Karczma pełna pogłosek. Słuchałeś uważnie i wzięłeś butelkę na drogę.",
     "lowMoraleSuccessMessage": "Alkohol stępił na chwilę ostre krawędzie rzeczywistości. Znieczulenie, na które cię nie stać, ale bez którego nie przeżyjesz.",
+    "partialMessage": "Karczmarz nalał tylko pół kufla mdłego piwa. Plotek wysłuchałeś, ale niewiele się dowiedziałeś.",
+    "lowMoralePartialMessage": "Wychyliłeś pół kufla ciepłego sikacza. Otępienie było płytkie i szybko minęło.",
     "failEffects": {
       "morale": -25,
       "hydration": 5
@@ -83,6 +89,8 @@
     },
     "successMessage": "Ciepła i bezpieczna. Napiłeś się, a resztę przelałeś do manierek na zapas.",
     "lowMoraleSuccessMessage": "Wrzątek parzył w usta. Ogień wybił bakterie, ale nie wypalił z ciebie tego dojmującego poczucia beznadziei.",
+    "partialMessage": "Woda ledwie się zagotowała, nim drewno przygasło. Wypiłeś trochę, na zapas niewiele zostało.",
+    "lowMoralePartialMessage": "Pół garnka letniej wody po długim dmuchaniu w żar. Piłeś bez ulgi, równie pusty co wcześniej.",
     "failEffects": {
       "energy": -10,
       "morale": -5
@@ -104,6 +112,8 @@
     },
     "successMessage": "Deszcz był ciągły i pewny. Zebrałeś dość na manierkę i wieczór.",
     "lowMoraleSuccessMessage": "Krople smakowały jak łzy boga, który zrezygnował z tego świata równie mocno jak ty.",
+    "partialMessage": "Deszcz kropił z przerwami. Zebrałeś tylko trochę wody do miski.",
+    "lowMoralePartialMessage": "Łapałeś krople otwartymi ustami jak szaleniec. Ledwie zwilżyłeś gardło.",
     "failEffects": {
       "hydration": 4,
       "morale": -12
@@ -127,6 +137,8 @@
     },
     "successMessage": "Mnich nabrał pełne wiadro i napełnił dwie manierki bez słowa.",
     "lowMoraleSuccessMessage": "Dali ci wodę, patrząc na ciebie jak na widmo. Wypiłeś łapczywie, nie czując się ani trochę bardziej człowiekiem.",
+    "partialMessage": "Mnich nalał tylko pół wiadra, nim odszedł w milczeniu. Manierkę napełniłeś częściowo.",
+    "lowMoralePartialMessage": "Dali ci ledwie łyk wody, patrząc jak na widmo. Wypiłeś chciwie, wciąż obcy temu światu.",
     "failEffects": {
       "energy": -10,
       "morale": -12
@@ -148,6 +160,8 @@
     },
     "successMessage": "Cierpliwe i powolne — ale woda jest wodą.",
     "lowMoraleSuccessMessage": "Zlizywałeś rosę z brudnych liści jak owad. Przetrwanie odarło cię z wszelkich resztek godności.",
+    "partialMessage": "Zebrałeś ledwie kilka kropel rosy z traw. Niewiele, lecz coś dla wyschniętego gardła.",
+    "lowMoralePartialMessage": "Zlizywałeś wilgoć z liści jak owad. Krople ledwie musnęły język.",
     "failEffects": {
       "hydration": 2,
       "morale": -12
@@ -172,6 +186,8 @@
     },
     "successMessage": "Woda prosto ze skały, zimna i czysta. Napełniłeś wszystkie manierki.",
     "lowMoraleSuccessMessage": "Woda lała się po twojej twarzy, zmywając brud. Choć przez moment poczułeś, jakbyś zmywał z siebie całą winę za to, że wciąż żyjesz.",
+    "partialMessage": "Źródło sączyło się ledwie strużką. Napiłeś się trochę, manierki napełnione w połowie.",
+    "lowMoralePartialMessage": "Łyknąłeś wody ze skały, drżąc. Brud zmyłeś, winy nie.",
     "failEffects": {
       "energy": -12,
       "morale": -8
@@ -190,6 +206,8 @@
     },
     "successMessage": "Brudna, ale nawadniała. Może Bóg cię oszczędził tym razem.",
     "lowMoraleSuccessMessage": "Piłeś mętną ciecz z pełną świadomością, że może cię zabić. W głębi duszy tego właśnie pragnąłeś.",
+    "partialMessage": "Wypiłeś trochę mętnej wody i przestałeś, czując mdłości. Pragnienie zelżało połowicznie.",
+    "lowMoralePartialMessage": "Łyknąłeś brudnej cieczy, świadom ryzyka. Ledwie zwilżyłeś usta, drwiąc z własnego losu.",
     "failEffects": {
       "health": -30,
       "hydration": 8,
@@ -214,6 +232,8 @@
     },
     "successMessage": "Chłop miał dwa dzbany. Nie pytał co masz, pytał ile masz. Wyszedłeś z winem.",
     "lowMoraleSuccessMessage": "Cierpkie, siarkowe wino paliło przełyk. Upiłeś się w marszu, desperacko pragnąc, by ten koszmar dobiegł końca.",
+    "partialMessage": "Chłop oddał tylko jeden dzban po długim targu. Lepsze to niż pustka.",
+    "lowMoralePartialMessage": "Wymieniłeś jedzenie za odrobinę kwaśnego wina. Upiłeś się ledwie, koszmar trwał dalej.",
     "failEffects": {
       "morale": -12,
       "hunger": -5
@@ -237,6 +257,8 @@
     },
     "successMessage": "Gorzki napar ziołowy. Ciepły i pożywny. Do kieszeni schowałeś resztę suszonych ziół.",
     "lowMoraleSuccessMessage": "Gorycz ziół pasowała do twoich myśli. Piłeś bezrefleksyjnie, uginając się pod ciężarem każdej sekundy swojego istnienia.",
+    "partialMessage": "Napar wyszedł słaby i ledwie ciepły. Wypiłeś połowę, resztę wylałeś.",
+    "lowMoralePartialMessage": "Łyknąłeś gorzkiej, letniej cieczy. Gorycz pasowała do twoich myśli.",
     "failEffects": {
       "health": -10,
       "hydration": 5,
@@ -260,6 +282,8 @@
     },
     "successMessage": "Śnieg topił się powoli. Zebrałeś manierkę czystej wody. Kosztowało dużo drewna.",
     "lowMoraleSuccessMessage": "Patrzyłeś w martwy sposób, jak lód zamienia się w wodę. Zimno ognia i zimno lodu. Tylko to ci pozostało.",
+    "partialMessage": "Lód topił się opornie, drewno szło szybko. Uzbierałeś tylko trochę wody.",
+    "lowMoralePartialMessage": "Patrzyłeś tępo, jak lód niechętnie staje się wodą. Parę łyków, zimno zostało.",
     "failEffects": {
       "energy": -15,
       "morale": -8
@@ -282,6 +306,8 @@
     },
     "successMessage": "Beczka pełna po ostatnim deszczu. Napiłeś się i napełniłeś manierkę.",
     "lowMoraleSuccessMessage": "Zatapiałeś usta w glonach i zgniliźnie, pijąc bez wahania. Przestało cię obchodzić, czy to woda, czy jad.",
+    "partialMessage": "Beczka była do połowy pusta, woda mętna. Napiłeś się ostrożnie, niewiele.",
+    "lowMoralePartialMessage": "Wychłeptałeś trochę zielonej brei. Przestało cię obchodzić, czy to woda, czy jad.",
     "failEffects": {
       "health": -12,
       "morale": -15
@@ -300,6 +326,8 @@
     },
     "successMessage": "Powolne i upokarzające — ale woda jest wodą. Kilkanaście łyków wystarczy na teraz.",
     "lowMoraleSuccessMessage": "Wysysałeś brudne soki z mchu jak żałosny pasożyt. Upadłeś na kolana, odarty z jakiejkolwiek dumy.",
+    "partialMessage": "Wycisnąłeś z mchu ledwie kilka kropel. Upokarzające i skąpe, lecz coś.",
+    "lowMoralePartialMessage": "Wysysałeś wilgoć z mchu jak pasożyt. Krople ledwie zwilżyły spierzchnięte usta.",
     "failEffects": {
       "energy": -6,
       "morale": -10
@@ -322,6 +350,8 @@
     },
     "successMessage": "Podróżni podzielili się bez słowa. W drodze na wschód — pewnie wiedzą jak ważna jest woda.",
     "lowMoraleSuccessMessage": "Oddali ci swoją wodę z litością w oczach. Twój żałosny wygląd musiał wzbudzić ich największe współczucie.",
+    "partialMessage": "Wędrowcy odlali ci tylko parę łyków. Mieli niewiele, ale podzielili się.",
+    "lowMoralePartialMessage": "Dali ci kapkę wody z litością w oczach. Wystarczyło, by przeżyć i poczuć się jeszcze gorzej.",
     "failEffects": {
       "morale": -18
     },
@@ -341,6 +371,8 @@
     },
     "successMessage": "Cierpliwa noc. Kamienie oddały tyle ile miały. Nie dużo — ale nie zero.",
     "lowMoraleSuccessMessage": "Wilgoć ledwie zwilżała język, a zimny kamień przyklejał się do warg. Zostałeś sam w ciemności z lodowatym znojem.",
+    "partialMessage": "Kamienie oddały ledwie kilka kropel. Noc była skąpa, ale nie pusta.",
+    "lowMoralePartialMessage": "Zdrapywałeś wilgoć z głazów w ciemności. Język ledwie zwilżony, dusza zmarznięta.",
     "failEffects": {
       "energy": -8,
       "morale": -12
@@ -365,6 +397,8 @@
     },
     "successMessage": "Pole wyglądało na porzucone — ale plony zostały. Zjadłeś ile dałeś radę i wziąłeś trochę dalej.",
     "lowMoraleSuccessMessage": "Rozszarpałeś pękate warzywo z agresją. Sok spływał ci po rękach, mieszając się z błotem.",
+    "partialMessage": "Większość owoców była nadgniła. Zjadłeś tylko kilka soczystych kawałków.",
+    "lowMoralePartialMessage": "Rozszarpałeś jedno pękate warzywo. Sok spłynął po rękach, reszta gniła w błocie.",
     "failEffects": {
       "energy": -10,
       "morale": -14
@@ -387,6 +421,8 @@
     },
     "successMessage": "Chłop wziął co miałeś i dał dwie pełne manierki. Dobry kurs.",
     "lowMoraleSuccessMessage": "Straciłeś ostatnie pożyteczne rzeczy. Oszukano cię, ale piłeś chciwie, nie dbając o jutro.",
+    "partialMessage": "Chłop dał tylko jedną manierkę za twoje rzeczy. Kurs marny, ale woda jest wodą.",
+    "lowMoralePartialMessage": "Oddałeś dorobek za skąpą porcję wody. Oszukano cię, lecz piłeś chciwie.",
     "failEffects": {
       "morale": -15
     },
@@ -410,6 +446,8 @@
     },
     "successMessage": "Zejście było trudne. Woda czysta jak łzy. Warto było.",
     "lowMoraleSuccessMessage": "Siedziałeś u stóp wodospadu, w mokrych łachmanach. Hałas zagłuszał tylko cząstkę rozpaczy. Przynajmniej napiłeś się dowoli.",
+    "partialMessage": "Zejście było ryzykowne, dotarłeś tylko do rozbryzgów. Napiłeś się, manierki ledwie zwilżone.",
+    "lowMoralePartialMessage": "Dopełzłeś do mokrych skał i napiłeś się dowoli. Hałas zagłuszył tylko część rozpaczy.",
     "failEffects": {
       "health": -20,
       "energy": -15,
@@ -431,6 +469,8 @@
     },
     "successMessage": "Może to grzech. Może nie. Bóg widzi że nie ma innej wody w pobliżu.",
     "lowMoraleSuccessMessage": "Wypiłeś wodę święconą ustami pełnymi grzechu. Spodziewałeś się gromu, ale niebo było już dawno martwe.",
+    "partialMessage": "Nabrałeś tylko parę łyków z kropielnicy, nim spłoszył cię szelest. Grzech połowiczny.",
+    "lowMoralePartialMessage": "Wypiłeś łyk wody święconej ustami pełnymi grzechu. Niebo milczało, jak zwykle.",
     "failEffects": {
       "morale": -20
     },
@@ -449,6 +489,8 @@
     },
     "successMessage": "Cierpkie i małe — ale wilgotne. Zbierałeś je w marszu żeby nie tracić czasu.",
     "lowMoraleSuccessMessage": "Miażdżyłeś je w ustach bez cienia przyjemności, przełykając mdły sok, niczym brudne popłuczyny.",
+    "partialMessage": "Owoce były małe i na wpół wyschnięte. Wyssałeś z nich ledwie trochę wilgoci.",
+    "lowMoralePartialMessage": "Miażdżyłeś owoce w ustach bez przyjemności. Mdły sok ledwie zwilżył gardło.",
     "failEffects": {
       "health": -8,
       "morale": -12
@@ -469,6 +511,8 @@
     },
     "successMessage": "Karczmarz mruknął coś pod nosem i wlał kubek. Ludzkie odruchy jeszcze nie wymarły.",
     "lowMoraleSuccessMessage": "Dano ci wodę dla psów, pomyje z wiadra. Wychlałeś wszystko łapczywie, nie zważając na drwiący śmiech sali.",
+    "partialMessage": "Karczmarz wlał ledwie pół kubka i odprawił cię gestem. Lepsze to niż nic.",
+    "lowMoralePartialMessage": "Dano ci pomyje z dna wiadra. Wychłeptałeś je przy drwiącym śmiechu sali.",
     "failEffects": {
       "morale": -22
     },

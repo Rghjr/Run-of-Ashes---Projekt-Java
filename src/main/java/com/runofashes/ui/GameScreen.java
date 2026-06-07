@@ -1,6 +1,7 @@
 package com.runofashes.ui;
 
 import com.runofashes.engine.GameEngine;
+import com.runofashes.model.EventChoice;
 import com.runofashes.model.GameEvent;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
@@ -92,12 +93,72 @@ public class GameScreen {
         hud.setEventImage(event);
     }
 
+    /**
+     * Wyświetla nakładkę z opcjami decyzyjnymi dla wydarzenia typu "wybór".
+     * Po wyborze opcji nakładka znika i wywoływany jest {@code onPick}.
+     */
+    public void showChoiceOverlay(GameEvent event, Consumer<EventChoice> onPick) {
+        VBox overlay = new VBox(22);
+        overlay.setAlignment(Pos.CENTER);
+        overlay.setPadding(new Insets(40));
+        overlay.setStyle("-fx-background-color: rgba(5, 5, 10, 0.93);");
+
+        boolean depressed = engine.getPlayer().getMorale() < 30;
+        String titleText = (depressed && event.getLowMoraleLabel() != null)
+                ? event.getLowMoraleLabel()
+                : event.getLabel();
+
+        Label title = new Label(titleText);
+        title.setWrapText(true);
+        title.setMaxWidth(640);
+        title.setStyle("-fx-text-fill: #f0c040; -fx-font-size: 26px; -fx-font-family: 'Palatino Linotype'; "
+                + "-fx-font-weight: bold; -fx-text-alignment: center;");
+
+        Label hint = new Label("Wybierz, co robisz:");
+        hint.setStyle("-fx-text-fill: #cccccc; -fx-font-size: 16px;");
+
+        VBox optionsBox = new VBox(12);
+        optionsBox.setAlignment(Pos.CENTER);
+        optionsBox.setMaxWidth(640);
+
+        for (EventChoice choice : event.getChoices()) {
+            int pct = (int) Math.round(engine.getChoiceChance(choice) * 100);
+            Button btn = new Button(choice.getLabel() + "\nSzansa powodzenia: " + pct + "%");
+            btn.setWrapText(true);
+            btn.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+            btn.setMaxWidth(Double.MAX_VALUE);
+            btn.setMinHeight(64);
+
+            String chanceColor = pct >= 66 ? "#3ba55d" : (pct >= 33 ? "#d8a657" : "#c0563f");
+            btn.setStyle("-fx-background-color: #1f1f33; -fx-text-fill: #f0f0f0; -fx-font-size: 16px; "
+                    + "-fx-cursor: hand; -fx-background-radius: 8; -fx-padding: 12 18; "
+                    + "-fx-border-color: " + chanceColor + "; -fx-border-width: 2; -fx-border-radius: 8;");
+
+            btn.setOnAction(e -> {
+                root.getChildren().remove(overlay);
+                onPick.accept(choice);
+            });
+            optionsBox.getChildren().add(btn);
+        }
+
+        overlay.getChildren().addAll(title, hint, optionsBox);
+        root.getChildren().add(overlay);
+        overlay.toFront();
+    }
+
     private void build() {
         messageLabel.setWrapText(true);
         messageLabel.setMaxWidth(640);
-        messageLabel.setMinHeight(70);
-        messageLabel.setPrefHeight(70);
+        messageLabel.setMinHeight(Region.USE_PREF_SIZE);
         messageLabel.getStyleClass().addAll("message-label", "msg-partial");
+
+        ScrollPane messageScroll = new ScrollPane(messageLabel);
+        messageScroll.setFitToWidth(true);
+        messageScroll.setMinHeight(70);
+        messageScroll.setPrefHeight(90);
+        messageScroll.setMaxHeight(170);
+        messageScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        messageScroll.getStyleClass().add("transparent-scroll-pane");
 
         GridPane grid = new GridPane();
         grid.setHgap(12);
@@ -117,7 +178,7 @@ public class GameScreen {
             grid.getColumnConstraints().add(cc);
         }
 
-        VBox gameContentVBox = new VBox(16, hud, messageLabel, grid);
+        VBox gameContentVBox = new VBox(16, hud, messageScroll, grid);
         HBox.setHgrow(gameContentVBox, Priority.ALWAYS);
 
         ScrollPane invScroll = new ScrollPane(inventoryPanel);

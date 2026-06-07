@@ -82,9 +82,6 @@ public class Player {
     public int getMorale()           { return morale; }
     public void setMorale(int v)     { morale    = clamp(v, maxMorale); }
 
-    public void setTime(int time) { this.time = time; }
-    public void setDistance(int distance) { this.distance = distance; }
-
     // ── Czas i dystans ────────────────────────────────────────────────────────
 
     public int getTime()             { return time; }

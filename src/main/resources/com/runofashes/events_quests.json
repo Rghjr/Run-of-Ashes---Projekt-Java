@@ -12,6 +12,8 @@
     },
     "successMessage": "Słuchali. Część płakała. Część nie wierzyła. Powiedziałeś co wiedziałeś. Za 3 tury wróć sprawdzić.",
     "lowMoraleSuccessMessage": "Powiedziałeś im, że zginą. Nawet nie wiesz, po co to zrobiłeś. Zostawiłeś ich we łzach i histerii, samemu niewiele się od nich różniąc.",
+    "partialMessage": "Wysłuchali tylko części twoich słów, nim odeszli zmieszani. Może coś zapamiętają. Wróć za jakiś czas.",
+    "lowMoralePartialMessage": "Wykrzyczałeś ostrzeżenie w pustkę. Część uciekła, część zlekceważyła. Niewiele to da.",
     "failEffects": {
       "morale": -20,
       "energy": -15
@@ -42,6 +44,8 @@
     },
     "successMessage": "Wioska żyła. Uciekli zanim zaraza dotarła. Starzec zostawił ci prowiant i błogosławieństwo.",
     "lowMoraleSuccessMessage": "Przeżyli, na razie. Wziąłeś żarcie od starca i odszedłeś. Obaj wiecie, że zaraza prędzej czy później ich dopadnie.",
+    "partialMessage": "Wioska ledwie przetrwała — część uciekła, część nie. Starzec dał ci skromne resztki.",
+    "lowMoralePartialMessage": "Przeżyła garstka. Wziąłeś nędzne ochłapy od starca. Zaraza i tak ich dopadnie.",
     "failEffects": {
       "health": -15,
       "morale": -45
@@ -65,6 +69,8 @@
     },
     "successMessage": "Kupiec żył, ale był słaby. Obiecał ci mapę gdy wróci do siebie. Za 4 tury.",
     "lowMoraleSuccessMessage": "Kupiec zawarł z tobą układ, charcząc krwawo. Trzymasz go przy życiu tylko z egoizmu. Za cztery tury zdecydujesz co dalej.",
+    "partialMessage": "Kupiec ledwie zniósł twoją pomoc. Obietnica mapy zabrzmiała niepewnie. Wróć później.",
+    "lowMoralePartialMessage": "Połatałeś go byle jak, licząc na zapłatę. Charczał, dając mgliste obietnice.",
     "failEffects": {
       "health": -20,
       "morale": -10
@@ -94,6 +100,8 @@
     },
     "successMessage": "Kupiec wyzdrowił. Dał ci mapę Karpat ze skrótem i resztki prowiantu. Dwa dni oszczędzone.",
     "lowMoraleSuccessMessage": "Zapłacił ci. Oboje wiedzieliście, że to tylko chłodna, makabryczna transakcja. Zabrałeś wszystko z pustym wzrokiem.",
+    "partialMessage": "Kupiec wyzdrowiał ledwie częściowo. Dał ci skrawek mapy i trochę prowiantu.",
+    "lowMoralePartialMessage": "Zapłacił ci skąpo, charcząc. Zabrałeś, co dał, z pustym wzrokiem.",
     "failEffects": {
       "morale": -35,
       "health": -10
@@ -116,6 +124,8 @@
     },
     "successMessage": "Biskup spojrzał na ciebie długo. 'Masz twarz człowieka który dotrze.' Wziąłeś list. Za 3 tury ruszasz dalej.",
     "lowMoraleSuccessMessage": "Biskup wręczył ci papier i złudzenia. Przyjąłeś to z pogardą, widząc go jako żałosnego głupca, który wciąż w coś wierzy.",
+    "partialMessage": "Biskup wręczył ci list pospiesznie, ledwie patrząc. Ruszasz dalej niepewny.",
+    "lowMoralePartialMessage": "Wziąłeś papier i złudzenia od drżącego biskupa, gardząc jego wiarą.",
     "failEffects": {
       "morale": -10,
       "energy": -15
@@ -147,6 +157,8 @@
     },
     "successMessage": "Ksiądz wziął list drżącymi rękami. Przeczytał. 'Zostań. Zjedz.' Po raz pierwszy nie odmawiałeś.",
     "lowMoraleSuccessMessage": "Wcisnąłeś list księdzu, który trząsł się ze strachu. Zeżarłeś to, co rzucił ci w zapłacie. Nic cię nie uratuje.",
+    "partialMessage": "Ksiądz przyjął list z wahaniem i dał ci skromny posiłek. Lepsze to niż nic.",
+    "lowMoralePartialMessage": "Wcisnąłeś list przerażonemu księdzu i zjadłeś, co rzucił. Nic cię nie uratuje.",
     "failEffects": {
       "morale": -30,
       "health": -15
@@ -169,6 +181,8 @@
     },
     "successMessage": "Wnętrze ciepłe, ślady ogniska świeże. Ktoś tu był — może wróci za 3 tury.",
     "lowMoraleSuccessMessage": "Gapiłeś się w dogasający popiół jak zwierzę do nory. Postanowiłeś poczekać na gospodarza; może będzie miał cokolwiek do zrabowania.",
+    "partialMessage": "Jaskinia była ciepła, lecz ślady niepewne. Może ktoś wróci. Zaczekaj.",
+    "lowMoralePartialMessage": "Gapiłeś się w popiół jak zwierzę. Postanowiłeś czekać na cokolwiek do zrabowania.",
     "failEffects": {
       "energy": -12,
       "morale": -8
@@ -200,6 +214,8 @@
     },
     "successMessage": "Pustelnik. Stary, milczący — ale żywy. Nakarmił cię i wskazał krótszą drogę przez góry.",
     "lowMoraleSuccessMessage": "Wziąłeś jedzenie z rąk szaleńca. Jego rady przyjąłeś z pogardą, przeżuwając żarłocznie podarowane ochłapy.",
+    "partialMessage": "Pustelnik dał ci tylko część zapasów, milcząc. Drogę wskazał niejasno.",
+    "lowMoralePartialMessage": "Wyrwałeś szaleńcowi trochę żarcia. Jego rady przyjąłeś z pogardą.",
     "failEffects": {
       "health": -20,
       "morale": -30
@@ -223,7 +239,9 @@
     },
     "itemEffects": {},
     "successMessage": "Żołnierz żył — ledwo. Opatrzyłeś ranę czym miałeś. 'Wróć za 3 dni' — powiedział. 'Będę miał coś dla ciebie.'",
-    "lowMoraleSuccessMessage": "Prowizorycznie załatałeś trupa w mundurze. Jeśli przeżyje, odda ci zapasy. Jeśli nie — weźmiesz je z jego martwych rąk.",
+    "lowMoraleSuccessMessage": "Prowizorycznie załatałeś trupa w zbroi. Jeśli przeżyje, odda ci zapasy. Jeśli nie — weźmiesz je z jego martwych rąk.",
+    "partialMessage": "Opatrzyłeś ranę pobieżnie. Żołnierz ledwie obiecał zapłatę. Wróć później.",
+    "lowMoralePartialMessage": "Połatałeś trupa w zbroi byle jak. Jeśli przeżyje, odda zapasy. Jeśli nie — weźmiesz sam.",
     "failEffects": {
       "health": -15,
       "morale": -20
@@ -254,6 +272,8 @@
     },
     "successMessage": "Żołnierz żył. Dał ci bandaże, sól i mięso z plecaka. 'Ty będziesz żył dłużej niż ja' — powiedział. Może miał rację.",
     "lowMoraleSuccessMessage": "Żołnierz rzucił ci w zapłacie bandaże. 'Będziesz żył dłużej' powiedział. Spojrzałeś na niego pustym wzrokiem. Obaj jesteście już martwi.",
+    "partialMessage": "Żołnierz żył, lecz dał ci tylko część obiecanego. Lepsze to niż nic.",
+    "lowMoralePartialMessage": "Rzucił ci parę bandaży w zapłacie. Spojrzałeś pusto. Obaj jesteście już martwi.",
     "failEffects": {
       "morale": -40,
       "health": -10
@@ -277,6 +297,8 @@
     },
     "successMessage": "Zostałeś przy dziecku godzinę. Gorączka nie spada — ale matka wiedziała że ktoś się zatrzymał. Wróć za 4 tury.",
     "lowMoraleSuccessMessage": "Wpatrywałeś się w konającego bachora z chorobliwą fascynacją. Śmierć zabiera każdego, dlaczego ten miałby być wyjątkiem?",
+    "partialMessage": "Zostałeś przy dziecku tylko chwilę. Gorączka trwała. Matka i tak była wdzięczna. Wróć później.",
+    "lowMoralePartialMessage": "Patrzyłeś na konające dziecko z chorą fascynacją. Niewiele zrobiłeś.",
     "failEffects": {
       "morale": -15,
       "health": -10
@@ -306,6 +328,8 @@
     },
     "successMessage": "Dziecko żyło. Gorączka minęła. Matka nie miała nic — dała ci ziółka i wodę ze studni. Niektóre rzeczy warte są postoju.",
     "lowMoraleSuccessMessage": "Dzieciak wywinął się śmierci, a ty przyjąłeś zapłatę matki z głuchą zawiścią. Ile to jeszcze potrwa, nim znów zachoruje?",
+    "partialMessage": "Dziecko ledwie przetrwało. Matka dała ci skromne zioła. Niektóre postoje są warte zachodu.",
+    "lowMoralePartialMessage": "Bachor wywinął się śmierci. Przyjąłeś marną zapłatę z zawiścią.",
     "failEffects": {
       "morale": -50,
       "health": -15
@@ -329,6 +353,8 @@
     },
     "successMessage": "Wyciągnąłeś starą kobietę spod belki. Żyła. Powiedziała o piwnicy z zapasami — nietkniętej. Za 3 tury może do niej dotrzeć.",
     "lowMoraleSuccessMessage": "Wydobyłeś ją z grobu wyłącznie po to, by usłyszeć o ukrytych zapasach. Czysty pasożytnictwo nakazuje wrócić tam później.",
+    "partialMessage": "Wyciągnąłeś staruszkę z trudem. Wyszeptała mgliście o piwnicy. Wróć później.",
+    "lowMoralePartialMessage": "Wygrzebałeś ją z gruzów tylko dla wieści o zapasach. Pasożyt każe wrócić.",
     "failEffects": {
       "energy": -18,
       "morale": -20,
@@ -361,6 +387,8 @@
     },
     "successMessage": "Piwnica była nienaruszona. Mięso, sól, woda. Stara kobieta wskazała ci drogę przez las — dwa dni krócej.",
     "lowMoraleSuccessMessage": "Rozgrabiłeś żarcie staruchy bez drgnięcia sumienia. Zabrałeś jej sekrety, by choć na chwilę oddalić własną nędzę.",
+    "partialMessage": "Piwnica była w połowie splądrowana. Zgarnąłeś resztki, drogę wskazano niejasno.",
+    "lowMoralePartialMessage": "Rozgrabiłeś resztki żarcia staruchy bez drgnięcia. Wziąłeś, co zostało.",
     "failEffects": {
       "morale": -30,
       "energy": -15
@@ -384,6 +412,8 @@
     },
     "successMessage": "Szedłeś z nim przez godzinę. Bał się — ale szedł. Obiecał modlitwę i klucz do spiżarni. Za 3 tury klasztor w zasięgu.",
     "lowMoraleSuccessMessage": "Eskortowałeś tę uosobioną hipokryzję tylko po to, by dobrać się do spiżarni klasztoru. Gardziłeś nim i sobą z każdym krokiem.",
+    "partialMessage": "Mnich szedł niepewnie, raz po raz przystając ze strachu. Klasztor wciąż daleko. Wróć później.",
+    "lowMoralePartialMessage": "Wlokłeś hipokrytę w habicie, marząc o spiżarni. Gardziłeś nim i sobą.",
     "failEffects": {
       "morale": -12,
       "energy": -15
@@ -415,6 +445,8 @@
     },
     "successMessage": "Klasztor przyjął mnicha. Przeor spojrzał na ciebie długo i dał ci spiżarnię na jedną noc. Spałeś przy świecach i jadłeś przy ciepłym ogniu.",
     "lowMoraleSuccessMessage": "Gdy zżerałeś zasoby klasztoru, przeor patrzył na ciebie jak na potwora. Nawet oni wiedzieli, że stoisz u bram piekła.",
+    "partialMessage": "Klasztor przyjął mnicha chłodno. Dali ci tylko skromny kąt i okruchy.",
+    "lowMoralePartialMessage": "Zżarłeś trochę zasobów klasztoru pod wzrokiem przeora. Patrzyli jak na potwora.",
     "failEffects": {
       "morale": -25,
       "energy": -12
@@ -438,6 +470,8 @@
     },
     "successMessage": "Porozmawiałeś z nim. Trzymał się — ledwo. Obiecałeś wrócić z wieściami za 3 tury. On obiecał przepuścić cię bez pytań.",
     "lowMoraleSuccessMessage": "Rozmawiałeś ze szczątkiem człowieka, karmionym iluzją lojalności. Przytaknąłeś tylko po to, by kupić sobie swobodny przejazd.",
+    "partialMessage": "Strażnik ledwie z tobą pogadał. Obietnica zabrzmiała niepewnie. Wróć później.",
+    "lowMoralePartialMessage": "Przytaknąłeś szczątkowi człowieka, byle kupić przejazd. Iluzja lojalności.",
     "failEffects": {
       "morale": -10
     },
@@ -466,6 +500,8 @@
     },
     "successMessage": "Strażnik żył. Zmiennik w końcu przyszedł. Dał ci prowiant z wartowni i przepuścił przez most bez opłaty. Małe gesty — duże znaczenie.",
     "lowMoraleSuccessMessage": "Dał ci żarcie, rzucając ci je pod nogi. Jesteś dla niego tylko bezimiennym psem. Odpłaciłeś mu tym samym milczeniem.",
+    "partialMessage": "Strażnik żył, lecz dał ci tylko część prowiantu. Przepuścił bez słowa.",
+    "lowMoralePartialMessage": "Rzucił ci żarcie pod nogi jak psu. Odpłaciłeś milczeniem.",
     "failEffects": {
       "morale": -35
     },
@@ -488,6 +524,8 @@
     },
     "successMessage": "Wziąłeś list. Pieczęć nienaruszona — nie wiesz co w środku. Adresat jest dwa dni marszu stąd. Za 4 tury.",
     "lowMoraleSuccessMessage": "Odarłeś zmarłego z listu. Nie obchodzi cię treść; liczysz, że adresat głupio wymieni papier na kawałek chleba.",
+    "partialMessage": "Zdarłeś list z posłańca, lecz pieczęć była nadpsuta. Adresat gdzieś daleko. Wróć później.",
+    "lowMoralePartialMessage": "Odarłeś zmarłego z listu. Liczysz, że adresat głupio wymieni go na chleb.",
     "failEffects": {
       "morale": -8
     },
@@ -517,6 +555,8 @@
     },
     "successMessage": "Kupiec otworzył list i zbladł. Nie powiedział co w nim było. Zapłacił prowiantem i podziękował bez słów. Tajemnica pozostaje tajemnicą.",
     "lowMoraleSuccessMessage": "Rzuciłeś mu list na stół i zażądałeś zapłaty. Zapłacił bez słowa, patrząc na ciebie z mieszaniną grozy i absolutnego obrzydzenia.",
+    "partialMessage": "Kupiec przyjął list z wahaniem i zapłacił skromnie. Tajemnica pozostała.",
+    "lowMoralePartialMessage": "Cisnąłeś mu list i wziąłeś marną zapłatę. Patrzył z obrzydzeniem.",
     "failEffects": {
       "morale": -20,
       "energy": -10
@@ -540,6 +580,8 @@
     },
     "successMessage": "Tkaczka płakała, prosząc o konopie. Obiecała, że jeśli wrócisz za 3 tury, podzieli się zapasami z pogrzebu. Dobroczyńcy zawsze mają co jeść.",
     "lowMoraleSuccessMessage": "Przyjąłeś to zlecenie z wstrętem. Szycie całunów w świecie, gdzie brakuje ziemi na groby, to jedyny pewny interes.",
+    "partialMessage": "Znalazłeś tylko strzęp materiału. Tkaczka przyjęła go z rezygnacją. Wróć później.",
+    "lowMoralePartialMessage": "Przyniosłeś marne resztki tkanin. Szycie całunów to jedyny pewny interes.",
     "failEffects": {
       "morale": -20
     },
@@ -567,6 +609,8 @@
     },
     "successMessage": "Tkaczka przeżyła kolejny dzień. Dała ci wino i mięso. 'Niech cię prowadzi nadzieja' — powiedziała.",
     "lowMoraleSuccessMessage": "Wino smakuje jak gorycz. Wziąłeś to, co miała, patrząc w jej zmęczone oczy, które widziały już zbyt wiele.",
+    "partialMessage": "Tkaczka przeżyła, lecz dała ci tylko część zapłaty. Gorzkie wino, marne mięso.",
+    "lowMoralePartialMessage": "Wino smakuje goryczą. Wziąłeś skąpą zapłatę, patrząc w jej zmęczone oczy.",
     "failEffects": {
       "morale": -35
     },
@@ -589,6 +633,8 @@
     },
     "successMessage": "Narąbałeś drewna na całą noc. Pustelnik w zamian obiecał przyrządzić dla ciebie miksturę. Wróć za 2 tury.",
     "lowMoraleSuccessMessage": "Starałeś się z całych sił, byle tylko mieć powód do zatrzymania się w cieple. Pustelnik patrzył na ciebie jak na błąd natury.",
+    "partialMessage": "Narąbałeś tylko trochę drewna, nim siły wysiadły. Pustelnik mruknął coś o miksturze. Wróć później.",
+    "lowMoralePartialMessage": "Rąbałeś byle jak, byle pogrzać się w cieple. Pustelnik patrzył jak na błąd natury.",
     "failEffects": {
       "energy": -20,
       "morale": -15
@@ -617,6 +663,8 @@
     },
     "successMessage": "Mikstura była gorzka, ale natychmiast poczułeś przypływ życia. Pustelnik milczał, patrząc w ogień.",
     "lowMoraleSuccessMessage": "Wypij to świństwo. Jeśli cię zabije — trudno. Jeśli uzdrowi — też trudno.",
+    "partialMessage": "Mikstura była rozcieńczona — poczułeś tylko słaby przypływ sił. Pustelnik milczał.",
+    "lowMoralePartialMessage": "Wypiłeś to świństwo. Ledwie tknęło ciało. Jeśli nie zabije, to i tak trudno.",
     "failEffects": {
       "health": -30,
       "morale": -20
@@ -643,6 +691,8 @@
     },
     "successMessage": "Oddałeś mięso. Matka płakała z wdzięczności. Obiecali podzielić się skarbami z ukrytej dziupli, jeśli wrócisz za 3 tury.",
     "lowMoraleSuccessMessage": "Oddałeś jedzenie, czując wyłącznie gniew, że sam stajesz się słabszy. Jesteś idiotą, ale przynajmniej nie jesteś mordercą.",
+    "partialMessage": "Oddałeś tylko część zapasów. Matka dziękowała przez łzy. Wróć później po skarb.",
+    "lowMoralePartialMessage": "Rzuciłeś im trochę jedzenia z gniewem, że słabniesz. Idiota, lecz nie morderca.",
     "failEffects": {
       "morale": -20
     },
@@ -671,6 +721,8 @@
     },
     "successMessage": "Rodzina przeżyła. Dali ci wino i owoce. To jedna z niewielu dobrych rzeczy, które spotkały cię na tym szlaku.",
     "lowMoraleSuccessMessage": "Zabrałeś im ostatnie zapasy. Jesteś hieną, która żeruje na cudzym przeżyciu. Pij to wino, by zapomnieć o twarzach dzieci.",
+    "partialMessage": "Rodzina ledwie przetrwała. Dali ci skromną część skarbu — trochę wina i owoców.",
+    "lowMoralePartialMessage": "Zabrałeś im resztki zapasów. Hiena żerująca na cudzym przeżyciu.",
     "failEffects": {
       "morale": -50
     },
@@ -685,7 +737,7 @@
     "questId": "alchemist_trial",
     "questStage": 1,
     "requiredStage": "Góry",
-    "label": "Alchemik w jaskini potrzebuje rzadkiego grzyba na antidotum",
+    "label": "Alchemik w jaskini potrzebuje rzadkiego grzyba na miksturę przeciw zarazie",
     "lowMoraleLabel": "Szukaj składników dla szaleńca, który bawi się życiem i śmiercią",
     "timeCost": 2,
     "itemEffects": {
@@ -693,6 +745,8 @@
     },
     "successMessage": "Przyniosłeś grzyba. 'Wróć za 2 tury, mikstura musi się przegryźć' — mruknął.",
     "lowMoraleSuccessMessage": "Oddałeś mu składnik, nie wierząc, że ten wywar cokolwiek zmieni w twoim marnym życiu.",
+    "partialMessage": "Oddałeś grzyba, lecz alchemik był niepewny jakości. Wróć później po miksturę.",
+    "lowMoralePartialMessage": "Wcisnąłeś mu składnik, nie wierząc w żaden wywar. Marne życie się nie zmieni.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -713,6 +767,8 @@
     },
     "successMessage": "Mikstura zadziałała. Czujesz się silniejszy. Dostałeś też sztabkę żelaza — może przyda się u kowala.",
     "lowMoraleSuccessMessage": "Wypiłeś to. Jeśli to trucizna, przynajmniej przestaniesz cierpieć. Jeśli lekarstwo — będziesz cierpiał dłużej.",
+    "partialMessage": "Mikstura zadziałała tylko częściowo. Czujesz słaby przypływ sił, dostałeś też trochę żelaza.",
+    "lowMoralePartialMessage": "Wypiłeś to. Ledwie tknęło. Jeśli trucizna — może przestaniesz cierpieć.",
     "turnsUntilNext": 0
   },
   {
@@ -727,6 +783,8 @@
     },
     "successMessage": "Opatrzyłeś go. 'Nie zapomnę tego' — wykrztusił. 'Znajdź mnie w wiosce za 3 tury'.",
     "lowMoraleSuccessMessage": "Założyłeś bandaże na jego rany. Jesteś tak samo głupi jak on, wierząc w jakąś tam wdzięczność.",
+    "partialMessage": "Opatrzyłeś rycerza pobieżnie. Wyszeptał mgliste podziękowania. Znajdź go później.",
+    "lowMoralePartialMessage": "Założyłeś mu bandaże byle jak. Głupi jak on, wierząc w jakąś wdzięczność.",
     "turnsUntilNext": 3,
     "allowWait": true
   },
@@ -745,6 +803,8 @@
     },
     "successMessage": "Dał ci naostrzoną klingę i prowiant. 'Prawdziwy wojownik nie zostawia długów' — powiedział.",
     "lowMoraleSuccessMessage": "Wziąłeś miecz i jedzenie. Honor rycerza jest równie przestarzały, co twoje nadzieje na lepsze jutro.",
+    "partialMessage": "Rycerz odwdzięczył się skromnie, ledwie trzymając się na nogach. Wziąłeś, co dał.",
+    "lowMoralePartialMessage": "Wziąłeś, co rzucił. Honor rycerza przestarzały jak twoje nadzieje.",
     "turnsUntilNext": 0
   },
   {
@@ -759,6 +819,8 @@
     },
     "successMessage": "Pieśń o starym świecie wycisnęła z ciebie łzy. Było warto.",
     "lowMoraleSuccessMessage": "Muzyka była piękna. Dlatego tak bardzo cię bolała. Wszystko w tym świecie boli.",
+    "partialMessage": "Pieśń poruszyła cię tylko na chwilę, nim bard urwał strunę. Mglista otucha.",
+    "lowMoralePartialMessage": "Muzyka ledwie cię musnęła, a i tak zabolała. Wszystko w tym świecie boli.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -777,6 +839,8 @@
     },
     "successMessage": "Pokonaliście bandytów! Bard w podzięce dał ci swój rodzinny amulet.",
     "lowMoraleSuccessMessage": "Zabiłeś tych ludzi dla barda. Jesteś tak samo zły jak oni. Amulet w dłoni nie czyści twojej duszy.",
+    "partialMessage": "Bandyci pierzchli, lecz starcie było chaotyczne. Bard dał ci amulet drżącą ręką.",
+    "lowMoralePartialMessage": "Rozgoniłeś ich ledwie. Jesteś tak samo zły jak oni. Amulet nie czyści duszy.",
     "failEffects": {
       "health": -30,
       "morale": -20
@@ -794,6 +858,8 @@
     },
     "successMessage": "Oddałeś wodę. Przepuścił cię.",
     "lowMoraleSuccessMessage": "Twoja słabość kosztuje cię wszystko. Oddałeś wodę i poszedłeś dalej jak potulna owca.",
+    "partialMessage": "Oddałeś trochę wody, a chłop przepuścił cię niechętnie.",
+    "lowMoralePartialMessage": "Twoja słabość kosztuje. Oddałeś wodę jak potulna owca i poszedłeś dalej.",
     "turnsUntilNext": 0
   },
   {
@@ -812,6 +878,8 @@
     },
     "successMessage": "Pomogłeś mu. Podzielił się uratowanym ładunkiem.",
     "lowMoraleSuccessMessage": "Wyciągnąłeś towary z błota. Brudny i zmęczony, wziąłeś swoją działkę z czystą zawiścią.",
+    "partialMessage": "Wyciągnąłeś tylko część towarów z błota. Chłop podzielił się skromnie.",
+    "lowMoralePartialMessage": "Wygrzebałeś trochę z mułu. Brudny i zmęczony, wziąłeś działkę z zawiścią.",
     "turnsUntilNext": 0
   },
   {
@@ -828,6 +896,8 @@
     },
     "successMessage": "Relikwia jest piękna. Ale czy powinna być w twoich rękach?",
     "lowMoraleSuccessMessage": "Zebrałeś to z ołtarza jak zwykły złodziej. Nic świętego nie istnieje.",
+    "partialMessage": "Zdjąłeś relikwię z ołtarza niepewnie. Coś w tym geście cię niepokoi.",
+    "lowMoralePartialMessage": "Zgarnąłeś to z ołtarza jak złodziej. Nic świętego nie istnieje.",
     "turnsUntilNext": 3,
     "allowWait": true
   },
@@ -846,6 +916,8 @@
     },
     "successMessage": "Oddałeś ją. Wioska odetchnęła. Czułeś, że zrobiłeś coś dobrego.",
     "lowMoraleSuccessMessage": "Oddałeś to, bo miałeś dość noszenia cudzej nadziei. Przynajmniej dali ci zioła na drogę.",
+    "partialMessage": "Oddałeś relikwię, lecz wioska ledwie odetchnęła. Dostałeś trochę ziół.",
+    "lowMoralePartialMessage": "Oddałeś to, bo dość miałeś cudzej nadziei. Dali ci skąpe zioła.",
     "turnsUntilNext": 0
   },
   {
@@ -861,6 +933,8 @@
     },
     "successMessage": "Grajek nie może zamoczyć rąk. Przeniosłeś go i instrument. 'Czekaj w karczmie za 3 tury' — powiedział.",
     "lowMoraleSuccessMessage": "Wziąłeś lutnię z niechęcią. Czujesz na skórze jego chorobę, ale nadzieja na zapłatę zagłusza strach.",
+    "partialMessage": "Przeniosłeś lutnię, ledwie dotykając grajka. Obietnica zabrzmiała niepewnie.",
+    "lowMoralePartialMessage": "Wziąłeś lutnię z niechęcią, czując chorobę na skórze. Liczy się tylko zapłata.",
     "turnsUntilNext": 3,
     "allowWait": true
   },
@@ -879,6 +953,8 @@
     },
     "successMessage": "Zagrał dla ciebie pieśń, która sprawiła, że na chwilę zapomniałeś o głodzie. Dostałeś wino i mięso.",
     "lowMoraleSuccessMessage": "Zagrał coś, co brzmiało jak lament. Wziąłeś żarcie i wyszedłeś, nie chcąc dłużej patrzeć na jego rozpadającą się twarz.",
+    "partialMessage": "Grajek zagrał krótko i dał ci skromną zapłatę — trochę wina i mięsa.",
+    "lowMoralePartialMessage": "Zagrał lament. Wziąłeś żarcie i wyszedłeś, nie patrząc na jego twarz.",
     "turnsUntilNext": 0
   },
   {
@@ -894,6 +970,8 @@
     },
     "successMessage": "Znalazłeś tam tylko utopione rzeczy. Ale na dnie błyszczy coś cennego. Wróć za 2 tury, gdy woda opadnie.",
     "lowMoraleSuccessMessage": "Zajrzałeś w otchłań. Płacz to tylko wiatr. Ale na dnie jest coś, co warto wyciągnąć.",
+    "partialMessage": "Zajrzałeś do studni — płacz to wiatr. Coś błyszczy na dnie. Wróć później.",
+    "lowMoralePartialMessage": "Zajrzałeś w otchłań. Na dnie coś jest. Warto wyciągnąć.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -910,7 +988,9 @@
       "morale": 45
     },
     "successMessage": "To stary święty amulet. Czujesz się lżej, jakby klątwa została przełamana.",
-    "lowMoraleSuccessMessage": "Wyłowiłeś to z błota. Śmierdzi trupem, ale da ci boosta, którego potrzebujesz, by nie zdechnąć.",
+    "lowMoraleSuccessMessage": "Wyłowiłeś to z błota. Śmierdzi trupem, ale doda ci sił, których potrzebujesz, by nie zdechnąć.",
+    "partialMessage": "Wyciągnąłeś znalezisko z mułu — stary amulet. Czujesz się tylko trochę lżej.",
+    "lowMoralePartialMessage": "Wyłowiłeś to z błota. Śmierdzi trupem, ale doda ci sił.",
     "turnsUntilNext": 0
   },
   {
@@ -919,13 +999,15 @@
     "questStage": 1,
     "requiredStage": "Europa",
     "label": "Stary archiwista błaga o uratowanie ksiąg z palącego się klasztoru.",
-    "lowMoraleLabel": "Wbiegnij w ogień, by ukraść książki dla marnego zysku",
+    "lowMoraleLabel": "Wbiegnij w ogień, by ukraść księgi dla marnego zysku",
     "effects": {
       "health": -15,
       "energy": -20
     },
     "successMessage": "Uratowałeś stos pergaminów. 'Wróć do mnie do pobliskiej wioski za 4 tury' — prosił.",
-    "lowMoraleSuccessMessage": "Wpadłeś w ogień, kaszląc dymem. Twoja skóra pali, ale książki są bezpieczne. Kolejny bezsensowny trud.",
+    "lowMoraleSuccessMessage": "Wpadłeś w ogień, kaszląc dymem. Twoja skóra pali, ale księgi są bezpieczne. Kolejny bezsensowny trud.",
+    "partialMessage": "Wyniosłeś z ognia tylko część ksiąg, krztusząc się dymem. Wróć później.",
+    "lowMoralePartialMessage": "Wpadłeś w ogień, kaszląc. Skóra piecze, część ksiąg ocalała. Bezsensowny trud.",
     "turnsUntilNext": 4,
     "allowWait": true
   },
@@ -944,6 +1026,8 @@
     },
     "successMessage": "Płakał nad nimi. Dał ci zioła na drogę. Historia jest uratowana.",
     "lowMoraleSuccessMessage": "Wcisnąłeś mu to w ręce. Dał ci w zamian zioła. W tym świecie wiedza nie karmi, ale przynajmniej masz co pić.",
+    "partialMessage": "Archiwista przyjął ocalałe księgi i dał ci skromne zioła.",
+    "lowMoralePartialMessage": "Wcisnąłeś mu to w ręce. Dał zioła. Wiedza nie karmi, lecz masz co pić.",
     "turnsUntilNext": 0
   },
   {
@@ -958,6 +1042,8 @@
     },
     "successMessage": "Podziękował ci. 'Wróć jutro, ostrze będzie gotowe'.",
     "lowMoraleSuccessMessage": "Oddałeś żelazo. Czujesz się jak idiota, pomagając światu, który chce cię zabić.",
+    "partialMessage": "Oddałeś żelazo, lecz kowal mruknął coś niepewnie o terminie. Wróć później.",
+    "lowMoralePartialMessage": "Oddałeś żelazo jak idiota, pomagając światu, który chce cię zabić.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -975,6 +1061,8 @@
     },
     "successMessage": "Klinga jest ostra jak brzytwa. Kowal skinął głową: 'Przeżyj to'.",
     "lowMoraleSuccessMessage": "Masz broń. Teraz przynajmniej masz szansę wyrąbać sobie drogę przez ten syf.",
+    "partialMessage": "Klinga wyszła ledwie ostra, kowal kręcił głową. Lepsze to niż nic.",
+    "lowMoralePartialMessage": "Masz broń, choć marną. Może wyrąbiesz sobie drogę przez ten syf.",
     "turnsUntilNext": 0
   },
   {
@@ -989,6 +1077,8 @@
     },
     "successMessage": "Oczyściłeś miejsce. Czujesz dziwny spokój. Wróć tu za 2 tury, może coś się zmieniło.",
     "lowMoraleSuccessMessage": "Szorujesz kamień, czując jedynie wstręt do własnych dłoni. Modlitwa nie naprawi tego zepsutego świata.",
+    "partialMessage": "Oczyściłeś tylko część kapliczki, nim siły wysiadły. Wróć później.",
+    "lowMoralePartialMessage": "Szorowałeś kamień z obrzydzeniem. Modlitwa nie naprawi tego świata.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -1006,6 +1096,8 @@
     },
     "successMessage": "Ktoś zostawił tu amulet w podzięce za porządek. Nie jesteś sam.",
     "lowMoraleSuccessMessage": "Amulet. Kolejna błyskotka. Może przyda się w walce o przeżycie. Przynajmniej nie jest bezużyteczna.",
+    "partialMessage": "Ktoś zostawił skromny dar za porządek. Nie jesteś całkiem sam.",
+    "lowMoralePartialMessage": "Kolejna błyskotka. Może przyda się w walce o przeżycie.",
     "turnsUntilNext": 0
   },
   {
@@ -1020,8 +1112,10 @@
     "effects": {
       "morale": 10
     },
-    "successMessage": "Dał ci butelkę wina. 'Na zdrowie' — mruknął. Czuć w nim dziwny, słodkawy posmak.",
+    "successMessage": "Dał ci bukłak wina. 'Na zdrowie' — mruknął. Czuć w nim dziwny, słodkawy posmak.",
     "lowMoraleSuccessMessage": "Wziąłeś to wino, nie dbając o cenę. Chcesz tylko zapomnieć, jak bardzo ten świat cuchnie śmiercią.",
+    "partialMessage": "Handlarz nalał ci tylko trochę wina o dziwnym, słodkawym posmaku. Wróć później.",
+    "lowMoralePartialMessage": "Wziąłeś to wino, nie dbając o cenę. Chcesz tylko zapomnieć o smrodzie śmierci.",
     "itemEffects": {
       "POISONED_WINE": 1
     },
@@ -1040,6 +1134,8 @@
     },
     "successMessage": "To było zatrute wino! Handlarz to łotr, który oczyszcza drogę z 'niechcianych' wędrowców.",
     "lowMoraleSuccessMessage": "Wiedziałeś, że to pułapka. Teraz masz gorączkę i nienawiść, która pali cię bardziej niż trucizna w żyłach.",
+    "partialMessage": "Prawda wyszła na jaw tylko częściowo — wino było skażone. Czujesz mdłości.",
+    "lowMoralePartialMessage": "Wiedziałeś, że to pułapka. Gorączka i nienawiść palą cię od środka.",
     "turnsUntilNext": 0
   },
   {
@@ -1056,6 +1152,8 @@
     },
     "successMessage": "Uczeń wziął sztabkę żelaza. 'Wróć za 3 tury, brama będzie gotowa'.",
     "lowMoraleSuccessMessage": "Oddałeś żelazo. W tym świecie nie ma miejsca na obronę innych, a ty i tak zaraz stąd uciekniesz.",
+    "partialMessage": "Oddałeś żelazo, lecz uczeń był niepewny terminu. Wróć później.",
+    "lowMoralePartialMessage": "Oddałeś żelazo, byle mieć spokój. I tak zaraz stąd uciekniesz.",
     "turnsUntilNext": 3,
     "allowWait": true
   },
@@ -1073,6 +1171,8 @@
     },
     "successMessage": "Brama stoi! Kowal w podzięce podarował ci naostrzoną klingę.",
     "lowMoraleSuccessMessage": "Brama może zatrzymać bandytów, ale nie zatrzyma zarazy. Wziąłeś broń i ruszyłeś dalej bez słowa.",
+    "partialMessage": "Brama ledwie stoi, lecz uczeń dał ci w podzięce klingę.",
+    "lowMoralePartialMessage": "Brama nie zatrzyma zarazy. Wziąłeś broń i ruszyłeś bez słowa.",
     "turnsUntilNext": 0
   },
   {
@@ -1085,8 +1185,10 @@
       "energy": -15,
       "health": -10
     },
-    "successMessage": "Grobowiec jest pełen zarodników. Ale znalazłeś coś w sarkofagu. Wróć za 2 tury, gdy powietrze oczyści się z pyłu.",
+    "successMessage": "Grobowiec jest pełen pleśni i trupiej wilgoci. Ale znalazłeś coś w sarkofagu. Wróć za 2 tury, gdy opadnie kurz.",
     "lowMoraleSuccessMessage": "Grzebałeś w zwłokach jak szczur. To miejsce to po prostu kolejna sypialnia dla zmarłych.",
+    "partialMessage": "Przeszukałeś grobowiec pobieżnie. Coś jest w sarkofagu. Wróć później.",
+    "lowMoralePartialMessage": "Grzebałeś w zwłokach jak szczur. Kolejna sypialnia dla zmarłych.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -1104,6 +1206,8 @@
     },
     "successMessage": "Amulet jest w twoich rękach. Czujesz się dziwnie spokojnie.",
     "lowMoraleSuccessMessage": "Amulet w dłoni. Jeśli to ma być świętość, to świat musiał zwariować. Przynajmniej podnosi na duchu.",
+    "partialMessage": "Wydobyłeś amulet z pleśni. Czujesz tylko nikły spokój.",
+    "lowMoralePartialMessage": "Amulet w dłoni. Jeśli to świętość, świat zwariował. Podnosi na duchu.",
     "turnsUntilNext": 0
   },
   {
@@ -1118,6 +1222,8 @@
     },
     "successMessage": "Obiecałeś mu dostarczyć list do adresata. 'To ważne dla przetrwania miasta' — wyszeptał.",
     "lowMoraleSuccessMessage": "Oglądałeś jego agonię z zimną obojętnością. List może być wart kilka miedziaków u kogoś, kto potrafi czytać.",
+    "partialMessage": "Posłaniec wyszeptał tylko strzęp prośby, nim osłabł. Obiecałeś dostarczyć list. Wróć później.",
+    "lowMoralePartialMessage": "Patrzyłeś na jego agonię chłodno. List może być wart parę miedziaków.",
     "turnsUntilNext": 4,
     "allowWait": false
   },
@@ -1136,19 +1242,23 @@
     },
     "successMessage": "Adresat przeczytał list i pobladł. 'Dziękuję. To zmienia wszystko'.",
     "lowMoraleSuccessMessage": "Wcisnąłeś mu papier i wyciągnąłeś rękę po swoje. Ta wiadomość niczego nie naprawi.",
+    "partialMessage": "Adresat przyjął list z wahaniem i dał ci skromną zapłatę.",
+    "lowMoralePartialMessage": "Cisnąłeś mu papier po swoje. Ta wiadomość niczego nie naprawi.",
     "turnsUntilNext": 0
   },
   {
     "id": "quest_painter_1",
     "questId": "doomsday_painter",
     "questStage": 1,
-    "label": "Artysta maluje zgliszcza wioski na płótnie.",
-    "lowMoraleLabel": "Śmiej się z artysty, który maluje koniec świata",
+    "label": "Malarz maluje zgliszcza wioski na desce.",
+    "lowMoraleLabel": "Śmiej się z malarza, który maluje koniec świata",
     "effects": {
       "morale": 10
     },
-    "successMessage": "Jest całkowicie pochłonięty pracą. Obiecał portret, jeśli wrócisz z farbami.",
+    "successMessage": "Jest całkowicie pochłonięty pracą. Obiecał namalować twój wizerunek, jeśli wrócisz z farbami.",
     "lowMoraleSuccessMessage": "Siedzi i maluje śmierć. Obłęd. Może jak wrócisz, to namaluje twój nagrobek.",
+    "partialMessage": "Malarz ledwie oderwał wzrok od dzieła. Mgliście obiecał twój portret. Wróć później.",
+    "lowMoralePartialMessage": "Siedzi i maluje śmierć. Może jak wrócisz, namaluje twój nagrobek.",
     "turnsUntilNext": 3,
     "allowWait": true
   },
@@ -1156,7 +1266,7 @@
     "id": "quest_painter_2",
     "questId": "doomsday_painter",
     "questStage": 2,
-    "label": "Wróć do artysty z farbami (FINAŁ)",
+    "label": "Wróć do malarza z farbami (FINAŁ)",
     "lowMoraleLabel": "Zabierz obraz, bo może go ktoś kupi",
     "itemEffects": {
       "HERBS": 1,
@@ -1167,175 +1277,16 @@
     },
     "successMessage": "Obraz jest gotowy. Przedstawia człowieka, który biegnie w stronę słońca. Twoja twarz.",
     "lowMoraleSuccessMessage": "Dał ci obraz. Patrzysz na to i czujesz jedynie obrzydzenie do własnego wizerunku.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_merchant_wine_1",
-    "questId": "merchant_wine",
-    "questStage": 1,
-    "label": "Handlarz oferuje wyborne wino, twierdząc że leczy smutki.",
-    "lowMoraleLabel": "Kup wino od nieznajomego, by choć na chwilę utopić swoje lęki",
-    "itemEffects": {
-      "DRIED_MEAT": -1
-    },
-    "effects": {
-      "morale": 10
-    },
-    "successMessage": "Dał ci butelkę wina. 'Na zdrowie' — mruknął. Czuć w nim dziwny, słodkawy posmak.",
-    "lowMoraleSuccessMessage": "Wziąłeś to wino, nie dbając o cenę. Chcesz tylko zapomnieć, jak bardzo ten świat cuchnie śmiercią.",
-    "itemEffects": {
-      "POISONED_WINE": 1
-    },
-    "turnsUntilNext": 2,
-    "allowWait": true
-  },
-  {
-    "id": "quest_merchant_wine_2",
-    "questId": "merchant_wine",
-    "questStage": 2,
-    "label": "Wracasz do handlarza — odkrywasz prawdę o winie (FINAŁ)",
-    "lowMoraleLabel": "Pomszcz swoje otrucie, zabijając handlarza",
-    "effects": {
-      "morale": -30,
-      "health": -20
-    },
-    "successMessage": "To było zatrute wino! Handlarz to łotr, który oczyszcza drogę z 'niechcianych' wędrowców.",
-    "lowMoraleSuccessMessage": "Wiedziałeś, że to pułapka. Teraz masz gorączkę i nienawiść, która pali cię bardziej niż trucizna w żyłach.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_apprentice_1",
-    "questId": "smith_apprentice",
-    "questStage": 1,
-    "label": "Uczeń kowala nie ma surowca, by dokończyć bramę dla uchodźców.",
-    "lowMoraleLabel": "Oddaj sztabkę żelaza, byle tylko mieć spokój od błagań chłopca",
-    "itemEffects": {
-      "IRON_INGOT": -1
-    },
-    "effects": {
-      "morale": 15
-    },
-    "successMessage": "Uczeń wziął sztabkę żelaza. 'Wróć za 3 tury, brama będzie gotowa'.",
-    "lowMoraleSuccessMessage": "Oddałeś żelazo. W tym świecie nie ma miejsca na obronę innych, a ty i tak zaraz stąd uciekniesz.",
-    "turnsUntilNext": 3,
-    "allowWait": true
-  },
-  {
-    "id": "quest_apprentice_2",
-    "questId": "smith_apprentice",
-    "questStage": 2,
-    "label": "Wracasz do kuźni zobaczyć efekt pracy (FINAŁ)",
-    "lowMoraleLabel": "Sprawdź, czy twoje żelazo na coś się przydało",
-    "itemEffects": {
-      "SHARPENED_BLADE": 1
-    },
-    "effects": {
-      "morale": 25
-    },
-    "successMessage": "Brama stoi! Kowal w podzięce podarował ci naostrzoną klingę.",
-    "lowMoraleSuccessMessage": "Brama może zatrzymać bandytów, ale nie zatrzyma zarazy. Wziąłeś broń i ruszyłeś dalej bez słowa.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_tomb_1",
-    "questId": "plague_tomb",
-    "questStage": 1,
-    "label": "Słyszysz o grobowcu, w którym spoczywa święty amulet.",
-    "lowMoraleLabel": "Wkrocz do zarażonej krypty, nie wierząc w żadne bóstwo",
-    "effects": {
-      "energy": -15,
-      "health": -10
-    },
-    "successMessage": "Grobowiec jest pełen zarodników. Ale znalazłeś coś w sarkofagu. Wróć za 2 tury, gdy powietrze oczyści się z pyłu.",
-    "lowMoraleSuccessMessage": "Grzebałeś w zwłokach jak szczur. To miejsce to po prostu kolejna sypialnia dla zmarłych.",
-    "turnsUntilNext": 2,
-    "allowWait": true
-  },
-  {
-    "id": "quest_tomb_2",
-    "questId": "plague_tomb",
-    "questStage": 2,
-    "label": "Wróć do grobowca po przedmiot (FINAŁ)",
-    "lowMoraleLabel": "Zabierz amulet, byle tylko sprzedać go za grosze",
-    "itemEffects": {
-      "SACRED_AMULET": 1
-    },
-    "effects": {
-      "morale": 40
-    },
-    "successMessage": "Amulet jest w twoich rękach. Czujesz się dziwnie spokojnie.",
-    "lowMoraleSuccessMessage": "Amulet w dłoni. Jeśli to ma być świętość, to świat musiał zwariować. Przynajmniej podnosi na duchu.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_dying_courier_1",
-    "questId": "dying_courier",
-    "questStage": 1,
-    "label": "Posłaniec dogorywa przy drodze, trzymając list do Krakowa.",
-    "lowMoraleLabel": "Przeszukaj konającego posłańca, może ma coś wartościowego",
-    "effects": {
-      "energy": -10,
-      "morale": -5
-    },
-    "successMessage": "Obiecałeś mu dostarczyć list do adresata. 'To ważne dla przetrwania miasta' — wyszeptał.",
-    "lowMoraleSuccessMessage": "Oglądałeś jego agonię z zimną obojętnością. List może być wart kilka miedziaków u kogoś, kto potrafi czytać.",
-    "turnsUntilNext": 4,
-    "allowWait": false
-  },
-  {
-    "id": "quest_dying_courier_2",
-    "questId": "dying_courier",
-    "questStage": 2,
-    "label": "Dotrzyj do adresata w mieście (FINAŁ)",
-    "lowMoraleLabel": "Wymuś nagrodę od adresata, nie dbając o treść listu",
-    "itemEffects": {
-      "WINE": 1,
-      "HERBS": 2
-    },
-    "effects": {
-      "morale": 30
-    },
-    "successMessage": "Adresat przeczytał list i pobladł. 'Dziękuję. To zmienia wszystko'.",
-    "lowMoraleSuccessMessage": "Wcisnąłeś mu papier i wyciągnąłeś rękę po swoje. Ta wiadomość niczego nie naprawi.",
-    "turnsUntilNext": 0
-  },
-  {
-    "id": "quest_painter_1",
-    "questId": "doomsday_painter",
-    "questStage": 1,
-    "label": "Artysta maluje zgliszcza wioski na płótnie.",
-    "lowMoraleLabel": "Śmiej się z artysty, który maluje koniec świata",
-    "effects": {
-      "morale": 10
-    },
-    "successMessage": "Jest całkowicie pochłonięty pracą. Obiecał portret, jeśli wrócisz z farbami.",
-    "lowMoraleSuccessMessage": "Siedzi i maluje śmierć. Obłęd. Może jak wrócisz, to namaluje twój nagrobek.",
-    "turnsUntilNext": 3,
-    "allowWait": true
-  },
-  {
-    "id": "quest_painter_2",
-    "questId": "doomsday_painter",
-    "questStage": 2,
-    "label": "Wróć do artysty z farbami (FINAŁ)",
-    "lowMoraleLabel": "Zabierz obraz, bo może go ktoś kupi",
-    "itemEffects": {
-      "HERBS": 1,
-      "GRAPES": 1
-    },
-    "effects": {
-      "morale": 50
-    },
-    "successMessage": "Obraz jest gotowy. Przedstawia człowieka, który biegnie w stronę słońca. Twoja twarz.",
-    "lowMoraleSuccessMessage": "Dał ci obraz. Patrzysz na to i czujesz jedynie obrzydzenie do własnego wizerunku.",
+    "partialMessage": "Obraz wyszedł niedokończony, lecz rozpoznajesz w nim siebie biegnącego ku słońcu.",
+    "lowMoralePartialMessage": "Dał ci obraz. Patrzysz i czujesz obrzydzenie do własnej twarzy.",
     "turnsUntilNext": 0
   },
   {
     "id": "quest_plague_mask_1",
     "questId": "plague_doctor_mask",
     "questStage": 1,
-    "label": "Widzisz porzuconą maskę lekarza dżumy przy stosie ciał.",
-    "lowMoraleLabel": "Podnieś maskę lekarza, myśląc, że może uchroni cię przed śmiercią",
+    "label": "Widzisz porzuconą skórzaną maskę wypełnioną wonnymi ziołami przy stosie ciał.",
+    "lowMoraleLabel": "Podnieś maskę zielarza, myśląc, że może uchroni cię przed śmiercią",
     "timeCost": 2,
     "effects": {
       "energy": -10,
@@ -1343,6 +1294,8 @@
     },
     "successMessage": "Maska jest dziwna, ciężka. Może to talizman? Wróć do miasta za 3 tury, może ktoś powie ci, co to znaczy.",
     "lowMoraleSuccessMessage": "Wkładasz to na twarz. Wyglądasz jak potwór z koszmaru. Może inni trupy zaczną cię traktować jak swojego?",
+    "partialMessage": "Podniosłeś maskę — ciężka i dziwna. Może talizman. Wróć do miasta później.",
+    "lowMoralePartialMessage": "Wkładasz to na twarz. Wyglądasz jak potwór. Może trupy uznają cię za swojego.",
     "turnsUntilNext": 3,
     "allowWait": true
   },
@@ -1350,8 +1303,8 @@
     "id": "quest_plague_mask_2",
     "questId": "plague_doctor_mask",
     "questStage": 2,
-    "label": "W mieście spotykasz starego medyka, który rozpoznaje maskę (FINAŁ).",
-    "lowMoraleLabel": "Żądaj od medyka wyjaśnień, nie dbając o jego autorytet",
+    "label": "W mieście spotykasz starego zielarza, który rozpoznaje maskę (FINAŁ).",
+    "lowMoraleLabel": "Żądaj od zielarza wyjaśnień, nie dbając o jego autorytet",
     "itemEffects": {
       "HERBS": 2,
       "BANDAGE": 1
@@ -1359,8 +1312,10 @@
     "effects": {
       "morale": 40
     },
-    "successMessage": "Medyk mówi, że to maska 'Ostatniego Uzdrowiciela'. Daje ci leki w zamian za jej oddanie.",
-    "lowMoraleSuccessMessage": "Medyk drży ze strachu. Oddałeś mu maskę, bo śmierdzi śmiercią bardziej niż ty sam.",
+    "successMessage": "Zielarz mówi, że to maska 'Ostatniego Uzdrowiciela'. Daje ci zioła i maści w zamian za jej oddanie.",
+    "lowMoraleSuccessMessage": "Zielarz drży ze strachu. Oddałeś mu maskę, bo śmierdzi śmiercią bardziej niż ty sam.",
+    "partialMessage": "Zielarz rozpoznał maskę i dał ci skromne zioła w zamian.",
+    "lowMoralePartialMessage": "Zielarz drży ze strachu. Oddałeś maskę — śmierdzi śmiercią bardziej niż ty.",
     "turnsUntilNext": 0
   },
   {
@@ -1376,6 +1331,8 @@
     },
     "successMessage": "List jest zapieczętowany. Opat obiecuje sowitą nagrodę w Krakowie. Wróć za 4 tury.",
     "lowMoraleSuccessMessage": "Przyjąłeś list, myśląc tylko o tym, czy w środku jest złoto. W tym świecie nie ma miejsca na lojalność.",
+    "partialMessage": "Opat wręczył list pospiesznie, obiecując mglistą nagrodę. Wróć później.",
+    "lowMoralePartialMessage": "Wziąłeś list, myśląc tylko, czy w środku jest złoto. Lojalność nie istnieje.",
     "turnsUntilNext": 4,
     "allowWait": false
   },
@@ -1394,6 +1351,8 @@
     },
     "successMessage": "Możnowładca przeczytał list i westchnął. 'Dziękuję, posłańcu. Żelazo i wino dla ciebie'.",
     "lowMoraleSuccessMessage": "Wziąłeś zapłatę, nie interesując się losem opata. Przetrwanie wymaga bycia egoistą.",
+    "partialMessage": "Możnowładca przyjął list z wahaniem i dał ci skromną zapłatę.",
+    "lowMoralePartialMessage": "Wziąłeś zapłatę, nie dbając o los opata. Przetrwanie to egoizm.",
     "turnsUntilNext": 0
   },
   {
@@ -1410,6 +1369,8 @@
     },
     "successMessage": "Oddałeś im żelazo. Dzieci przestały płakać. Wróć za 3 tury.",
     "lowMoraleSuccessMessage": "Oddałeś sztabkę, przeklinając pod nosem swoją litość. Teraz będziesz miał gorzej przez najbliższe dni.",
+    "partialMessage": "Oddałeś żelazo, lecz uchodźcy patrzyli niepewnie. Dzieci ucichły. Wróć później.",
+    "lowMoralePartialMessage": "Oddałeś sztabkę, klnąc swoją litość. Teraz będziesz miał gorzej.",
     "turnsUntilNext": 3,
     "allowWait": true
   },
@@ -1428,6 +1389,8 @@
     },
     "successMessage": "Zbudowali solidny schron. Podzielili się z tobą jedzeniem. To nie jest koniec świata, póki mamy siebie.",
     "lowMoraleSuccessMessage": "Zabierasz, co dają. Oni żyją, ty żyjesz. Reszta się nie liczy.",
+    "partialMessage": "Obóz ledwie stoi, lecz podzielili się z tobą skromnym jedzeniem.",
+    "lowMoralePartialMessage": "Zabierasz, co dają. Oni żyją, ty żyjesz. Reszta się nie liczy — i tyle.",
     "turnsUntilNext": 0
   },
   {
@@ -1445,6 +1408,8 @@
     },
     "successMessage": "Oddałeś mięso. Przepuścili cię ze śmiechem.",
     "lowMoraleSuccessMessage": "Jesteś nędzarzem i tchórzem, ale przynajmniej żyjesz. Poszedłeś dalej, czując na plecach ich szyderstwa.",
+    "partialMessage": "Oddałeś trochę mięsa. Bandyci przepuścili cię ze śmiechem.",
+    "lowMoralePartialMessage": "Nędzarz i tchórz, ale żyjesz. Poszedłeś dalej wśród ich szyderstw.",
     "turnsUntilNext": 0
   },
   {
@@ -1462,6 +1427,8 @@
     },
     "successMessage": "Odzyskałeś swoje i zabrałeś ich broń. Teraz oni będą się bać.",
     "lowMoraleSuccessMessage": "Zabierasz ich rzeczy. Teraz ty jesteś drapieżnikiem. Świat się nie zmienił, zmieniłeś się tylko ty.",
+    "partialMessage": "Zabrałeś tylko część ich łupu, nim się poruszyli. Lepsze to niż nic.",
+    "lowMoralePartialMessage": "Zgarnąłeś ich rzeczy. Teraz ty jesteś drapieżnikiem. Zmieniłeś się tylko ty.",
     "turnsUntilNext": 0
   },
   {
@@ -1478,6 +1445,8 @@
     },
     "successMessage": "Bożek jest zimny i przerażający. Masz wrażenie, że coś na ciebie patrzy.",
     "lowMoraleSuccessMessage": "Kolejny bezużyteczny kamień. Ale może jakiś głupiec w mieście zapłaci za to jedzeniem.",
+    "partialMessage": "Podniosłeś bożka — zimny i niepokojący. Wróć później do miasta.",
+    "lowMoralePartialMessage": "Kolejny bezużyteczny kamień. Może głupiec w mieście zapłaci za to jedzeniem.",
     "turnsUntilNext": 2,
     "allowWait": true
   },
@@ -1496,6 +1465,8 @@
     },
     "successMessage": "Oddałeś go. Wieśniak płakał ze szczęścia. To mała rzecz, ale daje nadzieję.",
     "lowMoraleSuccessMessage": "Sprzedałeś to. Zarobiłeś na cudzej wierze. Jesteś tak samo zły jak plaga, która nas zabija.",
+    "partialMessage": "Oddałeś bożka, wieśniak ledwie powstrzymał łzy. Dostałeś trochę jedzenia.",
+    "lowMoralePartialMessage": "Sprzedałeś to. Zarobiłeś na cudzej wierze. Zły jak plaga.",
     "turnsUntilNext": 0
   }
 ]

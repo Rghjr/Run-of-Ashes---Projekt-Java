@@ -3,11 +3,9 @@ package com.runofashes.engine;
 import com.runofashes.model.*;
 import com.runofashes.utils.EventLoader;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.File;
-import java.util.Set;
 
 public class GameEngine {
 
@@ -86,8 +84,11 @@ public class GameEngine {
             lastMessage = event.getSuccessMessage() != null
                     ? event.getSuccessMessage()
                     : "Czekasz. Czas płynie. Quest jest gotowy gdy wrócisz.";
+            Map<String, Integer> statsBefore = snapshotStats();
+            Map<ItemType, Integer> itemsBefore = snapshotItems();
             effectApplicator.applyEffects(event.getEffects(), player,
                     environment.getCurrentBiome(), difficulty);
+            appendEffectSummary(statsBefore, itemsBefore);
             advanceTurn(event.getTimeCost());
             return;
         }
@@ -100,6 +101,9 @@ public class GameEngine {
         lastResult = result;
         boolean isDepressed = player.getMorale() < 30;
         Biome biome = environment.getCurrentBiome();
+
+        Map<String, Integer> statsBefore = snapshotStats();
+        Map<ItemType, Integer> itemsBefore = snapshotItems();
 
         switch (lastResult) {
             case SUCCESS -> {
@@ -114,10 +118,7 @@ public class GameEngine {
                     player.addDistance(event.getDistanceCost());
                     appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
                 }
-                if ("quest".equals(event.getCategory()) && event.getQuestStage() == 2) {
-                    if (event.isLocalQuest()) statsManager.getCurrentRun().addLocalQuest();
-                    else statsManager.getCurrentRun().addGeneralQuest();
-                }
+                recordQuestCompletion(event);
             }
             case PARTIAL -> {
                 effectApplicator.applyEffectsPartial(
@@ -125,9 +126,7 @@ public class GameEngine {
                         player, biome, difficulty);
                 effectApplicator.processItemEffects(event.getItemEffects(), true,
                         inventory, player, biome, difficulty);
-                lastMessage = isDepressed
-                        ? "Nawet gdy coś się udaje, smakuje to jak porażka."
-                        : "Nie poszło idealnie — efekt był słabszy niż oczekiwałeś.";
+                lastMessage = buildPartialMessage(event, isDepressed);
                 questTracker.handleProgress(event);
                 if (event.getDistanceCost() != 0) {
                     player.addDistance(event.getDistanceCost());
@@ -146,8 +145,67 @@ public class GameEngine {
                     ? event.getRevealMessage()
                     : lastMessage + "\n\n" + event.getRevealMessage();
         }
+        appendEffectSummary(statsBefore, itemsBefore);
         AchievementTracker.checkEventAchievements(this, event, lastResult);
         advanceTurn(event.getTimeCost());
+    }
+
+    /** Szansa powodzenia opcji wyboru (0.0–1.0) dla aktualnego stanu gracza — do UI. */
+    public double getChoiceChance(EventChoice choice) {
+        return eventResolver.choiceChance(choice, player, traitManager, difficulty);
+    }
+
+    /**
+     * Rozstrzyga wybraną przez gracza opcję w wydarzeniu typu "wybór".
+     * Wynik to wyłącznie SUKCES albo PORAŻKA (brak efektu pośredniego).
+     */
+    public void executeChoice(GameEvent event, EventChoice choice) {
+        hasUnsavedProgress = true;
+
+        if (event.getQuestId() != null && event.getQuestStage() == 1 && event.getRequiredStage() != null) {
+            mainQuestWeight = 5;
+        }
+
+        boolean success = eventResolver.resolveChoice(choice, player, traitManager, difficulty);
+        lastResult = success ? EventResult.SUCCESS : EventResult.FAIL;
+        Biome biome = environment.getCurrentBiome();
+
+        Map<String, Integer> statsBefore = snapshotStats();
+        Map<ItemType, Integer> itemsBefore = snapshotItems();
+
+        if (success) {
+            effectApplicator.applyEffects(
+                    effectApplicator.applyHallucinations(choice.getEffects(), statusManager),
+                    player, biome, difficulty);
+            effectApplicator.processItemEffects(choice.getItemEffects(), false,
+                    inventory, player, biome, difficulty);
+            lastMessage = choice.getSuccessMessage() != null ? choice.getSuccessMessage() : "";
+            questTracker.handleProgress(event);
+            if (event.getDistanceCost() != 0) {
+                player.addDistance(event.getDistanceCost());
+                appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
+            }
+            recordQuestCompletion(event);
+        } else {
+            effectApplicator.applyEffects(choice.getFailEffects(), player, biome, difficulty);
+            effectApplicator.processItemEffects(choice.getFailItemEffects(), false,
+                    inventory, player, biome, difficulty);
+            lastMessage = choice.getFailMessage() != null ? choice.getFailMessage() : "";
+            questTracker.onQuestFail(event);
+        }
+
+        appendEffectSummary(statsBefore, itemsBefore);
+        AchievementTracker.checkEventAchievements(this, event, lastResult);
+        advanceTurn(event.getTimeCost());
+    }
+
+    /** Zlicza ukończony quest w statystykach bieżącej rozgrywki (jak {@link QuestTracker#handleProgress}). */
+    private void recordQuestCompletion(GameEvent event) {
+        if (!"quest".equals(event.getCategory()) || event.getTurnsUntilNext() != 0) return;
+        RunStatistics run = statsManager.getCurrentRun();
+        if (run == null) return;
+        if (event.isLocalQuest()) run.addLocalQuest();
+        else run.addGeneralQuest();
     }
 
     private void advanceTurn(int timeCost) {
@@ -176,6 +234,83 @@ public class GameEngine {
     private static String pickMessage(boolean depressed, String lowMoraleMsg, String normalMsg) {
         String msg = (depressed && lowMoraleMsg != null) ? lowMoraleMsg : normalMsg;
         return msg != null ? msg : "";
+    }
+
+    /**
+     * Buduje komunikat dla wyniku połowicznego. Każde wydarzenie może mieć własny
+     * {@code partialMessage} (oraz wariant {@code lowMoralePartialMessage}) w JSON —
+     * używamy go w pierwszej kolejności. Gdy go brak, korzystamy z uniwersalnego zdania.
+     */
+    private static String buildPartialMessage(GameEvent event, boolean depressed) {
+        String custom = pickMessage(depressed,
+                event.getLowMoralePartialMessage(), event.getPartialMessage());
+        if (custom != null && !custom.isEmpty()) {
+            return custom;
+        }
+        return depressed
+                ? "Nawet gdy coś się udaje, smakuje to jak porażka."
+                : "Udało się tylko częściowo — efekt jest słabszy, niż liczyłeś.";
+    }
+
+    private static final String[] TRACKED_STATS = {"health", "hunger", "hydration", "energy", "morale"};
+
+    private Map<String, Integer> snapshotStats() {
+        Map<String, Integer> snap = new LinkedHashMap<>();
+        for (String stat : TRACKED_STATS) {
+            snap.put(stat, player.getStat(stat));
+        }
+        return snap;
+    }
+
+    private Map<ItemType, Integer> snapshotItems() {
+        return new HashMap<>(inventory.getAllItems());
+    }
+
+    /** Dokleja do {@code lastMessage} czytelny bilans zmian statystyk i przedmiotów. */
+    private void appendEffectSummary(Map<String, Integer> statsBefore, Map<ItemType, Integer> itemsBefore) {
+        StringBuilder stats = new StringBuilder();
+        for (String stat : TRACKED_STATS) {
+            int delta = player.getStat(stat) - statsBefore.getOrDefault(stat, 0);
+            if (delta != 0) {
+                stats.append(statEmoji(stat)).append(' ')
+                        .append(delta > 0 ? "+" : "").append(delta).append("   ");
+            }
+        }
+
+        StringBuilder items = new StringBuilder();
+        Map<ItemType, Integer> itemsAfter = inventory.getAllItems();
+        for (ItemType type : ItemType.values()) {
+            int delta = itemsAfter.getOrDefault(type, 0) - itemsBefore.getOrDefault(type, 0);
+            if (delta != 0) {
+                items.append(delta > 0 ? "+" : "").append(delta).append(' ')
+                        .append(type.getLabel()).append("   ");
+            }
+        }
+
+        StringBuilder summary = new StringBuilder();
+        if (stats.length() > 0) {
+            summary.append("Bilans:  ").append(stats.toString().trim());
+        }
+        if (items.length() > 0) {
+            if (summary.length() > 0) summary.append('\n');
+            summary.append("Przedmioty:  ").append(items.toString().trim());
+        }
+        if (summary.length() == 0) return;
+
+        lastMessage = lastMessage.isEmpty()
+                ? summary.toString()
+                : lastMessage + "\n\n" + summary;
+    }
+
+    private static String statEmoji(String stat) {
+        return switch (stat) {
+            case "health"    -> "❤";
+            case "hunger"    -> "🍗";
+            case "hydration" -> "💧";
+            case "energy"    -> "⚡";
+            case "morale"    -> "😊";
+            default          -> stat;
+        };
     }
 
     private void applyDifficultyAndTraits() {
