@@ -118,10 +118,7 @@ public class GameEngine {
                     player.addDistance(event.getDistanceCost());
                     appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
                 }
-                if ("quest".equals(event.getCategory()) && event.getQuestStage() == 2) {
-                    if (event.isLocalQuest()) statsManager.getCurrentRun().addLocalQuest();
-                    else statsManager.getCurrentRun().addGeneralQuest();
-                }
+                recordQuestCompletion(event);
             }
             case PARTIAL -> {
                 effectApplicator.applyEffectsPartial(
@@ -188,10 +185,7 @@ public class GameEngine {
                 player.addDistance(event.getDistanceCost());
                 appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
             }
-            if ("quest".equals(event.getCategory()) && event.getTurnsUntilNext() == 0) {
-                if (event.isLocalQuest()) statsManager.getCurrentRun().addLocalQuest();
-                else statsManager.getCurrentRun().addGeneralQuest();
-            }
+            recordQuestCompletion(event);
         } else {
             effectApplicator.applyEffects(choice.getFailEffects(), player, biome, difficulty);
             effectApplicator.processItemEffects(choice.getFailItemEffects(), false,
@@ -203,6 +197,15 @@ public class GameEngine {
         appendEffectSummary(statsBefore, itemsBefore);
         AchievementTracker.checkEventAchievements(this, event, lastResult);
         advanceTurn(event.getTimeCost());
+    }
+
+    /** Zlicza ukończony quest w statystykach bieżącej rozgrywki (jak {@link QuestTracker#handleProgress}). */
+    private void recordQuestCompletion(GameEvent event) {
+        if (!"quest".equals(event.getCategory()) || event.getTurnsUntilNext() != 0) return;
+        RunStatistics run = statsManager.getCurrentRun();
+        if (run == null) return;
+        if (event.isLocalQuest()) run.addLocalQuest();
+        else run.addGeneralQuest();
     }
 
     private void advanceTurn(int timeCost) {

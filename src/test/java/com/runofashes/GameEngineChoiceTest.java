@@ -40,6 +40,27 @@ public class GameEngineChoiceTest {
     }
 
     @Test
+    public void successfulSingleStageChoiceQuestIncrementsLocalQuestStat() throws Exception {
+        GameEngine engine = new GameEngine();
+        engine.load();
+        GameEvent bandits = loadBandits();
+
+        boolean verified = false;
+        for (int attempt = 0; attempt < 100; attempt++) {
+            engine.reset();
+            engine.executeChoice(bandits, bandits.getChoices().get(3));
+
+            if (engine.getLastResult() == EventResult.SUCCESS) {
+                assertEquals(1, engine.getStatsManager().getCurrentRun().getLocalQuestsCompleted(),
+                        "Jednoetapowy lokalny quest z wyborem powinien trafić do statystyk");
+                verified = true;
+                break;
+            }
+        }
+        assertTrue(verified, "Test wymagał przynajmniej jednego sukcesu RNG");
+    }
+
+    @Test
     public void singleStageChoiceQuestIsCompletedAfterResolution() throws Exception {
         GameEngine engine = new GameEngine();
         engine.load();
