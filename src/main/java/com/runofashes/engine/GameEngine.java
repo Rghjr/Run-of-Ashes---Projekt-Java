@@ -188,7 +188,7 @@ public class GameEngine {
                 player.addDistance(event.getDistanceCost());
                 appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
             }
-            if ("quest".equals(event.getCategory()) && event.getQuestStage() == 2) {
+            if ("quest".equals(event.getCategory()) && event.getTurnsUntilNext() == 0) {
                 if (event.isLocalQuest()) statsManager.getCurrentRun().addLocalQuest();
                 else statsManager.getCurrentRun().addGeneralQuest();
             }
