@@ -99,8 +99,7 @@ public class GameEngine {
             mainQuestWeight = 5;
         }
 
-        EventResult result = eventResolver.resolve(event, player, traitManager, difficulty);
-        lastResult = result;
+        lastResult = eventResolver.resolve(event, player, traitManager, difficulty);
         boolean isDepressed = player.getMorale() < 30;
         Biome biome = environment.getCurrentBiome();
 
@@ -150,17 +149,7 @@ public class GameEngine {
                     : lastMessage + "\n\n" + event.getRevealMessage();
         }
 
-        if (consecutiveMoves >= 3) {
-            player.addDistance(50);
-            consecutiveMoves = 0;
-            lastMessage += "\n\nRozpędziłeś się! -50 km.";
-        } else if (event.getDistanceCost() == 0) {
-            consecutiveMoves = 0;
-        }
-
-        appendEffectSummary(statsBefore, itemsBefore);
-        AchievementTracker.checkEventAchievements(this, event, lastResult);
-        advanceTurn(event.getTimeCost());
+        finalizeEventAction(event, statsBefore, itemsBefore);
     }
 
     /** Szansa powodzenia opcji wyboru (0.0–1.0) dla aktualnego stanu gracza — do UI. */
@@ -208,6 +197,10 @@ public class GameEngine {
             questTracker.onQuestFail(event);
         }
 
+        finalizeEventAction(event, statsBefore, itemsBefore);
+    }
+
+    private void finalizeEventAction(GameEvent event, Map<String, Integer> statsBefore, Map<ItemType, Integer> itemsBefore) {
         if (consecutiveMoves >= 3) {
             player.addDistance(50);
             consecutiveMoves = 0;
@@ -266,7 +259,7 @@ public class GameEngine {
     private static String buildPartialMessage(GameEvent event, boolean depressed) {
         String custom = pickMessage(depressed,
                 event.getLowMoralePartialMessage(), event.getPartialMessage());
-        if (custom != null && !custom.isEmpty()) {
+        if (!custom.isEmpty()) {
             return custom;
         }
         return depressed
@@ -310,14 +303,14 @@ public class GameEngine {
         }
 
         StringBuilder summary = new StringBuilder();
-        if (stats.length() > 0) {
+        if (!stats.isEmpty()) {
             summary.append("Bilans:  ").append(stats.toString().trim());
         }
-        if (items.length() > 0) {
-            if (summary.length() > 0) summary.append('\n');
+        if (!items.isEmpty()) {
+            if (!summary.isEmpty()) summary.append('\n');
             summary.append("Przedmioty:  ").append(items.toString().trim());
         }
-        if (summary.length() == 0) return;
+        if (summary.isEmpty()) return;
 
         lastMessage = lastMessage.isEmpty()
                 ? summary.toString()
@@ -382,7 +375,6 @@ public class GameEngine {
     public StatusManager getStatusManager()  { return statusManager; }
     public List<GameEvent> getCurrentCards() { return Collections.unmodifiableList(currentCards); }
     public Set<String> getCompletedQuests() { return questTracker.getCompletedQuests(); }
-    public Set<String> getUnlockedIds() { return achievementManager.getUnlockedIds(); }
 
     public AchievementManager getAchievementManager() {
         return achievementManager;
@@ -424,6 +416,8 @@ public class GameEngine {
         state.time = player.getTime();
         state.distance = player.getDistance();
 
+        state.consecutiveMoves = this.consecutiveMoves;
+
         // Cechy
         state.activeTraitNames = traitManager.getActiveTraits().stream()
                 .map(Enum::name).collect(Collectors.toList());
@@ -461,6 +455,8 @@ public class GameEngine {
         GameState state = MAPPER.readValue(saveFile, GameState.class);
 
         player.loadFromState(state);
+
+        this.consecutiveMoves = state.consecutiveMoves;
 
         inventory.loadFromMap(state.inventoryItems);
 

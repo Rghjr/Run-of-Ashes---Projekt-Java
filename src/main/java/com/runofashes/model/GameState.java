@@ -13,6 +13,7 @@ public class GameState {
     public Map<String, QuestState> activeQuests;
     public Set<String> completedQuestIds;
     public Set<String> unlockedAchievementIds;
+    public int consecutiveMoves;
 
     public GameState() {
     }
