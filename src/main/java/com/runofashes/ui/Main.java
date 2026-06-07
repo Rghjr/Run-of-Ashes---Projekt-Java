@@ -101,12 +101,6 @@ public class Main extends Application {
         mainScene.setRoot(difficultyScreen);
     }
 
-    private void showStatsScreen() {
-        mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
-        StatsScreen statsScreen = new StatsScreen(engine.getStatsManager().getAllRuns(), this::showDifficultyScreen);
-        mainScene.setRoot(statsScreen);
-    }
-
     private void showAchievements(Runnable onBack) {
         AchievementsScreen achievementsScreen = new AchievementsScreen(engine.getAchievementManager(), onBack);
         mainScene.setRoot(achievementsScreen);
@@ -175,9 +169,7 @@ public class Main extends Application {
 
     private void showSettingsFromGame() {
         mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
-        SettingsScreen settings = new SettingsScreen(audioManager, engine, () -> {
-            mainScene.setRoot(gameScreen.getRoot());
-        });
+        SettingsScreen settings = new SettingsScreen(audioManager, engine, () -> mainScene.setRoot(gameScreen.getRoot()));
         mainScene.setRoot(settings);
     }
 
@@ -326,9 +318,7 @@ public class Main extends Application {
 
             javafx.scene.control.Button cancelBtn = new javafx.scene.control.Button("Anuluj");
             cancelBtn.getStyleClass().add("btn-stats");
-            cancelBtn.setOnAction(e -> {
-                ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().remove(overlay);
-            });
+            cancelBtn.setOnAction(e -> ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().remove(overlay));
 
             javafx.scene.layout.HBox buttons = new javafx.scene.layout.HBox(20, saveAndQuitBtn, quitBtn, cancelBtn);
             buttons.setAlignment(javafx.geometry.Pos.CENTER);
@@ -370,9 +360,7 @@ public class Main extends Application {
 
             javafx.scene.control.Button cancelBtn = new javafx.scene.control.Button("Anuluj");
             cancelBtn.getStyleClass().add("btn-stats");
-            cancelBtn.setOnAction(e -> {
-                ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().remove(overlay);
-            });
+            cancelBtn.setOnAction(e -> ((javafx.scene.layout.StackPane) mainScene.getRoot()).getChildren().remove(overlay));
 
             javafx.scene.layout.HBox buttons = new javafx.scene.layout.HBox(20, saveAndExitBtn, exitBtn, cancelBtn);
             buttons.setAlignment(javafx.geometry.Pos.CENTER);

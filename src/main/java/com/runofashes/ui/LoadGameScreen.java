@@ -37,7 +37,7 @@ public class LoadGameScreen extends VBox {
         File savesDir = new File("saves");
         File[] files = null;
         if (savesDir.exists() && savesDir.isDirectory()) {
-            files = savesDir.listFiles((dir, name) -> name.endsWith(".json"));
+            files = savesDir.listFiles((dir, name) -> name.endsWith(".json") && !name.equals("settings.json"));
         }
 
         if (files != null && files.length > 0) {

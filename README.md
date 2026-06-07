@@ -1,238 +1,209 @@
 # Run of Ashes
 
-Gra 2D event-driven survival w Javie — wcielasz się w posłańca biegnącego z Azji do Europy, żeby ostrzec o nadchodzącej Czarnej Śmierci. Każdy dzień to nowy event, każda decyzja zmienia twoje szanse na przeżycie.
+> *Bieg przeciwko Czarnej Śmierci*
+
+Wcielasz się w posłańca, którego misją jest przebiegnięcie z Azji do Europy i ostrzeżenie świata przed nadchodzącą pandemią. To event-driven survival w stylu roguelike — każda tura to nowa karta do wybrania, każda decyzja odbija się echem przez kilka następnych dni.
 
 ---
 
-## Wymagania
+## Jak uruchomić
 
-- Java 17+
-- IntelliJ IDEA
+**Wymagania:** Java 17, IntelliJ IDEA
+
+1. Otwórz projekt w IntelliJ IDEA
+2. Otwórz panel **Maven** po prawej stronie i kliknij **Sync** (pobiera zależności)
+3. Otwórz `src/main/java/com/runofashes/ui/Main.java`
+4. Kliknij zielony trójkąt ▶ przy klasie lub metodzie `main`
+
+---
+
+## Technologie
+
+- Java 17 / JavaFX 17.0.10
+- Maven
+- Jackson (JSON event system)
+- Ikonli (ikony FontAwesome w UI)
+
+---
+
+## Cel gry
+
+Pokonaj 4000 km z Azji Mniejszej do Krakowa zarządzając pięcioma statystykami. Trasa podzielona jest na trzy etapy z osobną pulą eventów i modyfikatorami każdego biomu. Dotarcie do 0 km = wygrana. Wyzerowanie dowolnego statu = koniec biegu.
+
+### Warunki przegranej
+
+| Stat | Efekt przy 0 |
+|---|---|
+| Health | Zginąłeś od ran lub choroby |
+| Hunger | Zagłodziłeś się |
+| Hydration | Umarłeś z pragnienia |
+| Energy | Padłeś z wyczerpania |
+| Morale | Poddałeś się psychicznie |
+
+---
+
+## Mechaniki
+
+### System kart
+
+Co turę losowane są 4 karty z ważonej puli. Waga każdej kategorii zależy od aktualnych statów:
+
+- mało Hunger → więcej kart jedzenia
+- mało Hydration → więcej kart wody
+- niskie Morale → więcej eventów psychicznych
+- waga kart ruchu rośnie w środku trasy i opada przy starcie i mecie (krzywa paraboliczna)
+
+System anti-repeat pamięta ostatnie kilka tur i nie powtarza tych samych eventów. Jeśli pula jest zbyt mała na pełną deduplication, automatycznie odpuszcza filtr — gracz nigdy nie zostanie z mniej niż 4 kartami.
+
+### Wynik akcji
+
+Każda karta ma trzy możliwe wyniki: **Sukces**, **Częściowy sukces**, **Porażka**. Szansa na sukces zależy od aktualnych statów — gracz z pełnymi statami osiąga ok. 65% sukces, 25% częściowy, 10% porażka. Przy wyczerpanych statach proporcje odwracają się.
+
+### Sprint — Push Your Luck
+3 ruchy z rzędu (eventy z distanceCost != 0) wyzwalają bonus -50 km i resetują licznik. Każdy event bez dystansu (odpoczynek, jedzenie, quest) zeruje serię.
+
+### Progresja trudności
+
+Po przekroczeniu połowy trasy (dystans < 2000 km) aktywuje się utrudnienie. Ujemne efekty na Hunger, Hydration i Energy są skalowane mnożnikiem rosnącym liniowo:
+
+| Dystans | Mnożnik |
+|---|---|
+| 2000 km (próg) | ×1.00 |
+| 1500 km | ×1.10 |
+| 1000 km | ×1.20 |
+| 500 km | ×1.30 |
+| 0 km (meta) | ×1.40 |
+
+### Questy łańcuchowe
+
+66 etapów questów ogólnych (33 questów, dostępnych przez całą trasę) i 30 etapów questów etapowych (20 questów, aktywnych tylko w konkretnym biomie). Każdy quest ma 2–3 etapy rozłożone w czasie — decyzja z dnia 1 wraca jako konsekwencja kilka tur później. Część questów wzajemnie się wyklucza.
+### Biomy i pogoda
+
+Trzy etapy trasy ze swoimi modyfikatorami:
+
+| Etap | Dystans | Charakterystyka |
+|---|---|---|
+| Azja Mniejsza | 4000–2600 km | Szybszy spadek Hydration, mniej zasobów |
+| Góry | 2600–1400 km | Wysoki koszt Energy, trudniejsze eventy |
+| Europa | 1400–0 km | Więcej NPC, łatwiejszy dostęp do zasobów |
+
+Pogoda losuje się niezależnie i nakłada własne modyfikatory na staty i dostępne eventy.
+
+### Rare eventy
+
+7 unikalnych eventów z bardzo niską wagą bazową. Każdy ma wariant sukcesu (duży bonus) i porażki (znacząca kara). Mogą pojawić się w dowolnym momencie trasy.
+
+### Statusy tymczasowe
+
+Z losową szansą aktywują się efekty per-tura:
+
+| Status | Efekt |
+|---|---|
+| Odwodnienie | Szybszy spadek wszystkich statów |
+| Gorączka | Ciągły spadek Health i Energy |
+| Skurcze | Akcje kosztują więcej Energy |
+| Halucynacje | Losowe efekty akcji (przez `applyHallucinations`) |
+| Adrenalina | Lepsza skuteczność przez 2 tury |
+| Drugi oddech | Chwilowy boost Energy i Morale |
+
+### Cechy (Traits)
+
+Wybierane na początku, działają przez cały run jako globalne modyfikatory:
+
+- **Easy** → wybierasz 2 pozytywne cechy
+- **Medium** → 1 pozytywna + 1 negatywna
+- **Hard** → losowo 2 negatywne
+
+10 cech (5 pozytywnych, 5 negatywnych): Zahartowany, Zbieracz, Pielgrzym, Wędrowiec, Dyplomata, Pesymista, Żarłok, Nerwowy, Samotnik, Asceta.
+
+### Ekwipunek i itemy
+
+Panel ekwipunku dostępny w każdej chwili podczas tury. Dostępne przedmioty:
+
+| Item | Efekt |
+|---|---|
+| Woda | +Hydration natychmiastowo |
+| Wino | +Morale, +Hydration, ale kolejna akcja kosztuje 1.25× więcej czasu |
+| Oliwki | +Hunger (dużo), ale +koszt Energy w następnym evencie |
+| Winogrona | +Hunger, brak efektów ubocznych |
+| Zioła | +Health przez kilka tur (over-time) |
+| Bandaże | +Health natychmiastowo |
+| Suszone mięso | +Hunger (dużo), -Hydration |
+
+### System czasu
+
+Każda akcja kosztuje czas w godzinach. Pasywny decay statów skaluje się z kosztem czasowym — dłuższa akcja = więcej strat pasywnych. Niektóre itemy (np. wino) zwiększają koszt czasowy kolejnej akcji. Pora dnia filtruje pulę dostępnych eventów.
 
 ---
 
 ## Struktura projektu
 
 ```
-RunOfAshes/
-├── pom.xml
-└── src/
-    └── main/
-        ├── java/
-        │   └── com/runofashes/
-        │       └── Main.java
-        └── resources/
-            └── images/
+src/main/java/com/runofashes/
+├── engine/
+│   ├── GameEngine.java          # główna logika
+│   ├── CardDrawer.java          # ważona pula kart, anti-repeat
+│   ├── EffectApplicator.java    # aplikowanie efektów z biome/diff/late-game mult
+│   ├── LateGamePressure.java    # progresja trudności po 50% trasy
+│   ├── EventResolver.java       # wynik: SUCCESS / PARTIAL / FAIL
+│   ├── QuestTracker.java        # śledzenie questów łańcuchowych
+│   ├── StatusManager.java       # statusy tymczasowe (fever, cramps...)
+│   └── ... 
+├── model/
+│   ├── Player.java
+│   ├── GameEvent.java
+│   ├── StatusEffect.java / ItemType.java
+│   ├── GameState.java           # save/load
+│   └── ...
+├── ui/                          # JavaFX screens i panele
+│   ├── Main.java 
+│   └── ...
+└── utils/                       # EventLoader, FileLoader
+    └── ...
+
+src/main/resources/com/runofashes/
+├── events_food.json             # 27 eventów
+├── events_hydration.json        # 22 eventy
+├── events_energy.json           # 19 eventów
+├── events_morale.json           # 23 eventy
+├── events_move.json             # 22 eventy
+├── events_rare.json             # 7 eventów
+├── events_quests.json           # 66 etapów (33 questów łańcuchowych)
+├── events_stages_quests.json    # 30 etapów (20 questów etapowych)
+└── events_choice_quests.json    # 7 questów z jawnym wyborem opcji
 ```
 
 ---
 
-## Jak odpalić
+## Testy
 
-1. Otwórz projekt w **IntelliJ IDEA**
-2. Po prawej stronie kliknij panel **Maven**
-3. Rozwiń: `RunOfAshes → Plugins → javafx`
-4. Kliknij dwuklik na **`javafx:run`**
+```
+src/test/java/com/runofashes/
+├── PlayerTest.java
+├── StatusManagerTest.java
+├── BiomeTest.java
+├── CardDrawerRareWeightTest.java 
+├── CardDrawerMoveWeightTest.java   
+├── CardDrawerRecentIdsTest.java
+└── ...  
+```
 
----
+**Jedna klasa — IntelliJ:**
+Otwórz plik z testem → kliknij zielony trójkąt ▶ przy nazwie klasy (uruchamia wszystkie testy w klasie) lub przy konkretnej metodzie `@Test` (uruchamia tylko ten jeden test).
 
-## Technologie
-
-- Java 17
-- JavaFX 21
-- Maven
-
----
-
-## Cel gry
-
-Grasz jako posłaniec, który musi przebiec z Azji do Europy i ostrzec o nadchodzącej Czarnej Śmierci. Każdy dzień biegu to nowy event i nowa decyzja. Musisz zarządzać zasobami, zdrowiem i psychiką — i dotrzeć do celu zanim padniesz.
-
----
-
-## Mechaniki gry
-
-### Staty gracza
-
-- **Health** — życie; spada od ran, chorób, skrajnego wyczerpania
-- **Hunger** — głód; spada pasywnie co turę, przy 0 zaczynasz tracić health
-- **Hydration** — nawodnienie; spada szybciej niż hunger, szczególnie w gorących biomach
-- **Energy** — energia; spada od akcji i pasywnie, przy 0 padasz z wyczerpania
-- **Morale** — psychika; przy 0 poddajesz się i nie idziesz dalej
-
-Każdy stat może spaść do 0 i zakończyć grę z innym powodem śmierci.
+**Wszystkie testy naraz — terminal:**
+```
+mvn test
+```
 
 ---
 
-### Poziomy trudności i cechy (Traits)
+## Autorzy
 
-Na początku wybierasz poziom trudności, który określa ile i jakich cech otrzymujesz:
-
-- **Easy** → wybierasz 2 dobre cechy
-- **Medium** → wybierasz 1 dobrą i 1 złą cechę
-- **Hard** → losowo otrzymujesz 2 złe cechy
-
-Łącznie jest 10 cech — 5 dobrych i 5 złych. Każda wpływa globalnie na cały run (modyfikatory do statów, szans, efektów eventów).
+Krystian Strzępek<br>
+Bartłomiej Zięcina<br>
+Martyna Tuszewska
 
 ---
 
-### System eventów
-
-Każdego dnia losowany jest event — ale nie czysto losowo. Pula eventów jest ważona statami:
-
-- mało Hunger → prawie pewny event głodowy
-- mało Hydration → eventy pragnienia
-- mało Energy → eventy zmęczenia
-- niskie Morale → halucynacje i eventy psychiczne
-
-Efekty akcji są skalowane statami zamiast binarnego sukces/porażka. Przykład: szukasz jedzenia z niską energią → znajdziesz mało albo nic; z wysoką energią → znajdziesz dużo.
-
----
-
-### Eventy łańcuchowe
-
-Niektóre eventy mają ciąg dalszy w kolejnych dniach. Przykład: pomagasz żołnierzowi → następnego dnia wraca z zapasami. Twoje decyzje mają konsekwencje rozłożone w czasie.
-
----
-
-### Rare eventy
-
-Bardzo mała szansa wystąpienia. Duży efekt — pozytywny lub negatywny. Mogą całkowicie zmienić stan gry.
-
----
-
-### Biomy
-
-Trasa podzielona jest na biomy, które zmieniają się w trakcie biegu:
-
-- **Azja Mniejsza** — gorąco, szybszy spadek Hydration, mniej zasobów
-- **Góry** — wysoki koszt Energy, trudniejsze eventy
-- **Europa** — więcej NPC, inne eventy, łatwiejszy dostęp do zasobów
-
-Każdy biom podmienia pulę dostępnych eventów i modyfikuje efekty akcji.
-
----
-
-### System czasu
-
-Każda akcja kosztuje czas. Czas wpływa na pasywny spadek statów — im więcej czasu zajmuje akcja, tym więcej tracisz pasywnie. Niektóre itemy zwiększają koszt czasowy kolejnych akcji.
-
----
-
-### Inventory i itemy
-
-Ekwipunek dostępny jako osobny panel podczas każdego eventu. Możesz w każdej chwili:
-
-- zjeść coś
-- wypić coś
-- użyć przedmiotu leczącego
-- wykonać akcję terenową (szukaj jedzenia / szukaj wody) — skuteczność zależy od biomu i aktualnych statów
-
-**Dostępne itemy:**
-
-- **Woda** — natychmiastowe +Hydration, max 40 jednostek
-- **Wino** — +Morale, +Hydration, ale następna akcja kosztuje 1.25x więcej czasu
-- **Oliwki** — +Hunger dużo, ale +koszt Energy w następnym evencie
-- **Winogrona** — +Hunger, neutralne, bez efektów ubocznych
-- **Zioła** — leczą Health powoli przez kilka tur
-- **Bandaże** — natychmiastowe +Health
-- **Suszone mięso** — +Hunger dużo, ale -Hydration
-
----
-
-### Losowe statusy
-
-Z małą szansą mogą się aktywować tymczasowe statusy:
-
-- **Odwodnienie** — szybszy spadek wszystkich statów
-- **Adrenalina** — lepsza skuteczność akcji przez 2 tury
-- **Halucynacje** — losowe efekty akcji
-- **Gorączka** — ciągły spadek Health
-- **Skurcze** — akcje kosztują więcej Energy
-- **Drugi oddech** — chwilowy boost Energy
-
----
-
-### Pasywny decay
-
-Co turę niezależnie od akcji:
-
-- Hunger spada
-- Hydration spada (szybciej w gorących biomach)
-- Energy spada (wolniej w spokojnych biomach)
-- Aktywne statusy działają
-- Efekty itemów over-time działają
-
----
-
-### NPC i spotkania
-
-Możesz napotkać innych ludzi i wybrać:
-
-- **Pomóż** — koszt zasobów, zysk Morale
-- **Okradnij** — zysk zasobów, koszt Morale
-- **Ignoruj** — brak efektów
-
-Niektórzy NPC wracają w eventach łańcuchowych.
-
----
-
-### System pogody
-
-Losowa pogoda wpływa na eventy i staty:
-
-- **Upał** — przyspiesza spadek Hydration
-- **Deszcz** — może uzupełnić wodę, ale obniża Morale
-- **Burza** — blokuje część akcji
-
----
-
-### Progresja trudności
-
-Im dalej w trasie:
-
-- eventy trudniejsze
-- pasywny decay szybszy
-- rare eventy częściej negatywne
-
----
-
-### Warunki końca
-
-- **Health ≤ 0** → zginąłeś
-- **Hunger ≤ 0** → zagłodziłeś się
-- **Hydration ≤ 0** → umarłeś z pragnienia
-- **Energy ≤ 0** → padłeś z wyczerpania
-- **Morale ≤ 0** → poddałeś się psychicznie
-- **Dotarłeś do celu** → wygrałeś
-
----
-
-## Co widzi gracz
-
-### Ekran setup
-Wybór trudności, potem ekran wyboru cech z opisem każdej i jej globalnym efektem.
-
-### Główny ekran gry
-Dzień, dystans do celu (pasek postępu z zaznaczonymi biomami), pięć pasków statów, aktywne statusy z ikonami, aktualny biom i pogoda.
-
-### Ekran eventu
-Tytuł i opis eventu. Tekst dynamicznie zmienia ton zależnie od statów (przy niskim Morale narrator jest bardziej desperacki). 2–3 przyciski głównych akcji z widocznym kosztem czasu i orientacyjnym ryzykiem.
-
-### Panel ekwipunku
-Dostępny w każdej chwili podczas eventu jako osobna zakładka. Lista itemów z opisem efektów i przyciskami użycia. Sekcja akcji terenowych (szukaj jedzenia / szukaj wody) z widoczną skutecznością zależną od biomu i statów.
-
-### Ekran efektów po akcji
-Animowane zmiany pasków statów. Info o nowym statusie jeśli się aktywował. Zapowiedź chain eventu jeśli się wyzwolił.
-
-### Ekran zmiany biomu / pogody
-Krótka notka przy zmianie biomu lub pogody z informacją co się zmienia.
-
-### Ekran game over / win
-Powód śmierci z klimatycznym tekstem, albo zakończenie zwycięskie z opisem ile kosztował bieg. Podsumowanie: dni przeżyte, staty końcowe, itemy użyte, cechy i ich wpływ na run.
-
----
-
-## Status
-
-> 🚧 W trakcie rozwoju
+*W trakcie rozwoju*
