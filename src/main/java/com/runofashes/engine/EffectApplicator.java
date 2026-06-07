@@ -66,11 +66,17 @@ public class EffectApplicator {
             double biomeMult = biome.getDecayMultiplier(stat);
             double diffMult  = difficulty.getDrainMultiplier();
             if (stat.equals("energy")) {
-                delta = (int) Math.round(delta * biomeMult);
+                delta = (int) Math.round(delta * biomeMult * lateGameMult(player));
             } else {
-                delta = (int) Math.round(delta * biomeMult * diffMult);
+                delta = (int) Math.round(delta * biomeMult * diffMult * lateGameMult(player));
             }
         }
         player.modifyStat(stat, delta);
+    }
+
+    private static double lateGameMult(Player player) {
+        if (player.getDistance() > 2000) return 1.0;
+        double progress = (2000 - player.getDistance()) / 2000.0;
+        return 1.0 + progress * 0.40;
     }
 }

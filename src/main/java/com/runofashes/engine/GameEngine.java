@@ -35,6 +35,8 @@ public class GameEngine {
     private final AchievementManager     achievementManager = new AchievementManager();
     private final StatisticsManager statsManager = new StatisticsManager();
 
+    private int consecutiveMoves = 0;
+
     private String currentSaveFilename = "savegame.json";
     public void setSaveFilename(String filename) {
         this.currentSaveFilename = filename;
@@ -115,6 +117,7 @@ public class GameEngine {
                 lastMessage = pickMessage(isDepressed, event.getLowMoraleSuccessMessage(), event.getSuccessMessage());
                 questTracker.handleProgress(event);
                 if (event.getDistanceCost() != 0) {
+                    consecutiveMoves++;
                     player.addDistance(event.getDistanceCost());
                     appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
                 }
@@ -129,6 +132,7 @@ public class GameEngine {
                 lastMessage = buildPartialMessage(event, isDepressed);
                 questTracker.handleProgress(event);
                 if (event.getDistanceCost() != 0) {
+                    consecutiveMoves++;
                     player.addDistance(event.getDistanceCost());
                     appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
                 }
@@ -145,6 +149,15 @@ public class GameEngine {
                     ? event.getRevealMessage()
                     : lastMessage + "\n\n" + event.getRevealMessage();
         }
+
+        if (consecutiveMoves >= 3) {
+            player.addDistance(50);
+            consecutiveMoves = 0;
+            lastMessage += "\n\nRozpędziłeś się! -50 km.";
+        } else if (event.getDistanceCost() == 0) {
+            consecutiveMoves = 0;
+        }
+
         appendEffectSummary(statsBefore, itemsBefore);
         AchievementTracker.checkEventAchievements(this, event, lastResult);
         advanceTurn(event.getTimeCost());
@@ -182,6 +195,7 @@ public class GameEngine {
             lastMessage = choice.getSuccessMessage() != null ? choice.getSuccessMessage() : "";
             questTracker.handleProgress(event);
             if (event.getDistanceCost() != 0) {
+                consecutiveMoves++;
                 player.addDistance(event.getDistanceCost());
                 appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
             }
@@ -192,6 +206,14 @@ public class GameEngine {
                     inventory, player, biome, difficulty);
             lastMessage = choice.getFailMessage() != null ? choice.getFailMessage() : "";
             questTracker.onQuestFail(event);
+        }
+
+        if (consecutiveMoves >= 3) {
+            player.addDistance(50);
+            consecutiveMoves = 0;
+            lastMessage += "\n\nRozpędziłeś się! -50 km.";
+        } else if (event.getDistanceCost() == 0) {
+            consecutiveMoves = 0;
         }
 
         appendEffectSummary(statsBefore, itemsBefore);
