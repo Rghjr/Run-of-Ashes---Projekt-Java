@@ -38,6 +38,7 @@ public class GameEngine {
     private int consecutiveMoves = 0;
 
     private String currentSaveFilename = "savegame.json";
+    private static final String SETTINGS_FILENAME = "settings.json";
     public void setSaveFilename(String filename) {
         this.currentSaveFilename = filename;
     }
@@ -477,6 +478,36 @@ public class GameEngine {
                 saveFile.delete();
                 System.out.println("Zakończono bieg. Usunięto plik zapisu: " + currentSaveFilename);
             }
+        }
+    }
+
+    public void saveGlobalSettings(double soundVolume) {
+        GlobalSettings settings = new GlobalSettings();
+        settings.soundVolume = soundVolume;
+
+        File savesDir = new File("saves");
+        if (!savesDir.exists()) {
+            savesDir.mkdirs();
+        }
+
+        try {
+            File settingsFile = new File("saves", SETTINGS_FILENAME);
+            MAPPER.writerWithDefaultPrettyPrinter().writeValue(settingsFile, settings);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public GlobalSettings loadGlobalSettings() {
+        File settingsFile = new File("saves", SETTINGS_FILENAME);
+        if (!settingsFile.exists()) {
+            return new GlobalSettings();
+        }
+        try {
+            return MAPPER.readValue(settingsFile, GlobalSettings.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new GlobalSettings();
         }
     }
 }

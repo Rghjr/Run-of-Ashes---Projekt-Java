@@ -315,9 +315,7 @@ public class GameScreen {
             onSettings.run();
         });
 
-        btnQuit.setOnAction(e -> {
-            onQuit.run();
-        });
+        btnQuit.setOnAction(e -> onQuit.run());
 
         // Panel osiągnięć
         AchievementPanel achievementPanel = new AchievementPanel(engine);

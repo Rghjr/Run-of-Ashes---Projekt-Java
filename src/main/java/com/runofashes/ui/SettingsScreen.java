@@ -1,6 +1,7 @@
 package com.runofashes.ui;
 
 import com.runofashes.engine.AudioManager;
+import com.runofashes.engine.GameEngine;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +11,7 @@ import javafx.scene.text.Font;
 
 public class SettingsScreen extends VBox {
 
-    public SettingsScreen(AudioManager audioManager, Runnable onBack) {
+    public SettingsScreen(AudioManager audioManager, GameEngine engine, Runnable onBack) {
         setStyle("-fx-background-color: #05050a;");
         setAlignment(Pos.CENTER);
         setSpacing(30);
@@ -27,7 +28,9 @@ public class SettingsScreen extends VBox {
         volSlider.setStyle("-fx-cursor: hand;");
 
         volSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            double volume = newVal.doubleValue();
             audioManager.setVolume(newVal.doubleValue());
+            engine.saveGlobalSettings(volume);
         });
 
         Button backBtn = new Button("Wróć");

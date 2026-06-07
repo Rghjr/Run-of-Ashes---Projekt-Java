@@ -33,6 +33,9 @@ public class Main extends Application {
         this.primaryStage = stage;
         engine.load();
 
+        GlobalSettings globalSettings = engine.loadGlobalSettings();
+        audioManager.setVolume(globalSettings.soundVolume);
+
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
         audioManager.playTheme();
@@ -166,13 +169,13 @@ public class Main extends Application {
 
     private void showSettingsFromMenu() {
         mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
-        SettingsScreen settings = new SettingsScreen(audioManager, this::showMainMenu);
+        SettingsScreen settings = new SettingsScreen(audioManager, engine, this::showMainMenu);
         mainScene.setRoot(settings);
     }
 
     private void showSettingsFromGame() {
         mainScene.setCursor(javafx.scene.Cursor.DEFAULT);
-        SettingsScreen settings = new SettingsScreen(audioManager, () -> {
+        SettingsScreen settings = new SettingsScreen(audioManager, engine, () -> {
             mainScene.setRoot(gameScreen.getRoot());
         });
         mainScene.setRoot(settings);
