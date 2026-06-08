@@ -69,6 +69,7 @@ public class GameEvent {
     public boolean hasChoices()                  { return choices != null && !choices.isEmpty(); }
 
     public double getFailChance()                { return failChance; }
+    public void setFailChance(double failChance) { this.failChance = failChance; }
     public Map<String, Integer> getFailEffects() { return failEffects; }
     public String getFailMessage()               { return failMessage; }
 

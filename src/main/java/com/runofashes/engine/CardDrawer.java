@@ -8,11 +8,15 @@ import java.util.stream.Collectors;
 
 public class CardDrawer {
 
+    private static final int MAX_RECENT_HISTORY = 12;
+
     private final Random rng;
     private final EventPools pools;
     private final QuestTracker quests;
     private final BiomeWeatherController environment;
     private final TraitManager traitManager;
+
+    private final Deque<String> recentIds = new ArrayDeque<>();
 
     public CardDrawer(Random rng, EventPools pools, QuestTracker quests,
                       BiomeWeatherController environment, TraitManager traitManager) {
@@ -70,6 +74,16 @@ public class CardDrawer {
                 usedIds.add(e.getId());
             }
         }
+
+        for (String id : usedIds) {
+            recentIds.remove(id);
+            recentIds.addFirst(id);
+        }
+
+        while (recentIds.size() > MAX_RECENT_HISTORY) {
+            recentIds.removeLast();
+        }
+
         return currentCards;
     }
 
@@ -83,9 +97,25 @@ public class CardDrawer {
                 weight("energy", player.getEnergy(), player.getMaxEnergy()));
         addWeighted(pool, filterByTime(pools.getMoraleEvents(), hour),
                 weight("morale", player.getMorale(), player.getMaxMorale()));
-        addWeighted(pool, filterByTime(pools.getMoveEvents(), hour), baseWeight("move", 40));
-        addWeighted(pool, pools.getRareEvents(), baseWeight("rare", 5));
+
+        List<GameEvent> moveEvents = filterByTime(pools.getMoveEvents(), hour);
+        addWeighted(pool, filterRecent(moveEvents), baseWeight("move", 30));
+
+        List<GameEvent> rareEvents = pools.getRareEvents() == null ? List.of() : pools.getRareEvents();
+        addWeighted(pool, filterRecent(rareEvents), baseWeight("rare", 8));
+
         return pool;
+    }
+
+    private List<GameEvent> filterRecent(List<GameEvent> events) {
+        if (events == null || events.isEmpty()) return List.of();
+        if (events.size() > recentIds.size()) {
+            List<GameEvent> filtered = events.stream()
+                    .filter(e -> !recentIds.contains(e.getId()))
+                    .collect(Collectors.toList());
+            return filtered.isEmpty() ? events : filtered;
+        }
+        return events;
     }
 
     private int weight(String category, int statValue, int maxStat) {

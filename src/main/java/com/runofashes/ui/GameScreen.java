@@ -154,10 +154,10 @@ public class GameScreen {
 
         ScrollPane messageScroll = new ScrollPane(messageLabel);
         messageScroll.setFitToWidth(true);
-        messageScroll.setMinHeight(70);
-        messageScroll.setPrefHeight(90);
-        messageScroll.setMaxHeight(170);
-        messageScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        messageScroll.setMinHeight(90);
+        messageScroll.setPrefHeight(130);
+        messageScroll.setMaxHeight(240);
+        messageScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         messageScroll.getStyleClass().add("transparent-scroll-pane");
 
         GridPane grid = new GridPane();
@@ -177,6 +177,8 @@ public class GameScreen {
             cc.setPercentWidth(50);
             grid.getColumnConstraints().add(cc);
         }
+
+        VBox.setVgrow(grid, Priority.ALWAYS);
 
         VBox gameContentVBox = new VBox(16, hud, messageScroll, grid);
         HBox.setHgrow(gameContentVBox, Priority.ALWAYS);
@@ -313,9 +315,7 @@ public class GameScreen {
             onSettings.run();
         });
 
-        btnQuit.setOnAction(e -> {
-            onQuit.run();
-        });
+        btnQuit.setOnAction(e -> onQuit.run());
 
         // Panel osiągnięć
         AchievementPanel achievementPanel = new AchievementPanel(engine);

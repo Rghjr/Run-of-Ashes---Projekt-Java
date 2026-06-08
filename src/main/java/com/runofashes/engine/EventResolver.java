@@ -23,8 +23,8 @@ public class EventResolver {
                 + statPenalty(player.getMorale())    * 0.10;
         penalty = Math.min(1.0, penalty);
 
-        double successThreshold = 0.25 + penalty * 0.30;
-        double partialThreshold = 0.05 + penalty * 0.15;
+        double successThreshold = 0.35 + penalty * 0.30;
+        double partialThreshold = 0.10 + penalty * 0.15;
 
         double mod = traitManager.getSuccessMod() + difficulty.getSuccessBonus();
         successThreshold = Math.max(0.05, successThreshold - mod);
@@ -43,7 +43,7 @@ public class EventResolver {
 
     private static double statPenalty(int statValue) {
         if (statValue >= 30) return 0.0;
-        return 1.0 - statValue / 30.0;
+        return 1.0 - (statValue / 30.0);
     }
 
     /**

@@ -35,7 +35,10 @@ public class GameEngine {
     private final AchievementManager     achievementManager = new AchievementManager();
     private final StatisticsManager statsManager = new StatisticsManager();
 
+    private int consecutiveMoves = 0;
+
     private String currentSaveFilename = "savegame.json";
+    private static final String SETTINGS_FILENAME = "settings.json";
     public void setSaveFilename(String filename) {
         this.currentSaveFilename = filename;
     }
@@ -97,8 +100,7 @@ public class GameEngine {
             mainQuestWeight = 5;
         }
 
-        EventResult result = eventResolver.resolve(event, player, traitManager, difficulty);
-        lastResult = result;
+        lastResult = eventResolver.resolve(event, player, traitManager, difficulty);
         boolean isDepressed = player.getMorale() < 30;
         Biome biome = environment.getCurrentBiome();
 
@@ -115,6 +117,7 @@ public class GameEngine {
                 lastMessage = pickMessage(isDepressed, event.getLowMoraleSuccessMessage(), event.getSuccessMessage());
                 questTracker.handleProgress(event);
                 if (event.getDistanceCost() != 0) {
+                    consecutiveMoves++;
                     player.addDistance(event.getDistanceCost());
                     appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
                 }
@@ -129,6 +132,7 @@ public class GameEngine {
                 lastMessage = buildPartialMessage(event, isDepressed);
                 questTracker.handleProgress(event);
                 if (event.getDistanceCost() != 0) {
+                    consecutiveMoves++;
                     player.addDistance(event.getDistanceCost());
                     appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
                 }
@@ -145,9 +149,8 @@ public class GameEngine {
                     ? event.getRevealMessage()
                     : lastMessage + "\n\n" + event.getRevealMessage();
         }
-        appendEffectSummary(statsBefore, itemsBefore);
-        AchievementTracker.checkEventAchievements(this, event, lastResult);
-        advanceTurn(event.getTimeCost());
+
+        finalizeEventAction(event, statsBefore, itemsBefore);
     }
 
     /** Szansa powodzenia opcji wyboru (0.0–1.0) dla aktualnego stanu gracza — do UI. */
@@ -182,6 +185,7 @@ public class GameEngine {
             lastMessage = choice.getSuccessMessage() != null ? choice.getSuccessMessage() : "";
             questTracker.handleProgress(event);
             if (event.getDistanceCost() != 0) {
+                consecutiveMoves++;
                 player.addDistance(event.getDistanceCost());
                 appendQuestCancelMessage(questTracker.cancelLocalQuests(event.getQuestId()));
             }
@@ -192,6 +196,18 @@ public class GameEngine {
                     inventory, player, biome, difficulty);
             lastMessage = choice.getFailMessage() != null ? choice.getFailMessage() : "";
             questTracker.onQuestFail(event);
+        }
+
+        finalizeEventAction(event, statsBefore, itemsBefore);
+    }
+
+    private void finalizeEventAction(GameEvent event, Map<String, Integer> statsBefore, Map<ItemType, Integer> itemsBefore) {
+        if (consecutiveMoves >= 3) {
+            player.addDistance(50);
+            consecutiveMoves = 0;
+            lastMessage += "\n\nRozpędziłeś się! -50 km.";
+        } else if (event.getDistanceCost() == 0) {
+            consecutiveMoves = 0;
         }
 
         appendEffectSummary(statsBefore, itemsBefore);
@@ -244,7 +260,7 @@ public class GameEngine {
     private static String buildPartialMessage(GameEvent event, boolean depressed) {
         String custom = pickMessage(depressed,
                 event.getLowMoralePartialMessage(), event.getPartialMessage());
-        if (custom != null && !custom.isEmpty()) {
+        if (!custom.isEmpty()) {
             return custom;
         }
         return depressed
@@ -288,14 +304,14 @@ public class GameEngine {
         }
 
         StringBuilder summary = new StringBuilder();
-        if (stats.length() > 0) {
+        if (!stats.isEmpty()) {
             summary.append("Bilans:  ").append(stats.toString().trim());
         }
-        if (items.length() > 0) {
-            if (summary.length() > 0) summary.append('\n');
+        if (!items.isEmpty()) {
+            if (!summary.isEmpty()) summary.append('\n');
             summary.append("Przedmioty:  ").append(items.toString().trim());
         }
-        if (summary.length() == 0) return;
+        if (summary.isEmpty()) return;
 
         lastMessage = lastMessage.isEmpty()
                 ? summary.toString()
@@ -360,7 +376,6 @@ public class GameEngine {
     public StatusManager getStatusManager()  { return statusManager; }
     public List<GameEvent> getCurrentCards() { return Collections.unmodifiableList(currentCards); }
     public Set<String> getCompletedQuests() { return questTracker.getCompletedQuests(); }
-    public Set<String> getUnlockedIds() { return achievementManager.getUnlockedIds(); }
 
     public AchievementManager getAchievementManager() {
         return achievementManager;
@@ -402,6 +417,8 @@ public class GameEngine {
         state.time = player.getTime();
         state.distance = player.getDistance();
 
+        state.consecutiveMoves = this.consecutiveMoves;
+
         // Cechy
         state.activeTraitNames = traitManager.getActiveTraits().stream()
                 .map(Enum::name).collect(Collectors.toList());
@@ -440,6 +457,8 @@ public class GameEngine {
 
         player.loadFromState(state);
 
+        this.consecutiveMoves = state.consecutiveMoves;
+
         inventory.loadFromMap(state.inventoryItems);
 
         if (state.unlockedAchievementIds != null) {
@@ -459,6 +478,36 @@ public class GameEngine {
                 saveFile.delete();
                 System.out.println("Zakończono bieg. Usunięto plik zapisu: " + currentSaveFilename);
             }
+        }
+    }
+
+    public void saveGlobalSettings(double soundVolume) {
+        GlobalSettings settings = new GlobalSettings();
+        settings.soundVolume = soundVolume;
+
+        File savesDir = new File("saves");
+        if (!savesDir.exists()) {
+            savesDir.mkdirs();
+        }
+
+        try {
+            File settingsFile = new File("saves", SETTINGS_FILENAME);
+            MAPPER.writerWithDefaultPrettyPrinter().writeValue(settingsFile, settings);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public GlobalSettings loadGlobalSettings() {
+        File settingsFile = new File("saves", SETTINGS_FILENAME);
+        if (!settingsFile.exists()) {
+            return new GlobalSettings();
+        }
+        try {
+            return MAPPER.readValue(settingsFile, GlobalSettings.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new GlobalSettings();
         }
     }
 }
