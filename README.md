@@ -205,5 +205,3 @@ Bartłomiej Zięcina<br>
 Martyna Tuszewska
 
 ---
-
-*W trakcie rozwoju*
